@@ -1,0 +1,66 @@
+﻿@using Shop.Models
+@model CartModel
+@{
+    ViewBag.Title = "Подтверждение заказа";
+    Page.Title = "Подтверждение заказа - Интернет-магазин Newer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="cartData">
+
+    @if (Model != null)
+    {
+        if (Model.cart != null && Model.listSku != null && Model.listSku.Any())
+        {
+            <div class="panel panel-default">
+                <div class="panel-body  panel-body-color">
+                    @using (Ajax.BeginForm("ComfirmCart", "Cart", new AjaxOptions() { UpdateTargetId = "cartData" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Ваше имя</label>
+                                <input class="pull-right form-control" type="text" name="nameClient" id="nameClient" value="@Model.cart.nameClient" required="" data-val="true" data-val-required="Это поле должно быть заполнено" aria-required="true" />
+                                <span style="color:red"> @Html.ValidationMessage("nameClient")</span>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Номер телефона</label>
+                                <input class="pull-right form-control" type="text" name="phone" id="phone" data-val-regex="телефон нужно вводить в формате 380XXXXXXXXX" data-val-regex-pattern="^380\d{9}$" pattern="^380\d{9}$" placeholder="380XXXXXXXXX" value="@Model.cart.phone" required="" data-val="true" data-val-required="Это поле должно быть заполнено" aria-required="true" />
+                                <span style="color:red"> @Html.ValidationMessage("phone")</span>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label style="vertical-align: top">Коментарий</label>
+                                <textarea class="form-control" textbox="true" name="comment" id="comment" style="height: 100px!important">@Model.cart.comment</textarea>
+                            </div>
+                        </div>
+
+
+                   
+                        <div class="row">
+                            <div id="listSku" class="col-md-12">
+                                @{ Html.RenderPartial("ListSkuInCart", Model); }
+                            </div>
+                        </div>
+          
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input class="btn btn-blue pull-right" type="submit" value="Подтвердить заказ" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+        }
+        else
+        {
+            <h3>Упс! Вы еще не выбрали товар=)</h3>
+        }
+    }
+</div>
+

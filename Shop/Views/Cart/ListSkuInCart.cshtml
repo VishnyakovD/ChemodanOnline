@@ -1,0 +1,44 @@
+﻿@using Shop.Models
+@model CartModel
+@{
+    var totalCount = 0;
+    decimal totalSum = 0;
+}
+@if (Model != null && Model.listSku != null && Model.listSku.Any())
+{
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>Артикул</th>
+            @*<th></th>*@
+            <th>Товар</th>
+            <th>Количество</th>
+            <th>Цена/грн.</th>
+            <th>Общая стоимость</th>
+            <th></th>
+        </tr>
+        @foreach (var sku in Model.listSku)
+        {
+            var oneCount = Model.cart.listSku.First(s => s.idSku == sku.id).count;
+            var onePrice = (Model.cart.listSku.First(s => s.idSku == sku.id).priceAct*Model.cart.listSku.First(s => s.idSku == sku.id).count);
+            totalCount += oneCount;
+            totalSum += onePrice;
+
+            <tr class="text-right">
+                <td>@sku.articul</td> 
+                @*<td><img class="smallPhoto" src="@sku.smalPhoto.path" /></td>*@
+                <td class="text-left">@string.Format("{0} {1} {2}", sku.listCategory.First().staticcat.name, sku.brand.name, sku.name)</td>
+                <td>@oneCount.ToString("#### шт")</td>
+                <td>@Model.cart.listSku.First(s => s.idSku == sku.id).priceAct.ToString("#### грн")</td>
+                <td>@string.Format("{0} грн", onePrice.ToString("####"))</td>
+                <td>@Ajax.ActionLink("Добавить", "AddToBuyCart", "Cart", new {idSku = sku.id}, new AjaxOptions {UpdateTargetId = "listSku"}) @Ajax.ActionLink("Удалить", "RemoveSkuFromCart", "Cart", new {idSku = sku.id}, new AjaxOptions {UpdateTargetId = "listSku"})</td>
+            </tr>
+        }
+        <tr class="text-right cart-amount-row-table">
+            <td colspan="2">Итого</td>
+            <td>@totalCount.ToString("#### шт")</td>
+            <td>@totalSum.ToString("#### грн")</td>
+            <td colspan="2"></td>
+        </tr>
+
+    </table>
+}

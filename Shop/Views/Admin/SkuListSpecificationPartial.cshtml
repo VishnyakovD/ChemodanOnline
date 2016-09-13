@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Shop.db.Entities.Specification>
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th colspan="3">
+                <h4>
+                    Характеристики товара
+                </h4>
+            </th>
+        </tr>
+        @foreach (var spec in Model)
+        {
+            <tr>
+                <td>@spec.staticspec.name</td>
+                <td>@spec.value</td>
+                <td>
+                    <span class="btn btn-blue btn-sm" onclick="showCatData('@Url.Action("ShowSkuSpecificatoin", "Admin", new { skuId = spec.skuId, specId = spec.staticspec.id })')">Изменить</span>
+                    @Ajax.ActionLink("Удалить", "RemoveSpecificationFromSKU", "Admin", new { idSku = spec.skuId, idSpec = spec.id }, new AjaxOptions { UpdateTargetId = "listSpecification" })
+
+                </td>
+            </tr>
+        }
+    </table>
+}

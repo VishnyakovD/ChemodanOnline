@@ -1,0 +1,165 @@
+﻿@model Shop.Models.AccountAdminModel
+@{
+    Page.Title = "Менеджер ролей";
+    ViewBag.Title = Page.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("/Views/Admin/AdminMenuPartial.cshtml"); }
+
+<a href="@Url.Action("Register","Account")">Создать пользователя</a>
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+       Добавление роли
+    </div>
+    <div class="panel-body panel-body-color">
+        @using (Html.BeginForm("AddRole", "Account"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <label>Название роли </label>
+            @Html.EditorFor(model => model.role)
+            @Html.ValidationMessageFor(model => model.role)
+            <input type="submit" value="Добавить роль" />
+        }
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        Удаление роли
+    </div>
+    <div class="panel-body panel-body-color">
+        @using (Html.BeginForm("RemoveRole", "Account"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <label>Название роли </label>
+            <select name="role" required data-val="true" data-val-required="Это поле должно быть заполнено">
+                <option selected=""></option>
+                @foreach (var role in Model.roles)
+                {
+                    <option>@role</option>
+                }
+            </select>
+            <span class="field-validation-valid" data-valmsg-for="role" data-valmsg-replace="true"></span>
+            <input type="submit" value="Удалить роль" />
+        }
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        Назначение роли
+    </div>
+    <div class="panel-body panel-body-color">
+        @using (Html.BeginForm("AddUserToRole", "Account"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <label>Пользователь </label>
+            <select name="user" required data-val="true" data-val-required="Это поле должно быть заполнено">
+                <option selected=""></option>
+                @foreach (var user in Model.users)
+                {
+                    <option>@user.UserName</option>
+                }
+            </select>
+            <span class="field-validation-valid" data-valmsg-for="user" data-valmsg-replace="true"></span>
+            <label>Роль : </label>
+            <select name="role" required data-val="true" data-val-required="Это поле должно быть заполнено">
+                <option selected=""></option>
+                @foreach (var role in Model.roles)
+                {
+                    <option>@role</option>
+                }
+            </select>
+            <span class="field-validation-valid" data-valmsg-for="role" data-valmsg-replace="true"></span>
+            <input type="submit" value="Назначить роль" />
+        }
+
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        Пользователи
+    </div>
+    <div class="panel-body panel-body-color">
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>Логин</th>
+                <th>Скидка</th>
+                <th>Роль</th>
+                <th></th>
+            </tr>
+
+            @foreach (var user in Model.users)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Discount%</td>
+                    <td>
+                        <ul>
+                            @foreach (var role in user.roles)
+                            {
+                                <li><small><span>@role</span> @Html.ActionLink("удалить", "RemoveUserFromRole", "Account", new { user = user.UserName, role = role }, null)</small></li>
+                            }
+                        </ul>
+                    </td>
+                    <td></td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        Смена пароля
+    </div>
+    <div class="panel-body panel-body-color">
+        @using (Html.BeginForm("ChangePassword", "Account"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <label>Пользователь </label>
+            <select name="user">
+                <option selected=""></option>
+                @foreach (var user in Model.users)
+                {
+                    <option>@user.UserName</option>
+                }
+            </select>
+            <label>Пароль </label>
+            <input type="password" value="" name="password" />
+            <input type="submit" value="Изменить пароль" />
+        }
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

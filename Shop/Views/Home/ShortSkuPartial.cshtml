@@ -1,0 +1,36 @@
+﻿@model Shop.Models.ShortSKUModel
+
+@if (Model != null)
+{
+    <div class="col-sm-6 col-lg-3 col-md-4">
+        <div class="panel skuitem">
+            
+            <a href="@Url.Action("SkuInfo", "Home", new { idSku = Model.id })">
+                <img class="smallPhoto img-thumbnail" title="@Model.name" src="@Model.smalPhotoPath" />
+                
+                <span class="shortskuname">
+                    @Model.name
+                </span>
+            </a>
+  
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pricesBody">
+                        @if (Model.price > Model.priceAct)
+                        {
+                            <span class="priceBg">@Model.price.ToString("####")
+                                <span class="currencyBg">грн</span>
+
+                            </span>
+                        }
+                        <span class="label priceSm">@Model.priceAct.ToString("####")<span class="currencySm">грн</span></span>
+
+                    </div>
+                    <a href="@Url.Action("SkuInfo", "Home", new { idSku = Model.id })" class="btn btn-blue btn-lg pull-right">Хочу!</a>
+                </div>
+
+            </div>
+
+        </div>
+      </div>
+}

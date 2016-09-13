@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Shop.db"
+                   namespace="Shop.db.Entities">
+
+  <class name="Article">
+    <id name="id" >
+      <generator class="identity" />
+    </id>
+    <property name="title" />
+    <property name="body" length="10000"  />
+    <property name="imgPath" />
+    <property name="pathLink" />
+  </class>
+
+</hibernate-mapping>

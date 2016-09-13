@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Shop.db"
+                   namespace="Shop.db.Entities">
+  
+  <class name="ChemodanProvider">
+  	<id name="id" >
+      <generator class="identity" />
+    </id>
+    <property name="name" />
+    <property name="lastName" />
+    <property name="patronymic" />
+    <property name="email" />
+    <property name="mPhone" />
+    <property name="passSeria" />
+    <property name="passNumber" />
+    <property name="passDate" />
+    <property name="passIssuedBy" />
+    <property name="isUse" />
+    <many-to-one name="adress" lazy="false" class="Adress" />
+    <many-to-one name="editAdress" lazy="false" class="EditAdress"  cascade = "save-update" />
+    <property name="fullName" />
+    <property name="typeOwnership" />
+    
+  </class>
+ 
+</hibernate-mapping>
+
+
+<!--inverse="true" lazy="false" cascade="save-update"-->

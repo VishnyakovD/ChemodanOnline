@@ -1,0 +1,42 @@
+﻿@model Shop.Models.ProviderModel
+
+@{
+   Page.Title=ViewBag.Title = "Список поставщиков";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("/Views/Admin/AdminMenuPartial.cshtml"); }
+
+
+<h4>
+    <a class="btn btn-blue btn-sm" href="@Url.Action("ShowProvider", "Admin", new { id = -1 })">Добавить поставщика</a>
+</h4> 
+
+@if (Model!=null&& Model.list.Any())
+{
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>Название</th>
+            <th>Телефон</th>
+            <th>E-mail</th>
+            <th>Используется</th>
+            <th>Подробнее</th>
+        </tr>
+        @foreach (var item in Model.list)
+        {
+            <tr>
+                <td>@item.fullName</td>
+                <td>@item.mPhone</td>
+                <td>@item.email</td>
+                <td>@(item.isUse?"Да":"Нет")</td>
+                <td><a href="@Url.Action("ShowProvider", "Admin", new { id = item.id })" class="btn btn-blue btn-sm">Подробнее</a></td>
+
+            </tr>
+        }
+    </table>
+}
+else{
+    <div class="row">
+        <div class="col-md-12">Поставщики отсутствуют</div>
+    </div>
+}

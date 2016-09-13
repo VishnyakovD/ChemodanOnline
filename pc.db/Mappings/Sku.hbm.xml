@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Shop.db"
+                   namespace="Shop.db.Entities">
+  
+  <class name="Sku">
+  	<id name="id" >
+      <generator class="identity" />
+    </id>
+    <property name="name" />
+    <property name="price" />
+    <property name="priceAct" />
+    <property name="articul" />
+    <property name="isHide" />
+    <property name="sortPriority" />
+    <property name="chemodanDaysRent" />
+    <many-to-one name="brand" lazy="false" class="Brand" />
+    <many-to-one name="chemodanStatus" lazy="false" class="ChemodanStatus" />
+    <many-to-one name="chemodanProvider" lazy="false" class="ChemodanProvider" cascade = "save-update"  />
+    <property name="description" type="StringClob"/>
+    <property name="care" type="StringClob"/>
+    <many-to-one name="smalPhoto"  cascade="save-update" lazy="false" class="Shop.db.Entities.Photo" />
+    
+    <bag name="listPhoto" inverse="true" lazy="false" cascade="save-update">
+      <key column="skuId"/>
+      <one-to-many class="PhotoBig"/>
+    </bag>
+
+    <bag name="listCategory" inverse="true" lazy="false" cascade="save-update">
+      <key column="skuId"/>
+      <one-to-many class="Category" />
+    </bag>
+
+      <bag name="listSpecification" inverse="true" lazy="false" cascade="save-update">
+      <key column="skuId"/>
+      <one-to-many class="Specification"/>
+    </bag>
+
+    <bag name="listComment">
+      <key column="skuId"/>
+      <one-to-many class="Comment"/>
+    </bag>
+    
+  </class>
+ 
+</hibernate-mapping>
+
+
+<!--inverse="true" lazy="false" cascade="save-update"-->

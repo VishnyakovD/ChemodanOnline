@@ -1,0 +1,50 @@
+﻿@model Shop.Models.RegisterModel
+@{
+    ViewBag.Title = Page.Title = "Создание нового пользователя";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+            @using (Ajax.BeginForm("Register", "Account", new AjaxOptions() { UpdateTargetId = "ServerMessage" }))
+            {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+       <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName,new {@class="form-control"})
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+        </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-5">
+                        @Html.LabelFor(m => m.Discount)
+                        @Html.TextBoxFor(m => m.Discount)
+                        @Html.ValidationMessageFor(m => m.Discount)
+                    </div>
+                    <div class="col-md-3">
+                        <input type="submit" value="Создать" class="btn btn-blue pull-right" />
+                    </div>
+                </div>
+        
+                
+
+       
+
+}
+
+

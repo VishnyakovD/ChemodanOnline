@@ -1,0 +1,170 @@
+﻿@using Shop.db.Entities
+@using Shop.Models
+@model ProviderDataModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Page.Title = "Поставщик";
+}
+
+@if (Model != null && Model.provider != null)
+{
+    if (Model.provider.editAdress == null)
+    {
+        Model.provider.editAdress = new EditAdress();
+    }
+    using (Ajax.BeginForm("AddOrUpdateProvider", "Admin", new AjaxOptions { UpdateTargetId = "ServerMessage", OnSuccess = "onSucssessProvider" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+        <input type="hidden" id="id" name="id" value="@Model.provider.id" />
+        <div class="row">
+            <div class="col-md-7">
+                <label>Полное название</label>
+                <input class="form-control" type="text" id="fullName" name="fullName" placeholder="Полное название" value="@Model.provider.fullName"/>
+            </div>
+            <div class="col-md-5">
+                <label>Телефон</label>
+                <input class="form-control" type="text" id="mPhone" name="mPhone" placeholder="Телефон" value="@Model.provider.mPhone" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Фамилия</label>
+                <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Фамилия" value="@Model.provider.lastName"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Имя</label>
+                <input class="form-control" type="text" id="name" name="name" placeholder="Имя" value="@Model.provider.name"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Отчество</label>
+                <input class="form-control" type="text" id="patronymic" name="patronymic" placeholder="Отчество" value="@Model.provider.patronymic"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>E-mail</label>
+                <input class="form-control" type="text" id="email" name="email" placeholder="E-mail" value="@Model.provider.email"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Форма собственности</label>
+                <input class="form-control" type="text" id="typeOwnership" name="typeOwnership" placeholder="Форма собственности" value="@Model.provider.typeOwnership"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Активен</label>
+                <select name="isUse" class="form-control">
+                    @if (Model.provider.isUse)
+                    {
+                        <option selected value="true">да</option>
+                        <option value="false">нет</option>
+                    }
+                    else
+                    {
+                        <option value="true">да</option>
+                        <option selected value="false">нет</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Индекс</label>
+                <input class="form-control" type="number" id="postCode" name="postCode" placeholder="Индекс" value="@Model.provider.editAdress.postCode" />
+            </div>
+
+            <div class="col-md-4">
+                <label>Область</label>
+                <input class="form-control" type="text" id="area" name="area" placeholder="Область" value="@Model.provider.editAdress.area"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Город</label>
+                <input class="form-control" type="text" id="city" name="city" placeholder="Город" value="@Model.provider.editAdress.city" />
+            </div>
+      
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Тип насел.пункта</label>
+                <input class="form-control" type="text" id="typeCity" name="typeCity" placeholder="Тип насел.пункта" value="@Model.provider.editAdress.typeCity"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Тип улицы</label>
+                <input class="form-control" type="text" id="typeStreet" name="typeStreet" placeholder="Тип улицы" value="@Model.provider.editAdress.typeStreet"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Улица</label>
+                <input class="form-control" type="text" id="street" name="street" placeholder="Улица" value="@Model.provider.editAdress.street"/>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Дом</label>
+                <input class="form-control" type="text" id="numHome" name="numHome" placeholder="Дом" value="@Model.provider.editAdress.numHome" />
+            </div>
+
+            <div class="col-md-4">
+                <label>Этаж</label>
+                <input class="form-control" type="text" id="level" name="level" placeholder="Этаж" value="@Model.provider.editAdress.level" />
+            </div>
+
+            <div class="col-md-4">
+                <label>Корпус</label>
+                <input class="form-control" type="text" id="bulk" name="bulk" placeholder="Корпус" value="@Model.provider.editAdress.bulk" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Офис</label>
+                <input class="form-control" type="text" id="office" name="office" placeholder="Офис" value="@Model.provider.editAdress.office" />
+            </div>
+
+            <div class="col-md-4">
+                 </div>
+
+            <div class="col-md-4">
+                  </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+            </div>
+        </div>
+    }
+
+
+}
+
+
+@*<div class="col-md-3">
+    <label>Бренд</label>
+    <select class="form-control" id="brandId" name="brandId">
+        @foreach (var brand in Model.listStaticBrand)
+        {
+            if (brand.id == Model.brandId)
+            {
+                <option selected value="@brand.id">@brand.name</option>
+            }
+            else
+            {
+                <option value="@brand.id">@brand.name</option>
+            }
+        }
+    </select>
+</div>*@

@@ -1,0 +1,56 @@
+﻿@model Shop.Models.ArticleModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Page.Title = "Менеджер статей";
+}
+
+
+@using (Html.BeginForm("AddOrUpdateArticle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+   
+    @Html.HiddenFor(model => model.article.id)
+    @Html.HiddenFor(model => model.article.imgPath)
+    <div class="row">
+        <div class="col-md-5">
+            <label>Картинка</label>
+            <input class="form-control" type="file" name="photoFile" id="photoFile" />
+            <span style="color:red"> @Html.ValidationMessage("photoFile")</span>
+        </div>
+
+
+        <div class="col-md-7">
+            <label>Заголовок</label>
+            <input class="form-control" type="text" name="article.title" id="title" required="" value="@Model.article.title" />
+            <span style="color:red">@Html.ValidationMessageFor(model => model.article.title)</span>
+        </div>
+    </div>
+
+        <div class="row">
+         <div class="col-md-5">
+            <img class="img-responsive" src="@Model.article.imgPath">
+        </div>
+        <div class="col-md-7">
+            <label>Текст</label>
+            <input type="hidden" id="article.body" name="article.body" value="@Model.article.body">
+            <textarea class="form-control" name="article.bodyHTML" required="" id="article.bodyHTML">@(new HtmlString(Model.article.body))</textarea>
+            <span style="color:red">@Html.ValidationMessageFor(model => model.article.body)</span>
+                
+        </div>
+        </div>
+
+            <div class="row">
+
+        <div class="col-md-12">
+            <label>Дополнительная ссылка</label>
+            <input class="form-control" type="text" name="article.pathLink" id="pathLink" value="@Model.article.pathLink" />          
+            <span style="color:red">@Html.ValidationMessageFor(model => model.article.pathLink)</span>
+        </div>
+        </div>
+           <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+
+}

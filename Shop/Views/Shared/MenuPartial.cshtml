@@ -1,0 +1,43 @@
+﻿@model Shop.Models.MenuModel
+
+  <div class="container" id="headmenu">
+
+    <div class="menu">
+       @if (Model != null&&Model.topMenuItems!=null)
+        {
+            foreach (var item in Model.topMenuItems)
+            {
+                if (item != Model.topMenuItems.First())
+                {
+                    <div class="glyphicon glyphicon-certificate menu-separator"></div>
+                }
+                <div><a href="@item.path">@item.name</a></div>
+             }
+        }
+        @if (WebSecurity.IsAuthenticated)
+        {
+            <div class="glyphicon glyphicon-certificate menu-separator"></div>
+            if (User.IsInRole("Admin"))
+            {
+                <div><a href="@Url.Action("Administrator", "Admin")">@WebSecurity.CurrentUserName</a></div>
+            }
+            using (Html.BeginForm("LogOff", "Account"))
+            {
+                @Html.AntiForgeryToken()
+                <div><input type="submit" class="btn btn-blue" value="Выход" /></div>
+    }
+    }
+    <div class="pull-right cart">
+        <a href="@Url.Action("BuyCart","Cart")">
+            Корзина
+            <span class="glyphicon glyphicon-shopping-cart"> </span>
+            <span id="Cart"></span>
+        </a>
+    </div>
+</div>
+
+</div>
+
+
+
+    <div style="display: none" id="ServerMessage"></div>

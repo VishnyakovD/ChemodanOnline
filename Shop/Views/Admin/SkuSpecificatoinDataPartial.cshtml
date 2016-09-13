@@ -1,0 +1,22 @@
+﻿@model Shop.Models.SkuSpecificatoinModel
+
+@using (Ajax.BeginForm("AddOrUpdateSpecificationToSku", "Admin", new AjaxOptions { UpdateTargetId = "listSpecification" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <input type="hidden" id="skuId" name="skuId" value="@Model.skuId" />
+
+    <label>Спецификация</label>
+    <select id="specId" name="specId">
+        @foreach (var spec in Model.listStaticSpecification)
+        {
+            <option value="@spec.id">@spec.name</option>
+        }
+    </select>
+
+    <input type="text" id="specValue" name="specValue" required data-val="true" data-val-required="Это поле должно быть заполнено" value="@Model.specValue" />
+    @Html.ValidationMessage("specValue")
+
+                   <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+}
+

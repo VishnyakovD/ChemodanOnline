@@ -1,0 +1,39 @@
+﻿@model Shop.Models.ArticlesModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Page.Title = "Список статей";
+}
+
+@{ Html.RenderPartial("/Views/Admin/AdminMenuPartial.cshtml"); }
+
+@Html.ActionLink("Создать статью", "ArticleData", new { idArticle = -1 })
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Картинка
+        </th>
+        <th>
+           Заголовок
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.articles) {
+    <tr>
+        <td>
+            <img width="150" src="@item.imgPath" /> 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+
+        <td>
+            @Html.ActionLink("Изменить", "ArticleData", new { idArticle=item.id })
+        </td>
+    </tr>
+}
+
+</table>

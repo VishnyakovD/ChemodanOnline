@@ -1,0 +1,70 @@
+﻿@using Shop.db.Entities
+@using Shop.Models
+@using MenuItem = Shop.db.Entities.MenuItem
+@model Shop.Models.AdminModel
+@{
+    ViewBag.Title = Page.Title = "Панель администрирования";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("AdminMenuPartial"); }
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        <h3>@Ajax.ActionLink("Список брендов", "ListBrands", "Admin", new AjaxOptions { UpdateTargetId = "Brands" }, new { @name = "updArr" })</h3>
+</div>
+    <div class="panel-body panel-body-color">
+        <div id="Brands"></div>
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        <h3>@Ajax.ActionLink("Список категорий", "ListStaticCategoryes", "Admin", new AjaxOptions { UpdateTargetId = "Cats" },new {@name="updArr"})</h3>
+</div>
+    <div class="panel-body panel-body-color">
+        <div id="Cats"></div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        <h3>@Ajax.ActionLink("Список спецификаций", "ListStaticSpecification", "Admin", new AjaxOptions { UpdateTargetId = "Specs" }, new { @name = "updArr" })</h3>
+</div>
+    <div class="panel-body panel-body-color">
+        <div id="Specs"></div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        <h3>@Ajax.ActionLink("Менеджер меню", "ListMenuItem", "Admin", new AjaxOptions {UpdateTargetId = "menumanager"}, new {@name = "updArr"})</h3>
+    </div>
+    <div class="panel-body panel-body-color">
+        <div id="menumanager"></div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        <h3>@Ajax.ActionLink("Статусы чемоданов", "ListChemodanStatus", "Admin", new AjaxOptions {UpdateTargetId = "chemodanstatus"}, new {@name = "updArr"})</h3>
+    </div>
+    <div class="panel-body panel-body-color">
+        <div id="chemodanstatus"></div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        <h3>@Ajax.ActionLink("Типы чемоданов", "ListChemodanType", "Admin", new AjaxOptions { UpdateTargetId = "chemodantype" }, new { @name = "updArr" })</h3>
+    </div>
+    <div class="panel-body panel-body-color">
+        <div id="chemodantype"></div>
+    </div>
+</div>
+
+
+
+
+

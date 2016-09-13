@@ -1,0 +1,21 @@
+﻿@model Shop.Models.ArticleModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Model != null && Model.article != null && !string.IsNullOrEmpty(Model.article.title))
+    {
+        ViewBag.Title = string.Format("{0}", Model.article.title);
+        Page.Title = string.Format("{0} - Интернет-магазин Newer", Model.article.title);
+    }
+   
+}
+
+   @if (Model != null && Model.article!=null)
+    {
+        <div class="row">
+            <div class="col-md-12"><img style="float: left; margin: 7px 7px 7px 0;" src="@Model.article.imgPath">
+                <div>@(new HtmlString(Model.article.body))</div>
+            </div>
+        </div>
+
+}

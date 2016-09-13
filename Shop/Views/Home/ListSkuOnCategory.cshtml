@@ -1,0 +1,31 @@
+﻿@using Shop.Models
+@model SkuViewerModel
+@{
+    if (Model != null && !string.IsNullOrEmpty(Model.Name))
+    {
+        Page.Title = string.Format("Купить {0} - Интернет-магазин Newer", Model.Name.ToLower());
+        ViewBag.Title = Model.Name;
+
+
+        @section head {
+            <meta name="description" content="@Model.Description">
+            <meta name="keywords" content="@Model.Keywords">
+        }
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model != null)
+{
+    Html.RenderPartial("~/Views/Home/sortingPartial.cshtml", Model.IdCat);
+    <div class="row">
+        @foreach (var sku in Model.skuList)
+        {
+            Html.RenderPartial("~/Views/Home/ShortSkuPartial.cshtml", sku);
+        }
+    </div> 
+     <div class="row">
+       <div class="col-md-12">@(new HtmlString(Model.bodyText))</div>
+    </div>
+}

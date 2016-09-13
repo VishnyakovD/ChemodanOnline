@@ -1,0 +1,28 @@
+﻿@model Shop.Models.MailingModel
+
+@{
+   Page.Title=ViewBag.Title = "Список адресов для рекламной рассылки";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("/Views/Admin/AdminMenuPartial.cshtml"); }
+
+@if (Model!=null&& Model.mailings.Any())
+{
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>E-mail</th>
+            <th>Рассылать</th>
+        </tr>
+        @foreach (var item in Model.mailings)
+        {
+            <tr>
+                <td>@item.email</td>
+                <td>@(item.isActive?"Да":"Нет")</td>
+                @*<td>
+                    @Ajax.ActionLink("Отписать", "RemoveSKUFromCategory", "Admin", new { email = item.email}, new AjaxOptions { UpdateTargetId = "listCategory" })
+                </td>*@
+            </tr>
+        }
+    </table>
+}

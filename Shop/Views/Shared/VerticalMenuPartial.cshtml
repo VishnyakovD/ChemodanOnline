@@ -1,0 +1,12 @@
+﻿@model Shop.Models.MenuModel
+
+
+@if (Model != null && Model.menu != null && Model.menu.Any())
+{
+    <div class="list-group">
+        @foreach (var item in Model.menu)
+        {
+            <a class="list-group-item" href="@Url.Action("ListSkuOnCategory","Home",new {idCat=item.idCat})">@item.name</a>
+        }
+    </div>
+}

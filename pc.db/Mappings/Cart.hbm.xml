@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Shop.db"
+                   namespace="Shop.db.Entities">
+  
+  <class name="Cart">
+  	<id name="id" >
+      <generator class="identity" />
+    </id>
+    <property name="name" />
+    <property name="nameClient" />
+    <property name="phone" />
+    <property name="email" />
+    <property name="city" />
+    <property name="street" />
+    <property name="numHome" />
+    <property name="numFlat" />
+    <property name="comment" />
+    <many-to-one name="state" lazy="false" class="CartState" />
+    <bag name="listSku" lazy="false">
+      <key column="CartId"/>
+      <one-to-many class="CartItem"/>
+    </bag>
+    <property name="totalCount" />
+    <property name="createDate" />
+  </class>
+ 
+</hibernate-mapping>
+
+<!--inverse="true" lazy="false" cascade="save-update"-->

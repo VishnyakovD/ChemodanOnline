@@ -1,0 +1,32 @@
+﻿@model Shop.Models.BrandModel
+
+
+@using (Ajax.BeginForm("AddOrUpdateBrand", "Admin", new AjaxOptions {UpdateTargetId = "ServerMessage"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (Model != null && Model.id > 0)
+    {
+        <input type="hidden" id="id" name="id" value="@Model.id" />
+    }
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Название</label>
+                @Html.TextBoxFor(model => model.name, new {@class = "form-control", @required = ""})
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+                    
+        </div> 
+        <div class="row">
+            <div class="col-md-6">
+                <input onclick="clickModalSubmit(this)" class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+            </div>
+                 
+        </div>
+    </div>
+
+}
+
+

@@ -1,0 +1,178 @@
+﻿@using Shop.Models
+@model SKUModel
+@{
+    var dress = string.Empty;
+    if (Model != null)
+    {
+        dress = string.Format("{0} {1}", Model.categotyName, Model.name);
+        Page.Title = string.Format("Купить {0} - Интернет-магазин Newer", dress);
+        ViewBag.Title = Model.name;
+   
+    
+   @section head {
+        <meta name="description" content="@Model.description">
+        <meta name="keywords" content="@Page.Title">
+        <meta property="fb:app_id" content="531214913718356" /> 
+        <meta property="fb:admins" content="100000912166952" /> 
+        <meta property="og:url" content="@Request.Url" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="@string.Format("{0}, артикул:{1}, цена:{2}", Model.name, Model.articul, Model.priceAct.ToString("####грн."))" />
+        <meta property="og:description" content="@(new HtmlString(Model.description))" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image" content="@string.Format("{0}{1}", Request.UrlReferrer , Model.smalPhotoPath)" />
+        
+   }
+     }
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-6">
+            @if (Model.listPhoto != null && Model.listPhoto.Any())
+            {
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        @for (int i = 0; i < Model.listPhoto.Count(); i++)
+                        {
+                            if (i == 0)
+                            {
+                                <li data-target="#carousel-example-generic" data-slide-to="@i" class="active"></li>
+                            }
+                            else
+                            {
+                                <li data-target="#carousel-example-generic" data-slide-to="@i"></li>
+                            }
+
+                        }
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        @for (int i = 0; i < Model.listPhoto.Count(); i++)
+                        {
+                            if (i == 0)
+                            {
+                                <div class="item active">
+                                    <img class="col-md-12" title="@dress" src="@Model.listPhoto[i].path" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="item">
+                                    <img class="col-md-12" title="@dress" src="@Model.listPhoto[i].path" />
+                                </div>
+                            }
+
+                        }
+                    </div>
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Предыдущее</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Следующее</span>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <img class="col-md-12" title="@dress" src="@Model.smalPhotoPath" />
+            }
+        </div>
+        
+        <div class="col-md-6">
+           
+            @if (Model.listSpecification != null && Model.listSpecification.Any())
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-condensed">
+                            <tr>
+                                <th colspan="2">Характеристики</th>
+                            </tr>
+                            <tr>
+                                <td>Артикул</td>
+                                <td>@Model.articul</td>
+                                
+                            </tr>
+                            @foreach (var spec in Model.listSpecification)
+                            {
+                                <tr>
+                                    <td>@spec.staticspec.name</td>
+                                    <td>@spec.value</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            }
+            
+            @if (!string.IsNullOrEmpty(Model.description))
+            {
+             <div class="row">
+                <div class="col-md-12">
+                    <b>Описание</b>
+                    <div>@(new HtmlString(Model.description))</div>
+                </div>
+            </div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.care))
+            {
+              <div class="row">
+                <div class="col-md-12">
+                    <b>Уход</b>
+                    <div>@(new HtmlString(Model.care))</div>
+                </div>
+            </div>
+            }
+
+          <div class="pull-right">
+            <span class="priceLabel">Цена</span>
+
+            @if (Model.price > Model.priceAct)
+            {
+                <span class="priceBgSkuInfo">
+                    @Model.price.ToString("####")
+                    <span class="currencyBg">грн</span>
+                </span>
+            }
+            <span class="label priceSmSkuInfo">@Model.priceAct.ToString("####")<span class="currencySm currencySmCart">грн</span></span>
+          
+            @Ajax.ActionLink("Купить", "AddToCart", "Cart", new { idSku = Model.id }, new AjaxOptions() { UpdateTargetId = "Cart" }, new { @class = "btn btn-blue btn-lg", @style = "width: 135px;margin-bottom: 15px;" })
+           
+              </div>
+
+
+            @if (Model.id > 0 && User.IsInRole("Admin"))
+            {
+                <div>
+                    <a class="btn btn-lg btn-info" href="@Url.Action("SkuData", "Admin", new { id = Model.id })">Редактировать товар</a>
+                </div>
+            }
+            <div class="fb-like" data-href="@Request.Url.AbsoluteUri" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            <br><br><br><br><br><br><br>
+            <div id="disqus_thread"></div>
+            <script>
+                (function () { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+
+                    s.src = '//newer-ua.disqus.com/embed.js';
+
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            
+
+        </div>
+
+    </div>
+
+    }
+    
+

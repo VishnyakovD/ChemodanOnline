@@ -1,0 +1,56 @@
+﻿ @{
+     var sort1 = "gray";
+     var sort2 = "gray";
+     var sort3 = "gray";
+     var sort4 = "gray";
+     if (Session["sort"] != null && !string.IsNullOrEmpty(Session["sort"].ToString()))
+     {
+         var sortVal = Session["sort"].ToString();
+         switch (sortVal)
+         {
+             case "1":
+                 sort1 = "blue";
+                 break; 
+             case "2":
+                 sort2 = "blue";
+                 break; 
+             case "3":
+                 sort3 = "blue";
+                 break;  
+             case "4":
+                 sort4 = "blue";
+                 break;
+         }
+     }
+ }
+<div class="row">
+    <div class="col-md-12">
+        <div class="btn-group solring pull-right" role="group" aria-label="">
+            @*<div class="btn-group" role="group">
+                <a class="btn btn-@sort1 btn-sm" href="@Url.Action("ListSkuOnCategory", "Home", new { IdCat = Model, sort = 1})">
+                    <span class="glyphicon glyphicon-sort-by-alphabet"></span>
+                    От А до Я
+                </a>
+            </div>
+            <div class="btn-group" role="group">
+                <a class="btn btn-@sort2 btn-sm" href="@Url.Action("ListSkuOnCategory", "Home", new { IdCat = Model, sort = 2})">
+                    <span class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+                    От Я до А
+                </a>
+            </div>*@
+            <div class="btn-group" role="group">
+                <a class="btn btn-@sort3 btn-sm" href="@Url.Action("ListSkuOnCategory", "Home", new { IdCat = Model.ToString(), sort = 3})">
+                    <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                    Самые дешевые
+                </a>
+            </div>
+            <div class="btn-group" role="group">
+                <a class="btn btn-@sort4 btn-sm" href="@Url.Action("ListSkuOnCategory", "Home", new { IdCat = Model.ToString(), sort = 4 })">
+                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                    Самые дорогие
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Shop.db"
+                   namespace="Shop.db.Entities">
+
+  <class name="CartState">
+    <id name="id" >
+      <generator class="identity" />
+    </id>
+    <property name="name" />
+    <property name="value" />
+  </class>
+
+</hibernate-mapping>

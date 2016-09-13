@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Shop.db"
+                   namespace="Shop.db.Entities">
+  
+  <class name="EditAdress">
+  	<id name="id" >
+      <generator class="identity" />
+    </id>
+    <property name="name" />
+    <property name="postCode" />
+    <property name="numHome" />
+    <property name="level" />
+    <property name="numFlat" />
+    <property name="bulk" column="[bulk]" />
+    <property name="office" />
+    <property name="area" />
+    <property name="city" />
+    <property name="typeCity" />
+    <property name="street" />
+    <property name="typeStreet" />
+       
+  </class>
+ 
+</hibernate-mapping>

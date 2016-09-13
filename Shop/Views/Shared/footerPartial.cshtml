@@ -1,0 +1,35 @@
+﻿@model Shop.Models.MenuModel
+<div class="container">
+    <hr>
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-md-4">
+                <address style="font-size: 16px;">
+                    <strong style="font-size: 19px;">Контактная информация</strong><br>
+                    e-mail: <a href="mailto:newer.info@gmail.com" target="_blank"><strong>newer.info@gmail.com</strong></a><br>
+                    телефон: <strong>+380-66-471-64-36</strong><br>
+                    телефон: <strong>+380-66-756-75-40</strong><br>
+                </address>
+            </div>
+
+            <div class="col-md-4">
+                
+
+
+            </div>
+            <div class="col-md-4">
+                @{ Html.RenderPartial("AddMailingPartial"); }
+            </div>
+
+            
+
+           
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                Разработка <a href="mailto:vishnyakovd@gmail.com">Вишняков Дмитрий</a>
+            </div>
+        </div>
+    </footer>
+</div>

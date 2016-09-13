@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Shop.db"
+                   namespace="Shop.db.Entities">
+
+  <class name="Category">
+    <id name="id" >
+      <generator class="identity" />
+    </id>
+    <many-to-one name="staticcat" cascade="save-update" lazy="false" class="Shop.db.Entities.StaticCategory" />
+    <property name="description" />
+    <property name="photoPath" />
+    <property name="skuId" />
+  </class>
+
+</hibernate-mapping>

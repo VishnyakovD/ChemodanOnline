@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Shop.db.Entities.Category>
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th colspan="2"><h4>Товар в категориях</h4></th>
+        </tr>
+        @foreach (var cat in Model)
+        {
+            <tr>
+                <td>@cat.staticcat.name</td>
+                <td>
+                    @Ajax.ActionLink("Удалить", "RemoveSKUFromCategory", "Admin", new { idSku = cat.skuId, idCat = cat.id }, new AjaxOptions { UpdateTargetId = "listCategory" })
+                </td>
+            </tr>
+        }
+    </table>
+}
