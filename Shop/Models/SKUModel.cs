@@ -52,9 +52,16 @@ namespace Shop.Models
         [DisplayName("Поставщик")]
         public long chemodanProviderId { get; set; }
 
-        public virtual ChemodanStatus chemodanStatus { get; set; }
-        public virtual int chemodanDaysRent { get; set; }
+        [DisplayName("Статус")]
+        public long chemodanStatusId { get; set; }
 
+        public List<ChemodanStatus> listChemodanStatus { get; set; }
+        public List<ChemodanType> listChemodanType { get; set; }
+
+        public int chemodanDaysRent { get; set; }
+
+        [DisplayName("Тип чемодана")]
+        public long chemodanTypeId { get; set; }
 
         public IList<PhotoBig> listPhoto { get; set; }
         public IList<Category> listCategory { get; set; }
@@ -92,11 +99,28 @@ namespace Shop.Models
             listStaticSpecification = new List<StaticSpecification>();
             listStaticBrand = new List<Brand>();
             listChemodanProvider = new List<ChemodanProvider>();
-            chemodanStatus=new ChemodanStatus();
+            listChemodanStatus=new List<ChemodanStatus>();
+            listChemodanType=new List<ChemodanType>();
         }
         public Sku GetSKUDB()
         {
-            return new Sku() { id = this.id, name = this.name, sortPriority = this.sortPriority, care = this.care, isHide = this.isHide, brand = new Brand() { id = this.brandId, name = this.brandName }, articul = this.articul, description = this.description, price = this.price, priceAct = this.priceAct, smalPhoto =  /*new Photo() { id = this.smalPhotoId, path = this.smalPhotoPath, skuId = this.id}*/null };
+            return new Sku() {
+                id = this.id,
+                name = this.name,
+                sortPriority = this.sortPriority,
+                care = this.care,
+                isHide = this.isHide,
+                brand = new Brand() { id = this.brandId, name = this.brandName },
+                articul = this.articul,
+                description = this.description,
+                price = this.price,
+                priceAct = this.priceAct,
+                smalPhoto =  /*new Photo() { id = this.smalPhotoId, path = this.smalPhotoPath, skuId = this.id}*/null,
+                chemodanDaysRent = chemodanDaysRent,
+                chemodanProvider = new ChemodanProvider() { id = this.chemodanProviderId },
+                chemodanStatus = new ChemodanStatus() { id = this.chemodanStatusId },
+                chemodanType = new ChemodanType() { id = this.chemodanTypeId }
+            };
         }
 
        

@@ -18,10 +18,9 @@ $.datepicker.setDefaults($.datepicker.regional['ru']);
 
 $(function () {
     $("[type=dateJQ]").datepicker();
-    $("textarea:not([textbox=true]").htmlarea();
+   // $("textarea:not([textbox=true]").htmlarea();
 
 });
-
 
 $("#DialogDataEditBody").on("click", "textarea", function () {
     $("textarea:not([textbox=true]").htmlarea();

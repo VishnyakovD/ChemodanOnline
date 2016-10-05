@@ -22,6 +22,7 @@ namespace Shop.db.Entities
         public virtual ChemodanStatus chemodanStatus { get; set; }
         public virtual int chemodanDaysRent { get; set; }
         public virtual ChemodanProvider chemodanProvider { get; set; }
+        public virtual ChemodanType chemodanType { get; set; }
 
         public Sku()
         {
@@ -33,6 +34,7 @@ namespace Shop.db.Entities
             listComment = new List<Comment>();
             chemodanStatus=new ChemodanStatus();
             chemodanProvider=new ChemodanProvider();
+            chemodanType = new ChemodanType();
         }
     }
 }

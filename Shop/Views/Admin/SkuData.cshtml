@@ -14,7 +14,7 @@
         @Html.ValidationSummary(true)
               <input type="hidden" id="id" name="id" value="@Model.id" />
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-3">
                 <label>Название</label>
                 <input class="form-control" type="text" id="name" name="name" placeholder="Название" value="@Model.name" />
             </div>
@@ -45,6 +45,22 @@
                     }
                 </select>
             </div>
+            <div class="col-md-2">
+                <label>Тип чемодана</label>
+                <select class="form-control" id="chemodanTypeId" name="chemodanTypeId">
+                    @foreach (var item in Model.listChemodanType)
+                    {
+                        if (item.id == Model.chemodanTypeId)
+                        {
+                            <option selected value="@item.id">@string.Format("{0} {1}грн/день", item.name, item.priceDay.ToString("#"))</option>
+                        }
+                        else
+                        {
+                            <option value="@item.id">@string.Format("{0} {1}грн/день", item.name, item.priceDay.ToString("#"))</option>
+                        }
+                    }
+                </select>
+            </div>
         </div>
     
             <div class="row">
@@ -71,9 +87,9 @@
                     <label>Приоритет сортировки</label>
                     <input class="form-control" type="number" id="sortPriority" name="sortPriority" value="@Model.sortPriority"/>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label>Поставщик</label>
-                    <select class="form-control" id="brandId" name="brandId">
+                    <select class="form-control" id="chemodanProviderId" name="chemodanProviderId">
                         @foreach (var pro in Model.listChemodanProvider)
                         {
                             if (pro.id == Model.chemodanProviderId)
@@ -87,24 +103,40 @@
                         }
                     </select>
                 </div>
+                <div class="col-md-3">
+                    <label>Статус</label>
+                    <select class="form-control" id="chemodanStatusId" name="chemodanStatusId">
+                        @foreach (var pro in Model.listChemodanStatus)
+                        {
+                            if (pro.id == Model.chemodanStatusId)
+                            {
+                                <option selected value="@pro.id">@pro.name</option>
+                            }
+                            else
+                            {
+                                <option value="@pro.id">@pro.name</option>
+                            }
+                        }
+                    </select>
+                </div>
 
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <label>Описание товара</label>
-                <input type="hidden" id="description" name="description" value="@Model.description">
-                <textarea id="descriptionHTML" name="descriptionHTML" placeholder="Описание" class="form-control">@Model.description</textarea>
+                <textarea id="description" name="description" value="@Model.description"></textarea>
+                @*<textarea id="descriptionHTML" name="descriptionHTML" placeholder="Описание" class="form-control">@Model.description</textarea>*@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <label>Уход</label>
-                <input type="hidden" id="care" name="care" value="@Model.care">
-                <textarea id="careHTML" name="careHTML" placeholder="Уход" class="form-control">@Model.care</textarea>
-            </div>
+      @*  <div class="row">
+        <div class="col-md-12">
+            <label>Уход</label>
+            <input type="hidden" id="care" name="care" value="@Model.care">
+            <textarea id="careHTML" name="careHTML" placeholder="Уход" class="form-control">@Model.care</textarea>
         </div>
+    </div>*@
 
         <div class="row">
             <div class="col-md-12">

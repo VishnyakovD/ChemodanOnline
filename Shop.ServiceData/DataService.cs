@@ -542,6 +542,7 @@ namespace Shop.DataService
                         SkuDB.chemodanDaysRent = sku.chemodanDaysRent;
                         SkuDB.chemodanStatus = sku.chemodanStatus;
                         SkuDB.chemodanProvider = sku.chemodanProvider;
+                        SkuDB.chemodanType = sku.chemodanType;
                         //SkuDB.smalPhoto = sku.smalPhoto;
                         //SkuDB.listCategory = sku.listCategory;
                         //SkuDB.listComment = sku.listComment;

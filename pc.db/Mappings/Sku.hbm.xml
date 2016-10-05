@@ -16,7 +16,8 @@
     <property name="chemodanDaysRent" />
     <many-to-one name="brand" lazy="false" class="Brand" />
     <many-to-one name="chemodanStatus" lazy="false" class="ChemodanStatus" />
-    <many-to-one name="chemodanProvider" lazy="false" class="ChemodanProvider" cascade = "save-update"  />
+    <many-to-one name="chemodanProvider" lazy="false" class="ChemodanProvider"  />
+    <many-to-one name="chemodanType" lazy="false" class="ChemodanType"  />
     <property name="description" type="StringClob"/>
     <property name="care" type="StringClob"/>
     <many-to-one name="smalPhoto"  cascade="save-update" lazy="false" class="Shop.db.Entities.Photo" />

@@ -39,13 +39,15 @@ namespace Shop.Models.Builders
             sku.listStaticSpecification = dataService.ListStaticSpecification();
             sku.listStaticBrand = dataService.ListBrands();
             sku.menu = BuildMenu(sku.listStaticCategory);
+            sku.listChemodanProvider = dataService.ListChemodanProvider();
+            sku.listChemodanStatus = dataService.ListChemodanStatus();
+            sku.listChemodanType = dataService.ListChemodanType();
+
 
             sku.listCategory=new List<Category>();
             sku.listComment=new List<Comment>();
             sku.listPhoto=new List<PhotoBig>();
             sku.listSpecification=new List<Specification>();
-            sku.listChemodanProvider = new List<ChemodanProvider>();
-            sku.chemodanStatus = new ChemodanStatus();
 
             return sku;
         }
@@ -92,7 +94,16 @@ namespace Shop.Models.Builders
                 {
                     skuModel.chemodanProviderId = sku.chemodanProvider.id;
                 }
-                skuModel.chemodanStatus = sku.chemodanStatus;
+                if (sku.chemodanStatus!=null)
+                {
+                    skuModel.chemodanStatusId = sku.chemodanStatus.id;
+                }
+                if (sku.chemodanType!=null)
+                {
+                    skuModel.chemodanTypeId = sku.chemodanType.id;
+                }
+            
+
                 skuModel.chemodanDaysRent = sku.chemodanDaysRent;
 
                 skuModel.listCategory = sku.listCategory;
@@ -103,4 +114,4 @@ namespace Shop.Models.Builders
             return skuModel;
         }
     }
-}
+} 
