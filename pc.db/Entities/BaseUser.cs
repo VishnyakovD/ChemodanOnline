@@ -21,6 +21,7 @@ namespace Shop.db.Entities
         public virtual bool isUse { get; set; }
         public virtual Adress adress { get; set; }
         public virtual EditAdress editAdress { get; set; }
+        public virtual DateTime birthDate { get; set; }
 
 
         public BaseUser()
@@ -28,6 +29,7 @@ namespace Shop.db.Entities
             adress = new Adress();
             editAdress=new EditAdress();
             passDate=new DateTime(1930,01,01);
+            birthDate = new DateTime(1930,01,01);
             // GroupsUser = new List<GroupUser>();
             // GroupsUser = new List<GroupUser>();
         }

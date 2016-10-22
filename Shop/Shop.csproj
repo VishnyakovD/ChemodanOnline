@@ -142,6 +142,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -176,12 +177,14 @@
     <Compile Include="Models\Builders\AccountAdminModelBuilder.cs" />
     <Compile Include="Models\Builders\AdminModelBuilder.cs" />
     <Compile Include="Models\Builders\ArticleBuilder.cs" />
+    <Compile Include="Models\Builders\ClientModelBuilder.cs" />
     <Compile Include="Models\Builders\MenuBuilder.cs" />
     <Compile Include="Models\Builders\RegisterBuilder.cs" />
     <Compile Include="Models\Builders\SKUModelBuilder.cs" />
     <Compile Include="Models\Builders\CartBuilder.cs" />
     <Compile Include="Models\Builders\SkuViewerBuilder.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Models\ProviderModel.cs" />
     <Compile Include="Models\MailingModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
@@ -351,6 +354,8 @@
     <Content Include="Views\Admin\AdminMenuPartial.cshtml" />
     <Content Include="Views\Admin\ListProvider.cshtml" />
     <Content Include="Views\Admin\ProviderData.cshtml" />
+    <Content Include="Views\Admin\ListClients.cshtml" />
+    <Content Include="Views\Admin\ClientData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

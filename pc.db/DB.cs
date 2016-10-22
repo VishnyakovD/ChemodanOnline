@@ -151,6 +151,10 @@ namespace Shop.db
                 retvar = (IRepository<T>)(new AdressRepository(session));
             else if (typeof(T) == typeof(EditAdress))
                 retvar = (IRepository<T>)(new EditAdressRepository(session));
+            else if (typeof(T) == typeof(Client))
+                retvar = (IRepository<T>)(new ClientRepository(session));
+            else if (typeof(T) == typeof(Sex))
+                retvar = (IRepository<T>)(new SexRepository(session));
             else
                 retvar = new Repository<T>(session);
             return retvar;

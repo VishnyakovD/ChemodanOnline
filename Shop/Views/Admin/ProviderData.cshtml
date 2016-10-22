@@ -12,7 +12,7 @@
     {
         Model.provider.editAdress = new EditAdress();
     }
-    using (Ajax.BeginForm("AddOrUpdateProvider", "Admin", new AjaxOptions { UpdateTargetId = "ServerMessage", OnSuccess = "onSucssessProvider" }))
+    using (Ajax.BeginForm("AddOrUpdateProvider", "Admin", new AjaxOptions { UpdateTargetId = "ServerMessage", OnSuccess = "onSucssess" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)

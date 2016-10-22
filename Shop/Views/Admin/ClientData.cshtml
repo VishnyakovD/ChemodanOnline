@@ -1,0 +1,159 @@
+﻿@using Shop.db.Entities
+@using Shop.Models
+@model ClientDataModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Page.Title = "Клиент";
+}
+
+@if (Model != null && Model.client != null)
+{
+    using (Ajax.BeginForm("AddOrUpdateClient", "Admin", new AjaxOptions { UpdateTargetId = "ServerMessage", OnSuccess = "onSucssess" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+        <input type="hidden" id="id" name="id" value="@Model.client.id" />
+
+        <div class="row">
+            <div class="col-md-3">
+                <label>Фамилия</label>
+                <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Фамилия" value="@Model.client.lastName"/>
+            </div>
+
+            <div class="col-md-3">
+                <label>Имя</label>
+                <input class="form-control" type="text" id="name" name="name" placeholder="Имя" value="@Model.client.name"/>
+            </div>
+
+            <div class="col-md-3">
+                <label>Отчество</label>
+                <input class="form-control" type="text" id="patronymic" name="patronymic" placeholder="Отчество" value="@Model.client.patronymic"/>
+            </div>
+            <div class="col-md-3">
+                <label>Дата рождения</label>
+                <input class="form-control" type="text" id="birthDate" name="birthDate" value="@Model.client.birthDate" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Телефон</label>
+                <input class="form-control" type="text" id="mPhone" name="mPhone" placeholder="Телефон" value="@Model.client.mPhone" />
+            </div>
+            <div class="col-md-4">
+                <label>E-mail</label>
+                <input class="form-control" type="text" id="email" name="email" placeholder="E-mail" value="@Model.client.email" />
+            </div>
+            <div class="col-md-4">
+                <label>Пол</label>
+                <select class="form-control" id="sexId" name="sexId">
+                    @foreach (var item in Model.sexs)
+                    {
+                        if (item.id == Model.client.sex.id)
+                        {
+                            <option selected value="@item.id">@item.name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.id">@item.name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Индекс</label>
+                <input class="form-control" type="number" id="postCode" name="postCode" placeholder="Индекс" value="@Model.client.editAdress.postCode" />
+            </div>
+
+            <div class="col-md-4">
+                <label>Область</label>
+                <input class="form-control" type="text" id="area" name="area" placeholder="Область" value="@Model.client.editAdress.area"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Город</label>
+                <input class="form-control" type="text" id="city" name="city" placeholder="Город" value="@Model.client.editAdress.city" />
+            </div>
+      
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Тип насел.пункта</label>
+                <input class="form-control" type="text" id="typeCity" name="typeCity" placeholder="Тип насел.пункта" value="@Model.client.editAdress.typeCity"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Тип улицы</label>
+                <input class="form-control" type="text" id="typeStreet" name="typeStreet" placeholder="Тип улицы" value="@Model.client.editAdress.typeStreet"/>
+            </div>
+
+            <div class="col-md-4">
+                <label>Улица</label>
+                <input class="form-control" type="text" id="street" name="street" placeholder="Улица" value="@Model.client.editAdress.street"/>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Дом</label>
+                <input class="form-control" type="text" id="numHome" name="numHome" placeholder="Дом" value="@Model.client.editAdress.numHome" />
+            </div>
+
+            <div class="col-md-4">
+                <label>Этаж</label>
+                <input class="form-control" type="text" id="level" name="level" placeholder="Этаж" value="@Model.client.editAdress.level" />
+            </div>
+
+            <div class="col-md-4">
+                <label>Корпус</label>
+                <input class="form-control" type="text" id="bulk" name="bulk" placeholder="Корпус" value="@Model.client.editAdress.bulk" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Офис</label>
+                <input class="form-control" type="text" id="office" name="office" placeholder="Офис" value="@Model.client.editAdress.office" />
+            </div>
+
+            <div class="col-md-4">
+                 </div>
+
+            <div class="col-md-4">
+                  </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+            </div>
+        </div>
+    }
+
+
+}
+
+
+@*<div class="col-md-3">
+    <label>Бренд</label>
+    <select class="form-control" id="brandId" name="brandId">
+        @foreach (var brand in Model.listStaticBrand)
+        {
+            if (brand.id == Model.brandId)
+            {
+                <option selected value="@brand.id">@brand.name</option>
+            }
+            else
+            {
+                <option value="@brand.id">@brand.name</option>
+            }
+        }
+    </select>
+</div>*@

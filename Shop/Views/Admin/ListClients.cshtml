@@ -1,0 +1,40 @@
+﻿@model Shop.Models.ClientModel
+
+@{
+   Page.Title=ViewBag.Title = "Клиенты";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("/Views/Admin/AdminMenuPartial.cshtml"); }
+
+
+<h4>
+    <a class="btn btn-blue btn-sm" href="@Url.Action("ShowClient", "Admin", new { id = -1 })">Добавить клиента</a>
+</h4> 
+
+@if (Model!=null&& Model.list.Any())
+{
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>E-mail</th>
+            <th>Подробнее</th>
+        </tr>
+        @foreach (var item in Model.list)
+        {
+            <tr>
+                <td>@string.Format("{0} {1} {2}", item.lastName, item.name, item.patronymic)</td>
+                <td>@item.mPhone</td>
+                <td>@item.email</td>
+                <td><a href="@Url.Action("ShowClient", "Admin", new { id = item.id })" class="btn btn-blue btn-sm">Подробнее</a></td>
+
+            </tr>
+        }
+    </table>
+}
+else{
+    <div class="row">
+        <div class="col-md-12">Клиенты отсутствуют</div>
+    </div>
+}

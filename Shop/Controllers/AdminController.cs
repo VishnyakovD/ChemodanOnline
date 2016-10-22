@@ -26,14 +26,25 @@ namespace Shop.Controllers
         private IArticleBuilder articleBuilder { set; get; }
         private ISkuViewerBuilder skuViewerBuilder { set; get; }
         private IDataService dataService { set; get; }
+        private IClientModelBuilder clientModelBuilder { set; get; }
 
-        public AdminController(ILogger logger, IAdminModelBuilder adminModelBuilder, IDataService dataService, IImagesPath imagesPath, ISKUModelBuilder SKUModelBuilder, IArticleBuilder ArticleBuilder, ISkuViewerBuilder SkuViewerBuilder)
+        public AdminController(
+            ILogger logger,
+            IAdminModelBuilder adminModelBuilder,
+            IDataService dataService,
+            IImagesPath imagesPath,
+            ISKUModelBuilder SKUModelBuilder,
+            IArticleBuilder ArticleBuilder,
+            ISkuViewerBuilder SkuViewerBuilder,
+            IClientModelBuilder clientModelBuilder
+            )
             : base(logger, adminModelBuilder, dataService, imagesPath, SKUModelBuilder)
         {
             menuBuilder = new MenuBuilder(dataService,imagesPath);
             articleBuilder = ArticleBuilder;
             skuViewerBuilder = SkuViewerBuilder;
             this.dataService = dataService;
+            this.clientModelBuilder = clientModelBuilder;
         }
 
         public ActionResult Administrator()
@@ -871,6 +882,60 @@ namespace Shop.Controllers
             }
             return Json(new { message = "НЕ сохранено" }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult ListClients(bool? isActive)
+        {
+            var list = new ClientModel();
+            try
+            {
+                list.list = dataService.List<Client>();
+                list.menu = menuBuilder.BuildMenu();
+                list.topMenuItems = menuBuilder.BuildTopMenu();
+            }
+            catch (Exception err)
+            {
+                return PartialView("MessagesPartial", "Ошибка " + err.Message);
+            }
+
+            return View("ListClients", list);
+        }
+
+        public ActionResult ShowClient(long id = -1)
+        {
+
+            ClientDataModel model = null;
+            try
+            {
+                model = clientModelBuilder.Build(id);
+            }
+            catch (Exception err)
+            {
+                return Content("Ошибка загрузки: " + err.Message, "text/html");
+            }
+
+            return View("ClientData", model);
+        }
+
+        public ActionResult AddOrUpdatClient(Client client, EditAdress adress)
+        {
+            try
+            {
+                if (client != null)
+                {
+                    client.editAdress = adress;
+                    client.editAdress.id = 0;
+                    var id = dataService.AddOrUpdateClient(client);
+                    var result = new { id = id, message = "Сохранено" };
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception err)
+            {
+                return Json(new { message = err.Message }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { message = "НЕ сохранено" }, JsonRequestBehavior.AllowGet);
+        }
+
 
 
 

@@ -14,6 +14,9 @@ namespace Shop.DataService
     public interface IDataService
     {
 
+        List<T> List<T>() where T : class;
+        T Get<T>(long id) where T : class, new();
+
         bool AddOrUpdateMailing(Mailing mailing);
         bool AddOrUpdateBrand(Brand brand);
         bool AddOrUpdateCategory(Category category);
@@ -45,6 +48,12 @@ namespace Shop.DataService
         long AddOrUpdateChemodanProvider(ChemodanProvider item);
         ChemodanProvider GetChemodanProvider(long id);
         List<ChemodanProvider> ListChemodanProvider();
+
+        long AddOrUpdateClient(Client item);
+        Client GetClient(long id);
+        List<Client> ListClient();
+
+     
 
         MenuItem GetMenuItem(long idMinuItem);
         bool RemoveMenuItem(long idMinuItem);
@@ -93,6 +102,43 @@ namespace Shop.DataService
         {
             this.dbService = dbService;
             this.logger = logger;
+        }
+
+
+        public List<T> List<T>() where T : class
+        {
+            var result = new List<T>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = db.GetRepository<T>().All();
+                });
+
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public T Get<T>(long id) where T : class, new()
+        {
+            var result =new T();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = db.GetRepository<T>().TryOne(id);
+                });
+
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
         }
 
         public long AddOrUpdateChemodanProvider(ChemodanProvider item)
@@ -179,6 +225,100 @@ namespace Shop.DataService
                 dbService.Run(db =>
                 {
                     result = db.GetRepository<ChemodanProvider>().All();
+                });
+
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public long AddOrUpdateClient(Client item)
+        {
+            long result = -1;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    var itemDB = db.GetRepository<Client>().TryOne(item.id);
+                    if (itemDB == null)
+                    {
+                        result = db.GetRepository<Client>().Add(item).id;
+                    }
+                    else
+                    {
+                        itemDB.name = item.name;
+                        itemDB.lastName = item.lastName;
+                        itemDB.patronymic = item.patronymic;
+                        itemDB.email = item.email;
+                        itemDB.mPhone = item.mPhone;
+                        itemDB.passSeria = item.passSeria;
+                        itemDB.passNumber = item.passNumber;
+                        itemDB.passDate = item.passDate;
+                        itemDB.passIssuedBy = item.passIssuedBy;
+                        itemDB.birthDate = item.birthDate;
+                        itemDB.sex = item.sex;
+
+                        if (itemDB.editAdress == null)
+                        {
+                            itemDB.editAdress = new EditAdress();
+                        }
+                        itemDB.editAdress.office = item.editAdress.office;
+                        itemDB.editAdress.postCode = item.editAdress.postCode;
+                        itemDB.editAdress.area = item.editAdress.area;
+                        itemDB.editAdress.bulk = item.editAdress.bulk;
+                        itemDB.editAdress.city = item.editAdress.city;
+                        itemDB.editAdress.level = item.editAdress.level;
+                        itemDB.editAdress.numFlat = item.editAdress.numFlat;
+                        itemDB.editAdress.numHome = item.editAdress.numHome;
+                        itemDB.editAdress.street = item.editAdress.street;
+                        itemDB.editAdress.typeCity = item.editAdress.typeCity;
+                        itemDB.editAdress.typeStreet = item.editAdress.typeStreet;
+
+                        itemDB.isUse = item.isUse;
+                        db.GetRepository<Client>().Update(itemDB);
+                        result = item.id;
+                    }
+
+                });
+            }
+            catch (Exception err)
+            {
+                result = -1;
+                logger.Error(err.Message);
+            }
+            return result;
+
+        }
+
+        public Client GetClient(long id)
+        {
+            var result = new Client();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = db.GetRepository<Client>().TryOne(id);
+                });
+
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public List<Client> ListClient()
+        {
+            var result = new List<Client>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = db.GetRepository<Client>().All();
                 });
 
             }

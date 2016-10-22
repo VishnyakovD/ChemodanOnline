@@ -26,11 +26,11 @@ $("#DialogDataEditBody").on("click", "textarea", function () {
     $("textarea:not([textbox=true]").htmlarea();
 });
 
-function onSucssessProvider(ajaxContext) {
+function onSucssess(ajaxContext) {
     var id = ajaxContext.id;
     if (id == null || id == undefined) {
         id = -1;
     }
-    $("form[action*=AddOrUpdateProvider]").find("#id").first().val(id);
+    $("form[action*=AddOrUpdate]").find("#id").first().val(id);
     $("#ServerMessage").html(ajaxContext.message);
 }
