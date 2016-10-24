@@ -259,6 +259,11 @@ namespace Shop.DataService
                         itemDB.passDate = item.passDate;
                         itemDB.passIssuedBy = item.passIssuedBy;
                         itemDB.birthDate = item.birthDate;
+
+                        if (itemDB.sex == null)
+                        {
+                            itemDB.sex = new Sex();
+                        }
                         itemDB.sex = item.sex;
 
                         if (itemDB.editAdress == null)

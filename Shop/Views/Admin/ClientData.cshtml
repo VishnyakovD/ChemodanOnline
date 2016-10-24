@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-3">
                 <label>Дата рождения</label>
-                <input class="form-control" type="text" id="birthDate" name="birthDate" value="@Model.client.birthDate" />
+                <input class="form-control" type="dateJQ" id="birthDate" name="birthDate" value="@Model.client.birthDate.Date.ToString("dd.MM.yyyy")"/>
             </div>
         </div>
 

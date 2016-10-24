@@ -916,7 +916,7 @@ namespace Shop.Controllers
             return View("ClientData", model);
         }
 
-        public ActionResult AddOrUpdatClient(Client client, EditAdress adress)
+        public ActionResult AddOrUpdateClient(Client client, EditAdress adress, long sexId)
         {
             try
             {
@@ -924,6 +924,8 @@ namespace Shop.Controllers
                 {
                     client.editAdress = adress;
                     client.editAdress.id = 0;
+                    client.sex=new Sex();
+                    client.sex.id = sexId;
                     var id = dataService.AddOrUpdateClient(client);
                     var result = new { id = id, message = "Сохранено" };
                     return Json(result, JsonRequestBehavior.AllowGet);
