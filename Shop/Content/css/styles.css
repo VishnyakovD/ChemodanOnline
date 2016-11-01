@@ -81,74 +81,11 @@ body {
     margin-bottom: 10px;
 }
 
-#logo {
-    padding-bottom: 10px;
-    position: relative;
-    min-height: 50px;
-    padding-top: 0;
-}
 
 hr {
     border-top: 1px solid #db7093;
 }
 
-#logo img {
-        height: 95px;
-}
-
-.menu {
- display: block;
- z-index: 0!important;
-     font-size: 120%;
-}
-
-.menu div{
-    display: inline-block;
-    float: left;
-    font-size: 110%;
-    font-style: normal;
-    padding: 1px 15px 1px 0;
-    position: relative;
-}
-
-.menu a {
-    white-space: nowrap;
-    padding-bottom: 14px;
-}
-
-
-
-a, a:link, a:visited {
-    color: #EE0F84;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-a:hover, a:hover span {
-    text-decoration: underline;
-}
-
-.cart {
-    height: 30px;
-    background: #EE0F84;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    display: inline-block;
-    zoom: 1;
-    vertical-align: top;
-    text-align: center;
-    padding-left: 15px!important;
-}
-
-.cart a {
-    color: white !important;
-}
-
-.container-nopadding {
-    padding-right: 0;
-    padding-left: 0;
-}
 
 .h1, .h2, .h3, h1, h2, h3 {
     color: #EE0F84!important;
@@ -216,20 +153,6 @@ a:hover, a:hover span {
 .thumbnail .caption-full {
     padding: 9px;
     color: #333;
-}
-
-
-
-.solring a {
- 
-}
-
-.solring a:hover {
-     
-}
-
-.solring a:visited {
-
 }
 
 .btn-blue {
@@ -433,12 +356,6 @@ select {
             color: white;
     }
 
-    .social-icons img {
-        width: 34px;
-    }
-   .social-icons a {
-       text-decoration: none;
-    }
 
     .ToolBar .h1,.h2,.h3,.h4,.h5,.h6 {
         margin: 0!important;
@@ -475,17 +392,4 @@ select {
     border-radius: 5px;
     /*background: rgba(238, 15, 132, 0.12);*/
     padding-top: 3px;
-}
-
-textarea[textbox=true] {
-    height: 90px!important;
-}
-
-textarea:not([textbox]){
-    /*width: 0px!important;
-    height: 0px!important;
-    max-height: 0px!important;
-    overflow: hidden!important;
-    resize: none!important;
-    display: block!important;*/
 }

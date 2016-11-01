@@ -10,15 +10,6 @@
     modal: true
 });
 
-$("#Cart").ready(function() {
-    $.ajax({
-        url: '/Cart/CountSkuOnCart',
-        success: function (data) {
-            $('#Cart').html(data);
-            document.getElementById("Cart").addEventListener("DOMSubtreeModified", function () { $("#ServerMessage").html('Товар добавлен в корзину'); }, false);
-        }
-    });
-});
 
 
 function editCartClick(parameters) {
@@ -70,54 +61,6 @@ function ShowServerMessage() {
     }
 }
 
-function htmlToSafeString(strNtml) {
-    do {
-        strNtml = strNtml.replace("<", "Љ");
-        strNtml = strNtml.replace(">", "Њ");
-        strNtml = strNtml.replace("</", "µ");
-    } while ((strNtml.indexOf("<") > -1) || (strNtml.indexOf("</") > -1) || (strNtml.indexOf(">") > -1))
-        return strNtml;
-}
-
-
-
-
-
-
-
-////-------------------////
-//$("form").submit(function (event) {
-//    event.preventDefault();
-//    var form = $(this);
-//    form.validate();
-//    console.log(form.valid());
-//    if (form.valid() == true) {
-//        console.log("valid=true");
-//        form.find("textarea:not([textbox='true'])").each(function () {
-//            var targetId = this.id.replace("HTML", "").replace(".", "\\.");
-//            var safeHtmlstr = htmlToSafeString($(this).htmlarea('toHtmlString'));
-//            $("#" + targetId).val(safeHtmlstr + " ");
-//        });
-//        $(this).off('submit').submit();
-//    }
-//});
-
-
-//function clickModalSubmit(elem) {
-//    var form = $(elem).closest("form");
-//    if (form.find("textarea:not([textbox='true'])").length > 0) {
-//        form.find("textarea:not([textbox='true'])").each(function() {
-//            var targetId = this.id.replace("HTML", "").replace(".", "\\.");
-//            var safeHtmlstr = htmlToSafeString($(this).htmlarea('toHtmlString'));
-//            $("#" + targetId).val(safeHtmlstr + " ");
-//        });
-//        form.off('submit').submit();
-//    } else {
-//        form.off('submit');
-//    }
-
-//}
-
 $("#MailingEmailButton").click(function () {
     var emailvalue = $("#MailingEmail").val();
     if (emailvalue == "" || !emailvalue.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,}$/)) {
@@ -133,6 +76,3 @@ $("#MailingEmailButton").click(function () {
         }
     });
 });
-var body = document.getElementsByTagName("body")[0];
-body.onload = function() { $.ajax({ url: '/Home/LoadContent?num=' + GUI() }); };
-function GUI() {try {var tracker = ga.getAll()[0];return tracker.get('clientId');} catch(e) {return -1;}}

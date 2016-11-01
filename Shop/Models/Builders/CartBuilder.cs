@@ -36,18 +36,8 @@ namespace Shop.Models.Builders
             foreach (var cartItem in sessionCart.listSku)
             {
                 var sku = dataService.GetSkuById(cartItem.idSku);
-                if (u != null && u.Discount > 0)
-                {
-                    sku.priceAct = sku.priceAct - ((sku.priceAct/100)*u.Discount);
-                }
                 sku.smalPhoto.path = string.Format("{0}/{1}", imagesPath.GetImagesPath(), sku.smalPhoto.path);
                     model.listSku.Add(sku);                
-            }
-
-            foreach (var cartItem in model.cart.listSku)
-            {
-                var tmpSku = model.listSku.First(i => i.id == cartItem.idSku);
-                cartItem.priceAct = tmpSku.priceAct;
             }
 
             model.menu = BuildMenu();

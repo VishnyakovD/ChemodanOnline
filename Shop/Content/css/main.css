@@ -1,0 +1,49 @@
+﻿.top-menu-container {
+  white-space: nowrap;
+  overflow: hidden; }
+  .top-menu-container .logo {
+    display: inline-block;
+    text-align: center; }
+    .top-menu-container .logo img {
+      height: 150px; }
+  .top-menu-container .block-menu {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 30px; }
+    .top-menu-container .block-menu .menu {
+      display: block;
+      font-size: 21px;
+      border-bottom: 1px solid #000;
+      max-height: 61px;
+      min-height: 61px; }
+      .top-menu-container .block-menu .menu a, .top-menu-container .block-menu .menu a:link, .top-menu-container .block-menu .menu a:visited, .top-menu-container .block-menu .menu a:hover {
+        display: inline-block;
+        padding: 15px 15px 25px 15px;
+        color: black;
+        letter-spacing: 1.25px;
+        text-decoration: none; }
+        .top-menu-container .block-menu .menu a.active, .top-menu-container .block-menu .menu a:link.active, .top-menu-container .block-menu .menu a:visited.active, .top-menu-container .block-menu .menu a:hover.active {
+          border-bottom: 3px solid black; }
+    .top-menu-container .block-menu .bread-crumbs {
+      display: block;
+      font-size: 17px;
+      margin-top: 35px;
+      max-height: 50px;
+      min-height: 50px; }
+      .top-menu-container .block-menu .bread-crumbs a, .top-menu-container .block-menu .bread-crumbs a:link, .top-menu-container .block-menu .bread-crumbs a:visited, .top-menu-container .block-menu .bread-crumbs a:hover {
+        display: inline-block;
+        padding: 15px 0;
+        color: #5965c7;
+        letter-spacing: 1.25px;
+        text-decoration: none; }
+        .top-menu-container .block-menu .bread-crumbs a.active, .top-menu-container .block-menu .bread-crumbs a:link.active, .top-menu-container .block-menu .bread-crumbs a:visited.active, .top-menu-container .block-menu .bread-crumbs a:hover.active {
+          border-bottom: 3px solid black; }
+
+.head-text {
+  font-size: 26px;
+  font-weight: 500;
+  text-align: center;
+  color: black;
+  letter-spacing: 1.25px;
+  margin-top: 20px; }
+

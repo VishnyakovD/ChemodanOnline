@@ -5,12 +5,18 @@
     <footer>
         <div class="row">
             <div class="col-md-4">
-                <address style="font-size: 16px;">
-                    <strong style="font-size: 19px;">Контактная информация</strong><br>
-                    e-mail: <a href="mailto:newer.info@gmail.com" target="_blank"><strong>newer.info@gmail.com</strong></a><br>
-                    телефон: <strong>+380-66-471-64-36</strong><br>
-                    телефон: <strong>+380-66-756-75-40</strong><br>
-                </address>
+                @if (WebSecurity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <div><a href="@Url.Action("Administrator", "Admin")">@WebSecurity.CurrentUserName</a></div>
+                    }
+                    using (Html.BeginForm("LogOff", "Account"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div><input type="submit" class="btn btn-blue" value="Выход" /></div>
+                    }
+                }
             </div>
 
             <div class="col-md-4">

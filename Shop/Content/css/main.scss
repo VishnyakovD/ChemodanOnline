@@ -1,0 +1,73 @@
+﻿.top-menu-container{
+    white-space: nowrap;
+    overflow: hidden;
+
+  .logo{
+    display:inline-block;
+    text-align:center;
+
+    img {
+            height: 150px;
+    }
+}
+
+.block-menu{
+    display:inline-block;
+    vertical-align: top;
+    margin-left: 30px;
+
+.menu{
+    display:block;
+    font-size:21px;
+    border-bottom: 1px solid #000;
+
+    max-height:61px;
+    min-height:61px;
+    
+
+    a, a:link, a:visited, a:hover {
+        display:inline-block;
+        padding: 15px 15px 25px 15px;
+        color:black;
+        letter-spacing:1.25px;
+        text-decoration:none;
+
+          &.active{
+            border-bottom: 3px solid black;
+        }
+    }
+    
+}
+
+    .bread-crumbs{
+        display:block;
+        font-size:17px;
+        margin-top: 35px;
+
+        max-height:50px;
+        min-height:50px;
+
+       a, a:link, a:visited, a:hover {
+        display:inline-block;
+        padding: 15px 0;
+        color:#5965c7;
+        letter-spacing:1.25px;
+        text-decoration:none;
+
+          &.active{
+            border-bottom: 3px solid black;
+        }
+    }    
+    }
+}
+
+}
+
+.head-text{
+    font-size: 26px;
+    font-weight: 500;
+    text-align: center;
+    color: black;
+    letter-spacing:1.25px;
+    margin-top: 20px;
+}

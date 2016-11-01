@@ -53,7 +53,7 @@ namespace Shop.Controllers
         public ActionResult Index()
         {
             ViewBag.isHomePage = true;
-            var model = skuViewerBuilder.Build(1,-1);
+            var model = skuViewerBuilder.Build(10010, -1);
             return View("ListSkuOnCategory", model);
     
         }
