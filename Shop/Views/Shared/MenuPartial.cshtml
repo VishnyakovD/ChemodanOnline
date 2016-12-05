@@ -1,20 +1,64 @@
 ﻿@model Shop.Models.MenuModel
 
-<div class="block-menu">
-    <div class="menu">
+<div class="text-center hidden-lg hidden-md">
+    <a href="/" title="Chemodan.online"><img src="~/Content/img/logo.png" alt="Chemodan.online"></a>
+</div>
+<div class="top-menu-container">
+    <div class="top-menu-btn hidden-lg hidden-md hidden-sm js-click-top-menu-btn">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </div>
+
+    <div class="logo hidden-xs hidden-sm">
+        <a href="/" title="Chemodan.online"><img src="~/Content/img/logo.png" alt="Chemodan.online"></a>
+    </div>
+
+    <div class="cart">
+        <span class="count">5</span>
+        <a href="11111" class="text"><img src="~/Content/img/icons/cart.png" alt="Chemodan.online">Корзина</a>
+    </div>
+
+
+    <div class="top-menu-body hidden-xs">
         @if (Model != null && Model.topMenuItems != null)
         {
             foreach (var item in Model.topMenuItems)
             {
-                <a href="@item.path">@item.name</a>
+                <div>
+                    <a href="@item.path">@item.name</a>
+                </div>
             }
         }
+    </div>
+</div>
+<div class="top-menu-body-mobile hidden-lg hidden-md hidden-sm js-top-menu-body-mobile">
+    @if (Model != null && Model.topMenuItems != null)
+    {
+        foreach (var item in Model.topMenuItems)
+        {
+            <div>
+                <a href="@item.path">@item.name</a>
+            </div>
+        }
+    }
+</div>
+
+
+
+
+
+
+
+<div class="block-menu">
+
+
+    <div class="menu">
+
     </div>
 
     <div class="bread-crumbs">
         @foreach (var item in Model.topMenuItems)
         {
-        <a href="@item.path">@item.name</a><span> > </span>
+            <a href="@item.path">@item.name</a><span> > </span>
         }
     </div>
 </div>

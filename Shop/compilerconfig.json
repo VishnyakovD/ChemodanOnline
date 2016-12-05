@@ -2,5 +2,13 @@
   {
     "outputFile": "Content/css/main.css",
     "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/fonts.css",
+    "inputFile": "Content/css/scss-styles/fonts.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/topmenu.css",
+    "inputFile": "Content/css/scss-styles/topmenu.scss"
   }
 ]
