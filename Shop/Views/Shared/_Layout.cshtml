@@ -34,22 +34,7 @@
 
         <div class="container">
             <div class="row">
-                @{
-                    var sizeColumt = "9";
-                    if (ViewBag.isHideLeftMenu != null && ViewBag.isHideLeftMenu)
-                    {
-                        sizeColumt = "12";
-                    }
-                }
-
-                @if (sizeColumt == "9")
-                {
-                    <div class="col-md-3">
-                        @{ Html.RenderPartial("VerticalMenuPartial", Model); }
-                    </div>
-                }
-
-                <div class="col-md-@sizeColumt">
+                <div class="col-md-12">
 
                     <div class="row">
                         <div class="col-lg-12">

@@ -175,6 +175,7 @@
     <Compile Include="Models\AccountAdminModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\MainPageModel.cs" />
     <Compile Include="Models\BrandModel.cs" />
     <Compile Include="Models\Builders\AccountAdminModelBuilder.cs" />
     <Compile Include="Models\Builders\AdminModelBuilder.cs" />
@@ -342,8 +343,7 @@
     <Content Include="Views\Shared\footerPartial.cshtml" />
     <Content Include="Views\Account\AdminRolesManager.cshtml" />
     <Content Include="Views\Home\sortingPartial.cshtml" />
-    <Content Include="Views\Shared\VerticalMenuPartial.cshtml" />
-    <Content Include="Views\Shared\BigCaruselPartial.cshtml" />
+    <Content Include="Views\Shared\CaruselPartial.cshtml" />
     <Content Include="Views\Home\ShortSkuPartial.cshtml" />
     <Content Include="Views\Admin\ListMenuItemPartial.cshtml" />
     <Content Include="Views\Admin\MenuItemDataPartial.cshtml" />

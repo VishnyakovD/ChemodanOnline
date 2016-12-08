@@ -12,4 +12,10 @@ namespace Shop.db.Entities
         public virtual int sortPriority { get; set; }
         public virtual bool isUse { get; set; }
     }
+
+    public enum DisplayType
+    {
+        MainCarusel=0,
+        MainInfoBlock=1
+    }
 }
