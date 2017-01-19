@@ -23,7 +23,10 @@ namespace Shop.Models.Builders
         private IImagesPath imagesPath;
         private ISKUModelBuilder SKUModelBuilder;
         private IAccountAdminModelBuilder AccountAdminModelBuilder;
-        public SkuViewerBuilder(IDataService dataService, IImagesPath imagesPath, ISKUModelBuilder iSKUModelBuilder, IAccountAdminModelBuilder iAccountAdminModelBuilder)
+        public SkuViewerBuilder(IDataService dataService,
+            IImagesPath imagesPath,
+            ISKUModelBuilder iSKUModelBuilder,
+            IAccountAdminModelBuilder iAccountAdminModelBuilder)
             : base(dataService, imagesPath)
         {
             this.imagesPath = imagesPath;
@@ -46,7 +49,7 @@ namespace Shop.Models.Builders
                     description = sku.description,
                     name = sku.name,
                     price = sku.price,
-                    priceAct = sku.priceAct-((sku.priceAct / 100) * u.Discount),
+                    priceAct = sku.priceAct,
                     smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 });
             }
@@ -81,7 +84,7 @@ namespace Shop.Models.Builders
                     description = sku.description,
                     name = sku.name,
                     price = sku.price,
-                    priceAct = sku.priceAct-((sku.priceAct / 100) * u.Discount),
+                    priceAct = sku.priceAct,
                     smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList();
             }
@@ -117,7 +120,6 @@ namespace Shop.Models.Builders
             }
             model.menu = BuildMenu();
             model.topMenuItems = BuildTopMenu();
-            model.caruselItems = BuildCarusel();
             return model;
         }
 
@@ -133,7 +135,6 @@ namespace Shop.Models.Builders
             model.skuList = SortListSku(ListHiddenSku(isHide),sort);
             model.menu = BuildMenu();
             model.topMenuItems = BuildTopMenu();
-            model.caruselItems = BuildCarusel();
             return model;
         }
 

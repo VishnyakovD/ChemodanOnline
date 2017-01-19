@@ -20,14 +20,23 @@ namespace Shop.Controllers
         private ISkuViewerBuilder skuViewerBuilder { set; get; }
         private IArticleBuilder articleBuilder { set; get; }
         private MenuBuilder menuBuilder { set; get; }
+        private IMainPageBuilder mainPageBuilder { set; get; }
 
 
-        public HomeController(ILogger logger, IAdminModelBuilder adminModelBuilder, IDataService dataService, IImagesPath imagesPath, ISkuViewerBuilder SkuViewerBuilder, ISKUModelBuilder SKUModelBuilder, IArticleBuilder ArticleBuilder)
+        public HomeController(ILogger logger,
+            IAdminModelBuilder adminModelBuilder,
+            IDataService dataService,
+            IImagesPath imagesPath,
+            ISkuViewerBuilder SkuViewerBuilder,
+            ISKUModelBuilder SKUModelBuilder,
+            IArticleBuilder ArticleBuilder,
+            IMainPageBuilder mainPageBuilder)
             : base(logger, adminModelBuilder, dataService, imagesPath, SKUModelBuilder)
         {
             menuBuilder = new MenuBuilder(dataService,imagesPath);
             skuViewerBuilder = SkuViewerBuilder;
             articleBuilder = ArticleBuilder;
+            this.mainPageBuilder = mainPageBuilder;
         }
 
         public ActionResult ListSkuOnCategory(long idCat, int? sort)
@@ -52,7 +61,13 @@ namespace Shop.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.isHomePage = true;
+            var model = mainPageBuilder.Build();
+            return View("MainPage", model);
+    
+        }
+
+        public ActionResult Index111()
+        {
             var model = skuViewerBuilder.Build(10010, -1);
             return View("ListSkuOnCategory", model);
     
@@ -84,7 +99,7 @@ namespace Shop.Controllers
             return View("ArticleInfo", result);
         }
 
-          public void LoadContent(string num="-1")
+        public void LoadContent(string num="-1")
           {
               try
               {

@@ -17,6 +17,8 @@ namespace Shop.DataService
         List<T> List<T>() where T : class;
         T Get<T>(long id) where T : class, new();
 
+        List<InfoBlockItem> ListInfoBlockItems(DisplayType type);
+
         bool AddOrUpdateMailing(Mailing mailing);
         bool AddOrUpdateBrand(Brand brand);
         bool AddOrUpdateCategory(Category category);
@@ -29,6 +31,7 @@ namespace Shop.DataService
         bool AddOrUpdateSpecificationToSKU(long id, long specId, string specValue);
         long AddOrUpdateMenuItem(Shop.db.Entities.MenuItem minuItem);
         long AddOrUpdateArticle(Article article);
+        long AddOrUpdateInfoBlockItem(InfoBlockItem iblock);
         bool AddPhotoToArticle(long id, string path);
         Article GetArticleById(long id);
         bool RemoveSKUFromCategory(long id, long idCat);
@@ -86,7 +89,6 @@ namespace Shop.DataService
         StaticSpecification GetStaticSpecification(long idSpec);
         List<MenuItem> ListMenuItem(int type);
 
-        List<Article> ListCaruselItems();
 
         bool AddComment(Comment comment);
         bool AddSku(Sku sku);
@@ -566,6 +568,41 @@ namespace Shop.DataService
 
         }
 
+        public long AddOrUpdateInfoBlockItem(InfoBlockItem iblock)
+        {
+            long result = 0;
+            try
+            {
+                result = iblock.id;
+                dbService.Run(db =>
+                {
+                    var iblockDB = db.GetRepository<InfoBlockItem>().TryOne(iblock.id);
+                    if (iblockDB == null)
+                    {
+                      result=  db.GetRepository<InfoBlockItem>().Add(iblock).id;
+                    }
+                    else
+                    {
+                        iblockDB.DisplayType = iblock.DisplayType;
+                        iblockDB.Image = iblock.Image;
+                        iblockDB.Link = iblock.Link;
+                        iblockDB.Title = iblock.Title;
+                        iblockDB.name = iblock.name;
+                        iblockDB.Description = iblock.Description;
+                        db.GetRepository<InfoBlockItem>().Update(iblockDB);
+                    }
+                    
+                });
+               
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+
+        }
+
         public bool AddOrUpdateStaticSpecification(StaticSpecification spec)
         {
             bool result = false;
@@ -956,6 +993,25 @@ namespace Shop.DataService
             return result;
         }
 
+        public List<InfoBlockItem> ListInfoBlockItems(DisplayType type)
+        {
+            var result = new List<InfoBlockItem>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((InfoBlockItemRepository) db.GetRepository<InfoBlockItem>()).ListByType(type).ToList();
+                });
+          
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+
         public List<Article> ListArticles()
         {
             var result = new List<Article>();
@@ -974,22 +1030,6 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<Article> ListCaruselItems()
-        {
-            var result = new List<Article>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = ((ArticleRepository)db.GetRepository<Article>()).AllCaruselItems().ToList();
-                });
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
 
         public List<Category> ListCategoryes()
         {

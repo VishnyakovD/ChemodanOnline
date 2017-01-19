@@ -61,20 +61,10 @@ namespace Shop.Models.Builders
             return dataService.ListMenuItem(1);
         }
 
-        public List<db.Entities.Article> BuildCarusel()
-        {
-            var model= dataService.ListCaruselItems();
-            foreach (var item in model)
-            {
-                item.imgPath = imagesPath.GetImagesPath() + "/" + item.imgPath;
-            }
-
-            return model;
-        }
 
         public MenuModel BuildAllMenu()
         {
-            var menus = new MenuModel { menu = BuildMenu(), topMenuItems = dataService.ListMenuItem(1), caruselItems = BuildCarusel() };
+            var menus = new MenuModel { menu = BuildMenu(), topMenuItems = dataService.ListMenuItem(1)};
             return menus;
         }
 

@@ -155,8 +155,6 @@ namespace Shop.db
                 retvar = (IRepository<T>)(new ClientRepository(session));
             else if (typeof(T) == typeof(Sex))
                 retvar = (IRepository<T>)(new SexRepository(session));
-            else if (typeof(T) == typeof(CaruselItem))
-                retvar = (IRepository<T>)(new CaruselItemRepository(session));
             else if (typeof(T) == typeof(InfoBlockItem))
                 retvar = (IRepository<T>)(new InfoBlockItemRepository(session));
             else

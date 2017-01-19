@@ -1,0 +1,50 @@
+﻿@model Shop.Models.MainPageModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Page.Title = "Настройка главной страницы";
+}
+
+
+<div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading panel-head-color">
+            <span class="btn btn-blue btn-sm js-show-carusel-item" data-id="-1">Добавить</span>
+        </div>
+        <div class="panel-body panel-body-color">
+            <div class="js-carusel-item">
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="swiper-container main-page-swipe js-main-page-swiper">
+     
+        <div class="swiper-wrapper">
+            @foreach(var item in Model.ListCaruselItem)
+            {
+
+                <div class="swiper-slide">
+                    <div>
+                        <span class="btn btn-blue btn-sm js-show-carusel-item" data-id="@item.id">Изменить</span>
+                        <img src="@ImagePathForView.GetPath()@item.Image"/>
+                        <a href="@item.Link">@item.Title</a>
+                    </div>
+                </div>
+            }
+           
+  
+        </div>
+   
+        @*<div class="swiper-pagination"></div>*@
+
+
+        @*<div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>*@
+
+        @*<div class="swiper-scrollbar"></div>*@
+    </div>
+
+</div>

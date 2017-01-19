@@ -29,6 +29,8 @@ namespace Shop
 
             builder.RegisterType<ClientModelBuilder>().As<IClientModelBuilder>();
 
+            builder.RegisterType<MainPageBuilder>().As<IMainPageBuilder>();
+
         }
     }
 }

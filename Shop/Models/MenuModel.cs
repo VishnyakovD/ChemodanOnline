@@ -23,13 +23,11 @@ namespace Shop.Models
     {
         public List<MenuItem> menu{ set; get; }
         public List<db.Entities.MenuItem> topMenuItems{ set; get; }
-        public List<db.Entities.Article> caruselItems{ set; get; }
 
         public MenuModel()
         {
             menu=new List<MenuItem>();
             topMenuItems=new List<db.Entities.MenuItem>();
-            caruselItems = new List<db.Entities.Article>();
         }
     }
 }

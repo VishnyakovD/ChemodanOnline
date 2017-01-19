@@ -10,5 +10,9 @@
   {
     "outputFile": "Content/css/scss-styles/topmenu.css",
     "inputFile": "Content/css/scss-styles/topmenu.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/swiper.css",
+    "inputFile": "Content/css/scss-styles/swiper.scss"
   }
 ]

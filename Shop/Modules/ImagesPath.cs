@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 
 namespace Shop.Modules
 {
@@ -22,5 +23,15 @@ namespace Shop.Modules
         {
             return _imagesPath;
         }
+
     }
+}
+
+public class ImagePathForView
+{
+   public static string GetPath()
+   {
+       return WebConfigurationManager.AppSettings["ImagesPath"]; 
+   }
+
 }

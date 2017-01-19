@@ -27,6 +27,7 @@ namespace Shop.Controllers
         private ISkuViewerBuilder skuViewerBuilder { set; get; }
         private IDataService dataService { set; get; }
         private IClientModelBuilder clientModelBuilder { set; get; }
+        private IMainPageBuilder mainPageBuilder { set; get; }
 
         public AdminController(
             ILogger logger,
@@ -36,7 +37,8 @@ namespace Shop.Controllers
             ISKUModelBuilder SKUModelBuilder,
             IArticleBuilder ArticleBuilder,
             ISkuViewerBuilder SkuViewerBuilder,
-            IClientModelBuilder clientModelBuilder
+            IClientModelBuilder clientModelBuilder,
+            IMainPageBuilder mainPageBuilder
             )
             : base(logger, adminModelBuilder, dataService, imagesPath, SKUModelBuilder)
         {
@@ -45,6 +47,7 @@ namespace Shop.Controllers
             skuViewerBuilder = SkuViewerBuilder;
             this.dataService = dataService;
             this.clientModelBuilder = clientModelBuilder;
+            this.mainPageBuilder = mainPageBuilder;
         }
 
         public ActionResult Administrator()
@@ -466,7 +469,7 @@ namespace Shop.Controllers
             }
             else
             {
-                path = string.Format(@"{0}\{1}", Server.MapPath("~" + imagesPath.GetImagesPath()+@"\article"), id);
+                path = string.Format(@"{0}\{1}", Server.MapPath("~" + imagesPath.GetImagesPath()+@"\"+ type), id);
             }
             var ticks = DateTime.Now.Ticks;
             if (Directory.Exists(path))
@@ -490,7 +493,7 @@ namespace Shop.Controllers
             {
                 return string.Format(@"{0}/{1}", id, string.Format("{0}-{1}{2}", fileName, ticks, fileExt));
             }
-            return string.Format(@"article/{0}/{1}", id, string.Format("{0}-{1}{2}", fileName, ticks, fileExt));
+            return string.Format(@"{2}/{0}/{1}", id, string.Format("{0}-{1}{2}", fileName, ticks, fileExt), type);
         }
 
         public ActionResult AddSKUFromCategory(long idSku, long catId)
@@ -939,6 +942,72 @@ namespace Shop.Controllers
         }
 
 
+        public ActionResult MainPageConfigurator()
+        {
+            var model = mainPageBuilder.Build();
+            return View("MainPageConfigurator", model);
+        }
+
+
+        public ActionResult ShowInfoBlockItem(long id, DisplayType type)
+        {
+            
+            InfoBlockItem model = null;
+            try
+            {
+                model = dataService.Get<InfoBlockItem>(id);
+                if (model==null)
+                {
+                    model = new InfoBlockItem();
+                    model.id =-1;
+                    model.DisplayType = type;
+                }
+            }
+            catch (Exception err)
+            {
+                return Content("Ошибка загрузки: " + err.Message, "text/html");
+            }
+
+            return PartialView("InfoBlockDataPartial", model);
+        }
+
+        [HttpPost]
+        public ActionResult AddOrUpdateInfoBlock(InfoBlockItem iblock, HttpPostedFileBase ImageBody)
+        {
+            var message = string.Empty;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (string.IsNullOrEmpty(iblock.Image))
+                    {
+                        iblock.Image = string.Empty;
+                    }
+                    iblock.Image = iblock.Image.Replace(imagesPath.GetImagesPath() + "/", "");
+
+                    var id = dataService.AddOrUpdateInfoBlockItem(iblock);
+                    if (id > 0)
+                    {
+                        if (ImageBody != null && ImageBody.ContentLength > 0)
+                        {
+                            var path = UploadPhoto(id, ImageBody, iblock.DisplayType.ToString());
+                            iblock.Image = path;
+                            if (dataService.AddOrUpdateInfoBlockItem(iblock)>0)
+                            {
+                                message = "фото НЕ добавлено";
+                            }
+                        }
+                        return RedirectToAction("MainPageConfigurator");
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                message = err.Message;
+            }
+
+            return Content("Ошибка: " + message, "text/html");
+        }
 
 
     }

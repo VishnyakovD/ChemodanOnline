@@ -16,14 +16,5 @@ namespace Shop.db.Repository
         {
         }
 
-
-        public IEnumerable<Article> AllCaruselItems()
-        {
-            var caruselItems = session.QueryOver<Article>().Where(a => a.pathLink!="" && a.pathLink!=null)
-                .List() ?? new List<Article>();
-            return caruselItems;
-        }
-
-
     }
 }

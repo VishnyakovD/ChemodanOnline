@@ -91,6 +91,11 @@
       .top-menu-body-mobile a.active, .top-menu-body-mobile a:link.active, .top-menu-body-mobile a:visited.active, .top-menu-body-mobile a:hover.active {
         border-bottom: 3px solid black; } }
 
+.main-page-swiper {
+  min-height: 350px;
+  max-height: 350px;
+  overflow: hidden; }
+
 body {
   font-family: 'Ubuntu Condensed', sans-serif;
   padding-top: 10px;

@@ -6,30 +6,22 @@ using Shop.db.Entities;
 
 namespace Shop.Models
 {
-    public class MainPage:MenuModel
+    public class MainPageModel : MenuModel
     {
         public string Title { set; get; }
         public string TitleProduct { set; get; }
         public List<InfoBlockItem> ListBlockInfo { set; get; }
-        public List<CaruselItem> ListCaruselItem { set; get; }
+        public List<InfoBlockItem> ListCaruselItem { set; get; }
 
-        public MainPage()
+        public MainPageModel()
         {
             ListBlockInfo = new List<InfoBlockItem>();
-            ListCaruselItem=new List<CaruselItem>();
+            ListCaruselItem=new List<InfoBlockItem>();
         }
 
 
     
     }
 
-    public class InfoBlockItemModel:InfoBlockItem
-    {
 
-    }
-
-    public class CaruselItemModel: CaruselItem
-    {
-
-    }
 }

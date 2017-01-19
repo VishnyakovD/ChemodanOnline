@@ -1,0 +1,67 @@
+﻿@using Shop.Modules
+@model Shop.db.Entities.InfoBlockItem
+
+@using (Html.BeginForm("AddOrUpdateInfoBlock", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+   
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.DisplayType)
+    @Html.HiddenFor(model => model.Image)
+    <div class="row">
+        <div class="col-md-12">
+            <img class="img-responsive" src="@ImagePathForView.GetPath()@Model.Image">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Картинка</label>
+            <input class="form-control" type="file" name="ImageBody" id="ImageBody" value="@Model.Image" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label>Имя</label>
+            <input class="form-control" type="text" name="name" id="name" value="@Model.name" />
+            <span>@Html.ValidationMessageFor(model => model.name)</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label>Заголовок</label>
+            <input class="form-control" type="text" name="Title" id="Title" value="@Model.Title"/>
+            <span>@Html.ValidationMessageFor(model => model.Title)</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label>Ссылка</label>
+            <input type="text" class="form-control" id="Link" name="Link" value="@Model.Link">
+            <span>@Html.ValidationMessageFor(model => model.Link)</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label>Описание</label>
+            <input class="form-control" type="text" name="Description" id="Description" required="" value="@Model.Description"/>
+            <span>@Html.ValidationMessageFor(model => model.Description)</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label>Приоритет</label>
+            <input class="form-control" type="number" name="sortPriority" id="sortPriority" required="" value="@Model.sortPriority"/>
+            <span>@Html.ValidationMessageFor(model => model.sortPriority)</span>
+        </div>
+    </div>
+        <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+
+}
