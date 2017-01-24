@@ -1,20 +1,20 @@
 ﻿@import "scss-styles/fonts.scss";
 @import "scss-styles/topmenu.scss";
+@import "scss-styles/main-page.scss";
 @import "scss-styles/swiper.scss";
+@import "scss-styles/product.scss";
 
 body{
     font-family: 'Ubuntu Condensed', sans-serif;
     padding-top: 10px;
     color:black;
+
+    a, a:link, a:visited, a:hover {
+        text-decoration:none;
+    }
 }
 
-/*
- .container {
-    padding-right: 10px;
-    padding-left: 10px;
-    }
-*/
-.block-menu{
+/*.block-menu{
 
 
     .bread-crumbs{
@@ -37,7 +37,7 @@ body{
         }
     }    
     }
-}
+}*/
 
 .head-text{
     font-size: 26px;
@@ -46,4 +46,13 @@ body{
     color: black;
     letter-spacing:1.25px;
     margin-top: 20px;
+}
+
+.btn-edit{
+    position: absolute;
+    margin: 20px;
+    background: red;
+    color: white;
+    padding: 2px 16px;
+
 }

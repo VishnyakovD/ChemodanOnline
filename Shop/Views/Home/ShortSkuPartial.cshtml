@@ -2,35 +2,20 @@
 
 @if (Model != null)
 {
-    <div class="col-sm-6 col-lg-3 col-md-4">
-        <div class="panel skuitem">
-            
-            <a href="@Url.Action("SkuInfo", "Home", new { idSku = Model.id })">
-                <img class="smallPhoto img-thumbnail" title="@Model.name" src="@Model.smalPhotoPath" />
-                
-                <span class="shortskuname">
-                    @Model.name
-                </span>
-            </a>
-  
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pricesBody">
-                        @if (Model.price > Model.priceAct)
-                        {
-                            <span class="priceBg">@Model.price.ToString("####")
-                                <span class="currencyBg">грн</span>
-
-                            </span>
-                        }
-                        <span class="label priceSm">@Model.priceAct.ToString("####")<span class="currencySm">грн</span></span>
-
-                    </div>
-                    <a href="@Url.Action("SkuInfo", "Home", new { idSku = Model.id })" class="btn btn-blue btn-lg pull-right">Хочу!</a>
-                </div>
-
+    <div class="col-cx-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="short-product">
+            <div class="line1">
+                <img src="@Model.smalPhotoPath" />
             </div>
 
+            <div class="line2">
+                <span class="art">арт. @Model.articul</span>
+                <span class="price">@Model.price.ToString("#### грн.")</span>
+            </div>
+
+            <div class="line3">
+                <a href="@Url.Action("SkuInfo", "Home", new { idSku = Model.id })" class="btn btn-info-block">Посмотреть</a>
+            </div>
         </div>
       </div>
 }

@@ -54,7 +54,7 @@ namespace Shop.Models.Builders
 
         public SKUModel ConvertSkuBDToSkuModel(Sku sku)
         {
-            var u = AccountAdminModelBuilder.BuildOneUser(WebSecurity.CurrentUserName);
+           // var u = AccountAdminModelBuilder.BuildOneUser(WebSecurity.CurrentUserName);
             var skuModel = GetEmptySku();
             if (sku != null)
             {
@@ -65,17 +65,8 @@ namespace Shop.Models.Builders
                 skuModel.isHide = sku.isHide;
                 skuModel.care = sku.care;
                 skuModel.sortPriority = sku.sortPriority;
-
-                if (u != null && u.Discount > 0)
-                {
-                    skuModel.priceAct = sku.priceAct - ((sku.priceAct / 100) * u.Discount);
-                }
-                else
-                {
-                    skuModel.priceAct = sku.priceAct;
-                }
-
                 skuModel.priceAct = sku.priceAct;
+                skuModel.displayType = sku.displayType;
 
                 skuModel.description = sku.description;
                 if (sku.brand!=null)

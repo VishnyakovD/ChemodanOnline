@@ -1,62 +1,33 @@
 ﻿@model Shop.Models.MainPageModel
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = Page.Title = "Настройка главной страницы";
+    ViewBag.Title = Page.Title = "Аренда чемоданов";
 }
-
 
 <div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading panel-head-color">
-            <span class="btn btn-sm js-show-info-block-item" data-id="-1" data-type="0">Добавить</span>
-        </div>
-        <div class="panel-body panel-body-color">
-            <div class="js-carusel-item">
-
-            </div>
-        </div>
-    </div>
+ 
     <div class="swiper-container main-page-swipe js-main-page-swiper">
-     
+
         <div class="swiper-wrapper">
-            @foreach(var item in Model.ListCaruselItem)
+            @foreach (var item in Model.ListCaruselItem)
             {
 
                 <div class="swiper-slide">
                     <div>
-                        <span class="btn btn-edit btn-sm js-show-info-block-item" data-id="@item.id" data-type="0">Изменить</span>
-                        <img src="@ImagePathForView.GetPath()@item.Image"/>
+                        <img src="@ImagePathForView.GetPath()@item.Image" />
                         <a href="@item.Link">@item.Title</a>
                     </div>
                 </div>
             }
-           
-  
+
+
         </div>
-   
-        @*<div class="swiper-pagination"></div>
-       <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-scrollbar"></div>*@
     </div>
 
     <div class="row">
         <div class="col-ms-12">
-            <h1 class="head-text">@Model.Title</h1>
-        </div>
-    </div>
-    
-
-    <div class="panel panel-default">
-        <div class="panel-heading panel-head-color">
-            <span class="btn btn-sm js-show-info-block-item" data-id="-1" data-type="1">Добавить</span>
-        </div>
-        <div class="panel-body panel-body-color">
-            <div class="js-info-block-item">
-
-            </div>
+            <h1 class="title-main-page">@Model.Title</h1>
         </div>
     </div>
 
@@ -64,10 +35,7 @@
         @foreach (var item in Model.ListBlockInfo)
         {
 
-
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-
-                <span class="btn btn-edit btn-sm js-show-info-block-item" data-id="@item.id" data-type="1">Изменить</span>
                 <div class="item">
                     <div class="left-block">
                         <div class="title">
@@ -87,14 +55,10 @@
 
                     </div>
                     <div class="right-block">
-                        <img src="@ImagePathForView.GetPath()@item.Image"/>
+                        <img src="@ImagePathForView.GetPath()@item.Image" />
                     </div>
                 </div>
-
-
-
             </div>
-
         }
     </div>
 
@@ -112,7 +76,7 @@
                 <div class="swiper-slide">
                     <div class="short-product carusel">
                         <div class="line1">
-                            <img src="@item.smalPhotoPath"/>
+                            <img src="@item.smalPhotoPath" />
                         </div>
 
                         <div class="line2">
@@ -125,15 +89,10 @@
                         </div>
                     </div>
                 </div>
-                    }
+            }
 
 
-                </div>
-
-        @*<div class="swiper-pagination"></div>
-    <div class="swiper-button-prev"></div>
-     <div class="swiper-button-next"></div>
-             <div class="swiper-scrollbar"></div>*@
+        </div>
     </div>
 
 

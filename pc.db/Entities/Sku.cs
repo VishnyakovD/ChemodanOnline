@@ -23,6 +23,7 @@ namespace Shop.db.Entities
         public virtual int chemodanDaysRent { get; set; }
         public virtual ChemodanProvider chemodanProvider { get; set; }
         public virtual ChemodanType chemodanType { get; set; }
+        public virtual DisplayType displayType { get; set; }
 
         public Sku()
         {

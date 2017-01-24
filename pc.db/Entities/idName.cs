@@ -16,6 +16,8 @@ namespace Shop.db.Entities
     public enum DisplayType
     {
         MainCarusel=0,
-        MainInfoBlock=1
+        MainInfoBlock=1,
+        Favorite=2,
+        Default=999
     }
 }

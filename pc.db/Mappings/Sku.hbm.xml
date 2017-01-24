@@ -20,6 +20,8 @@
     <many-to-one name="chemodanType" lazy="false" class="ChemodanType"  />
     <property name="description" type="StringClob"/>
     <property name="care" type="StringClob"/>
+    <property name="displayType"/>
+    
     <many-to-one name="smalPhoto"  cascade="save-update" lazy="false" class="Shop.db.Entities.Photo" />
     
     <bag name="listPhoto" inverse="true" lazy="false" cascade="save-update">

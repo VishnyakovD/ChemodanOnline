@@ -44,5 +44,11 @@ namespace Shop.db.Repository
                 .Where(a => a.isHide == isHide).List();
         }
 
+        public IEnumerable<Sku> AllByDisplayType(DisplayType type)
+        {
+            return session.QueryOver<Sku>()
+                .Where(a => a.displayType == type).List();
+        }
+
     }
 }

@@ -73,6 +73,7 @@ namespace Shop.Models
         public List<Brand> listStaticBrand { get; set; }
         public List<ChemodanProvider> listChemodanProvider { get; set; }
         public int sortPriority { get; set; }
+        public DisplayType displayType { get; set; }
 
 
 
@@ -89,6 +90,7 @@ namespace Shop.Models
             smalPhotoId = 0;
             smalPhotoPath = string.Empty;
             articul = string.Empty;
+            displayType = DisplayType.Default;
             categotyId = 0;
             categotyName = string.Empty;
             listPhoto=new List<PhotoBig>();
@@ -115,6 +117,7 @@ namespace Shop.Models
                 description = this.description,
                 price = this.price,
                 priceAct = this.priceAct,
+                displayType= this.displayType,
                 smalPhoto =  /*new Photo() { id = this.smalPhotoId, path = this.smalPhotoPath, skuId = this.id}*/null,
                 chemodanDaysRent = chemodanDaysRent,
                 chemodanProvider = new ChemodanProvider() { id = this.chemodanProviderId },

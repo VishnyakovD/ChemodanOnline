@@ -35,6 +35,19 @@ namespace Shop.Models.Builders
             model.TitleProduct = "Самые востребованные";
             model.ListCaruselItem = dataService.ListInfoBlockItems(DisplayType.MainCarusel);
             model.ListBlockInfo = dataService.ListInfoBlockItems(DisplayType.MainInfoBlock);
+
+            var tmpList = dataService.ListProductByDisplayType(DisplayType.Favorite);
+            if (tmpList!=null&& tmpList.Count>0)
+            {
+                model.ListProduct = tmpList.Select(item => new ShortSKUModel()
+                {
+                    articul = item.articul,
+                    id = item.id,
+                    price = item.chemodanType.priceDay,
+                    smalPhotoPath = imagesPath.GetImagesPath()+item.smalPhoto.path
+                }).ToList();
+            }
+          
            
             model.topMenuItems = BuildTopMenu();
             return model;

@@ -346,8 +346,8 @@ namespace Shop.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    sku.care = ConvertToHTMLString(sku.care);
-                    sku.description = ConvertToHTMLString(sku.description);
+                   // sku.care = ConvertToHTMLString(sku.care);
+                   //sku.description = ConvertToHTMLString(sku.description);
                     var id = dataService.AddOrUpdateSKU(sku.GetSKUDB());
                    
                     if (id >0)

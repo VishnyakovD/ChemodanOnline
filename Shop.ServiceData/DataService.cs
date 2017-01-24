@@ -64,6 +64,7 @@ namespace Shop.DataService
         StaticCategory GetStaticCategoryById(long idCat);
 
         List<Sku> ListSkuByCategory(StaticCategory cat);
+        List<Sku> ListProductByDisplayType(DisplayType type);
         List<Sku> ListSku();
 
 
@@ -731,6 +732,7 @@ namespace Shop.DataService
                         //SkuDB.listPhoto = sku.listPhoto;
                         //SkuDB.listSpecification = sku.listSpecification;
                         SkuDB.isHide = sku.isHide;
+                        SkuDB.displayType = sku.displayType;
                         db.GetRepository<Sku>().Update(SkuDB);
                         result = sku.id;
                     }
@@ -1374,6 +1376,24 @@ namespace Shop.DataService
                 dbService.Run(db =>
                 {
                     result = ((SkuRepository)db.GetRepository<Sku>()).ListSkuByCategory(cat).ToList();
+                });
+
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public List<Sku> ListProductByDisplayType(DisplayType type)
+        {
+            var result = new List<Sku>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((SkuRepository)db.GetRepository<Sku>()).AllByDisplayType(type).ToList();
                 });
 
             }

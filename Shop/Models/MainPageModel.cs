@@ -12,11 +12,13 @@ namespace Shop.Models
         public string TitleProduct { set; get; }
         public List<InfoBlockItem> ListBlockInfo { set; get; }
         public List<InfoBlockItem> ListCaruselItem { set; get; }
+        public List<ShortSKUModel> ListProduct { set; get; }
 
         public MainPageModel()
         {
             ListBlockInfo = new List<InfoBlockItem>();
             ListCaruselItem=new List<InfoBlockItem>();
+            ListProduct = new List<ShortSKUModel>();
         }
 
 

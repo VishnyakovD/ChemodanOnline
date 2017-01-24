@@ -1,0 +1,44 @@
+﻿.short-product{
+    .line1{
+        text-align:center;
+        img{
+            width:100%;
+        }
+    }
+
+    &.carusel{
+    max-height: 390px;
+    min-height: 390px;
+
+        .line1{
+            text-align:center;
+            img{
+                max-height: 280px;
+                min-height: 280px;
+                width:auto;
+            }
+        }
+    }
+
+    .line2{
+        min-height:35px;
+        max-height:35px;
+        overflow:hidden;
+        margin: 10px;
+        .art{
+            color:gray;
+            font-size:15px;
+            float:left;
+            padding-top: 10px;
+        }
+        .price{
+            color:black;
+            font-size:25px;
+            float:right;
+        }
+    }
+
+    .line3{
+        text-align:center;
+    }
+}

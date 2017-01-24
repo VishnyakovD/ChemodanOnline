@@ -1,11 +1,19 @@
 var MainPage = (function () {
     function MainPage() {
         this.caruselItem = $(".js-carusel-item");
+        this.infoBlockItem = $(".js-info-block-item");
     }
     MainPage.prototype.GetInfoBlock = function (id, type) {
         var _this = this;
         $.post('/Admin/ShowInfoBlockItem/', { id: id, type: type }).done(function (data) {
-            _this.caruselItem.html(data);
+            switch (type) {
+                case 0:
+                    _this.caruselItem.html(data);
+                    break;
+                case 1:
+                    _this.infoBlockItem.html(data);
+                    break;
+            }
         });
     };
     return MainPage;
@@ -13,8 +21,8 @@ var MainPage = (function () {
 var mainPage;
 $(function () {
     mainPage = new MainPage();
-    $(document).on("click", ".js-show-carusel-item", function (e) {
-        mainPage.GetInfoBlock($(e.currentTarget).data("id"), 0);
+    $(document).on("click", ".js-show-info-block-item", function (e) {
+        mainPage.GetInfoBlock($(e.currentTarget).data("id"), $(e.currentTarget).data("type"));
     });
 });
 //# sourceMappingURL=main-page.js.map

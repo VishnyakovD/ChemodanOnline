@@ -24,26 +24,28 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <label>Имя</label>
-            <input class="form-control" type="text" name="name" id="name" value="@Model.name" />
+            <input class="form-control" type="text" name="name" id="name" value="@Model.name"/>
             <span>@Html.ValidationMessageFor(model => model.name)</span>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <label>Заголовок</label>
-            <input class="form-control" type="text" name="Title" id="Title" value="@Model.Title"/>
+            <input class="form-control" type="text" name="Title" id="Title" value="@Model.Title" />
             <span>@Html.ValidationMessageFor(model => model.Title)</span>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <label>Ссылка</label>
             <input type="text" class="form-control" id="Link" name="Link" value="@Model.Link">
             <span>@Html.ValidationMessageFor(model => model.Link)</span>
+        </div>
+        <div class="col-md-6">
+            <label>Приоритет</label>
+            <input class="form-control" type="number" name="sortPriority" id="sortPriority" required="" value="@Model.sortPriority" />
+            <span>@Html.ValidationMessageFor(model => model.sortPriority)</span>
         </div>
     </div>
 
@@ -56,11 +58,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <label>Приоритет</label>
-            <input class="form-control" type="number" name="sortPriority" id="sortPriority" required="" value="@Model.sortPriority"/>
-            <span>@Html.ValidationMessageFor(model => model.sortPriority)</span>
-        </div>
+
     </div>
         <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
 

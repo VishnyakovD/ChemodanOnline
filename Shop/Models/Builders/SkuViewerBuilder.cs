@@ -42,14 +42,8 @@ namespace Shop.Models.Builders
                 return dataService.ListSkuByCategory(cat).OrderBy(sku=>sku.sortPriority).Select(sku => new ShortSKUModel()
                 {
                     id = sku.id,
-                    brandId = sku.brand.id,
-                    brandName = sku.brand.name,
-                    categotyId = cat.id,
-                    categotyName = cat.name,
-                    description = sku.description,
-                    name = sku.name,
-                    price = sku.price,
-                    priceAct = sku.priceAct,
+                    articul = sku.articul,
+                    price = sku.chemodanType.priceDay,
                     smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 });
             }
@@ -57,14 +51,8 @@ namespace Shop.Models.Builders
             return dataService.ListSkuByCategory(cat).OrderBy(sku => sku.sortPriority).Select(sku => new ShortSKUModel()
                 {
                     id = sku.id,
-                    brandId = sku.brand.id,
-                    brandName = sku.brand.name,
-                    categotyId = cat.id,
-                    categotyName = cat.name,
-                    description = sku.description,
-                    name = sku.name,
-                    price = sku.price,
-                    priceAct = sku.priceAct,
+                    articul = sku.articul,
+                    price = sku.chemodanType.priceDay,
                     smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }); 
         }
@@ -77,14 +65,8 @@ namespace Shop.Models.Builders
                 return dataService.AllHiddenSku(isHide).OrderBy(sku=>sku.sortPriority).Select(sku => new ShortSKUModel()
                 {
                     id = sku.id,
-                    brandId = sku.brand.id,
-                    brandName = sku.brand.name,
-                    categotyId = -1,
-                    categotyName = string.Empty,
-                    description = sku.description,
-                    name = sku.name,
-                    price = sku.price,
-                    priceAct = sku.priceAct,
+                    articul = sku.articul,
+                    price = sku.chemodanType.priceDay,
                     smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList();
             }
@@ -92,14 +74,8 @@ namespace Shop.Models.Builders
             return dataService.AllHiddenSku(isHide).OrderBy(sku => sku.sortPriority).Select(sku => new ShortSKUModel()
                 {
                     id = sku.id,
-                    brandId = sku.brand.id,
-                    brandName = sku.brand.name,
-                    categotyId = -1,
-                    categotyName =string.Empty,
-                    description = sku.description,
-                    name = sku.name,
-                    price = sku.price,
-                    priceAct = sku.priceAct,
+                    articul = sku.articul,
+                    price = sku.chemodanType.priceDay,
                     smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList(); 
         }
@@ -143,13 +119,13 @@ namespace Shop.Models.Builders
             switch (sort)
             {
                 case 1://сорт от А до Я
-                    return list.OrderBy(it => it.name).ToList();
+                  //  return list.OrderBy(it => it.name).ToList();
                 case 2://сорт от Я до А
-                    return list.OrderByDescending(it => it.name).ToList();
+                   // return list.OrderByDescending(it => it.name).ToList();
                 case 3://сорт по цене Возростание
-                    return list.OrderBy(it => it.priceAct).ToList();
+                   // return list.OrderBy(it => it.priceAct).ToList();
                 case 4://сорт по цене Убывание
-                    return list.OrderByDescending(it => it.priceAct).ToList();
+                   // return list.OrderByDescending(it => it.priceAct).ToList();
                 default:
                     return list;
             }
@@ -162,13 +138,8 @@ namespace Shop.Models.Builders
             var sku = dataService.GetSkuById(idSku);
             if (sku!=null)
             {     
-                 var u = AccountAdminModelBuilder.BuildOneUser(WebSecurity.CurrentUserName);
+                // var u = AccountAdminModelBuilder.BuildOneUser(WebSecurity.CurrentUserName);
                  skuModel = SKUModelBuilder.ConvertSkuBDToSkuModel(sku);
-                if (u != null && u.Discount > 0)
-                {
-                    skuModel.priceAct = skuModel.priceAct - ((skuModel.priceAct/100)*u.Discount);
-                }
-    
             }
             skuModel.menu = BuildMenu();
             skuModel.topMenuItems = BuildTopMenu();
