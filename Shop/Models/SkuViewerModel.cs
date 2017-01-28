@@ -13,10 +13,13 @@ namespace Shop.Models
         public string Description { set; get; }
         public string bodyText { set; get; }
         public List<ShortSKUModel> skuList { set; get; }
+        public List<ShortSKUModel> ListProduct { set; get; }
+        public string TitleProduct { set; get; }
 
         public SkuViewerModel()
         {
             skuList=new List<ShortSKUModel>();
+            ListProduct = new List<ShortSKUModel>();
         }
     }
 }

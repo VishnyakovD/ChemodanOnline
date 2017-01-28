@@ -13,7 +13,6 @@ using Shop.Models;
 using Shop.Models.Builders;
 using Shop.Modules;
 using Shop.Filters;
-using XMLParser;
 using MenuItem = Shop.db.Entities.MenuItem;
 
 namespace Shop.Controllers
@@ -722,13 +721,6 @@ namespace Shop.Controllers
             Session["sort"] = sort;
             var model = skuViewerBuilder.BuildHidden(true,sort.Value);
             return View("~/Views/Home/ListSkuOnCategory.cshtml", model);
-        }
-
-        public ActionResult ListSkuToXml()
-        {
-            var xmlBuilder = new XMLBuilder(dataService);
-           
-            return this.Content(xmlBuilder.BuildXML(), "text/xml");
         }
 
         public ActionResult ShowChemodanStatus(long id = -1)

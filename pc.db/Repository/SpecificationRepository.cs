@@ -4,17 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NHibernate;
+using NHibernate.Criterion;
 using Shop.db.Entities;
 
 namespace Shop.db.Repository
 {
+
     public class SpecificationRepository : Repository<Specification>
     {
         public SpecificationRepository(ISession session)
-            : base(session)
+                : base(session)
         {
-        }
 
+        }
 
 
     }

@@ -1,7 +1,9 @@
 ﻿@model Shop.Models.MainPageModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = Page.Title = "Аренда чемоданов";
+    ViewBag.Title = Page.Title = "Аренда чемоданов | Chemodan.online";
+
+    var path = ImagePathForView.GetPath();
 }
 
 <div>
@@ -15,7 +17,7 @@
 
                 <div class="swiper-slide">
                     <div>
-                        <img src="@ImagePathForView.GetPath()@item.Image" />
+                        <img src="@path@item.Image" />
                         <a href="@item.Link">@item.Title</a>
                     </div>
                 </div>
@@ -55,7 +57,7 @@
 
                     </div>
                     <div class="right-block">
-                        <img src="@ImagePathForView.GetPath()@item.Image" />
+                        <img src="@path@item.Image" />
                     </div>
                 </div>
             </div>
@@ -90,7 +92,6 @@
                     </div>
                 </div>
             }
-
 
         </div>
     </div>

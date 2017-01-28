@@ -5,7 +5,7 @@ using System.Text;
 //using Microsoft.Web.WebPages.OAuth;
 using Shop.Models;
 
-namespace ShopMe
+namespace Shop
 {
     public static class AuthConfig
     {

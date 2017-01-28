@@ -1004,7 +1004,12 @@ namespace Shop.DataService
                 {
                     result = ((InfoBlockItemRepository) db.GetRepository<InfoBlockItem>()).ListByType(type).ToList();
                 });
-          
+
+                var v=new List<FilterSpecification>();
+                dbService.Run(db =>
+                {
+                    v = ((StaticSpecificationRepository) db.GetRepository<StaticSpecification>()).ListFilters().ToList();
+                });
             }
             catch (Exception err)
             {

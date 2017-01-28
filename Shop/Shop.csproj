@@ -200,6 +200,11 @@
     <Compile Include="Modules\ImagesPathModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\RegisterModules.cs" />
+    <Compile Include="Resources\Default.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Default.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -405,10 +410,6 @@
       <Project>{319140d5-cc3b-47d0-b5cc-61cc34487d57}</Project>
       <Name>Shop.DataService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XMLParser\XMLParser.csproj">
-      <Project>{f5ea43be-3c1b-45e8-b99a-ac1493e90d32}</Project>
-      <Name>XMLParser</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -423,6 +424,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Default.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Default.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -36,17 +36,6 @@ namespace Shop.Models.Builders
 
         private IEnumerable<ShortSKUModel> ListSkuByCategory(StaticCategory cat)
         {
-            var u = AccountAdminModelBuilder.BuildOneUser(WebSecurity.CurrentUserName);
-            if (u!=null&&u.Discount>0)
-            {
-                return dataService.ListSkuByCategory(cat).OrderBy(sku=>sku.sortPriority).Select(sku => new ShortSKUModel()
-                {
-                    id = sku.id,
-                    articul = sku.articul,
-                    price = sku.chemodanType.priceDay,
-                    smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
-                });
-            }
 
             return dataService.ListSkuByCategory(cat).OrderBy(sku => sku.sortPriority).Select(sku => new ShortSKUModel()
                 {
@@ -59,17 +48,6 @@ namespace Shop.Models.Builders
 
         public List<ShortSKUModel> ListHiddenSku(bool isHide)
         {
-            var u = AccountAdminModelBuilder.BuildOneUser(WebSecurity.CurrentUserName);
-            if (u!=null&&u.Discount>0)
-            {
-                return dataService.AllHiddenSku(isHide).OrderBy(sku=>sku.sortPriority).Select(sku => new ShortSKUModel()
-                {
-                    id = sku.id,
-                    articul = sku.articul,
-                    price = sku.chemodanType.priceDay,
-                    smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
-                }).ToList();
-            }
 
             return dataService.AllHiddenSku(isHide).OrderBy(sku => sku.sortPriority).Select(sku => new ShortSKUModel()
                 {
@@ -94,6 +72,20 @@ namespace Shop.Models.Builders
                 model.bodyText = cat.bodyText;
                 model.skuList = SortListSku(ListSkuByCategory(cat).ToList(), sort);
             }
+
+            var tmpList = dataService.ListProductByDisplayType(DisplayType.Favorite);
+            if (tmpList != null && tmpList.Count > 0)
+            {
+                model.ListProduct = tmpList.Select(item => new ShortSKUModel()
+                {
+                    articul = item.articul,
+                    id = item.id,
+                    price = item.chemodanType.priceDay,
+                    smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+                }).ToList();
+            }
+
+            model.TitleProduct = Shop.Resources.Default.FavoriteProducts;
             model.menu = BuildMenu();
             model.topMenuItems = BuildTopMenu();
             return model;

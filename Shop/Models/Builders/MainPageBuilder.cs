@@ -30,9 +30,9 @@ namespace Shop.Models.Builders
         public MainPageModel Build()
         {
             var model = new MainPageModel();
-
-            model.Title = "Какой чемодан вы бы хотели арендавать?";
-            model.TitleProduct = "Самые востребованные";
+            
+            model.Title = Shop.Resources.Default.TitleMainPage;
+            model.TitleProduct = Shop.Resources.Default.FavoriteProducts;
             model.ListCaruselItem = dataService.ListInfoBlockItems(DisplayType.MainCarusel);
             model.ListBlockInfo = dataService.ListInfoBlockItems(DisplayType.MainInfoBlock);
 

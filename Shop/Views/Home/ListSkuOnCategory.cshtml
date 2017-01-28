@@ -3,9 +3,8 @@
 @{
     if (Model != null && !string.IsNullOrEmpty(Model.Name))
     {
-        Page.Title = string.Format("Купить {0} - Интернет-магазин Newer", Model.Name.ToLower());
+        Page.Title = string.Format("Заказать {0} - Интернет-магазин Newer", Model.Name.ToLower());
         ViewBag.Title = Model.Name;
-
 
         @section head {
             <meta name="description" content="@Model.Description">
@@ -24,7 +23,40 @@
         {
             Html.RenderPartial("~/Views/Home/ShortSkuPartial.cshtml", sku);
         }
-    </div> 
+    </div>
+
+    <div class="row">
+        <div class="col-ms-12">
+            <h1 class="title-product-swiper">@Model.TitleProduct</h1>
+        </div>
+    </div>
+
+    <div class="swiper-container main-page-favorite-swipe js-main-page-favorite-swiper">
+
+        <div class="swiper-wrapper">
+            @foreach (var item in Model.ListProduct)
+            {
+                <div class="swiper-slide">
+                    <div class="short-product carusel">
+                        <div class="line1">
+                            <img src="@item.smalPhotoPath" />
+                        </div>
+
+                        <div class="line2">
+                            <span class="art">арт. @item.articul</span>
+                            <span class="price">@item.price.ToString("#### грн.")</span>
+                        </div>
+
+                        <div class="line3">
+                            <a href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})" class="btn btn-info-block">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
      <div class="row">
        <div class="col-md-12">@(new HtmlString(Model.bodyText))</div>
     </div>

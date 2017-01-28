@@ -1,15 +1,17 @@
 ﻿.short-product{
+    padding-top:20px;
     .line1{
         text-align:center;
         img{
             width:100%;
+            padding: 0 25px;
         }
     }
 
     &.carusel{
     max-height: 390px;
     min-height: 390px;
-
+    padding-top:0;
         .line1{
             text-align:center;
             img{
