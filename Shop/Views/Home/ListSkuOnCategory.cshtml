@@ -1,9 +1,10 @@
 ﻿@using Shop.Models
+@using AdvancedClasses
 @model SkuViewerModel
 @{
     if (Model != null && !string.IsNullOrEmpty(Model.Name))
     {
-        Page.Title = string.Format("Заказать {0} - Интернет-магазин Newer", Model.Name.ToLower());
+        Page.Title = "Оренда чемоданов | Chemodan.online";
         ViewBag.Title = Model.Name;
 
         @section head {
@@ -17,11 +18,18 @@
 
 @if (Model != null)
 {
-    Html.RenderPartial("~/Views/Home/sortingPartial.cshtml", Model.IdCat);
-    <div class="row">
-        @foreach (var sku in Model.skuList)
+    if (Model.Filters!=null)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @{ Html.RenderPartial("~/Views/Home/FiltersPartial.cshtml", Model.Filters); }
+            </div>
+        </div>
+    }
+    <div class="row js-list-products">
+        @if (Model.skuList.AnySafe())
         {
-            Html.RenderPartial("~/Views/Home/ShortSkuPartial.cshtml", sku);
+            Html.RenderPartial("~/Views/Home/ShortProductListPartial.cshtml", Model.skuList);
         }
     </div>
 

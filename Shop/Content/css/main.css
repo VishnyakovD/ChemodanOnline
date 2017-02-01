@@ -205,6 +205,15 @@
   .short-product .line3 {
     text-align: center; }
 
+.filters li {
+  font-weight: normal;
+  color: cadetblue;
+  cursor: pointer; }
+
+.filters li.active {
+  font-weight: 600;
+  color: green; }
+
 body {
   font-family: 'Ubuntu Condensed', sans-serif;
   padding-top: 10px;

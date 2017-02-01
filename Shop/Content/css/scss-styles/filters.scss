@@ -1,0 +1,13 @@
+﻿.filters{
+
+    li{
+        font-weight:normal;
+        color:cadetblue;
+        cursor:pointer;
+    }
+
+    li.active{
+        font-weight:600;
+        color:green;
+    }
+}

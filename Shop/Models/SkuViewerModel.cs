@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Shop.db.Repository;
 
 namespace Shop.Models
 {
@@ -14,12 +15,14 @@ namespace Shop.Models
         public string bodyText { set; get; }
         public List<ShortSKUModel> skuList { set; get; }
         public List<ShortSKUModel> ListProduct { set; get; }
+        public FilterProduct Filters { set; get; }
         public string TitleProduct { set; get; }
 
         public SkuViewerModel()
         {
             skuList=new List<ShortSKUModel>();
             ListProduct = new List<ShortSKUModel>();
+            Filters = new FilterProduct();
         }
     }
 }

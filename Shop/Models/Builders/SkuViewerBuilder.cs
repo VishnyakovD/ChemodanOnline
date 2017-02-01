@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Shop.DataService;
 using Shop.db.Entities;
+using Shop.db.Repository;
 using Shop.Modules;
 using WebMatrix.WebData;
 
@@ -16,6 +17,8 @@ namespace Shop.Models.Builders
         SKUModel BuildSkuModel(long idSlu);
         List<ShortSKUModel> ListHiddenSku(bool isHide);
         SkuViewerModel BuildHidden(bool isHide, int sort);
+        List<ShortSKUModel> BuildListProductsByFilters(FilterFoDB filters);
+
     }
 
     public class SkuViewerBuilder : MenuBuilder, ISkuViewerBuilder
@@ -85,24 +88,44 @@ namespace Shop.Models.Builders
                 }).ToList();
             }
 
+            model.Filters = dataService.Filters();
             model.TitleProduct = Shop.Resources.Default.FavoriteProducts;
             model.menu = BuildMenu();
             model.topMenuItems = BuildTopMenu();
             return model;
         }
 
+    public List<ShortSKUModel> BuildListProductsByFilters(FilterFoDB filters)
+        {
+            var model = new List<ShortSKUModel>();
+
+            var tmpList = dataService.ListProductsByFilters(filters);
+            if (tmpList != null && tmpList.Count > 0)
+            {
+                model = tmpList.Select(item => new ShortSKUModel()
+                {
+                    articul = item.articul,
+                    id = item.id,
+                    price = item.chemodanType.priceDay,
+                    smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+                }).ToList();
+            }
+            return model;
+        }
         public SkuViewerModel BuildHidden(bool isHide, int sort)
         {
-            var model = new SkuViewerModel();
-            
-            model.IdCat = 9999999;
-            model.Name = "Скрытые товары";
-            model.Keywords = string.Empty;
-            model.Description = string.Empty;
-            model.bodyText = string.Empty;
-            model.skuList = SortListSku(ListHiddenSku(isHide),sort);
-            model.menu = BuildMenu();
-            model.topMenuItems = BuildTopMenu();
+            var model = new SkuViewerModel
+            {
+                IdCat = 9999999,
+                Name = "Скрытые товары",
+                Keywords = string.Empty,
+                Description = string.Empty,
+                bodyText = string.Empty,
+                skuList = SortListSku(ListHiddenSku(isHide), sort),
+                menu = BuildMenu(),
+                topMenuItems = BuildTopMenu()
+            };
+
             return model;
         }
 

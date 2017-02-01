@@ -17,7 +17,9 @@ namespace Shop.DataService
         List<T> List<T>() where T : class;
         T Get<T>(long id) where T : class, new();
 
+        FilterProduct Filters();
         List<InfoBlockItem> ListInfoBlockItems(DisplayType type);
+        List<Sku> ListProductsByFilters(FilterFoDB filters);
 
         bool AddOrUpdateMailing(Mailing mailing);
         bool AddOrUpdateBrand(Brand brand);
@@ -89,9 +91,6 @@ namespace Shop.DataService
         List<StaticSpecification> ListStaticSpecification();
         StaticSpecification GetStaticSpecification(long idSpec);
         List<MenuItem> ListMenuItem(int type);
-
-
-        bool AddComment(Comment comment);
         bool AddSku(Sku sku);
 
         void AddIPToMonitor(IPMonitor monitor);
@@ -1004,11 +1003,23 @@ namespace Shop.DataService
                 {
                     result = ((InfoBlockItemRepository) db.GetRepository<InfoBlockItem>()).ListByType(type).ToList();
                 });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
 
-                var v=new List<FilterSpecification>();
+        public FilterProduct Filters()
+        {
+            var result = new FilterProduct();
+            try
+            {
+                var v = new List<FilterSpecification>();
                 dbService.Run(db =>
                 {
-                    v = ((StaticSpecificationRepository) db.GetRepository<StaticSpecification>()).ListFilters().ToList();
+                    result = ((StaticSpecificationRepository)db.GetRepository<StaticSpecification>()).ListFilters();
                 });
             }
             catch (Exception err)
@@ -1017,6 +1028,7 @@ namespace Shop.DataService
             }
             return result;
         }
+
 
 
         public List<Article> ListArticles()
@@ -1183,25 +1195,6 @@ namespace Shop.DataService
             }
             catch (Exception err)
             {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
-
-        public bool AddComment(Comment comment)
-        {
-            bool result = false;
-            try
-            {
-                dbService.Run(db =>
-                {
-                    db.GetRepository<Comment>().Add(comment);
-                });
-                result = true;
-            }
-            catch (Exception err)
-            {
-                result = false;
                 logger.Error(err.Message);
             }
             return result;
@@ -1381,6 +1374,24 @@ namespace Shop.DataService
                 dbService.Run(db =>
                 {
                     result = ((SkuRepository)db.GetRepository<Sku>()).ListSkuByCategory(cat).ToList();
+                });
+
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public List<Sku> ListProductsByFilters(FilterFoDB filters)
+        {
+            var result = new List<Sku>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((SkuRepository)db.GetRepository<Sku>()).ListProductsByFilters(filters).ToList();
                 });
 
             }

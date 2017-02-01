@@ -16,6 +16,17 @@ namespace Shop.db.Repository
         {
         }
 
+        public IEnumerable<Sku> ListProductsByFilters(FilterFoDB filters)
+        {
+
+            var retval = session.QueryOver<Sku>()
+                .Where(s =>s.listCategory.First(cat=>cat.id== 10010)!=null)
+               // .Where(s =>s.chemodanType.id == (long)2)
+               // .Where(s =>s.listSpecification.
+                .List();
+            return retval;
+        }
+
         public IEnumerable<Sku> ListSkuByCategory(StaticCategory cat, bool isHide=false)
         {
             var ids = session.QueryOver<Category>().Where(i => i.staticcat == cat).List().Select(i => i.skuId).ToArray();

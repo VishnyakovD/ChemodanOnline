@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.WebPages;
+using Newtonsoft.Json;
 using Shop.DataService;
 using Shop.db.Entities;
+using Shop.db.Repository;
 using Shop.Filters;
 using Shop.Logger;
 using Shop.Models;
@@ -39,15 +42,18 @@ namespace Shop.Controllers
             this.mainPageBuilder = mainPageBuilder;
         }
 
-        public ActionResult ListSkuOnCategory(long idCat, int? sort)
-        {
-            if (!sort.HasValue)
-            {
-                sort = -1;
-            }
-            Session["sort"] = sort;      
-            var model = skuViewerBuilder.Build(idCat,sort.Value);
+        public ActionResult ListSkuOnCategory(long idCat)
+        {   
+            var model = skuViewerBuilder.Build(idCat,-1);
             return View("ListSkuOnCategory", model);
+        }
+
+        public ActionResult ListProducts(string filtersSP)
+        {
+
+            var specs= JsonConvert.DeserializeObject<FilterItemValue[]>(filtersSP);
+            var model = skuViewerBuilder.BuildListProductsByFilters(new FilterFoDB() {Specifications = specs });
+            return View("ShortProductListPartial", new List<ShortSKUModel>() /*model*/);
         }
 
         public ActionResult SkuInfo(long idSku)

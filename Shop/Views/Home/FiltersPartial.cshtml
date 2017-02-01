@@ -1,0 +1,23 @@
+﻿@using System.Collections
+@using Shop.db.Repository
+@model FilterProduct
+
+
+
+<div class="filters js-product-filter">
+    @foreach (var filter in Model.Specifications)
+    {
+        <div style="display: inline-block">
+            <div>@filter.Specification.name</div>
+            <ul>
+                @foreach (var value in filter.Values)
+                {
+                    <li class="js-filter-item"
+                        data-filter-id="@filter.Specification.id"
+                        data-filter-type="@FilterType.Specification" 
+                        data-is-selected="false">@value.Value</li>
+                }
+            </ul>
+        </div>
+    }
+</div>
