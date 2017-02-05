@@ -48,12 +48,20 @@ namespace Shop.Controllers
             return View("ListSkuOnCategory", model);
         }
 
-        public ActionResult ListProducts(string filtersSP)
+        public ActionResult ListProducts(string filtersSp, string filtersTp, string filtersCt)
         {
 
-            var specs= JsonConvert.DeserializeObject<FilterItemValue[]>(filtersSP);
-            var model = skuViewerBuilder.BuildListProductsByFilters(new FilterFoDB() {Specifications = specs });
-            return View("ShortProductListPartial", new List<ShortSKUModel>() /*model*/);
+            var specs= JsonConvert.DeserializeObject<FilterItemValue[]>(filtersSp);
+            var types= JsonConvert.DeserializeObject<FilterItemValue[]>(filtersTp);
+            var cats= JsonConvert.DeserializeObject<FilterItemValue[]>(filtersCt);
+
+            var model = skuViewerBuilder.BuildListProductsByFilters(
+                new FilterFoDB{
+                    Specifications = specs,
+                    ChemodanTypes = types,
+                    Categories = cats}
+                );
+            return View("ShortProductListPartial", model);
         }
 
         public ActionResult SkuInfo(long idSku)
@@ -127,8 +135,6 @@ namespace Shop.Controllers
 
               }
           }
-
-
 
     }
 }

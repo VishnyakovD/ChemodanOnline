@@ -1,10 +1,27 @@
 ﻿@using System.Collections
+@using System.Web.Services.Description
 @using Shop.db.Repository
 @model FilterProduct
 
 
-
 <div class="filters js-product-filter">
+    <div style="display: inline-block">
+        <div>@Shop.Resources.Default.ChemodanTypes</div>
+        <ul>
+            @foreach (var filter in Model.ChemodanTypes)
+            {
+                <li class="js-filter-item"
+                    data-filter-id="@filter.Id"
+                    data-filter-type="@FilterType.ChemodanType"
+                    data-is-selected="false">@filter.Value</li>
+            }
+        </ul>
+    </div>
+
+
+
+
+
     @foreach (var filter in Model.Specifications)
     {
         <div style="display: inline-block">
@@ -14,10 +31,14 @@
                 {
                     <li class="js-filter-item"
                         data-filter-id="@filter.Specification.id"
-                        data-filter-type="@FilterType.Specification" 
+                        data-filter-type="@FilterType.Specification"
                         data-is-selected="false">@value.Value</li>
                 }
             </ul>
         </div>
     }
+
+
+
+
 </div>

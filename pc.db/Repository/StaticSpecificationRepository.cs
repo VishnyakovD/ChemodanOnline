@@ -21,7 +21,7 @@ namespace Shop.db.Repository
             var result=new FilterProduct();
 
             var listSpec = session
-                .Query<Specification>().GroupBy(gr => gr.staticspec).ToList();
+                .Query<Specification>().GroupBy(gr => gr.staticspec).ToArray();
 
             result.Specifications = listSpec.Select(gr => new FilterSpecification()
             {
@@ -35,7 +35,14 @@ namespace Shop.db.Repository
                     }).ToArray()
             }).ToArray();
 
-             return result;
+            result.ChemodanTypes = session
+                .Query<ChemodanType>().OrderBy(type => type.priceDay)
+                .Select(
+                    type =>
+                        new FilterItemValue {Id = type.id, Value = $"{type.name} | {type.priceDay}"})
+                .ToArray(); 
+
+        return result;
         }
 
     }
@@ -51,14 +58,14 @@ namespace Shop.db.Repository
     public class FilterProduct
     {
         public FilterCategory[] Categories { get; set; }
-        public FilterChemodanTypes[] ChemodanTypes { get; set; }
+        public FilterItemValue[] ChemodanTypes { get; set; }
         public FilterSpecification[] Specifications { get; set; }
 
         public FilterProduct()
         {
             Specifications = new FilterSpecification[] {}; 
             Categories =new FilterCategory[] {};
-            ChemodanTypes=new FilterChemodanTypes[] {};
+            ChemodanTypes=new FilterItemValue[] {};
            
         }
     }
@@ -93,15 +100,15 @@ namespace Shop.db.Repository
         }
     }
 
-    public class FilterChemodanTypes
-    {
-        public List<FilterItemValue> Values { get; set; }
+    //public class FilterChemodanTypes
+    //{
+    //    public List<FilterItemValue> Values { get; set; }
 
-        public FilterChemodanTypes()
-        {
-            Values = new List<FilterItemValue>();
-        }
-    }
+    //    public FilterChemodanTypes()
+    //    {
+    //        Values = new List<FilterItemValue>();
+    //    }
+    //}
 
 
 

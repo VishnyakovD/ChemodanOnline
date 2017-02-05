@@ -17,6 +17,9 @@ var FilterModel = (function () {
     FilterModel.prototype.ActivateFilter = function (id, type, isSelected, value) {
         var _this = this;
         var filterValue = new FilterItemValue(id, type, true, value);
+        if (this.FilterCategoryes.length === 0) {
+            this.FilterCategoryes.push(new FilterItemValue($(".js-filter-cat").val(), " ", true, " "));
+        }
         switch (type) {
             case "Specification":
                 if (this.FilterSpecifications.length === 0) {
@@ -42,17 +45,35 @@ var FilterModel = (function () {
             case "Category":
                 break;
             case "ChemodanType":
+                if (this.FilterChemodanTypes.length === 0) {
+                    this.FilterChemodanTypes.push(filterValue);
+                }
+                else {
+                    if (isSelected) {
+                        var tmpArr = [];
+                        this.FilterChemodanTypes.forEach(function (item) {
+                            if (item.Value === filterValue.Value && item.Id === filterValue.Id) {
+                            }
+                            else {
+                                tmpArr.push(item);
+                            }
+                        });
+                        this.FilterChemodanTypes = tmpArr;
+                    }
+                    else {
+                        this.FilterChemodanTypes.push(filterValue);
+                    }
+                }
                 break;
             default:
         }
-        console.log(this.FilterSpecifications);
-        $.ajax({
-            type: "POST",
-            url: "/Home/ListProducts",
-            success: function (data) {
-                _this.listProductsQuery.html(data);
-            },
-            data: { filtersSP: JSON.stringify(this.FilterSpecifications) }
+        $.post('/Home/ListProducts/', {
+            filtersSp: JSON.stringify(this.FilterSpecifications),
+            filtersTp: JSON.stringify(this.FilterChemodanTypes),
+            filtersCt: JSON.stringify(this.FilterCategoryes)
+        })
+            .done(function (data) {
+            _this.listProductsQuery.html(data);
         });
     };
     return FilterModel;

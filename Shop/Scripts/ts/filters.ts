@@ -31,9 +31,12 @@ class FilterModel {
     ActivateFilter(id: number, type: string, isSelected: boolean, value: string): void {
 
         var filterValue = new FilterItemValue(id,type, true, value);
-
+        if (this.FilterCategoryes.length===0) {
+            this.FilterCategoryes.push(new FilterItemValue($(".js-filter-cat").val(), " ", true, " "));
+        }
         switch (type) {
             case "Specification":
+
                 if (this.FilterSpecifications.length === 0) {
                     this.FilterSpecifications.push(filterValue);
                 } else {
@@ -51,7 +54,6 @@ class FilterModel {
                     } else {
                         this.FilterSpecifications.push(filterValue);
                     }
-
                 }
 
                 break;
@@ -60,28 +62,49 @@ class FilterModel {
                 break;
 
             case "ChemodanType":
+                if (this.FilterChemodanTypes.length === 0) {
+                    this.FilterChemodanTypes.push(filterValue);
+                } else {
 
+                    if (isSelected) {
+                        var tmpArr = [];
+                        this.FilterChemodanTypes.forEach((item) => {
+                            if (item.Value === filterValue.Value && item.Id === filterValue.Id) {
+
+                            } else {
+                                tmpArr.push(item);
+                            }
+                        });
+                        this.FilterChemodanTypes = tmpArr;
+                    } else {
+                        this.FilterChemodanTypes.push(filterValue);
+                    }
+
+                }
                 break;
         default:
         }
 
 
-       
-        console.log(this.FilterSpecifications);
-
-
-
-        $.ajax({
-            type: "POST",
-            url: "/Home/ListProducts",
-            success: (data)=> {
+        $.post('/Home/ListProducts/', {
+            filtersSp: JSON.stringify(this.FilterSpecifications),
+            filtersTp: JSON.stringify(this.FilterChemodanTypes),
+            filtersCt: JSON.stringify(this.FilterCategoryes)
+        })
+            .done((data) => {
                 this.listProductsQuery.html(data);
-            },
-
-            data: { filtersSP: JSON.stringify(this.FilterSpecifications)}
-        });
+            });
     }
-}
+
+
+       
+       // console.log(this.FilterSpecifications);
+
+
+    
+    
+   }
+
 
 var filterModel: FilterModel;
 

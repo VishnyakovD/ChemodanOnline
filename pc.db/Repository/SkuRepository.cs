@@ -19,12 +19,75 @@ namespace Shop.db.Repository
         public IEnumerable<Sku> ListProductsByFilters(FilterFoDB filters)
         {
 
-            var retval = session.QueryOver<Sku>()
-                .Where(s =>s.listCategory.First(cat=>cat.id== 10010)!=null)
-               // .Where(s =>s.chemodanType.id == (long)2)
-               // .Where(s =>s.listSpecification.
-                .List();
-            return retval;
+            IList<Sku> skus = null;
+            IList<Category> cats=null;
+            IList<Specification> spec=null;
+
+            var idCats = filters.Categories.Select(fcat => fcat.Id).ToArray();
+            var idTypes = filters.ChemodanTypes.Select(st => st.Id).ToArray();
+            var idSpecs = filters.Specifications.Select(item=>item.Id).ToArray();
+            var valueSpecs = filters.Specifications.Select(item=>item.Value).ToArray();
+
+            if (idCats.Any() && skus == null)
+            {
+                cats = session.CreateCriteria(typeof (Category)).Add(Restrictions.In("staticcat", idCats)).List<Category>();
+                skus = session.CreateCriteria(typeof(Sku))
+                    .Add(Restrictions.In("id", cats.Select(c => c.skuId).ToArray()))
+                    .Add(Restrictions.Eq("isHide", false))
+                    .List<Sku>().ToList();
+
+                idCats = null;
+            }
+
+            if (idTypes.Any() && skus == null)
+            {
+                skus = session.CreateCriteria(typeof(Sku))
+                        .Add(Restrictions.In("chemodanType", idTypes))
+                        .Add(Restrictions.Eq("isHide", false))
+                        .List<Sku>();
+                idTypes = null;
+            }
+
+            if (idSpecs.Any() && skus == null)
+            {
+
+                spec = session.QueryOver<Specification>()
+                    .Where(s => s.staticspec.id.IsIn(idSpecs)
+                    && s.value.IsIn(valueSpecs)).List();
+
+                skus = session.QueryOver<Sku>()
+                    .Where(sku => sku.id.IsIn(spec.Select(item => item.skuId).ToArray())&&sku.isHide==false).List();
+
+                idSpecs = null;
+            }
+
+
+
+            if (idCats!=null && idCats.Any())
+            {
+                // skus = skus.Where(sku => sku.id.IsIn(cats.Select(c => c.skuId).ToArray())).ToList();
+                skus = (from sku in skus from cat in sku.listCategory.Where(c => idCats.Contains(c.staticcat.id)) select sku).ToList();
+            }
+
+            if (idTypes != null && idTypes.Any())
+            {
+                //skus = skus.Where(sku => sku.chemodanType.id.IsIn(idTypes)).ToList();
+                skus = skus.Where(sku => idTypes.Contains(sku.chemodanType.id)).ToList();
+            }
+
+            if (idSpecs != null&& idSpecs.Any())
+            {
+               // skus = skus.Where(sku => sku.id.IsIn(spec.Select(item => item.skuId).ToArray())).ToList();
+               skus = (from sku in skus from skuSpec in sku.listSpecification where filters.Specifications.Contains(new FilterItemValue {Id = skuSpec.staticspec.id, Value = skuSpec.value}) select sku).ToList();
+            }
+       
+
+
+
+
+
+
+            return skus;
         }
 
         public IEnumerable<Sku> ListSkuByCategory(StaticCategory cat, bool isHide=false)
