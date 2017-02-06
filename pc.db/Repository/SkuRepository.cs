@@ -77,8 +77,23 @@ namespace Shop.db.Repository
 
             if (idSpecs != null&& idSpecs.Any())
             {
-               // skus = skus.Where(sku => sku.id.IsIn(spec.Select(item => item.skuId).ToArray())).ToList();
-               skus = (from sku in skus from skuSpec in sku.listSpecification where filters.Specifications.Contains(new FilterItemValue {Id = skuSpec.staticspec.id, Value = skuSpec.value}) select sku).ToList();
+
+                var tmpSkus=new List<Sku>();
+                foreach (var sku in skus)
+                {
+                    foreach (var skuSpec in sku.listSpecification)
+                    {
+                        foreach (var filterSpec in filters.Specifications)
+                        {
+                            if (filterSpec.Id== skuSpec.staticspec.id&&filterSpec.Value==skuSpec.value)
+                            {
+                                tmpSkus.Add(sku);
+                            }
+                        }
+                    }
+                }
+                skus = tmpSkus;
+                // skus = (from sku in skus from skuSpec in sku.listSpecification where filters.Specifications.Contains(new FilterItemValue {Id = skuSpec.staticspec.id, Value = skuSpec.value}) select sku).ToList();
             }
        
 
