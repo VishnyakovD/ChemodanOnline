@@ -33,7 +33,7 @@ namespace Shop.Models.Builders
         {
             var model = new ArticlesModel();
             var path = imagesPath.GetImagesPath();
-            model.articles = dataService.ListArticles();
+            model.articles = dataService.List<Article>();
 
             foreach (var article in model.articles)
             {

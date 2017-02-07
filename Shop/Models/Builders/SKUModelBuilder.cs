@@ -39,9 +39,9 @@ namespace Shop.Models.Builders
             sku.listStaticSpecification = dataService.ListStaticSpecification();
             sku.listStaticBrand = dataService.ListBrands();
             sku.menu = BuildMenu(sku.listStaticCategory);
-            sku.listChemodanProvider = dataService.ListChemodanProvider();
-            sku.listChemodanStatus = dataService.ListChemodanStatus();
-            sku.listChemodanType = dataService.ListChemodanType();
+            sku.listChemodanProvider = dataService.List<ChemodanProvider>();
+            sku.listChemodanStatus = dataService.List<ChemodanStatus>();
+            sku.listChemodanType = dataService.List<ChemodanType>();
 
 
             sku.listCategory=new List<Category>();

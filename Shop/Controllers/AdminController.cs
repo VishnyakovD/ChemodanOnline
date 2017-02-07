@@ -760,7 +760,9 @@ namespace Shop.Controllers
             List<ChemodanStatus> list = null;
             try
             {
-                list = dataService.ListChemodanStatus();
+				//4444
+                //list = dataService.ListChemodanStatus();
+				list = dataService.List<ChemodanStatus>();
             }
             catch (Exception err)
             {
@@ -808,7 +810,9 @@ namespace Shop.Controllers
             List<ChemodanType> list = null;
             try
             {
-                list = dataService.ListChemodanType();
+				//4444
+               // list = dataService.ListChemodanType();
+				list = dataService.List<ChemodanType>();
             }
             catch (Exception err)
             {

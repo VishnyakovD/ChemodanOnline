@@ -100,12 +100,47 @@ namespace Shop.Controllers
 
 
 
-     
+
+		private void SendMail()
+		{
+			try
+			{
+				var SMTPHost = WebConfigurationManager.AppSettings["SMTPHost"];
+				var SMTPPort = 25;
+				int.TryParse(WebConfigurationManager.AppSettings["SMTPPort"], out SMTPPort);
+				var EnableSsl = false;
+				bool.TryParse(WebConfigurationManager.AppSettings["EnableSsl"], out EnableSsl);
+				var UseDefaultCredentials = true;
+				bool.TryParse(WebConfigurationManager.AppSettings["UseDefaultCredentials"], out UseDefaultCredentials);
+				var UserName = WebConfigurationManager.AppSettings["UserName"];
+				var UserPassword = WebConfigurationManager.AppSettings["UserPassword"];
+				var MailFrom = WebConfigurationManager.AppSettings["MailFrom"];
+				var MailTo = WebConfigurationManager.AppSettings["MailTo"];
+				var MailTo2 = WebConfigurationManager.AppSettings["MailTo2"];
+				var MailSubject = WebConfigurationManager.AppSettings["MailSubject"];
+				var MailBody = WebConfigurationManager.AppSettings["MailBody"];
+				var Smtp = new SmtpClient(SMTPHost, SMTPPort);
+
+				Smtp.EnableSsl = EnableSsl;
+				Smtp.UseDefaultCredentials = UseDefaultCredentials;
+				Smtp.Credentials = new NetworkCredential(UserName, UserPassword);
+				var Message = new MailMessage();
+				Message.From = new MailAddress(MailFrom);
+				var mails = new MailAddressCollection();
+				Message.To.Add(string.Format("{0},{1}", MailTo, MailTo2));
+				Message.Subject = MailSubject;
+				Message.Body = MailBody;
+				Smtp.SendMailAsync(Message);
+			}
+			catch (Exception err)
+			{
+
+			}
+		}
 
 
 
 
 
-
-    }
+	}
 }

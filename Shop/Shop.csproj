@@ -165,7 +165,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\MailingController.cs" />
-    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,9 +184,7 @@
     <Compile Include="Models\Builders\MenuBuilder.cs" />
     <Compile Include="Models\Builders\RegisterBuilder.cs" />
     <Compile Include="Models\Builders\SKUModelBuilder.cs" />
-    <Compile Include="Models\Builders\CartBuilder.cs" />
     <Compile Include="Models\Builders\SkuViewerBuilder.cs" />
-    <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Models\ProviderModel.cs" />
     <Compile Include="Models\MailingModel.cs" />
@@ -350,11 +347,6 @@
     <Content Include="Views\Shared\MenuPartial.cshtml" />
     <Content Include="Views\Home\ListSkuOnCategory.cshtml" />
     <Content Include="Views\Home\SkuInfo.cshtml" />
-    <Content Include="Views\Cart\BuyCart.cshtml" />
-    <Content Include="Views\Cart\ListCarts.cshtml" />
-    <Content Include="Views\Cart\ListSkuInCart.cshtml" />
-    <Content Include="Views\Cart\finalCartPartial.cshtml" />
-    <Content Include="Views\Cart\ListSkuInCartFinalPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />

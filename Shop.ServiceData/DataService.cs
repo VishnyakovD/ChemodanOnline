@@ -39,24 +39,23 @@ namespace Shop.DataService
         bool RemoveSKUFromCategory(long id, long idCat);
         bool RemoveSpecificationFromSKU(long id, long idSpec);
         bool RemoveBigPhotoFromSKU(long id, long idPhoto);
-        bool RemoveSkuCartId(long idCart, long idsku);
         Sku GetSkuById(long id);
 
         bool AddOrUpdateChemodanStatus(ChemodanStatus item);
         ChemodanStatus GetChemodanStatus(long id);
-        List<ChemodanStatus> ListChemodanStatus();
+       // List<ChemodanStatus> ListChemodanStatus();
 
         bool AddOrUpdateChemodanType(ChemodanType item);
         ChemodanType GetChemodanType(long id);
-        List<ChemodanType> ListChemodanType();
+        //List<ChemodanType> ListChemodanType();
 
         long AddOrUpdateChemodanProvider(ChemodanProvider item);
         ChemodanProvider GetChemodanProvider(long id);
-        List<ChemodanProvider> ListChemodanProvider();
+        //List<ChemodanProvider> ListChemodanProvider();
 
         long AddOrUpdateClient(Client item);
         Client GetClient(long id);
-        List<Client> ListClient();
+        //List<Client> ListClient();
 
      
 
@@ -67,27 +66,22 @@ namespace Shop.DataService
 
         List<Sku> ListSkuByCategory(StaticCategory cat);
         List<Sku> ListProductByDisplayType(DisplayType type);
-        List<Sku> ListSku();
+        //List<Sku> ListSku();
 
 
         List<Sku> AllHiddenSku(bool isHide = false);
 
+       // List<Article> ListArticles();
 
-        List<CartState> ListCartState();
-        List<Article> ListArticles();
-
-        Cart AddorUpdateSkuToCart(Cart cart);
-        Cart GetCartById(long idCart);
         Mailing GetMailingByEmail(string email);
-        List<Cart> GetCartsByDateAndStatus(DateTime start, DateTime end, int state);
 
-        List<Brand> ListBrands();
+        //List<Brand> ListBrands();
         Brand GetBrand(long id);
-        List<Mailing> ListMailings();
+        //List<Mailing> ListMailings();
         List<Mailing> ListMailingByActive(bool isActive);
-        List<Category> ListCategoryes();
+        //List<Category> ListCategoryes();
 
-        List<StaticCategory> ListStaticCategoryes();
+        //List<StaticCategory> ListStaticCategoryes();
         List<StaticSpecification> ListStaticSpecification();
         StaticSpecification GetStaticSpecification(long idSpec);
         List<MenuItem> ListMenuItem(int type);
@@ -219,23 +213,23 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<ChemodanProvider> ListChemodanProvider()
-        {
-            var result = new List<ChemodanProvider>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<ChemodanProvider>().All();
-                });
+        //public List<ChemodanProvider> ListChemodanProvider()
+        //{
+        //    var result = new List<ChemodanProvider>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = db.GetRepository<ChemodanProvider>().All();
+        //        });
 
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
         public long AddOrUpdateClient(Client item)
         {
@@ -318,23 +312,23 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<Client> ListClient()
-        {
-            var result = new List<Client>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<Client>().All();
-                });
+        //public List<Client> ListClient()
+        //{
+        //    var result = new List<Client>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = db.GetRepository<Client>().All();
+        //        });
 
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
         public bool AddOrUpdateChemodanType(ChemodanType item)
         {
@@ -387,23 +381,23 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<ChemodanType> ListChemodanType()
-        {
-            var result = new List<ChemodanType>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<ChemodanType>().All();
-                });
+        //public List<ChemodanType> ListChemodanType()
+        //{
+        //    var result = new List<ChemodanType>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = db.GetRepository<ChemodanType>().All();
+        //        });
 
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
         public bool AddOrUpdateChemodanStatus(ChemodanStatus item)
         {
@@ -455,23 +449,23 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<ChemodanStatus> ListChemodanStatus()
-        {
-            var result = new List<ChemodanStatus>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<ChemodanStatus>().All();
-                });
+        //public List<ChemodanStatus> ListChemodanStatus()
+        //{
+        //    var result = new List<ChemodanStatus>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = db.GetRepository<ChemodanStatus>().All();
+        //        });
 
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
 
         public bool AddOrUpdateMailing(Mailing mailing)
@@ -941,41 +935,41 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<Brand> ListBrands()
-        {
-            var result = new List<Brand>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                   result= db.GetRepository<Brand>().All();
-                });
+        //public List<Brand> ListBrands()
+        //{
+        //    var result = new List<Brand>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //           result= db.GetRepository<Brand>().All();
+        //        });
           
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
-        public List<Mailing> ListMailings()
-        {
-            var result = new List<Mailing>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<Mailing>().All();
-                });
+        //public List<Mailing> ListMailings()
+        //{
+        //    var result = new List<Mailing>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = db.GetRepository<Mailing>().All();
+        //        });
           
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
         public List<Mailing> ListMailingByActive(bool isActive)
         {
             var result = new List<Mailing>();
@@ -1031,60 +1025,60 @@ namespace Shop.DataService
 
 
 
-        public List<Article> ListArticles()
-        {
-            var result = new List<Article>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<Article>().All();
-                });
+        //public List<Article> ListArticles()
+        //{
+        //    var result = new List<Article>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = db.GetRepository<Article>().All();
+        //        });
           
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
 
-        public List<Category> ListCategoryes()
-        {
-            var result = new List<Category>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<Category>().All();
-                });
+        //public List<Category> ListCategoryes()
+        //{
+        //    var result = new List<Category>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = db.GetRepository<Category>().All();
+        //        });
 
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
-        public List<StaticCategory> ListStaticCategoryes()
-        {
-            var result = new List<StaticCategory>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<StaticCategory>().All();
-                });
+        //public List<StaticCategory> ListStaticCategoryes()
+        //{
+        //    var result = new List<StaticCategory>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = db.GetRepository<StaticCategory>().All();
+        //        });
 
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
         public List<StaticSpecification> ListStaticSpecification()
         {
@@ -1420,132 +1414,24 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<Sku> ListSku()
-        {
-            var result = new List<Sku>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<Sku>().All();
-                });
+        //public List<Sku> ListSku()
+        //{
+        //    var result = new List<Sku>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = db.GetRepository<Sku>().All();
+        //        });
 
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
-        
-        public List<CartState> ListCartState()
-        {
-            var result = new List<CartState>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<CartState>().All();
-                });
-
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
-
-        public Cart AddorUpdateSkuToCart(Cart cart)
-        {
-            Cart result = null;
-            try
-            {
-                dbService.Run(db =>
-                {
-                    var cartDB = db.GetRepository<Cart>().TryOne(cart.id);
-                    if (cartDB == null)
-                    {
-                        result = db.GetRepository<Cart>().Add(cart);   
-                    }
-                    else
-                    {
-                        cartDB.id = cart.id;
-                        cartDB.name = cart.name;
-                        cartDB.nameClient = cart.nameClient;
-                        cartDB.phone = cart.phone;
-                        cartDB.email = cart.email;
-                        cartDB.city = cart.city;
-                        cartDB.street = cart.street;
-                        cartDB.numHome = cart.numHome;
-                        cartDB.numFlat = cart.numFlat;
-                        cartDB.comment = cart.comment;
-                        cartDB.state = cart.state;
-                        //cartDB.createDate = cart.createDate;
-                        if (cart.listSku.Any())
-                        {
-                            cartDB.totalCount = cart.listSku.Sum(s => s.count);
-                        }
-                        else
-                        {
-                            cartDB.totalCount = cartDB.listSku.Sum(s => s.count);
-                        }
-                        db.GetRepository<Cart>().Update(cartDB);
-                        result = cart;
-                    }
-
-                });
-
-
-                    foreach (var item in cart.listSku)
-                    {
-                        dbService.Run(db =>
-                        {
-                            db.GetRepository<CartItem>().Remove(item);
-                        });
-                    }
-
-            
-
-                dbService.Run(db =>
-                {
-                    foreach (var item in cart.listSku)
-                    {
-                        item.CartId = result.id;
-                    }
-                    db.GetRepository<CartItem>().AddMany(cart.listSku.ToList());
-                });
-            }
-            catch (Exception err)
-            {
-                result = cart;
-                logger.Error(err.Message);
-            }
-            return result;
-        }
-
-       public Cart GetCartById(long idCart)
-        {
-            Cart result = null;
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = db.GetRepository<Cart>().TryOne(idCart);
-                });
-                dbService.Run(db =>
-                {
-                    result.listSku = ((CartItemRepository)db.GetRepository<CartItem>()).AllByCartId(result.id).ToList();
-                });
-
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
 
         public Mailing GetMailingByEmail(string email)
         {
@@ -1565,43 +1451,6 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<Cart> GetCartsByDateAndStatus(DateTime start, DateTime end, int state)
-        {
-            var result = new List<Cart>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    var cState = ListCartState().First(s => s.value == state);
-                    result = ((CartRepository)db.GetRepository<Cart>()).GetCartsByDateAndStatus(start, end, cState).ToList();
-                });
-
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
-
-
-        public bool RemoveSkuCartId(long idCart, long idsku)
-        {
-            var result = false;
-            try
-            {
-                dbService.Run(db =>
-                {
-
-                    result = ((CartItemRepository)db.GetRepository<CartItem>()).RemoveSkuCartId(idCart, idsku);
-                });
-
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result; 
-        }
       }
 }
+//1550 lines
