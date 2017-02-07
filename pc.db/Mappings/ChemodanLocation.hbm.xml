@@ -7,9 +7,10 @@
     <id name="id" >
       <generator class="identity" />
     </id>
+    
     <property name="name" />
-		<property name="isHide" />
 		<property name="sortPriority" />
+    <property name="isUse" />
   </class>
 
 </hibernate-mapping>

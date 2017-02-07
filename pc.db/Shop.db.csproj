@@ -68,12 +68,8 @@
     <Compile Include="Entities\IPMonitor.cs" />
     <Compile Include="Entities\Mailing.cs" />
     <Compile Include="Entities\MenuItem.cs" />
-    <Compile Include="Entities\CartState.cs" />
-    <Compile Include="Entities\CartItem.cs" />
     <Compile Include="Entities\PhotoBig.cs" />
-    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\StaticCategory.cs" />
-    <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Photo.cs" />
     <Compile Include="Entities\Brand.cs" />
     <Compile Include="Entities\idName.cs" />
@@ -105,16 +101,12 @@
     <Compile Include="Repository\IPMonitorRepository.cs" />
     <Compile Include="Repository\MailingRepository.cs" />
     <Compile Include="Repository\MenuItemRepository.cs" />
-    <Compile Include="Repository\CartStateRepository.cs" />
-    <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\PhotoBigRepository.cs" />
-    <Compile Include="Repository\CartItemRepository.cs" />
     <Compile Include="Repository\StaticSpecificationRepository.cs" />
     <Compile Include="Repository\StaticCategoryRepository.cs" />
     <Compile Include="Repository\SkuRepository.cs" />
     <Compile Include="Repository\SpecificationRepository.cs" />
     <Compile Include="Repository\PhotoRepository.cs" />
-    <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\BrandRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
@@ -127,9 +119,6 @@
     <EmbeddedResource Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mappings\Comment.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mappings\Photo.hbm.xml" />
@@ -158,15 +147,6 @@
     <EmbeddedResource Include="Mappings\PhotoBig.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mappings\Cart.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mappings\CartItem.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mappings\CartState.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mappings\MenuItem.hbm.xml" />

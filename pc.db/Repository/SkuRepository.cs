@@ -95,14 +95,10 @@ namespace Shop.db.Repository
                 skus = tmpSkus;
                 // skus = (from sku in skus from skuSpec in sku.listSpecification where filters.Specifications.Contains(new FilterItemValue {Id = skuSpec.staticspec.id, Value = skuSpec.value}) select sku).ToList();
             }
-       
 
-
-
-
-
-
-            return skus;
+            //написать функционал, который будет выберать нужный статус треккинга т.е. 
+            //только тот который означает "есть в наличии"
+            return skus; //.Where(sku=>sku.listChemodanTracking.Contains(new ChemodanTracking() {}));
         }
 
         public IEnumerable<Sku> ListSkuByCategory(StaticCategory cat, bool isHide=false)

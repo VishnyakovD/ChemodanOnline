@@ -123,7 +123,13 @@
   <data name="FavoriteProducts" xml:space="preserve">
     <value>Самые востребованные</value>
   </data>
+  <data name="NotSaved" xml:space="preserve">
+    <value>Не сохранено</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Сохранено</value>
+  </data>
   <data name="TitleMainPage" xml:space="preserve">
-    <value>Какой чемодан вы бы хотели арендавать?</value>
+    <value>Какой чемодан вы бы хотели арендовать?</value>
   </data>
 </root>

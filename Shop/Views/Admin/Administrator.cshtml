@@ -11,7 +11,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading panel-head-color">
-        <h3>@Ajax.ActionLink("Список брендов", "ListBrands", "Admin", new AjaxOptions { UpdateTargetId = "Brands" }, new { @name = "updArr" })</h3>
+        @Ajax.ActionLink("Список брендов", "ListBrands", "Admin", new AjaxOptions { UpdateTargetId = "Brands" }, new { @name = "updArr" })
     </div>
     <div class="panel-body panel-body-color">
         <div id="Brands"></div>
@@ -21,7 +21,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading panel-head-color">
-        <h3>@Ajax.ActionLink("Список категорий", "ListStaticCategoryes", "Admin", new AjaxOptions { UpdateTargetId = "Cats" },new {@name="updArr"})</h3>
+        @Ajax.ActionLink("Список категорий", "ListStaticCategoryes", "Admin", new AjaxOptions { UpdateTargetId = "Cats" },new {@name="updArr"})
 </div>
     <div class="panel-body panel-body-color">
         <div id="Cats"></div>
@@ -30,7 +30,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading panel-head-color">
-        <h3>@Ajax.ActionLink("Список спецификаций", "ListStaticSpecification", "Admin", new AjaxOptions { UpdateTargetId = "Specs" }, new { @name = "updArr" })</h3>
+        @Ajax.ActionLink("Список спецификаций", "ListStaticSpecification", "Admin", new AjaxOptions { UpdateTargetId = "Specs" }, new { @name = "updArr" })
 </div>
     <div class="panel-body panel-body-color">
         <div id="Specs"></div>
@@ -39,7 +39,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading panel-head-color">
-        <h3>@Ajax.ActionLink("Менеджер меню", "ListMenuItem", "Admin", new AjaxOptions {UpdateTargetId = "menumanager"}, new {@name = "updArr"})</h3>
+        @Ajax.ActionLink("Менеджер меню", "ListMenuItem", "Admin", new AjaxOptions {UpdateTargetId = "menumanager"}, new {@name = "updArr"})
     </div>
     <div class="panel-body panel-body-color">
         <div id="menumanager"></div>
@@ -48,7 +48,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading panel-head-color">
-        <h3>@Ajax.ActionLink("Статусы чемоданов", "ListChemodanStatus", "Admin", new AjaxOptions {UpdateTargetId = "chemodanstatus"}, new {@name = "updArr"})</h3>
+        @Ajax.ActionLink("Статусы чемоданов", "ListChemodanStatus", "Admin", new AjaxOptions {UpdateTargetId = "chemodanstatus"}, new {@name = "updArr"})
     </div>
     <div class="panel-body panel-body-color">
         <div id="chemodanstatus"></div>
@@ -57,10 +57,19 @@
 
 <div class="panel panel-default">
     <div class="panel-heading panel-head-color">
-        <h3>@Ajax.ActionLink("Типы чемоданов", "ListChemodanType", "Admin", new AjaxOptions { UpdateTargetId = "chemodantype" }, new { @name = "updArr" })</h3>
+        @Ajax.ActionLink("Типы чемоданов", "ListChemodanType", "Admin", new AjaxOptions {UpdateTargetId = "chemodantype"}, new {@name = "updArr"})
     </div>
     <div class="panel-body panel-body-color">
         <div id="chemodantype"></div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head-color">
+        @Ajax.ActionLink("Местоположения чемоданов", "ListProductLocation", "Admin", new AjaxOptions { UpdateTargetId = "productlocation" }, new { @name = "updArr" })
+    </div>
+    <div class="panel-body panel-body-color">
+        <div id="productlocation"></div>
     </div>
 </div>
 

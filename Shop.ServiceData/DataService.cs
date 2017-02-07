@@ -21,6 +21,8 @@ namespace Shop.DataService
         List<InfoBlockItem> ListInfoBlockItems(DisplayType type);
         List<Sku> ListProductsByFilters(FilterFoDB filters);
 
+
+        long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
         bool AddOrUpdateBrand(Brand brand);
         bool AddOrUpdateCategory(Category category);
@@ -1451,6 +1453,39 @@ namespace Shop.DataService
             return result;
         }
 
-      }
+
+        public long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation)
+        {
+            long result = 0;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    var itemDB = db.GetRepository<ChemodanLocation>().TryOne(chemodanLocation.id);
+                    if (itemDB == null)
+                    {
+                        result = db.GetRepository<ChemodanLocation>().Add(chemodanLocation).id;
+                    }
+                    else
+                    {
+                        itemDB.name = chemodanLocation.name;
+                        itemDB.sortPriority = chemodanLocation.sortPriority;
+                        itemDB.isUse = chemodanLocation.isUse;
+                        db.GetRepository<ChemodanLocation>().Update(itemDB);
+                        result = itemDB.id;
+                    }
+
+                });
+
+            }
+            catch (Exception err)
+            {
+                result = 0;
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+    }
 }
-//1550 lines
+//1570 lines

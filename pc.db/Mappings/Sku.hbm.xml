@@ -38,12 +38,11 @@
       <key column="skuId"/>
       <one-to-many class="Specification"/>
     </bag>
-
-    <bag name="listComment">
-      <key column="skuId"/>
-      <one-to-many class="Comment"/>
-    </bag>
     
+    <bag name="listChemodanTracking" inverse="true" lazy="false" cascade="save-update">
+      <key column="skuId"/>
+      <one-to-many class="ChemodanTracking"/>
+    </bag>
   </class>
  
 </hibernate-mapping>

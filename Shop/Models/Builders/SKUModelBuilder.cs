@@ -35,9 +35,9 @@ namespace Shop.Models.Builders
         public SKUModel GetEmptySku()
         {
             var sku = new SKUModel();
-            sku.listStaticCategory = dataService.ListStaticCategoryes();
+            sku.listStaticCategory = dataService.List<StaticCategory>();
             sku.listStaticSpecification = dataService.ListStaticSpecification();
-            sku.listStaticBrand = dataService.ListBrands();
+            sku.listStaticBrand = dataService.List<Brand>();
             sku.menu = BuildMenu(sku.listStaticCategory);
             sku.listChemodanProvider = dataService.List<ChemodanProvider>();
             sku.listChemodanStatus = dataService.List<ChemodanStatus>();
@@ -45,7 +45,6 @@ namespace Shop.Models.Builders
 
 
             sku.listCategory=new List<Category>();
-            sku.listComment=new List<Comment>();
             sku.listPhoto=new List<PhotoBig>();
             sku.listSpecification=new List<Specification>();
 

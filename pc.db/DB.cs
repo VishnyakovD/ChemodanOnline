@@ -103,8 +103,6 @@ namespace Shop.db
                 retvar = (IRepository<T>)(new BrandRepository(session));
             else if (typeof(T) == typeof(Category))
                 retvar = (IRepository<T>)(new CategoryRepository(session));
-            else if (typeof(T) == typeof(Comment))
-                retvar = (IRepository<T>)(new CommentRepository(session));
             else if (typeof(T) == typeof(Photo))
                 retvar = (IRepository<T>)(new PhotoRepository(session));
             else if (typeof(T) == typeof(Sku))
@@ -117,12 +115,6 @@ namespace Shop.db
                 retvar = (IRepository<T>)(new StaticCategoryRepository(session));
             else if (typeof(T) == typeof(PhotoBig))
                 retvar = (IRepository<T>)(new PhotoBigRepository(session));
-            else if (typeof(T) == typeof(CartItem))
-                retvar = (IRepository<T>)(new CartItemRepository(session));
-            else if (typeof(T) == typeof(Cart))
-                retvar = (IRepository<T>)(new CartRepository(session));
-            else if (typeof(T) == typeof(CartState))
-                retvar = (IRepository<T>)(new CartStateRepository(session));
             else if (typeof(T) == typeof(MenuItem))
                 retvar = (IRepository<T>)(new MenuItemRepository(session));
             else if (typeof(T) == typeof(Article))

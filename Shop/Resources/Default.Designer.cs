@@ -79,7 +79,25 @@ namespace Shop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Какой чемодан вы бы хотели арендавать?.
+        ///   Looks up a localized string similar to Не сохранено.
+        /// </summary>
+        public static string NotSaved {
+            get {
+                return ResourceManager.GetString("NotSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сохранено.
+        /// </summary>
+        public static string Saved {
+            get {
+                return ResourceManager.GetString("Saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Какой чемодан вы бы хотели арендовать?.
         /// </summary>
         public static string TitleMainPage {
             get {

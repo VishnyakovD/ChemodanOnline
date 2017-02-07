@@ -21,8 +21,6 @@ namespace Shop
 
             builder.RegisterType<SkuViewerBuilder>().As<ISkuViewerBuilder>();
 
-            builder.RegisterType<CartBuilder>().As<ICartBuilder>();
-
             builder.RegisterType<AccountAdminModelBuilder>().As<IAccountAdminModelBuilder>();
 
             builder.RegisterType<RegisterBuilder>().As<IRegisterBuilder>();

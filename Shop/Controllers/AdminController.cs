@@ -125,7 +125,7 @@ namespace Shop.Controllers
             List<BrandModel> brands = null;
             try
             {
-                brands = dataService.ListBrands().Select(br=>new BrandModel(){id=br.id,name = br.name}).ToList();
+                brands = dataService.List<Brand>().Select(br=>new BrandModel(){id=br.id,name = br.name}).ToList();
             }
             catch (Exception err)
             {
@@ -177,7 +177,7 @@ namespace Shop.Controllers
             List<StaticCategory> categoryes = null;
             try
             {
-                categoryes = dataService.ListStaticCategoryes();
+                categoryes = dataService.List<StaticCategory>();
             }
             catch (Exception err)
             {
@@ -215,6 +215,21 @@ namespace Shop.Controllers
             }
 
             return PartialView("ListMenuItemPartial", menuItems);
+        }
+
+        public ActionResult ListProductLocation()
+        {
+            List<ChemodanLocation> model = null;
+            try
+            {
+                model = dataService.List<ChemodanLocation>();
+            }
+            catch (Exception err)
+            {
+                return PartialView("MessagesPartial", "Ошибка " + err.Message);
+            }
+
+            return PartialView("ListProductLocationPartial", model);
         }
 
         [HttpPost]
@@ -828,7 +843,7 @@ namespace Shop.Controllers
             var list = new ProviderModel();
             try
             {
-                list.list = dataService.ListChemodanProvider();
+                list.list = dataService.List<ChemodanProvider>();
                 list.menu = menuBuilder.BuildMenu();
                 list.topMenuItems = menuBuilder.BuildTopMenu();
             }
@@ -1005,6 +1020,41 @@ namespace Shop.Controllers
             return Content("Ошибка: " + message, "text/html");
         }
 
+        public ActionResult ShowChemodanLocation(long id = -1)
+        {
+            var model = new ChemodanLocation();
+            try
+            {
+                model = dataService.Get<ChemodanLocation>(id);
+            }
+            catch (Exception err)
+            {
+                return Content("Ошибка загрузки: " + err.Message, "text/html");
+            }
 
+            return PartialView("ChemodanLocationDataPartial", model);
+        }
+
+        [HttpPost]
+        public ActionResult AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation)
+        {
+            var message = string.Empty;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (dataService.AddOrUpdateChemodanLocation(chemodanLocation) > 0)
+                    {
+                        return Content(Resources.Default.Saved, "text/html");
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                message = err.Message;
+            }
+
+            return Content($"{Resources.Default.NotSaved} {message}", "text/html");
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace Shop.db.Entities
         public virtual IList<PhotoBig> listPhoto { get; set; }
         public virtual IList<Category> listCategory { get; set; }
         public virtual IList<Specification> listSpecification { get; set; }
-        public virtual IList<Comment> listComment { get; set; }
+        public virtual IList<ChemodanTracking> listChemodanTracking { get; set; }
         public virtual string care { get; set; }
         public virtual ChemodanStatus chemodanStatus { get; set; }
         public virtual int chemodanDaysRent { get; set; }
@@ -32,10 +32,10 @@ namespace Shop.db.Entities
             listPhoto=new List<PhotoBig>();
             listCategory=new List<Category>();
             listSpecification=new List<Specification>();
-            listComment = new List<Comment>();
             chemodanStatus=new ChemodanStatus();
             chemodanProvider=new ChemodanProvider();
             chemodanType = new ChemodanType();
+            listChemodanTracking = new List<ChemodanTracking>();
         }
     }
 }

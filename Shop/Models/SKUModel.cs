@@ -66,7 +66,6 @@ namespace Shop.Models
         public IList<PhotoBig> listPhoto { get; set; }
         public IList<Category> listCategory { get; set; }
         public IList<Specification> listSpecification { get; set; }
-        public IList<Comment> listComment { get; set; }
 
         public List<StaticCategory> listStaticCategory { get; set; }
         public List<StaticSpecification> listStaticSpecification { get; set; }
@@ -96,7 +95,6 @@ namespace Shop.Models
             listPhoto=new List<PhotoBig>();
             listCategory=new List<Category>();
             listSpecification=new List<Specification>();
-            listComment=new List<Comment>();
             listStaticCategory=new List<StaticCategory>();
             listStaticSpecification = new List<StaticSpecification>();
             listStaticBrand = new List<Brand>();

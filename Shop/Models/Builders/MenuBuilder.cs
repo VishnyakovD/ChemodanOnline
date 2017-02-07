@@ -28,7 +28,7 @@ namespace Shop.Models.Builders
         public List<MenuItem> BuildMenu()
         {
        
-              return dataService.ListStaticCategoryes()
+              return dataService.List<StaticCategory>()
                     .Select(
                         cat =>
                             new MenuItem()

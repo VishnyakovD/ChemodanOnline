@@ -5,11 +5,11 @@
     if (Model != null)
     {
         dress = string.Format("{0} {1}", Model.categotyName, Model.name);
-        Page.Title = string.Format("Купить {0} - Интернет-магазин Newer", dress);
+        Page.Title = string.Format("Купить {0} - Оренда чемоданов | Chemodan.online", dress);
         ViewBag.Title = Model.name;
-   
-    
-   @section head {
+
+
+   @*@section head {
         <meta name="description" content="@Model.description">
         <meta name="keywords" content="@Page.Title">
         <meta property="fb:app_id" content="531214913718356" /> 
@@ -21,7 +21,7 @@
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image" content="@string.Format("{0}{1}", Request.UrlReferrer , Model.smalPhotoPath)" />
         
-   }
+   }*@
      }
     
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -153,21 +153,6 @@
                     <a class="btn btn-lg btn-info" href="@Url.Action("SkuData", "Admin", new { id = Model.id })">Редактировать товар</a>
                 </div>
             }
-            <div class="fb-like" data-href="@Request.Url.AbsoluteUri" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-            <br><br><br><br><br><br><br>
-            <div id="disqus_thread"></div>
-            <script>
-                (function () { // DON'T EDIT BELOW THIS LINE
-                    var d = document, s = d.createElement('script');
-
-                    s.src = '//newer-ua.disqus.com/embed.js';
-
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-            
 
         </div>
 

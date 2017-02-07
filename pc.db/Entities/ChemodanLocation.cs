@@ -7,6 +7,6 @@ namespace Shop.db.Entities
 {
     public class ChemodanLocation : idName
     {
-        public ChemodanLocation() { }
+
     }
 }

@@ -7,9 +7,9 @@
     <id name="Id" >
       <generator class="identity" />
     </id>
-    <property name="Code" unique="true" />
+    <property name="Code" unique="true"/>
 
-		<many-to-one name="Location" lazy="false" class="Location" />
+		<many-to-one name="Location" lazy="false" class="ChemodanLocation" />
   </class>
 
 </hibernate-mapping>

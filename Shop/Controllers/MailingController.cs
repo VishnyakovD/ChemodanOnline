@@ -28,7 +28,7 @@ namespace Shop.Controllers
         private IDataService dataService;
         private MenuBuilder menuBuilder { set; get; }
 
-        public MailingController(IDataService dataService, ICartBuilder cartBuilder, IImagesPath imagesPath)
+        public MailingController(IDataService dataService, IImagesPath imagesPath)
         {
             this.dataService = dataService;
             menuBuilder = new MenuBuilder(dataService, imagesPath);
@@ -68,7 +68,7 @@ namespace Shop.Controllers
              var mailing = new List<Mailing>();
              try
              {
-                 mailing = isActive.HasValue ? dataService.ListMailingByActive(isActive.Value) : dataService.ListMailings();
+                 mailing = isActive.HasValue ? dataService.ListMailingByActive(isActive.Value) : dataService.List<Mailing>();
              }
              catch (Exception err)
              {
@@ -86,7 +86,7 @@ namespace Shop.Controllers
               var mailing = new MailingModel();
               try
               {
-                  mailing.mailings = isActive.HasValue ? dataService.ListMailingByActive(isActive.Value) : dataService.ListMailings();
+                  mailing.mailings = isActive.HasValue ? dataService.ListMailingByActive(isActive.Value) : dataService.List<Mailing>();
                   mailing.menu = menuBuilder.BuildMenu();
                   mailing.topMenuItems = menuBuilder.BuildTopMenu();
               }
