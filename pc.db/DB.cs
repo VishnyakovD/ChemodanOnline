@@ -157,7 +157,11 @@ namespace Shop.db
                 retvar = (IRepository<T>)(new SexRepository(session));
             else if (typeof(T) == typeof(InfoBlockItem))
                 retvar = (IRepository<T>)(new InfoBlockItemRepository(session));
-            else
+			else if (typeof(T) == typeof(ChemodanLocation))
+				retvar = (IRepository<T>)(new ChemodanLocationRepository(session));
+			else if (typeof(T) == typeof(ChemodanTracking))
+				retvar = (IRepository<T>)(new ChemodanTrackingRepository(session));
+			else
                 retvar = new Repository<T>(session);
             return retvar;
         }
