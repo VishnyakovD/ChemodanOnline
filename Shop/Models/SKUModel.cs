@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using Shop.db.Entities;
+using Shop.Resources;
 
 namespace Shop.Models
 {
@@ -13,11 +14,11 @@ namespace Shop.Models
         [DisplayName("ид")]
         public long id { get; set; }
 
-        [Required(ErrorMessage = "Это поле обязательно для заполнения")]
+        [Required(ErrorMessageResourceType = typeof (Default), ErrorMessageResourceName = "RequiredInput")]
         [DisplayName("Название")]
         public string name { get; set; }
 
-        [Required(ErrorMessage = "Это поле обязательно для заполнения")]
+        [Required(ErrorMessageResourceType = typeof (Default), ErrorMessageResourceName = "RequiredInput")]
         [DisplayName("Цена")]
         public decimal price { get; set; }
 
@@ -66,6 +67,7 @@ namespace Shop.Models
         public IList<PhotoBig> listPhoto { get; set; }
         public IList<Category> listCategory { get; set; }
         public IList<Specification> listSpecification { get; set; }
+        public List<ChemodanTracking> ListChemodanTracking { set; get; }
 
         public List<StaticCategory> listStaticCategory { get; set; }
         public List<StaticSpecification> listStaticSpecification { get; set; }
@@ -101,6 +103,7 @@ namespace Shop.Models
             listChemodanProvider = new List<ChemodanProvider>();
             listChemodanStatus=new List<ChemodanStatus>();
             listChemodanType=new List<ChemodanType>();
+            ListChemodanTracking=new List<ChemodanTracking>();
         }
         public Sku GetSKUDB()
         {

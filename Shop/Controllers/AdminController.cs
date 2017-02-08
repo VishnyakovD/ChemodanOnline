@@ -162,7 +162,7 @@ namespace Shop.Controllers
             var model = new StaticCategory();
             try
             {
-                model = dataService.GetStaticCategoryById(idCat);
+                model = dataService.Get<StaticCategory>(idCat);
             }
             catch (Exception err)
             {
@@ -362,7 +362,7 @@ namespace Shop.Controllers
                 {
                    // sku.care = ConvertToHTMLString(sku.care);
                    //sku.description = ConvertToHTMLString(sku.description);
-                    var id = dataService.AddOrUpdateSKU(sku.GetSKUDB());
+                    var id = dataService.AddOrUpdateSku(sku.GetSKUDB());
                    
                     if (id >0)
                     {
@@ -392,7 +392,7 @@ namespace Shop.Controllers
                             if (!string.IsNullOrEmpty(path))
                             {
                                 var pho=new Photo(){name = string.Empty, path = path, skuId = id};
-                                if (dataService.AddSmalPhotoToSKU(id, pho))
+                                if (dataService.AddSmalPhotoToSku(id, pho))
                                 {
                                     return RedirectToAction("SkuData", "Admin", new {id=id}); 
                                 }
@@ -427,7 +427,7 @@ namespace Shop.Controllers
                         if (!string.IsNullOrEmpty(path))
                         {
                             var pho=new PhotoBig(){name = string.Empty, path = path, skuId = id};
-                            if (dataService.AddBigPhotoToSKU(id, pho))
+                            if (dataService.AddBigPhotoToSku(id, pho))
                             {
                                 return RedirectToAction("SkuData", "Admin", new {id=id}); 
                             }
@@ -515,7 +515,7 @@ namespace Shop.Controllers
             SKUModel result = null;
             try
             {
-                if (dataService.AddCategoryToSKU(idSku, catId))
+                if (dataService.AddCategoryToSku(idSku, catId))
                 {
                     var skuDB = dataService.Get<Sku>(idSku);
                     result = skuDB != null ? skuModelBuilder.ConvertSkuBDToSkuModel(skuDB) : skuModelBuilder.GetEmptySku();
@@ -1055,6 +1055,38 @@ namespace Shop.Controllers
             }
 
             return Content($"{Resources.Default.NotSaved} {message}", "text/html");
+        }
+
+        public ActionResult ShowChemodanTracking(long Id=-1, long skuId=-1)
+        {
+
+            if (Id<1&&skuId<1)
+            {
+                return Content("Ошибка : нет такого товара", "text/html");
+            }
+
+            var model = new ChemodanTrackingModel();
+            try
+            {
+                if (Id < 1 && skuId > 0)
+                {
+                    
+                }
+                else
+                {
+                     var item = dataService.Get<ChemodanTracking>(Id);
+                    model.Id = item.Id;
+                    model.Code = item.Code;
+                    model.Locatoin = item.Location;
+                }
+                model.ListChemodanLocation = dataService.List<ChemodanLocation>();
+                model.skuId = skuId;
+            }
+            catch (Exception err)
+            {
+                return Content("Ошибка : " + err.Message, "text/html");
+            }
+            return PartialView("SkuChemodanTrackingDataPartial", model);
         }
     }
 }

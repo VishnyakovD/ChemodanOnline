@@ -132,4 +132,7 @@
   <data name="TitleMainPage" xml:space="preserve">
     <value>Какой чемодан вы бы хотели арендовать?</value>
   </data>
+  <data name="RequiredInput" xml:space="preserve">
+    <value>Это поле обязательно для заполнения</value>
+  </data>
 </root>

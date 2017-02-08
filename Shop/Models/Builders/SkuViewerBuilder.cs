@@ -65,7 +65,7 @@ namespace Shop.Models.Builders
         public SkuViewerModel Build(long idCat, int sort)
         {
             var model = new SkuViewerModel();
-            var cat = dataService.GetStaticCategoryById(idCat);
+            var cat = dataService.Get<StaticCategory>(idCat);
             if (cat!=null)
             {
                 model.IdCat = cat.id;

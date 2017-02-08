@@ -88,6 +88,15 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Это поле обязательно для заполнения.
+        /// </summary>
+        public static string RequiredInput {
+            get {
+                return ResourceManager.GetString("RequiredInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сохранено.
         /// </summary>
         public static string Saved {

@@ -191,6 +191,7 @@
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\ShortSKUModel.cs" />
     <Compile Include="Models\SKUModel.cs" />
+    <Compile Include="Models\ChemodanTrackingModel.cs" />
     <Compile Include="Models\SkuSpecificatoinModel.cs" />
     <Compile Include="Models\SkuViewerModel.cs" />
     <Compile Include="Modules\ImagesPath.cs" />
@@ -378,6 +379,8 @@
     <Content Include="Views\Home\ShortProductListPartial.cshtml" />
     <Content Include="Views\Admin\ListProductLocationPartial.cshtml" />
     <Content Include="Views\Admin\ChemodanLocationDataPartial.cshtml" />
+    <Content Include="Views\Admin\SkuListChemodanTrackingPartial.cshtml" />
+    <Content Include="Views\Admin\SkuChemodanTrackingDataPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

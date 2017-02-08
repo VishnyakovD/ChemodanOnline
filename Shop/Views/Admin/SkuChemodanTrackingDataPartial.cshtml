@@ -1,0 +1,29 @@
+﻿@model Shop.Models.ChemodanTrackingModel
+
+@using (Ajax.BeginForm("AddOrUpdateSpecificationToSku-----", "Admin", new AjaxOptions { UpdateTargetId = "listChemodanTracking" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+    <input type="hidden" id="skuId" name="skuId" value="@Model.skuId" />
+
+    <label>Складской код</label>
+    <input type="text" id="Code" name="Code" required data-val="true" data-val-required="Это поле должно быть заполнено" value="@Model.Code" />
+        @Html.ValidationMessage("Code")
+
+    <select id="Locatoin.id" name="Locatoin.id">
+        @{ var selected = string.Empty;}
+        @foreach (var item in Model.ListChemodanLocation)
+        {
+            selected = string.Empty;
+            if (Model.Locatoin.id==item.id)
+            {
+                selected = "selected";
+            }
+            <option @selected value="@item.id">@item.name</option>
+        }
+    </select>//555555
+    <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+}
+

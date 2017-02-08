@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Shop.db.Entities.ChemodanTracking>
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th colspan="4">
+                <h4>
+                    Чемоданы
+                </h4>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Code</td>
+                <td>@item.Location</td>
+                <td>
+                    <span class="btn btn-blue btn-sm" onclick="showCatData('@Url.Action("ShowChemodanTracking", "Admin", new { Id = item.Id})')">Изменить</span>
+                    @Ajax.ActionLink("Удалить", "RemoveChemodanTrackingFromSKU", "Admin", new { Id = item.Id }, new AjaxOptions { UpdateTargetId = "listChemodanTracking" })
+
+                </td>
+            </tr>
+        }
+    </table>
+}

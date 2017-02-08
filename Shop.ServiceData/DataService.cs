@@ -21,71 +21,35 @@ namespace Shop.DataService
         List<InfoBlockItem> ListInfoBlockItems(DisplayType type);
         List<Sku> ListProductsByFilters(FilterFoDB filters);
 
-
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
         bool AddOrUpdateBrand(Brand brand);
         bool AddOrUpdateCategory(Category category);
         bool AddOrUpdateStaticCategory(StaticCategory category);
         bool AddOrUpdateStaticSpecification(StaticSpecification spec);
-        long AddOrUpdateSKU(Sku sku);
-        bool AddSmalPhotoToSKU(long id, Photo photo);
-        bool AddBigPhotoToSKU(long id, PhotoBig photo);
-        bool AddCategoryToSKU(long id, long idCat);
+        long AddOrUpdateSku(Sku sku);
+        bool AddSmalPhotoToSku(long id, Photo photo);
+        bool AddBigPhotoToSku(long id, PhotoBig photo);
+        bool AddCategoryToSku(long id, long idCat);
         bool AddOrUpdateSpecificationToSKU(long id, long specId, string specValue);
         long AddOrUpdateMenuItem(Shop.db.Entities.MenuItem minuItem);
         long AddOrUpdateArticle(Article article);
         long AddOrUpdateInfoBlockItem(InfoBlockItem iblock);
         bool AddPhotoToArticle(long id, string path);
-        //Article GetArticleById(long id);
         bool RemoveSKUFromCategory(long id, long idCat);
         bool RemoveSpecificationFromSKU(long id, long idSpec);
         bool RemoveBigPhotoFromSKU(long id, long idPhoto);
-        //Sku GetSkuById(long id);
-
         bool AddOrUpdateChemodanStatus(ChemodanStatus item);
-        //ChemodanStatus GetChemodanStatus(long id);
-       // List<ChemodanStatus> ListChemodanStatus();
-
         bool AddOrUpdateChemodanType(ChemodanType item);
-        //ChemodanType GetChemodanType(long id);
-        //List<ChemodanType> ListChemodanType();
-
         long AddOrUpdateChemodanProvider(ChemodanProvider item);
-        //ChemodanProvider GetChemodanProvider(long id);
-        //List<ChemodanProvider> ListChemodanProvider();
-
         long AddOrUpdateClient(Client item);
-       // Client GetClient(long id);
-        //List<Client> ListClient();
-
-     
-
-        //MenuItem GetMenuItem(long idMinuItem);
         bool RemoveMenuItem(long idMinuItem);
-        
-        //StaticCategory GetStaticCategoryById(long idCat);
-
         List<Sku> ListSkuByCategory(StaticCategory cat);
         List<Sku> ListProductByDisplayType(DisplayType type);
-        //List<Sku> ListSku();
-
-
         List<Sku> AllHiddenSku(bool isHide = false);
-
-       // List<Article> ListArticles();
-
         Mailing GetMailingByEmail(string email);
-
-        //List<Brand> ListBrands();
-        //Brand GetBrand(long id);
-        //List<Mailing> ListMailings();
         List<Mailing> ListMailingByActive(bool isActive);
-        //List<Category> ListCategoryes();
-
-        //List<StaticCategory> ListStaticCategoryes();
         List<StaticSpecification> ListStaticSpecification();
-       // StaticSpecification GetStaticSpecification(long idSpec);
         List<MenuItem> ListMenuItem(int type);
         bool AddSku(Sku sku);
         void AddIPToMonitor(IPMonitor monitor);
@@ -111,7 +75,6 @@ namespace Shop.DataService
                 {
                     result = db.GetRepository<T>().All();
                 });
-
             }
             catch (Exception err)
             {
@@ -129,7 +92,6 @@ namespace Shop.DataService
                 {
                     result = db.GetRepository<T>().TryOne(id);
                 });
-
             }
             catch (Exception err)
             {
@@ -184,7 +146,6 @@ namespace Shop.DataService
                         db.GetRepository<ChemodanProvider>().Update(itemDB);
                         result = item.id;
                     }
-
                 });
             }
             catch (Exception err)
@@ -193,44 +154,7 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-
         }
-
-        //public ChemodanProvider GetChemodanProvider(long id)
-        //{
-        //    var result = new ChemodanProvider();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<ChemodanProvider>().TryOne(id);
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        //public List<ChemodanProvider> ListChemodanProvider()
-        //{
-        //    var result = new List<ChemodanProvider>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<ChemodanProvider>().All();
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
 
         public long AddOrUpdateClient(Client item)
         {
@@ -283,7 +207,6 @@ namespace Shop.DataService
                         db.GetRepository<Client>().Update(itemDB);
                         result = item.id;
                     }
-
                 });
             }
             catch (Exception err)
@@ -292,44 +215,7 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-
         }
-
-        //public Client GetClient(long id)
-        //{
-        //    var result = new Client();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<Client>().TryOne(id);
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        //public List<Client> ListClient()
-        //{
-        //    var result = new List<Client>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<Client>().All();
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
 
         public bool AddOrUpdateChemodanType(ChemodanType item)
         {
@@ -351,7 +237,6 @@ namespace Shop.DataService
                         itemDB.priceDay = item.priceDay;
                         db.GetRepository<ChemodanType>().Update(itemDB);
                     }
-
                 });
                 result = true;
             }
@@ -361,44 +246,7 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-
         }
-
-        //public ChemodanType GetChemodanType(long id)
-        //{
-        //    var result = new ChemodanType();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<ChemodanType>().TryOne(id);
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        //public List<ChemodanType> ListChemodanType()
-        //{
-        //    var result = new List<ChemodanType>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<ChemodanType>().All();
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
 
         public bool AddOrUpdateChemodanStatus(ChemodanStatus item)
         {
@@ -419,7 +267,6 @@ namespace Shop.DataService
                         itemDB.sortPriority = item.sortPriority;
                         db.GetRepository<ChemodanStatus>().Update(itemDB);
                     }
-                    
                 });
                 result = true;
             }
@@ -431,43 +278,6 @@ namespace Shop.DataService
             return result;
 
         }
-
-        //public ChemodanStatus GetChemodanStatus(long id)
-        //{
-        //    var result = new ChemodanStatus();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<ChemodanStatus>().TryOne(id);
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        //public List<ChemodanStatus> ListChemodanStatus()
-        //{
-        //    var result = new List<ChemodanStatus>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<ChemodanStatus>().All();
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
 
         public bool AddOrUpdateMailing(Mailing mailing)
         {
@@ -488,7 +298,6 @@ namespace Shop.DataService
                         mailingDB.email = mailing.email;
                         db.GetRepository<Mailing>().Update(mailingDB);
                     }
-                    
                 });
                 result = true;
             }
@@ -498,7 +307,6 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-
         }
 
         public bool AddOrUpdateBrand(Brand brand)
@@ -518,7 +326,6 @@ namespace Shop.DataService
                         brandDB.name = brand.name;
                         db.GetRepository<Brand>().Update(brandDB);
                     }
-                    
                 });
                 result = true;
             }
@@ -528,7 +335,6 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-
         }
 
         public long AddOrUpdateArticle(Article article)
@@ -551,16 +357,13 @@ namespace Shop.DataService
                         articleDB.imgPath = article.imgPath;
                         db.GetRepository<Article>().Update(articleDB);
                     }
-                    
                 });
-               
             }
             catch (Exception err)
             {
                 logger.Error(err.Message);
             }
             return result;
-
         }
 
         public long AddOrUpdateInfoBlockItem(InfoBlockItem iblock)
@@ -586,21 +389,18 @@ namespace Shop.DataService
                         iblockDB.Description = iblock.Description;
                         db.GetRepository<InfoBlockItem>().Update(iblockDB);
                     }
-                    
                 });
-               
             }
             catch (Exception err)
             {
                 logger.Error(err.Message);
             }
             return result;
-
         }
 
         public bool AddOrUpdateStaticSpecification(StaticSpecification spec)
         {
-            bool result = false;
+            bool result;
             try
             {
                 dbService.Run(db =>
@@ -616,7 +416,6 @@ namespace Shop.DataService
                         specDB.sortPriority = spec.sortPriority;
                         db.GetRepository<StaticSpecification>().Update(specDB);
                     }
-
                 });
                 result = true;
             }
@@ -626,12 +425,11 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-
         }
 
         public bool AddOrUpdateStaticCategory(StaticCategory category)
         {
-            bool result = false;
+            bool result;
             try
             {
                 dbService.Run(db =>
@@ -649,7 +447,6 @@ namespace Shop.DataService
                         categoryDB.keywords = category.keywords;
                         db.GetRepository<StaticCategory>().Update(categoryDB);
                     }
-
                 });
                 result = true;
             }
@@ -659,12 +456,11 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-
         }
 
         public bool AddOrUpdateCategory(Category category)
         {
-            bool result = false;
+            bool result;
             try
             {
                 dbService.Run(db =>
@@ -681,7 +477,6 @@ namespace Shop.DataService
                         categoryDB.photoPath = category.photoPath;
                         db.GetRepository<Category>().Update(categoryDB);
                     }
-
                 });
                 result = true;
             }
@@ -691,10 +486,9 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-
         }
 
-        public long AddOrUpdateSKU(Sku sku)
+        public long AddOrUpdateSku(Sku sku)
         {
             long result = 0;
             try
@@ -730,9 +524,7 @@ namespace Shop.DataService
                         db.GetRepository<Sku>().Update(SkuDB);
                         result = sku.id;
                     }
-
                 });
-                
             }
             catch (Exception err)
             {
@@ -764,9 +556,7 @@ namespace Shop.DataService
                         db.GetRepository<MenuItem>().Update(minuItemDB);
                         result = minuItemDB.id;
                     }
-
                 });
-                
             }
             catch (Exception err)
             {
@@ -775,24 +565,6 @@ namespace Shop.DataService
             }
             return result;
         }
-
-        //public MenuItem GetMenuItem(long idMinuItem)
-        //{
-        //    var result = new MenuItem();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<MenuItem>().TryOne(idMinuItem);
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
 
         public bool RemoveMenuItem(long idMinuItem)
         {
@@ -812,27 +584,10 @@ namespace Shop.DataService
             }
             return result;
         }
-        //public StaticSpecification GetStaticSpecification(long idSpec)
-        //{
-        //    var result = new StaticSpecification();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<StaticSpecification>().TryOne(idSpec);
-        //        });
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        public bool AddSmalPhotoToSKU(long id, Photo photo)
+ 
+        public bool AddSmalPhotoToSku(long id, Photo photo)
         {
             var result = false;
-
             try
             {
                 dbService.Run(db =>
@@ -842,8 +597,7 @@ namespace Shop.DataService
                     {
                         SkuDB.smalPhoto = photo;
                         db.GetRepository<Sku>().Update(SkuDB);
-                        result = true;
-                    }
+                        result = true;}
                 });
             }
             catch (Exception err)
@@ -851,14 +605,12 @@ namespace Shop.DataService
                 result = false;
                 logger.Error(err.Message);
             }
-
             return result;
         }
 
         public bool AddPhotoToArticle(long id, string path)
         {
             var result = false;
-
             try
             {
                 dbService.Run(db =>
@@ -877,14 +629,12 @@ namespace Shop.DataService
                 result = false;
                 logger.Error(err.Message);
             }
-
             return result;
         }
 
-        public bool AddBigPhotoToSKU(long id, PhotoBig photo)
+        public bool AddBigPhotoToSku(long id, PhotoBig photo)
         {
             var result = false;
-
             try
             {
                 dbService.Run(db =>
@@ -896,11 +646,9 @@ namespace Shop.DataService
                         {
                             sku.listPhoto = new List<PhotoBig>();
                         }
-
                         sku.listPhoto.Add(new PhotoBig() { name = photo.name,path = photo.path,skuId = sku.id });
                         db.GetRepository<Sku>().Update(sku);
                         result = true;
-
                     }
                 });
             }
@@ -909,7 +657,6 @@ namespace Shop.DataService
                 result = false;
                 logger.Error(err.Message);
             }
-
             return result;
         }
 
@@ -927,7 +674,6 @@ namespace Shop.DataService
                         result = true;
                     }
                 });
-
             }
             catch (Exception err)
             {
@@ -936,41 +682,6 @@ namespace Shop.DataService
             return result;
         }
 
-        //public List<Brand> ListBrands()
-        //{
-        //    var result = new List<Brand>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //           result= db.GetRepository<Brand>().All();
-        //        });
-          
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        //public List<Mailing> ListMailings()
-        //{
-        //    var result = new List<Mailing>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<Mailing>().All();
-        //        });
-          
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
         public List<Mailing> ListMailingByActive(bool isActive)
         {
             var result = new List<Mailing>();
@@ -980,7 +691,6 @@ namespace Shop.DataService
                 {
                     result = ((MailingRepository) db.GetRepository<Mailing>()).AllMailingByActive(isActive).ToList();
                 });
-          
             }
             catch (Exception err)
             {
@@ -1024,63 +734,6 @@ namespace Shop.DataService
             return result;
         }
 
-
-
-        //public List<Article> ListArticles()
-        //{
-        //    var result = new List<Article>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<Article>().All();
-        //        });
-          
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-
-        //public List<Category> ListCategoryes()
-        //{
-        //    var result = new List<Category>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<Category>().All();
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        //public List<StaticCategory> ListStaticCategoryes()
-        //{
-        //    var result = new List<StaticCategory>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<StaticCategory>().All();
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
         public List<StaticSpecification> ListStaticSpecification()
         {
             var result = new List<StaticSpecification>();
@@ -1090,7 +743,6 @@ namespace Shop.DataService
                 {
                     result = db.GetRepository<StaticSpecification>().All().OrderBy(sp=>sp.sortPriority).ToList();
                 });
-
             }
             catch (Exception err)
             {
@@ -1115,7 +767,6 @@ namespace Shop.DataService
                         result = db.GetRepository<MenuItem>().All(); 
                     }
                 });
-
             }
             catch (Exception err)
             {
@@ -1124,80 +775,9 @@ namespace Shop.DataService
             return result;
         }
 
-        //public Sku GetSkuById(long id)
-        //{
-        //    var result = new Sku();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<Sku>().TryOne(id);
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        //public Article GetArticleById(long id)
-        //{
-        //    var result = new Article();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<Article>().TryOne(id);
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        //public StaticCategory GetStaticCategoryById(long idCat)
-        //{
-        //    var result = new StaticCategory();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<StaticCategory>().TryOne(idCat);
-        //        });
-
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
-        //public Brand GetBrand(long id)
-        //{
-        //    var result = new Brand();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = db.GetRepository<Brand>().TryOne(id);
-        //        });
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
-
         public bool AddSku(Sku sku)
         {
-            bool result = false;
+            bool result;
             try
             {
                 dbService.Run(db =>
@@ -1255,7 +835,6 @@ namespace Shop.DataService
                         result = true; 
                     }
                 });
-
             }
             catch (Exception err)
             {
@@ -1279,7 +858,6 @@ namespace Shop.DataService
                         result = true;
                     }
                 });
-
             }
             catch (Exception err)
             {
@@ -1288,7 +866,7 @@ namespace Shop.DataService
             return result;
         }
 
-        public bool AddCategoryToSKU(long id, long idCat)
+        public bool AddCategoryToSku(long id, long idCat)
         {
             var result = false;
             try
@@ -1312,7 +890,6 @@ namespace Shop.DataService
                         result = true;
                     }
                 });
-
             }
             catch (Exception err)
             {
@@ -1335,7 +912,6 @@ namespace Shop.DataService
                         result = true;
                     }
                 });
-
             }
             catch (Exception err)
             {
@@ -1343,6 +919,7 @@ namespace Shop.DataService
             }
             return result;
         }
+
         public List<Sku> AllHiddenSku(bool isHide = false)
         {
             var result = new List<Sku>();
@@ -1352,7 +929,6 @@ namespace Shop.DataService
                 {
                     result = ((SkuRepository)db.GetRepository<Sku>()).AllHiddenSku(true).ToList();
                 });
-
             }
             catch (Exception err)
             {
@@ -1370,7 +946,6 @@ namespace Shop.DataService
                 {
                     result = ((SkuRepository)db.GetRepository<Sku>()).ListSkuByCategory(cat).ToList();
                 });
-
             }
             catch (Exception err)
             {
@@ -1388,7 +963,6 @@ namespace Shop.DataService
                 {
                     result = ((SkuRepository)db.GetRepository<Sku>()).ListProductsByFilters(filters).ToList();
                 });
-
             }
             catch (Exception err)
             {
@@ -1406,7 +980,6 @@ namespace Shop.DataService
                 {
                     result = ((SkuRepository)db.GetRepository<Sku>()).AllByDisplayType(type).ToList();
                 });
-
             }
             catch (Exception err)
             {
@@ -1414,25 +987,6 @@ namespace Shop.DataService
             }
             return result;
         }
-
-		//public List<Sku> ListSku()
-		//{
-		//    var result = new List<Sku>();
-		//    try
-		//    {
-		//        dbService.Run(db =>
-		//        {
-		//            result = db.GetRepository<Sku>().All();
-		//        });
-
-		//    }
-		//    catch (Exception err)
-		//    {
-		//        logger.Error(err.Message);
-		//    }
-		//    return result;
-		//}
-
 
 		public Mailing GetMailingByEmail(string email)
 		{
@@ -1443,7 +997,6 @@ namespace Shop.DataService
 				{
 					result = ((MailingRepository)db.GetRepository<Mailing>()).OneByEmail(email);
 				});
-
 			}
 			catch (Exception err)
 			{
@@ -1451,7 +1004,6 @@ namespace Shop.DataService
 			}
 			return result;
 		}
-
 
 		public long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation)
         {
@@ -1473,9 +1025,7 @@ namespace Shop.DataService
                         db.GetRepository<ChemodanLocation>().Update(itemDB);
                         result = itemDB.id;
                     }
-
                 });
-
             }
             catch (Exception err)
             {
