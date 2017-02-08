@@ -83,7 +83,7 @@ namespace Shop.Controllers
             var model = new BrandModel();
             try
             {
-              var modelDB = dataService.GetBrand(idBrand);
+              var modelDB = dataService.Get<Brand>(idBrand);
               if (modelDB!=null)
                 {
                     model.id = modelDB.id;
@@ -259,7 +259,7 @@ namespace Shop.Controllers
             var model = new MenuItem();
             try
             {
-                  model=dataService.GetMenuItem(idMenuItem);
+                  model=dataService.Get<MenuItem>(idMenuItem);
             }
             catch (Exception err)
             {
@@ -313,7 +313,7 @@ namespace Shop.Controllers
             var model = new StaticSpecification();
             try
             {
-                model = dataService.GetStaticSpecification(idSpec);
+                model = dataService.Get<StaticSpecification>(idSpec);
             }
             catch (Exception err)
             {
@@ -332,7 +332,7 @@ namespace Shop.Controllers
             {
                 if (id.HasValue)
                 {
-                    var skuDB = dataService.GetSkuById(id.Value);
+                    var skuDB = dataService.Get<Sku>(id.Value);
                     result = skuDB != null ? skuModelBuilder.ConvertSkuBDToSkuModel(skuDB) : skuModelBuilder.GetEmptySku();
                 }
                 else
@@ -455,7 +455,7 @@ namespace Shop.Controllers
             {
                 if (dataService.RemoveBigPhotoFromSKU(idSku, idPhoto))
                 {
-                    var skuDB = dataService.GetSkuById(idSku);
+                    var skuDB = dataService.Get<Sku>(idSku);
                     result = skuDB != null ? skuModelBuilder.ConvertSkuBDToSkuModel(skuDB) : skuModelBuilder.GetEmptySku();
                 }
                 else
@@ -517,7 +517,7 @@ namespace Shop.Controllers
             {
                 if (dataService.AddCategoryToSKU(idSku, catId))
                 {
-                    var skuDB = dataService.GetSkuById(idSku);
+                    var skuDB = dataService.Get<Sku>(idSku);
                     result = skuDB != null ? skuModelBuilder.ConvertSkuBDToSkuModel(skuDB) : skuModelBuilder.GetEmptySku();
                 }
                 else
@@ -541,7 +541,7 @@ namespace Shop.Controllers
             {
                 if (dataService.RemoveSKUFromCategory(idSku, idCat))
                 {
-                    var skuDB = dataService.GetSkuById(idSku);
+                    var skuDB = dataService.Get<Sku>(idSku);
                     result = skuDB != null ? skuModelBuilder.ConvertSkuBDToSkuModel(skuDB) : skuModelBuilder.GetEmptySku();
                 }
                 else
@@ -563,7 +563,7 @@ namespace Shop.Controllers
             var model = new SkuSpecificatoinModel();
             try
             {
-                var sku = dataService.GetSkuById(skuId);
+                var sku = dataService.Get<Sku>(skuId);
                 if (sku==null)
                 {
                     return Content("Ошибка загрузки: нет такого товара", "text/html"); 
@@ -601,7 +601,7 @@ namespace Shop.Controllers
             {
                 if (dataService.AddOrUpdateSpecificationToSKU(skuId, specId, specValue))
                 {
-                    var skuDB = dataService.GetSkuById(skuId);
+                    var skuDB = dataService.Get<Sku>(skuId);
                     result = skuDB != null ? skuModelBuilder.ConvertSkuBDToSkuModel(skuDB) : skuModelBuilder.GetEmptySku();
                 }
                 else
@@ -625,7 +625,7 @@ namespace Shop.Controllers
             {
                 if (dataService.RemoveSpecificationFromSKU(idSku, idSpec))
                 {
-                    var skuDB = dataService.GetSkuById(idSku);
+                    var skuDB = dataService.Get<Sku>(idSku);
                     result = skuDB != null ? skuModelBuilder.ConvertSkuBDToSkuModel(skuDB) : skuModelBuilder.GetEmptySku();
                 }
                 else
@@ -706,7 +706,7 @@ namespace Shop.Controllers
                 if (idArticle.HasValue && idArticle.Value > 0)
                 {
                     ViewBag.Title = "Изменение статьи";
-                    var articleDB = dataService.GetArticleById(idArticle.Value);
+                    var articleDB = dataService.Get<Article>(idArticle.Value);
                     articleDB.imgPath = imagesPath.GetImagesPath() +"/" +articleDB.imgPath;
                     result.article = articleDB;
                 }
@@ -743,7 +743,7 @@ namespace Shop.Controllers
             var model = new ChemodanStatus();
             try
             {
-                model = dataService.GetChemodanStatus(id);
+                model = dataService.Get<ChemodanStatus>(id);
             }
             catch (Exception err)
             {
@@ -793,7 +793,7 @@ namespace Shop.Controllers
             var model = new ChemodanType();
             try
             {
-                model = dataService.GetChemodanType(id);
+                model = dataService.Get<ChemodanType>(id);
             }
             catch (Exception err)
             {
@@ -860,7 +860,7 @@ namespace Shop.Controllers
             var model = new ProviderDataModel();
             try
             {
-                var modelDB = dataService.GetChemodanProvider(id);
+                var modelDB = dataService.Get<ChemodanProvider>(id);
                 model.provider = modelDB != null ? modelDB : new ChemodanProvider();
                 if (model.provider.editAdress==null)
                 {

@@ -98,7 +98,7 @@ namespace Shop.Controllers
                 ViewBag.Title = "Ошибка!!! Нет такой записи!";
                 if (idArticle.HasValue && idArticle.Value > 0)
                 {
-                    var articleDB = dataService.GetArticleById(idArticle.Value);
+                    var articleDB = dataService.Get<Article>(idArticle.Value);
                     articleDB.imgPath = imagesPath.GetImagesPath() + "/" + articleDB.imgPath;
                     result.article = articleDB;
                     result.article.body = ConvertToHTMLString(articleDB.body);

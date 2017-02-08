@@ -150,7 +150,7 @@ namespace Shop.Models.Builders
         public SKUModel BuildSkuModel(long idSku)
         {
             var skuModel = new SKUModel();
-            var sku = dataService.GetSkuById(idSku);
+            var sku = dataService.Get<Sku>(idSku);
             if (sku!=null)
             {     
                 // var u = AccountAdminModelBuilder.BuildOneUser(WebSecurity.CurrentUserName);
