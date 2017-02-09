@@ -1088,5 +1088,37 @@ namespace Shop.Controllers
             }
             return PartialView("SkuChemodanTrackingDataPartial", model);
         }
+
+
+        public ActionResult SetChemodanTrackingToSku(/*long id, long skuId, long specId, string specValue*/ChemodanTrackingModel model)
+        {
+            SKUModel result = null;
+            try
+            {
+                var item = new ChemodanTracking();
+                item.Code = model.Code;
+                item.Id = model.Id;
+                item.Location = model.Locatoin;
+
+                //dataService.SetChemodanTrackingToSku(item, model.skuId);
+
+                if (dataService.SetChemodanTrackingToSku(item, model.skuId))
+                {
+                    var skuDB = dataService.Get<Sku>(model.skuId);
+                    result = skuDB != null ? skuModelBuilder.ConvertSkuBDToSkuModel(skuDB) : skuModelBuilder.GetEmptySku();
+                }
+                else
+                {
+                    return Content("Спецификация НЕ добавлена", "text/html");
+                }
+            }
+            catch (Exception err)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Content("Спецификация НЕ добавлена " + err, "text/html");
+            }
+
+            return PartialView("SkuListChemodanTrackingPartial", result.ListChemodanTracking);
+        }
     }
 }

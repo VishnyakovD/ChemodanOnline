@@ -20,6 +20,7 @@ namespace Shop.DataService
         FilterProduct Filters();
         List<InfoBlockItem> ListInfoBlockItems(DisplayType type);
         List<Sku> ListProductsByFilters(FilterFoDB filters);
+        bool SetChemodanTrackingToSku( /*long id, long specId, string specValue*/ ChemodanTracking item, long skuId);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -833,6 +834,43 @@ namespace Shop.DataService
                         }
                         db.GetRepository<Sku>().Update(sku);
                         result = true; 
+                    }
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+                result = false;
+            }
+            return result;
+        }
+
+        public bool SetChemodanTrackingToSku(/*long id, long specId, string specValue*/ChemodanTracking item, long skuId)
+        {
+            var result = false;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    if (item.Id < 1 && skuId > 0)
+                    {
+                        //var sku = db.GetRepository<Sku>().TryOne(skuId);
+                        //if (sku.listChemodanTracking == null)
+                        //{
+                        //    sku.listChemodanTracking = new List<ChemodanTracking>();
+                        //}
+                        var location = db.GetRepository<ChemodanLocation>().TryOne(item.Location.id);
+                        item.Location = location;
+                        item.skuId = skuId;
+                        //sku.listChemodanTracking.Add(item);
+
+                        db.GetRepository<ChemodanTracking>().Add(item);
+                    }
+                    else
+                    {
+                        var location = db.GetRepository<ChemodanLocation>().TryOne(item.Location.id);
+                        item.Location = location;
+                        db.GetRepository<ChemodanTracking>().Add(item);
                     }
                 });
             }

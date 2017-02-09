@@ -10,6 +10,8 @@
     <property name="Code" unique="true"/>
 
 		<many-to-one name="Location" lazy="false" class="ChemodanLocation" />
+
+    <property name="skuId" />
   </class>
 
 </hibernate-mapping>

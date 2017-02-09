@@ -1,16 +1,26 @@
 ﻿@model Shop.Models.ChemodanTrackingModel
 
-@using (Ajax.BeginForm("AddOrUpdateSpecificationToSku-----", "Admin", new AjaxOptions { UpdateTargetId = "listChemodanTracking" }))
+@using (Ajax.BeginForm("SetChemodanTrackingToSku", "Admin", new AjaxOptions {UpdateTargetId = "listChemodanTracking"}))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <input type="hidden" id="Id" name="Id" value="@Model.Id" />
-    <input type="hidden" id="skuId" name="skuId" value="@Model.skuId" />
+    <input type="hidden" id="Id" name="Id" value="@Model.Id"/>
+    <input type="hidden" id="skuId" name="skuId" value="@Model.skuId"/>
 
     <label>Складской код</label>
-    <input type="text" id="Code" name="Code" required data-val="true" data-val-required="Это поле должно быть заполнено" value="@Model.Code" />
-        @Html.ValidationMessage("Code")
+    if (string.IsNullOrEmpty(Model.Code))
+     {
+         <input type="text" id="Code" name="Code" required data-val="true" data-val-required="Это поле должно быть заполнено" value="@Model.Code"/>
+         @Html.ValidationMessage("Code")
+    }
+    else
+    {
+        <input type="hidden" id="Code" name="Code" value="@Model.Code" />
+        <label>@Model.Code</label>
+    }
+
+
 
     <select id="Locatoin.id" name="Locatoin.id">
         @{ var selected = string.Empty;}
@@ -23,7 +33,7 @@
             }
             <option @selected value="@item.id">@item.name</option>
         }
-    </select>//555555
+    </select>
     <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
 }
 
