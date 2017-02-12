@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using Shop.DataService;
 using Shop.db.Entities;
 using Shop.Modules;
@@ -37,6 +38,13 @@ namespace Shop.Models.Builders
             model.ListBlockInfo = dataService.ListInfoBlockItems(DisplayType.MainInfoBlock);
 
             var tmpList = dataService.ListProductByDisplayType(DisplayType.Favorite);
+            var DefaultValueHasInStock = long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
+            if (DefaultValueHasInStock > 0)
+            {
+                // var location = session.Get<ChemodanLocation>(filters.ChemodanLocationID);
+                tmpList =
+                    tmpList?.Where(sku => sku.listChemodanTracking.Any(track => track.Location.id == DefaultValueHasInStock)).ToList();
+            }
             if (tmpList!=null&& tmpList.Count>0)
             {
                 model.ListProduct = tmpList.Select(item => new ShortSKUModel()

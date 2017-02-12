@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using Shop.DataService;
 using Shop.Logger;
@@ -18,6 +19,9 @@ namespace Shop.Controllers
         public ISKUModelBuilder skuModelBuilder;
         public IImagesPath imagesPath;
 
+        public long DefaultValueHasInStock { set; get; }
+        public long DefaultSkuCategory { set; get; }
+
         public BaseController(ILogger logger, IAdminModelBuilder adminModelBuilder, IDataService dataService,
             IImagesPath imagesPath, ISKUModelBuilder SKUModelBuilder)
         {
@@ -26,6 +30,8 @@ namespace Shop.Controllers
             this.dataService = dataService;
             this.imagesPath = imagesPath;
             this.skuModelBuilder = SKUModelBuilder;
+            DefaultValueHasInStock= long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
+            DefaultSkuCategory = long.Parse(WebConfigurationManager.AppSettings["DefaultSkuCategory"]);
 
         }
 

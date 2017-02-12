@@ -19,8 +19,8 @@ namespace Shop.DataService
 
         FilterProduct Filters();
         List<InfoBlockItem> ListInfoBlockItems(DisplayType type);
-        List<Sku> ListProductsByFilters(FilterFoDB filters);
-        bool SetChemodanTrackingToSku( /*long id, long specId, string specValue*/ ChemodanTracking item, long skuId);
+        List<Sku> ListProductsByFilters(FilterFoDb filters);
+        bool SetChemodanTrackingToSku(ChemodanTracking item);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -45,7 +45,7 @@ namespace Shop.DataService
         long AddOrUpdateChemodanProvider(ChemodanProvider item);
         long AddOrUpdateClient(Client item);
         bool RemoveMenuItem(long idMinuItem);
-        List<Sku> ListSkuByCategory(StaticCategory cat);
+        //List<Sku> ListSkuByCategory(StaticCategory cat);
         List<Sku> ListProductByDisplayType(DisplayType type);
         List<Sku> AllHiddenSku(bool isHide = false);
         Mailing GetMailingByEmail(string email);
@@ -845,10 +845,10 @@ namespace Shop.DataService
             return result;
         }
 
-        public bool SetChemodanTrackingToSku(/*long id, long specId, string specValue*/ChemodanTracking item, long skuId)
+        public bool SetChemodanTrackingToSku(ChemodanTracking item)
         {
             var result = false;
-            if (skuId < 1&& item.Id<1)
+            if (item.skuId < 1&& item.Id<1)
             {
                 return false;
             }
@@ -861,7 +861,6 @@ namespace Shop.DataService
                     {
                         var location = db.GetRepository<ChemodanLocation>().TryOne(item.Location.id);
                         item.Location = location;
-                        item.skuId = skuId;
 
                         db.GetRepository<ChemodanTracking>().Add(item);
                         result = true;
@@ -979,24 +978,24 @@ namespace Shop.DataService
             return result;
         }
         
-        public List<Sku> ListSkuByCategory(StaticCategory cat)
-        {
-            var result = new List<Sku>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = ((SkuRepository)db.GetRepository<Sku>()).ListSkuByCategory(cat).ToList();
-                });
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //public List<Sku> ListSkuByCategory(StaticCategory cat)
+        //{
+        //    var result = new List<Sku>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = ((SkuRepository)db.GetRepository<Sku>()).ListSkuByCategory(cat).ToList();
+        //        });
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
-        public List<Sku> ListProductsByFilters(FilterFoDB filters)
+        public List<Sku> ListProductsByFilters(FilterFoDb filters)
         {
             var result = new List<Sku>();
             try

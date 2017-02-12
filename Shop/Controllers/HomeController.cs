@@ -42,9 +42,15 @@ namespace Shop.Controllers
             this.mainPageBuilder = mainPageBuilder;
         }
 
-        public ActionResult ListSkuOnCategory(long idCat)
-        {   
-            var model = skuViewerBuilder.Build(idCat,-1);
+        public ActionResult ListSkuOnCategory(long idCat=-1)
+        {
+            var filters = new FilterFoDb();
+            filters.ChemodanLocationID = DefaultValueHasInStock;
+            filters.Categories = idCat < 1 ?
+                new FilterItemValue[] {new FilterItemValue() {Id = DefaultSkuCategory}} :
+                new FilterItemValue[] { new FilterItemValue() { Id = idCat } };
+
+            var model = skuViewerBuilder.Build(filters);
             return View("ListSkuOnCategory", model);
         }
 
@@ -56,10 +62,12 @@ namespace Shop.Controllers
             var cats= JsonConvert.DeserializeObject<FilterItemValue[]>(filtersCt);
 
             var model = skuViewerBuilder.BuildListProductsByFilters(
-                new FilterFoDB{
+                new FilterFoDb{
                     Specifications = specs,
                     ChemodanTypes = types,
-                    Categories = cats}
+                    Categories = cats,
+                    ChemodanLocationID = DefaultValueHasInStock
+                }
                 );
             return View("ShortProductListPartial", model);
         }
@@ -80,16 +88,8 @@ namespace Shop.Controllers
     
         }
 
-        public ActionResult Index111()
-        {
-            var model = skuViewerBuilder.Build(10010, -1);
-            return View("ListSkuOnCategory", model);
-    
-        }
-
         public ActionResult ArticleInfo(long? idArticle)
         {
-            //ViewBag.isHideLeftMenu = true;
             var result = new ArticleModel();
             try
             {

@@ -13,11 +13,11 @@ namespace Shop.Models.Builders
 
     public interface ISkuViewerBuilder
     {
-        SkuViewerModel Build(long idCat, int sort);
+        SkuViewerModel Build(/*long idCat, int sort*/FilterFoDb filters);
         SKUModel BuildSkuModel(long idSlu);
         List<ShortSKUModel> ListHiddenSku(bool isHide);
         SkuViewerModel BuildHidden(bool isHide, int sort);
-        List<ShortSKUModel> BuildListProductsByFilters(FilterFoDB filters);
+        List<ShortSKUModel> BuildListProductsByFilters(FilterFoDb filters);
 
     }
 
@@ -37,17 +37,17 @@ namespace Shop.Models.Builders
             this.AccountAdminModelBuilder = iAccountAdminModelBuilder;
         }
 
-        private IEnumerable<ShortSKUModel> ListSkuByCategory(StaticCategory cat)
-        {
+        //private IEnumerable<ShortSKUModel> ListSkuByCategory(StaticCategory cat)
+        //{
 
-            return dataService.ListSkuByCategory(cat).OrderBy(sku => sku.sortPriority).Select(sku => new ShortSKUModel()
-                {
-                    id = sku.id,
-                    articul = sku.articul,
-                    price = sku.chemodanType.priceDay,
-                    smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
-                }); 
-        }
+        //    return dataService.ListSkuByCategory(cat).OrderBy(sku => sku.sortPriority).Select(sku => new ShortSKUModel()
+        //        {
+        //            id = sku.id,
+        //            articul = sku.articul,
+        //            price = sku.chemodanType.priceDay,
+        //            smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
+        //        }); 
+        //}
 
         public List<ShortSKUModel> ListHiddenSku(bool isHide)
         {
@@ -62,10 +62,10 @@ namespace Shop.Models.Builders
         }
 
 
-        public SkuViewerModel Build(long idCat, int sort)
+        public SkuViewerModel Build(/*long idCat, int sort*/FilterFoDb filters)
         {
             var model = new SkuViewerModel();
-            var cat = dataService.Get<StaticCategory>(idCat);
+            var cat = dataService.Get<StaticCategory>(filters.Categories[0].Id);
             if (cat!=null)
             {
                 model.IdCat = cat.id;
@@ -73,10 +73,17 @@ namespace Shop.Models.Builders
                 model.Keywords = cat.keywords;
                 model.Description = cat.description;
                 model.bodyText = cat.bodyText;
-                model.skuList = SortListSku(ListSkuByCategory(cat).ToList(), sort);
+               // model.skuList = ListSkuByCategory(cat).ToList();
+                model.skuList = BuildListProductsByFilters(filters);
             }
 
             var tmpList = dataService.ListProductByDisplayType(DisplayType.Favorite);
+            if (filters.ChemodanLocationID > 0)
+            {
+               // var location = session.Get<ChemodanLocation>(filters.ChemodanLocationID);
+                tmpList =
+                    tmpList?.Where(sku => sku.listChemodanTracking.Any(track => track.Location.id == filters.ChemodanLocationID)).ToList();
+            }
             if (tmpList != null && tmpList.Count > 0)
             {
                 model.ListProduct = tmpList.Select(item => new ShortSKUModel()
@@ -95,7 +102,7 @@ namespace Shop.Models.Builders
             return model;
         }
 
-    public List<ShortSKUModel> BuildListProductsByFilters(FilterFoDB filters)
+    public List<ShortSKUModel> BuildListProductsByFilters(FilterFoDb filters)
         {
             var model = new List<ShortSKUModel>();
 
@@ -112,6 +119,7 @@ namespace Shop.Models.Builders
             }
             return model;
         }
+
         public SkuViewerModel BuildHidden(bool isHide, int sort)
         {
             var model = new SkuViewerModel
@@ -121,29 +129,12 @@ namespace Shop.Models.Builders
                 Keywords = string.Empty,
                 Description = string.Empty,
                 bodyText = string.Empty,
-                skuList = SortListSku(ListHiddenSku(isHide), sort),
+                skuList = ListHiddenSku(isHide),
                 menu = BuildMenu(),
                 topMenuItems = BuildTopMenu()
             };
 
             return model;
-        }
-
-        private List<ShortSKUModel> SortListSku(List<ShortSKUModel> list, int sort)
-        {
-            switch (sort)
-            {
-                case 1://сорт от А до Я
-                  //  return list.OrderBy(it => it.name).ToList();
-                case 2://сорт от Я до А
-                   // return list.OrderByDescending(it => it.name).ToList();
-                case 3://сорт по цене Возростание
-                   // return list.OrderBy(it => it.priceAct).ToList();
-                case 4://сорт по цене Убывание
-                   // return list.OrderByDescending(it => it.priceAct).ToList();
-                default:
-                    return list;
-            }
         }
        
 

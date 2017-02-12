@@ -16,7 +16,7 @@ namespace Shop.db.Repository
         {
         }
 
-        public IEnumerable<Sku> ListProductsByFilters(FilterFoDB filters)
+        public IEnumerable<Sku> ListProductsByFilters(FilterFoDb filters)
         {
 
             IList<Sku> skus = null;
@@ -96,17 +96,22 @@ namespace Shop.db.Repository
                 // skus = (from sku in skus from skuSpec in sku.listSpecification where filters.Specifications.Contains(new FilterItemValue {Id = skuSpec.staticspec.id, Value = skuSpec.value}) select sku).ToList();
             }
 
-            //написать функционал, который будет выберать нужный статус треккинга т.е. 
-            //только тот который означает "есть в наличии"
-            return skus; //.Where(sku=>sku.listChemodanTracking.Contains(new ChemodanTracking() {}));
+            if (filters.ChemodanLocationID>0)
+            {
+                var location = session.Get<ChemodanLocation>(filters.ChemodanLocationID);
+                skus =
+                    skus?.Where(sku => sku.listChemodanTracking.Any(track=>track.Location== location)).ToList();
+            }
+
+            return skus; 
         }
 
-        public IEnumerable<Sku> ListSkuByCategory(StaticCategory cat, bool isHide=false)
-        {
-            var ids = session.QueryOver<Category>().Where(i => i.staticcat == cat).List().Select(i => i.skuId).ToArray();
-            var retval = session.QueryOver<Sku>().Where(s => s.id.IsIn(ids) && s.isHide == isHide).List();
-            return retval;
-        }
+        //public IEnumerable<Sku> ListSkuByCategory(StaticCategory cat, bool isHide=false)
+        //{
+        //    var ids = session.QueryOver<Category>().Where(i => i.staticcat == cat).List().Select(i => i.skuId).ToArray();
+        //    var retval = session.QueryOver<Sku>().Where(s => s.id.IsIn(ids) && s.isHide == isHide).List();
+        //    return retval;
+        //}
 
         public IEnumerable<Sku> AllByCategory(Category category, bool isHide = false)
         {

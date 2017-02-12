@@ -100,27 +100,15 @@ namespace Shop.db.Repository
         }
     }
 
-    //public class FilterChemodanTypes
-    //{
-    //    public List<FilterItemValue> Values { get; set; }
 
-    //    public FilterChemodanTypes()
-    //    {
-    //        Values = new List<FilterItemValue>();
-    //    }
-    //}
-
-
-
-
-
-    public class FilterFoDB
+    public class FilterFoDb
     {
         public FilterItemValue[] Categories { get; set; }
         public FilterItemValue[] ChemodanTypes { get; set; }
         public FilterItemValue[] Specifications { get; set; }
+        public long ChemodanLocationID { get; set; }
 
-        public FilterFoDB()
+        public FilterFoDb()
         {
             Specifications = new FilterItemValue[] { };
             Categories = new FilterItemValue[] { };

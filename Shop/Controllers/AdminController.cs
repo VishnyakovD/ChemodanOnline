@@ -1103,7 +1103,7 @@ namespace Shop.Controllers
                 item.Location = model.Locatoin;
                 item.skuId = model.skuId;
 
-                if (dataService.SetChemodanTrackingToSku(item, model.skuId))
+                if (dataService.SetChemodanTrackingToSku(item))
                 {
                     var skuDB = dataService.Get<Sku>(model.skuId);
                     result = skuDB != null ? skuModelBuilder.ConvertSkuBDToSkuModel(skuDB) : skuModelBuilder.GetEmptySku();
