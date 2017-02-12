@@ -66,6 +66,7 @@ namespace Shop.Models.Builders
                 skuModel.sortPriority = sku.sortPriority;
                 skuModel.priceAct = sku.priceAct;
                 skuModel.displayType = sku.displayType;
+                skuModel.ListChemodanTracking = sku.listChemodanTracking.ToList();
 
                 skuModel.description = sku.description;
                 if (sku.brand!=null)

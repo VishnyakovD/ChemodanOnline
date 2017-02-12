@@ -10,14 +10,14 @@
 
     <label>Складской код</label>
     if (string.IsNullOrEmpty(Model.Code))
-     {
+    {
          <input type="text" id="Code" name="Code" required data-val="true" data-val-required="Это поле должно быть заполнено" value="@Model.Code"/>
          @Html.ValidationMessage("Code")
     }
     else
     {
         <input type="hidden" id="Code" name="Code" value="@Model.Code" />
-        <label>@Model.Code</label>
+        <span>@Model.Code</span>
     }
 
 

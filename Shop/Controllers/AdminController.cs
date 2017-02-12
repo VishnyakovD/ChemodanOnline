@@ -1066,6 +1066,7 @@ namespace Shop.Controllers
             }
 
             var model = new ChemodanTrackingModel();
+            model.skuId = skuId;
             try
             {
                 if (Id < 1 && skuId > 0)
@@ -1074,13 +1075,14 @@ namespace Shop.Controllers
                 }
                 else
                 {
-                     var item = dataService.Get<ChemodanTracking>(Id);
+                    var item = dataService.Get<ChemodanTracking>(Id);
                     model.Id = item.Id;
                     model.Code = item.Code;
                     model.Locatoin = item.Location;
+                    model.skuId = item.skuId;
                 }
                 model.ListChemodanLocation = dataService.List<ChemodanLocation>();
-                model.skuId = skuId;
+                
             }
             catch (Exception err)
             {
@@ -1090,7 +1092,7 @@ namespace Shop.Controllers
         }
 
 
-        public ActionResult SetChemodanTrackingToSku(/*long id, long skuId, long specId, string specValue*/ChemodanTrackingModel model)
+        public ActionResult SetChemodanTrackingToSku(ChemodanTrackingModel model)
         {
             SKUModel result = null;
             try
@@ -1099,8 +1101,7 @@ namespace Shop.Controllers
                 item.Code = model.Code;
                 item.Id = model.Id;
                 item.Location = model.Locatoin;
-
-                //dataService.SetChemodanTrackingToSku(item, model.skuId);
+                item.skuId = model.skuId;
 
                 if (dataService.SetChemodanTrackingToSku(item, model.skuId))
                 {
@@ -1109,13 +1110,13 @@ namespace Shop.Controllers
                 }
                 else
                 {
-                    return Content("Спецификация НЕ добавлена", "text/html");
+                    return Content("ошибка", "text/html");
                 }
             }
             catch (Exception err)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Content("Спецификация НЕ добавлена " + err, "text/html");
+                return Content("Не добавлено " + err, "text/html");
             }
 
             return PartialView("SkuListChemodanTrackingPartial", result.ListChemodanTracking);

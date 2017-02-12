@@ -848,29 +848,33 @@ namespace Shop.DataService
         public bool SetChemodanTrackingToSku(/*long id, long specId, string specValue*/ChemodanTracking item, long skuId)
         {
             var result = false;
+            if (skuId < 1&& item.Id<1)
+            {
+                return false;
+            }
+
             try
             {
                 dbService.Run(db =>
                 {
-                    if (item.Id < 1 && skuId > 0)
+                    if (item.Id < 1)
                     {
-                        //var sku = db.GetRepository<Sku>().TryOne(skuId);
-                        //if (sku.listChemodanTracking == null)
-                        //{
-                        //    sku.listChemodanTracking = new List<ChemodanTracking>();
-                        //}
                         var location = db.GetRepository<ChemodanLocation>().TryOne(item.Location.id);
                         item.Location = location;
                         item.skuId = skuId;
-                        //sku.listChemodanTracking.Add(item);
 
                         db.GetRepository<ChemodanTracking>().Add(item);
+                        result = true;
                     }
                     else
                     {
+                        var trackerDB = db.GetRepository<ChemodanTracking>().TryOne(item.Id);
                         var location = db.GetRepository<ChemodanLocation>().TryOne(item.Location.id);
-                        item.Location = location;
-                        db.GetRepository<ChemodanTracking>().Add(item);
+                        trackerDB.Location = location;
+                        //trackerDB.Code = item.Code;
+                        //trackerDB.skuId = item.skuId;
+                        db.GetRepository<ChemodanTracking>().Update(trackerDB);
+                        result = true;
                     }
                 });
             }
