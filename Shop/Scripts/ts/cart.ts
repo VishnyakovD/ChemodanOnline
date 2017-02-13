@@ -35,6 +35,20 @@ class Cart {
         this.GetCartCookie();
     }
 
+    RemoveFromCart(id: number): void {//не проверил
+        var item = this.ListProducts.filter(item => item.ProductId === id);
+        if (item.length > 0) {
+            item[0].Count -= 1;
+
+            if (item[0].Count<1) {
+                this.ListProducts = this.ListProducts.filter(item => item.ProductId !== id);
+            }
+        } 
+
+        this.SetCartCookie();
+        this.GetCartCookie();
+    }
+
     SetCartCookie():void {
         $.cookie("cart", JSON.stringify(this), {expires: 1800 }); 
     }

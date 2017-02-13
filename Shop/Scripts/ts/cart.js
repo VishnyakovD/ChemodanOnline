@@ -23,6 +23,17 @@ var Cart = (function () {
         this.SetCartCookie();
         this.GetCartCookie();
     };
+    Cart.prototype.RemoveFromCart = function (id) {
+        var item = this.ListProducts.filter(function (item) { return item.ProductId === id; });
+        if (item.length > 0) {
+            item[0].Count -= 1;
+            if (item[0].Count < 1) {
+                this.ListProducts = this.ListProducts.filter(function (item) { return item.ProductId !== id; });
+            }
+        }
+        this.SetCartCookie();
+        this.GetCartCookie();
+    };
     Cart.prototype.SetCartCookie = function () {
         $.cookie("cart", JSON.stringify(this), { expires: 1800 });
     };
