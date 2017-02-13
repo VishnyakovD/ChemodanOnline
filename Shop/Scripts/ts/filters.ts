@@ -114,6 +114,7 @@ $(() => {
         filterModel = new FilterModel();
 
         $(document).on("click", ".js-filter-item", (e) => {
+            
             filterModel.ActivateFilter(
                 $(e.currentTarget).data("filter-id"),
                 $(e.currentTarget).data("filter-type"),

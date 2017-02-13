@@ -5,7 +5,7 @@
     if (Model != null)
     {
         dress = string.Format("{0} {1}", Model.categotyName, Model.name);
-        Page.Title = string.Format("Купить {0} - Оренда чемоданов | Chemodan.online", dress);
+        Page.Title = string.Format("{0} - Оренда чемоданов | Chemodan.online", dress);
         ViewBag.Title = Model.name;
 
 
@@ -142,9 +142,11 @@
             }
             <span class="label priceSmSkuInfo">@Model.priceAct.ToString("####")<span class="currencySm currencySmCart">грн</span></span>
           
-            @Ajax.ActionLink("Купить", "AddToCart", "Cart", new { idSku = Model.id }, new AjaxOptions() { UpdateTargetId = "Cart" }, new { @class = "btn btn-blue btn-lg", @style = "width: 135px;margin-bottom: 15px;" })
-           
-              </div>
+              @*@Ajax.ActionLink("Купить", "AddToCart", "Cart", new { idSku = Model.id }, new AjaxOptions() { UpdateTargetId = "Cart" }, new { @class = "btn btn-blue btn-lg", @style = "width: 135px;margin-bottom: 15px;" })*@
+
+              <span class="btn btn-info-block js-addcart" data-id="@Model.id">Добавить</span>
+
+          </div>
 
 
             @if (Model.id > 0 && User.IsInRole("Admin"))
