@@ -144,7 +144,6 @@ namespace Shop.Models.Builders
             var sku = dataService.Get<Sku>(idSku);
             if (sku!=null)
             {     
-                // var u = AccountAdminModelBuilder.BuildOneUser(WebSecurity.CurrentUserName);
                  skuModel = SKUModelBuilder.ConvertSkuBDToSkuModel(sku);
             }
             skuModel.menu = BuildMenu();

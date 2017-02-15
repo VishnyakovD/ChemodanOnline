@@ -76,6 +76,8 @@ namespace Shop.Models
         public int sortPriority { get; set; }
         public DisplayType displayType { get; set; }
 
+        public int maxCount { get; set; }
+
 
 
         public SKUModel()

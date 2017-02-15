@@ -24,6 +24,7 @@ namespace Shop.Models.Builders
         private IAccountAdminModelBuilder AccountAdminModelBuilder;
         private IDataService dataService;
         private IImagesPath imagesPath;
+        public long DefaultValueHasInStock { set; get; }
 
         public SKUModelBuilder(IDataService dataService, IImagesPath imagesPath, IAccountAdminModelBuilder iAccountAdminModelBuilder)
             : base(dataService,imagesPath)
@@ -31,6 +32,7 @@ namespace Shop.Models.Builders
             this.dataService = dataService;
             this.imagesPath = imagesPath;
             this.AccountAdminModelBuilder = iAccountAdminModelBuilder;
+            DefaultValueHasInStock = long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
         }
         public SKUModel GetEmptySku()
         {
@@ -43,7 +45,6 @@ namespace Shop.Models.Builders
             sku.listChemodanStatus = dataService.List<ChemodanStatus>();
             sku.listChemodanType = dataService.List<ChemodanType>();
 
-
             sku.listCategory=new List<Category>();
             sku.listPhoto=new List<PhotoBig>();
             sku.listSpecification=new List<Specification>();
@@ -54,6 +55,7 @@ namespace Shop.Models.Builders
         public SKUModel ConvertSkuBDToSkuModel(Sku sku)
         {
            // var u = AccountAdminModelBuilder.BuildOneUser(WebSecurity.CurrentUserName);
+           
             var skuModel = GetEmptySku();
             if (sku != null)
             {
@@ -67,6 +69,7 @@ namespace Shop.Models.Builders
                 skuModel.priceAct = sku.priceAct;
                 skuModel.displayType = sku.displayType;
                 skuModel.ListChemodanTracking = sku.listChemodanTracking.ToList();
+                skuModel.maxCount = sku.listChemodanTracking.Count(item => item.Location.id == DefaultValueHasInStock);
 
                 skuModel.description = sku.description;
                 if (sku.brand!=null)
@@ -93,10 +96,8 @@ namespace Shop.Models.Builders
                 {
                     skuModel.chemodanTypeId = sku.chemodanType.id;
                 }
-            
 
                 skuModel.chemodanDaysRent = sku.chemodanDaysRent;
-
                 skuModel.listCategory = sku.listCategory;
                 skuModel.listSpecification = sku.listSpecification.OrderBy(sp=>sp.staticspec.sortPriority).ToList();
                 skuModel.listPhoto = sku.listPhoto.Select(im => new PhotoBig() { id = im.id, name = im.name, path = string.Format("{0}/{1}", imagesPath.GetImagesPath(), im.path),skuId = im.skuId}).ToList();

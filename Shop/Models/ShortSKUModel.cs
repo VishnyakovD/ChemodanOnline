@@ -10,12 +10,11 @@ namespace Shop.Models
 {
     public class ShortSKUModel
     {
-
-
         public long id { get; set; }
         public string articul { get; set; }
         public decimal price { get; set; }
         public string smalPhotoPath { get; set; }
+        public int maxCount { get; set; }
 
 
         public ShortSKUModel()

@@ -24,10 +24,15 @@ class Cart {
 
 
 
-    AddToCart(id:number):void {
+    AddToCart(id: number, maxCount: number):void {
         var item = this.ListProducts.filter(item => item.ProductId === id);
-        if (item.length>0) {
-            item[0].Count += 1;
+        if (item.length > 0) {
+            if (item[0].Count < maxCount) {
+                item[0].Count += 1;
+            } else {
+                $("#ServerMessage").html("нельзя добавить");
+            }
+            
         } else {
             this.ListProducts.push(new CartItem(id, 1));
         }
@@ -49,15 +54,18 @@ class Cart {
         this.GetCartCookie();
     }
 
-    SetCartCookie():void {
-        $.cookie("cart", JSON.stringify(this), {expires: 1800 }); 
+    SetCartCookie(): void {
+        var curDate = new Date();
+        curDate.setMinutes(curDate.getMinutes() + 20);
+        $.cookie("cart", JSON.stringify(this), { expires: curDate }); 
     }
     GetCartCookie(): void {
-        var cartCook = (<Cart>JSON.parse($.cookie("cart")));
-        if (!cartCook) {
+
+        if (!$.cookie("cart")) {
             return;
         }
-
+        var cartCook = (<Cart>JSON.parse($.cookie("cart")));
+        
         this.ListProducts = cartCook.ListProducts;
         this.DateFrom = cartCook.DateFrom;
         this.DateTo = cartCook.DateTo;
@@ -76,7 +84,8 @@ $(() => {
 
         $(document).on("click", ".js-addcart", (e) => {
             var itemId = $(e.currentTarget).data("id");
-            cart.AddToCart(itemId);
+            var itemMax = $(e.currentTarget).data("max");
+            cart.AddToCart(itemId, itemMax);
         });
     }
 });

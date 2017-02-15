@@ -12,10 +12,15 @@ var Cart = (function () {
         this.DateTo = new Date();
         this.GetCartCookie();
     }
-    Cart.prototype.AddToCart = function (id) {
+    Cart.prototype.AddToCart = function (id, maxCount) {
         var item = this.ListProducts.filter(function (item) { return item.ProductId === id; });
         if (item.length > 0) {
-            item[0].Count += 1;
+            if (item[0].Count < maxCount) {
+                item[0].Count += 1;
+            }
+            else {
+                $("#ServerMessage").html("нельзя добавить");
+            }
         }
         else {
             this.ListProducts.push(new CartItem(id, 1));
@@ -35,13 +40,15 @@ var Cart = (function () {
         this.GetCartCookie();
     };
     Cart.prototype.SetCartCookie = function () {
-        $.cookie("cart", JSON.stringify(this), { expires: 1800 });
+        var curDate = new Date();
+        curDate.setMinutes(curDate.getMinutes() + 20);
+        $.cookie("cart", JSON.stringify(this), { expires: curDate });
     };
     Cart.prototype.GetCartCookie = function () {
-        var cartCook = JSON.parse($.cookie("cart"));
-        if (!cartCook) {
+        if (!$.cookie("cart")) {
             return;
         }
+        var cartCook = JSON.parse($.cookie("cart"));
         this.ListProducts = cartCook.ListProducts;
         this.DateFrom = cartCook.DateFrom;
         this.DateTo = cartCook.DateTo;
@@ -55,7 +62,8 @@ $(function () {
         cart = new Cart();
         $(document).on("click", ".js-addcart", function (e) {
             var itemId = $(e.currentTarget).data("id");
-            cart.AddToCart(itemId);
+            var itemMax = $(e.currentTarget).data("max");
+            cart.AddToCart(itemId, itemMax);
         });
     }
 });

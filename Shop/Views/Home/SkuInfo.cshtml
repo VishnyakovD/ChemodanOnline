@@ -1,11 +1,9 @@
 ﻿@using Shop.Models
 @model SKUModel
 @{
-    var dress = string.Empty;
     if (Model != null)
     {
-        dress = string.Format("{0} {1}", Model.categotyName, Model.name);
-        Page.Title = string.Format("{0} - Оренда чемоданов | Chemodan.online", dress);
+        Page.Title = "Аренда чемоданов | Chemodan.online";
         ViewBag.Title = Model.name;
 
 
@@ -55,13 +53,13 @@
                             if (i == 0)
                             {
                                 <div class="item active">
-                                    <img class="col-md-12" title="@dress" src="@Model.listPhoto[i].path" />
+                                    <img class="col-md-12" src="@Model.listPhoto[i].path" />
                                 </div>
                             }
                             else
                             {
                                 <div class="item">
-                                    <img class="col-md-12" title="@dress" src="@Model.listPhoto[i].path" />
+                                    <img class="col-md-12" src="@Model.listPhoto[i].path" />
                                 </div>
                             }
 
@@ -79,7 +77,7 @@
             }
             else
             {
-                <img class="col-md-12" title="@dress" src="@Model.smalPhotoPath" />
+                <img class="col-md-12" src="@Model.smalPhotoPath" />
             }
         </div>
         
@@ -141,10 +139,7 @@
                 </span>
             }
             <span class="label priceSmSkuInfo">@Model.priceAct.ToString("####")<span class="currencySm currencySmCart">грн</span></span>
-          
-              @*@Ajax.ActionLink("Купить", "AddToCart", "Cart", new { idSku = Model.id }, new AjaxOptions() { UpdateTargetId = "Cart" }, new { @class = "btn btn-blue btn-lg", @style = "width: 135px;margin-bottom: 15px;" })*@
-
-              <span class="btn btn-info-block js-addcart" data-id="@Model.id">Добавить</span>
+            <span class="btn btn-info-block js-addcart" data-id="@Model.id" data-max="@Model.maxCount">Добавить</span>
 
           </div>
 
