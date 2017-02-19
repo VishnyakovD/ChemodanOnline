@@ -13,14 +13,20 @@ namespace Shop.DataService
 {
     public interface IDataService
     {
-
         List<T> List<T>() where T : class;
         T Get<T>(long id) where T : class, new();
 
         FilterProduct Filters();
         List<InfoBlockItem> ListInfoBlockItems(DisplayType type);
         List<Sku> ListProductsByFilters(FilterFoDb filters);
+        List<Sku> ListProductsByIds(long[] ids);
         bool SetChemodanTrackingToSku(ChemodanTracking item);
+        List<Order> ListOrdersByDates(DateTime from, DateTime to);
+        List<Order> ListOrdersByPhone(string phone);
+        List<Order> ListOrdersByDeliveryType(long deliveryType);
+        List<Order> ListOrdersByPaymentType(long paymentType);
+        List<Order> ListOrdersByOrderState(long state);
+
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -45,7 +51,6 @@ namespace Shop.DataService
         long AddOrUpdateChemodanProvider(ChemodanProvider item);
         long AddOrUpdateClient(Client item);
         bool RemoveMenuItem(long idMinuItem);
-        //List<Sku> ListSkuByCategory(StaticCategory cat);
         List<Sku> ListProductByDisplayType(DisplayType type);
         List<Sku> AllHiddenSku(bool isHide = false);
         Mailing GetMailingByEmail(string email);
@@ -65,7 +70,6 @@ namespace Shop.DataService
             this.dbService = dbService;
             this.logger = logger;
         }
-
 
         public List<T> List<T>() where T : class
         {
@@ -142,7 +146,6 @@ namespace Shop.DataService
                         itemDB.editAdress.street = item.editAdress.street;
                         itemDB.editAdress.typeCity = item.editAdress.typeCity;
                         itemDB.editAdress.typeStreet = item.editAdress.typeStreet;
-
                         itemDB.isUse = item.isUse;
                         db.GetRepository<ChemodanProvider>().Update(itemDB);
                         result = item.id;
@@ -277,7 +280,6 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-
         }
 
         public bool AddOrUpdateMailing(Mailing mailing)
@@ -761,7 +763,7 @@ namespace Shop.DataService
                 {
                     if (type > 0)
                     {
-                        result = ((MenuItemRepository)db.GetRepository<MenuItem>()).AllByType(type).ToList();
+                        result = ((MenuItemRepository)db.GetRepository<MenuItem>()).AllByType(type);
                     }
                     else
                     {
@@ -885,6 +887,91 @@ namespace Shop.DataService
             return result;
         }
 
+        public List<Order> ListOrdersByDates(DateTime from, DateTime to)
+        {
+            var result = new List<Order>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByDates(from,to);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public List<Order> ListOrdersByPhone(string phone)
+        {
+            var result = new List<Order>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByClientPhone(phone);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public List<Order> ListOrdersByDeliveryType(long deliveryType)
+        {
+            var result = new List<Order>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByDeliveryType(deliveryType);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public List<Order> ListOrdersByPaymentType(long paymentType)
+        {
+            var result = new List<Order>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByPaymentType(paymentType);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public List<Order> ListOrdersByOrderState(long state)
+        {
+            var result = new List<Order>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByOrderState(state);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
         public bool RemoveSpecificationFromSKU(long id, long idSpec)
         {
             var result = false;
@@ -977,23 +1064,6 @@ namespace Shop.DataService
             }
             return result;
         }
-        
-        //public List<Sku> ListSkuByCategory(StaticCategory cat)
-        //{
-        //    var result = new List<Sku>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = ((SkuRepository)db.GetRepository<Sku>()).ListSkuByCategory(cat).ToList();
-        //        });
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
 
         public List<Sku> ListProductsByFilters(FilterFoDb filters)
         {
@@ -1012,6 +1082,22 @@ namespace Shop.DataService
             return result;
         }
 
+        public List<Sku> ListProductsByIds(long[] ids)
+        {
+            var result = new List<Sku>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((SkuRepository) db.GetRepository<Sku>()).Many(ids);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
         public List<Sku> ListProductByDisplayType(DisplayType type)
         {
             var result = new List<Sku>();
@@ -1065,6 +1151,55 @@ namespace Shop.DataService
                         itemDB.isUse = chemodanLocation.isUse;
                         db.GetRepository<ChemodanLocation>().Update(itemDB);
                         result = itemDB.id;
+                    }
+                });
+            }
+            catch (Exception err)
+            {
+                result = 0;
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public long AddOrUpdateOrder(Order order)
+        {
+            long result = 0;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    var orderDb = db.GetRepository<Order>().TryOne(order.Id);
+                    if (orderDb == null)
+                    {
+                        result = db.GetRepository<Order>().Add(order).Id;
+                    }
+                    else
+                    {
+                        long tmpId = 0;
+                        orderDb.From = order.From;
+                        orderDb.To = order.To;
+                        orderDb.DeliveryType = order.DeliveryType;
+                        orderDb.OrderState = order.OrderState;
+                        orderDb.PaymentType = order.PaymentType;
+                        orderDb.Pdf = order.Pdf;
+                        if (orderDb.Client == null)
+                        {
+                            orderDb.Client=new Client();
+                        }
+                        tmpId = orderDb.Client.id;
+                        orderDb.Client = order.Client;
+                        orderDb.Client.id = tmpId;
+                        tmpId = 0;
+                        if (orderDb.Client.editAdress==null)
+                        {
+                            orderDb.Client.editAdress=new EditAdress();
+                        }
+                        tmpId = orderDb.Client.editAdress.id;
+                        orderDb.Client.editAdress = order.Client.editAdress;
+                        orderDb.Client.editAdress.id = tmpId;
+                        db.GetRepository<Order>().Update(orderDb);
+                        result = orderDb.Id;
                     }
                 });
             }

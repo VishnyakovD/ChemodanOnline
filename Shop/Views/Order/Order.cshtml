@@ -1,0 +1,85 @@
+﻿@using Shop.Models
+@using AdvancedClasses
+@using Shop.db.Entities
+@model OrderClientPage
+@{
+    if (Model != null)
+    {
+        Page.Title = "Аренда чемоданов | Chemodan.online";
+
+        @section head {
+            <meta name="description" content="@Model.Description">
+            <meta name="keywords" content="@Model.Keywords">
+        }
+    }
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12">Контактные данные</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Фамилия</label>
+                <input class="form-control" type="text" name="ClientLastName" value="@Model.Order.ClientLastName"/>
+            </div>
+            <div class="col-md-6">
+                <label>Имя</label>
+                <input class="form-control" type="text" name="ClientFirstName" value="@Model.Order.ClientFirstName"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Email</label>
+                <input class="form-control" type="text" name="ClientEmail" value="@Model.Order.ClientEmail"/>
+            </div>
+            <div class="col-md-6">
+                <label>Телефон</label>
+                <input class="form-control" type="text" name="ClientPhone" value="@Model.Order.ClientPhone"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">Адрес доставки</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Город</label>
+                <input class="form-control" type="text" name="City" value="@Model.Order.City"/>
+            </div>
+            <div class="col-md-6">
+                <label>Дом</label>
+                <input class="form-control" type="text" name="Home" value="@Model.Order.Home"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Тип улицы</label>
+                <select class="form-control" name="@Model.Order.TypeStreet">
+                    @foreach (var item in TypesStreet.Types)
+                    {
+                         <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Этаж</label>
+                <input class="form-control" type="text" name="Level" value="@Model.Order.Level"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Улица</label>
+                <input class="form-control" type="text" name="Street" value="@Model.Order.Street"/>
+            </div>
+            <div class="col-md-6">
+                <label>Квартира</label>
+                <input class="form-control" type="text" name="Flat" value="@Model.Order.Flat"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4"></div>
+
+</div>

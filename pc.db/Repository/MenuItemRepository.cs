@@ -15,12 +15,14 @@ namespace Shop.db.Repository
         {
         }
 
-        public IEnumerable<MenuItem> AllByType(int type)
+        public List<MenuItem> AllByType(int type)
         {
             var menuitem=session.QueryOver<MenuItem>()
                 .Where(a => (a.type==type))
-                .List() ?? new List<MenuItem>();
-            return menuitem.OrderBy(it=>it.sortPriority);
+                .List()
+                .OrderBy(it => it.sortPriority)
+                .ToList();
+            return menuitem;
         }
 
 

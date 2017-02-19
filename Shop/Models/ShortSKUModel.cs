@@ -15,6 +15,7 @@ namespace Shop.Models
         public decimal price { get; set; }
         public string smalPhotoPath { get; set; }
         public int maxCount { get; set; }
+        public int orderCount { get; set; }
 
 
         public ShortSKUModel()

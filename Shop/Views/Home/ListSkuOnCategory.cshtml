@@ -5,7 +5,6 @@
     if (Model != null && !string.IsNullOrEmpty(Model.Name))
     {
         Page.Title = "Аренда чемоданов | Chemodan.online";
-        ViewBag.Title = Model.Name;
 
         @section head {
             <meta name="description" content="@Model.Description">

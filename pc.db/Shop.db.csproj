@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs" />
+    <Compile Include="Entities\OrderClasses.cs" />
     <Compile Include="Entities\ChemodanTracking.cs" />
     <Compile Include="Entities\ChemodanLocation.cs" />
     <Compile Include="Entities\InfoBlockItem.cs" />
@@ -82,6 +83,11 @@
     <Compile Include="Entities\TypeStreet.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\OrderInfoFileRepository.cs" />
+    <Compile Include="Repository\PaymentTypeRepository.cs" />
+    <Compile Include="Repository\DeliveryTypeRepository.cs" />
+    <Compile Include="Repository\OrderProductRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ChemodanTrackingRepository.cs" />
     <Compile Include="Repository\ChemodanLocationRepository.cs" />
     <Compile Include="Repository\InfoBlockItemRepository.cs" />
@@ -214,6 +220,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mappings\ChemodanTracking.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mappings\OrderInfoFile.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mappings\PaymentType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mappings\DeliveryType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mappings\OrderProduct.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mappings\Order.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mappings\OrderState.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

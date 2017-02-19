@@ -29,6 +29,8 @@ namespace Shop
 
             builder.RegisterType<MainPageBuilder>().As<IMainPageBuilder>();
 
+            builder.RegisterType<OrderBuilder>().As<IOrderBuilder>();
+
         }
     }
 }

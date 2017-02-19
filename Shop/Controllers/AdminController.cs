@@ -644,7 +644,6 @@ namespace Shop.Controllers
 
         public ActionResult ListArticles()
         {
-            ViewBag.Title = "Список статей";
             var model = new ArticlesModel();
             try
             {
@@ -705,14 +704,12 @@ namespace Shop.Controllers
                 result.topMenuItems = menuBuilder.BuildTopMenu();
                 if (idArticle.HasValue && idArticle.Value > 0)
                 {
-                    ViewBag.Title = "Изменение статьи";
                     var articleDB = dataService.Get<Article>(idArticle.Value);
                     articleDB.imgPath = imagesPath.GetImagesPath() +"/" +articleDB.imgPath;
                     result.article = articleDB;
                 }
                 else
                 {
-                    ViewBag.Title = "Добавление статьи";
                     result.article = new Article();
                 }
 

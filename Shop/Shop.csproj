@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\MailingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Models\AccountAdminModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\Builders\OrderBuilder.cs" />
     <Compile Include="Models\Builders\MainPageBuilder.cs" />
     <Compile Include="Models\MainPageModel.cs" />
     <Compile Include="Models\BrandModel.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Models\Builders\SKUModelBuilder.cs" />
     <Compile Include="Models\Builders\SkuViewerBuilder.cs" />
     <Compile Include="Models\ClientModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\ProviderModel.cs" />
     <Compile Include="Models\MailingModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
@@ -379,6 +382,7 @@
     <Content Include="Views\Admin\ChemodanLocationDataPartial.cshtml" />
     <Content Include="Views\Admin\SkuListChemodanTrackingPartial.cshtml" />
     <Content Include="Views\Admin\SkuChemodanTrackingDataPartial.cshtml" />
+    <Content Include="Views\Order\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

@@ -1,7 +1,6 @@
 ﻿@model Shop.Models.AccountAdminModel
 @{
     Page.Title = "Менеджер ролей";
-    ViewBag.Title = Page.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -91,7 +90,6 @@
         <table class="table table-bordered table-condensed">
             <tr>
                 <th>Логин</th>
-                <th>Скидка</th>
                 <th>Роль</th>
                 <th></th>
             </tr>
@@ -100,7 +98,6 @@
             {
                 <tr>
                     <td>@user.UserName</td>
-                    <td>@user.Discount%</td>
                     <td>
                         <ul>
                             @foreach (var role in user.roles)

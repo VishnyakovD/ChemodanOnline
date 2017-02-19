@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Shop.db"
+                   namespace="Shop.db.Entities">
+
+  <class name="OrderProduct">
+    <id name="Id" >
+      <generator class="identity" />
+    </id>
+    <property name="ProductId" />
+    <property name="ProductName" />
+    <property name="Article" />
+    <property name="PriceDay" />
+    <property name="FullPrice" />
+    <property name="Code" />
+    <property name="NaturalPrice" />
+  </class>
+
+</hibernate-mapping>

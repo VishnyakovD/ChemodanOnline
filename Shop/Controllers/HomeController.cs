@@ -95,14 +95,12 @@ namespace Shop.Controllers
             {
                 result.menu = menuBuilder.BuildMenu();
                 result.topMenuItems = menuBuilder.BuildTopMenu();
-                ViewBag.Title = "Ошибка!!! Нет такой записи!";
                 if (idArticle.HasValue && idArticle.Value > 0)
                 {
                     var articleDB = dataService.Get<Article>(idArticle.Value);
                     articleDB.imgPath = imagesPath.GetImagesPath() + "/" + articleDB.imgPath;
                     result.article = articleDB;
                     result.article.body = ConvertToHTMLString(articleDB.body);
-                    ViewBag.Title = articleDB.title;
                 }
             }
             catch (Exception err)

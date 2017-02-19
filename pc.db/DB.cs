@@ -153,6 +153,20 @@ namespace Shop.db
 				retvar = (IRepository<T>)(new ChemodanLocationRepository(session));
 			else if (typeof(T) == typeof(ChemodanTracking))
 				retvar = (IRepository<T>)(new ChemodanTrackingRepository(session));
+			else if (typeof(T) == typeof(Order))
+				retvar = (IRepository<T>)(new OrderRepository(session));
+			else if (typeof(T) == typeof(OrderProduct))
+				retvar = (IRepository<T>)(new OrderProductRepository(session));
+			else if (typeof(T) == typeof(DeliveryType))
+				retvar = (IRepository<T>)(new DeliveryTypeRepository(session));
+			else if (typeof(T) == typeof(PaymentType))
+				retvar = (IRepository<T>)(new PaymentTypeRepository(session));
+			else if (typeof(T) == typeof(OrderInfoFile))
+				retvar = (IRepository<T>)(new OrderInfoFileRepository(session));
+
+
+
+
 			else
                 retvar = new Repository<T>(session);
             return retvar;

@@ -18,6 +18,7 @@ namespace Shop.Models.Builders
         List<ShortSKUModel> ListHiddenSku(bool isHide);
         SkuViewerModel BuildHidden(bool isHide, int sort);
         List<ShortSKUModel> BuildListProductsByFilters(FilterFoDb filters);
+        List<ShortSKUModel> BuildListProductsByIds(long[] ids);
 
     }
 
@@ -107,6 +108,24 @@ namespace Shop.Models.Builders
             var model = new List<ShortSKUModel>();
 
             var tmpList = dataService.ListProductsByFilters(filters);
+            if (tmpList != null && tmpList.Count > 0)
+            {
+                model = tmpList.Select(item => new ShortSKUModel()
+                {
+                    articul = item.articul,
+                    id = item.id,
+                    price = item.chemodanType.priceDay,
+                    smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+                }).ToList();
+            }
+            return model;
+        }
+
+        public List<ShortSKUModel> BuildListProductsByIds(long[] ids)
+        {
+            var model = new List<ShortSKUModel>();
+
+            var tmpList = dataService.ListProductsByIds(ids);
             if (tmpList != null && tmpList.Count > 0)
             {
                 model = tmpList.Select(item => new ShortSKUModel()

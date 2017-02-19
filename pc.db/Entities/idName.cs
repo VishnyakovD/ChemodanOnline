@@ -20,4 +20,18 @@ namespace Shop.db.Entities
         Favorite=2,
         Default=999
     }
+
+    public static class TypesStreet
+    {
+        public static string Ylit { get; }= "улица";
+        public static string Pros { get; }= "проспект";
+        public static string Bulv { get; }= "бульвар";
+        public static string Pere { get; }= "переулок";
+        public static string Plos { get; }= "площадь";
+        public static string Typi { get; }= "тупик";
+
+        public static string[] Types { get; } = { Ylit, Pros, Bulv, Pere, Plos, Typi };
+    }
+
+
 }

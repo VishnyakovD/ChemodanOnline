@@ -67,7 +67,7 @@ var FilterModel = (function () {
                 break;
             default:
         }
-        $.post('/Home/ListProducts/', {
+        $.post('/Home/listProducts/', {
             filtersSp: JSON.stringify(this.FilterSpecifications),
             filtersTp: JSON.stringify(this.FilterChemodanTypes),
             filtersCt: JSON.stringify(this.FilterCategoryes)

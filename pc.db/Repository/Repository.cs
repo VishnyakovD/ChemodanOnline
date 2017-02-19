@@ -134,13 +134,13 @@ namespace Shop.db.Repository
 
 
 
-        public List<T> Many(int[] ids)
+        public List<T> Many(long[] ids)
         {
             return
                 new List<T>(
                     session
                     .CreateCriteria(typeof(T))
-                    .Add(Expression.In("Id", ids))
+                    .Add(Expression.In("id", ids))
                     .List<T>()
                 );
         }

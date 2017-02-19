@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     if (Model != null && Model.article != null && !string.IsNullOrEmpty(Model.article.title))
     {
-        ViewBag.Title = string.Format("{0}", Model.article.title);
         Page.Title = "Аренда чемоданов | Chemodan.online";
     }
 }
