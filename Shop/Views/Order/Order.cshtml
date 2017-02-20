@@ -3,6 +3,7 @@
 @using Shop.db.Entities
 @model OrderClientPage
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     if (Model != null)
     {
         Page.Title = "Аренда чемоданов | Chemodan.online";
@@ -59,7 +60,7 @@
                 <select class="form-control" name="@Model.Order.TypeStreet">
                     @foreach (var item in TypesStreet.Types)
                     {
-                         <option value="@item">@item</option>
+                        <option value="@item">@item</option>
                     }
                 </select>
             </div>
@@ -80,6 +81,79 @@
         </div>
     </div>
 
-    <div class="col-md-4"></div>
+    <div class="col-md-4">
+
+        <div class="row">
+            <div class="col-md-12">Ваш заказ</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <span>Доставка</span>
+            </div>
+            <div class="col-md-6">
+                <div class="radio-btns js-delivery-types">
+                    @{var selected = "selected";}
+                    @foreach (var delType in Model.DeliveryTypes)
+                    {
+                        <div class="@selected js-set-ratio js-delivery-type" data-id="@delType.Id">
+                            <span class="r1"><span class="r2"></span></span> @delType.Name
+                        </div>
+                        selected = "";
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <span>Доставка</span>
+            </div>
+            <div class="col-md-6">
+                <div class="radio-btns js-radio-btns">
+                    @{selected = "selected";}
+                    @foreach (var delType in Model.PaymentTypes)
+                    {
+                        <div class="@selected js-set-ratio js-payment-type" data-id="@delType.Id">
+                            <span class="r1"><span class="r2"></span></span> @delType.Name
+                        </div>
+                        selected = "";
+                    }
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <span>К оплате:</span>
+            </div>
+            <div class="col-md-6">
+                @*@{
+
+                    var priceCount = Model.Order.Products.Select(item => item.orderCount*item.price).Sum();
+                    var days = (Model.Order.To - Model.Order.From).Days;
+                    var summa = priceCount*days;
+                }*@
+                <div class="order-summ"><span class="js-order-summ">0</span> грн.</div>
+            </div>
+        </div>
+
+    </div>
 
 </div>
+
+
+@*
+    Дано:
+        Кол-во чемоданов одного артикла = X
+        Стоимость одного чемодана одного артикла = Y
+        Кол-во дней = Z
+
+    Найти СУММУ.
+
+    (X*Y)*Z=СУММА
+
+
+
+
+*@

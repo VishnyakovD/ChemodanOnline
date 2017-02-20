@@ -31,6 +31,8 @@ namespace Shop.Models.Builders
         {
             var model = new OrderClientPage();
             model.Order.Products = SkuViewerBuilder.BuildListProductsByIds(ids);
+            model.DeliveryTypes = dataService.List<DeliveryType>();
+            model.PaymentTypes = dataService.List<PaymentType>();
             model.topMenuItems = BuildTopMenu();
             return model;
         }

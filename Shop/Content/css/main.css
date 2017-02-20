@@ -214,6 +214,28 @@
   font-weight: 600;
   color: green; }
 
+.radio-btns div {
+  color: gray;
+  cursor: pointer; }
+  .radio-btns div .r1 {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    border-radius: 100%; }
+    .radio-btns div .r1 .r2 {
+      display: inline-block;
+      border-radius: 100%;
+      margin: 3px;
+      width: 12px;
+      height: 12px; }
+  .radio-btns div.selected {
+    color: black; }
+    .radio-btns div.selected .r1 {
+      border-color: black; }
+      .radio-btns div.selected .r1 .r2 {
+        background: black; }
+
 body {
   font-family: 'Ubuntu Condensed', sans-serif;
   padding-top: 10px;
@@ -221,30 +243,6 @@ body {
   body a, body a:link, body a:visited, body a:hover {
     text-decoration: none; }
 
-/*.block-menu{
-
-
-    .bread-crumbs{
-        display:block;
-        font-size:17px;
-        margin-top: 35px;
-
-        max-height:50px;
-        min-height:50px;
-
-       a, a:link, a:visited, a:hover {
-        display:inline-block;
-        padding: 15px 0;
-        color:#5965c7;
-        letter-spacing:1.25px;
-        text-decoration:none;
-
-          &.active{
-            border-bottom: 3px solid black;
-        }
-    }    
-    }
-}*/
 .head-text {
   font-size: 26px;
   font-weight: 500;

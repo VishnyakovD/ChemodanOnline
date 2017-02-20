@@ -64,6 +64,9 @@ namespace Shop.Models
         [DisplayName("Тип чемодана")]
         public long chemodanTypeId { get; set; }
 
+        [DisplayName("Цена в день")]
+        public decimal chemodanPriceDay { get; set; }
+
         public IList<PhotoBig> listPhoto { get; set; }
         public IList<Category> listCategory { get; set; }
         public IList<Specification> listSpecification { get; set; }

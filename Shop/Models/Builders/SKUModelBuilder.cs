@@ -95,6 +95,7 @@ namespace Shop.Models.Builders
                 if (sku.chemodanType!=null)
                 {
                     skuModel.chemodanTypeId = sku.chemodanType.id;
+                    skuModel.chemodanPriceDay = sku.chemodanType.priceDay;
                 }
 
                 skuModel.chemodanDaysRent = sku.chemodanDaysRent;

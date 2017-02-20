@@ -17,7 +17,7 @@
     <many-to-one name="OrderState" lazy="false" class="OrderState" />
     
     <bag name="Products" inverse="true" lazy="false" cascade="save-update">
-      <key column="ProductId"/>
+      <key column="OrderId"/>
       <one-to-many class="OrderProduct"/>
     </bag>
   </class>

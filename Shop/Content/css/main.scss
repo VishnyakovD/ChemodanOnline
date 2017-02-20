@@ -4,6 +4,7 @@
 @import "scss-styles/swiper.scss";
 @import "scss-styles/product.scss";
 @import "scss-styles/filters.scss";
+@import "scss-styles/order.scss";
 
 body{
     font-family: 'Ubuntu Condensed', sans-serif;
@@ -14,31 +15,6 @@ body{
         text-decoration:none;
     }
 }
-
-/*.block-menu{
-
-
-    .bread-crumbs{
-        display:block;
-        font-size:17px;
-        margin-top: 35px;
-
-        max-height:50px;
-        min-height:50px;
-
-       a, a:link, a:visited, a:hover {
-        display:inline-block;
-        padding: 15px 0;
-        color:#5965c7;
-        letter-spacing:1.25px;
-        text-decoration:none;
-
-          &.active{
-            border-bottom: 3px solid black;
-        }
-    }    
-    }
-}*/
 
 .head-text{
     font-size: 26px;

@@ -81,6 +81,7 @@ namespace Shop.db.Repository
                 var tmpSkus=new List<Sku>();
                 foreach (var sku in skus)
                 {
+                    var nextIter = false;
                     foreach (var skuSpec in sku.listSpecification)
                     {
                         foreach (var filterSpec in filters.Specifications)
@@ -88,7 +89,13 @@ namespace Shop.db.Repository
                             if (filterSpec.Id== skuSpec.staticspec.id&&filterSpec.Value==skuSpec.value)
                             {
                                 tmpSkus.Add(sku);
+                                nextIter = true;
+                                break;
                             }
+                        }
+                        if (nextIter)
+                        {
+                            break;
                         }
                     }
                 }
@@ -98,9 +105,22 @@ namespace Shop.db.Repository
 
             if (filters.ChemodanLocationID>0)
             {
-                var location = session.Get<ChemodanLocation>(filters.ChemodanLocationID);
-                skus =
-                    skus?.Where(sku => sku.listChemodanTracking.Any(track=>track.Location== location)).ToList();
+               // var location = session.Get<ChemodanLocation>(filters.ChemodanLocationID);
+                //skus =
+                  //  skus?.Where(sku => sku.listChemodanTracking.Where(track=>track.Location.id== filters.ChemodanLocationID).Any()).ToList();
+                var tmpSkus = new List<Sku>();
+                foreach (var sku in skus)
+                {
+                    foreach (var track in sku.listChemodanTracking)
+                    {
+                        if (track.Location.id== filters.ChemodanLocationID)
+                        {
+                            tmpSkus.Add(sku);
+                            break;
+                        }
+                    }
+                }
+                skus = tmpSkus;
             }
 
             return skus; 

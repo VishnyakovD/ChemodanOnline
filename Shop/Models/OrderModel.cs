@@ -9,12 +9,17 @@ namespace Shop.Models
    public class OrderClientPage : MenuModel
     {
        public OrderModel Order { get; set; }
+       public List<DeliveryType> DeliveryTypes { get; set; }
+       public List<PaymentType> PaymentTypes { get; set; }
+
        public string Description { get; set; }
        public string Keywords { get; set; }
 
        public OrderClientPage()
        {
             Order=new OrderModel();
+            DeliveryTypes=new List<DeliveryType>();
+            PaymentTypes=new List<PaymentType>();
        }
     }
 

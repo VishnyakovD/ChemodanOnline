@@ -95,14 +95,6 @@ class FilterModel {
                 this.listProductsQuery.html(data);
             });
     }
-
-
-       
-       // console.log(this.FilterSpecifications);
-
-
-    
-    
    }
 
 

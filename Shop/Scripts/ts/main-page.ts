@@ -7,7 +7,7 @@
         this.infoBlockItem = $(".js-info-block-item");
     }
 
-    GetInfoBlock(id:number, type:number):void {
+    getInfoBlock(id:number, type:number):void {
         $.post('/Admin/ShowInfoBlockItem/', { id: id, type: type }).done((data) => {
 
             switch (type) {
@@ -29,7 +29,7 @@ $(() => {
     mainPage = new MainPage();
 
     $(document).on("click", ".js-show-info-block-item", (e) => {
-        mainPage.GetInfoBlock($(e.currentTarget).data("id"), $(e.currentTarget).data("type"));
+        mainPage.getInfoBlock($(e.currentTarget).data("id"), $(e.currentTarget).data("type"));
     });
 
 

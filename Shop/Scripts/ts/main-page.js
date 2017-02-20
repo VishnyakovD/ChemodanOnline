@@ -3,7 +3,7 @@ var MainPage = (function () {
         this.caruselItem = $(".js-carusel-item");
         this.infoBlockItem = $(".js-info-block-item");
     }
-    MainPage.prototype.GetInfoBlock = function (id, type) {
+    MainPage.prototype.getInfoBlock = function (id, type) {
         var _this = this;
         $.post('/Admin/ShowInfoBlockItem/', { id: id, type: type }).done(function (data) {
             switch (type) {
@@ -22,6 +22,6 @@ var mainPage;
 $(function () {
     mainPage = new MainPage();
     $(document).on("click", ".js-show-info-block-item", function (e) {
-        mainPage.GetInfoBlock($(e.currentTarget).data("id"), $(e.currentTarget).data("type"));
+        mainPage.getInfoBlock($(e.currentTarget).data("id"), $(e.currentTarget).data("type"));
     });
 });
