@@ -52,6 +52,7 @@ namespace Shop.Models.Builders
                     articul = item.articul,
                     id = item.id,
                     price = item.chemodanType.priceDay,
+                    name=item.name,
                     smalPhotoPath = imagesPath.GetImagesPath()+item.smalPhoto.path
                 }).ToList();
             }

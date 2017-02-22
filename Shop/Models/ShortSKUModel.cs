@@ -12,6 +12,7 @@ namespace Shop.Models
     {
         public long id { get; set; }
         public string articul { get; set; }
+        public string name { get; set; }
         public decimal price { get; set; }
         public string smalPhotoPath { get; set; }
         public int maxCount { get; set; }
@@ -20,9 +21,6 @@ namespace Shop.Models
 
         public ShortSKUModel()
         {
-            articul = string.Empty;
-            price = 0;
-            smalPhotoPath = string.Empty;
         }
 
        

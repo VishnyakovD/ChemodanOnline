@@ -53,12 +53,13 @@ namespace Shop.Models.Builders
         public List<ShortSKUModel> ListHiddenSku(bool isHide)
         {
 
-            return dataService.AllHiddenSku(isHide).OrderBy(sku => sku.sortPriority).Select(sku => new ShortSKUModel()
+            return dataService.AllHiddenSku(isHide).OrderBy(sku => sku.sortPriority).Select(item => new ShortSKUModel()
                 {
-                    id = sku.id,
-                    articul = sku.articul,
-                    price = sku.chemodanType.priceDay,
-                    smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (sku.smalPhoto ?? new Photo() { path = "box.png" }).path)
+                id = item.id,
+                articul = item.articul,
+                price = item.chemodanType.priceDay,
+                name = item.name,
+                smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList(); 
         }
 
@@ -115,6 +116,7 @@ namespace Shop.Models.Builders
                     articul = item.articul,
                     id = item.id,
                     price = item.chemodanType.priceDay,
+                    name = item.name,
                     smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
                 }).ToList();
             }
@@ -133,6 +135,7 @@ namespace Shop.Models.Builders
                     articul = item.articul,
                     id = item.id,
                     price = item.chemodanType.priceDay,
+                    name = item.name,
                     smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
                 }).ToList();
             }

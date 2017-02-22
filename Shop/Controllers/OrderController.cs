@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Web.Http.Routing.Constraints;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.WebPages;
@@ -35,17 +36,17 @@ namespace Shop.Controllers
             OrderBulder = orderBulder;
         }
 
-        public ActionResult Index(long[] ids)
+        public ActionResult Index(string ids)
         {
             var model = new OrderClientPage();
             try
             {
-                model = OrderBulder.Build(ids);
-
+                long[] idss = ids.Split(',').Select(long.Parse).ToArray();
+                model = OrderBulder.Build(idss);
             }
             catch (Exception err)
             {
-                //return Content(err.ToString(), "text/html");
+                return Content(err.ToString(), "text/html");
             }
             return View("Order",model);
         }
