@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using Shop.DataService;
 using Shop.db.Entities;
 using Shop.db.Repository;
@@ -27,7 +28,10 @@ namespace Shop.Models.Builders
         private IImagesPath imagesPath;
         private ISKUModelBuilder SKUModelBuilder;
         private IAccountAdminModelBuilder AccountAdminModelBuilder;
+        public long DefaultValueHasInStock { set; get; }
+
         public SkuViewerBuilder(IDataService dataService,
+
             IImagesPath imagesPath,
             ISKUModelBuilder iSKUModelBuilder,
             IAccountAdminModelBuilder iAccountAdminModelBuilder)
@@ -36,6 +40,7 @@ namespace Shop.Models.Builders
             this.imagesPath = imagesPath;
             this.SKUModelBuilder = iSKUModelBuilder;
             this.AccountAdminModelBuilder = iAccountAdminModelBuilder;
+            DefaultValueHasInStock = long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
         }
 
         //private IEnumerable<ShortSKUModel> ListSkuByCategory(StaticCategory cat)
@@ -136,7 +141,8 @@ namespace Shop.Models.Builders
                     id = item.id,
                     price = item.chemodanType.priceDay,
                     name = item.name,
-                    smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+                    maxCount = item.listChemodanTracking.Count(i => i.Location.id == DefaultValueHasInStock),
+                smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
                 }).ToList();
             }
             return model;

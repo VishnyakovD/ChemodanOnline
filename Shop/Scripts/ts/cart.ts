@@ -15,11 +15,13 @@ class Cart {
     dateFrom: Date;
     dateTo: Date;
     count:number;
+    days:number;
 
     constructor() {
         this.listProducts = [];
         this.dateFrom = new Date();
         this.dateTo = new Date();
+        this.setDays();
         this.getCartCookie();
     }
 
@@ -81,12 +83,14 @@ class Cart {
         return this.listProducts.map((item) => { return item.productId; });
     }
 
-    getDays(): number {
-        var oneDay = 1000 * 60 * 60 * 24;
+    setDays(): void {
         var t = this.dateTo.getTime();
         var f = this.dateFrom.getTime();
-        var days: number = Math.round(Math.abs((t - f) / oneDay));
-        return days;
+        var days: number = Math.round(Math.abs((t - f) / 86400000));
+        if (days<1) {
+            days = 1;
+        }
+        this.days = days;
     }
 }
 
@@ -108,44 +112,61 @@ class CartManager {
         }
     }
 
+    setSummOneProductInOrderPage(id: JQuery, price: number, count: number): void {
+        var page1 = $(".js-order-page1");
+        if (page1.length > 0) {
+            page1.find(`.js-summ-item[data-id=${id}]`).html((price*count*this.cart.days).toString());
+        }
+    }
+
     setCountAllProducts(): void {
         var page1 = $(".js-order-page1");
         if (page1.length>0) {
             this.cart.listProducts.forEach(item => {
-                var element = $(`.js-count-item[data-id=${item.productId}]`).html(item.count.toString());
+                page1.find(`.js-count-item[data-id=${item.productId}]`).html(item.count.toString());
             });
         }
+    }
 
+    setSummAllProducts(): void {
+        var page1 = $(".js-order-page1");
+        if (page1.length > 0) {
+            this.cart.listProducts.forEach(item => {
+                var summ = item.count * item.price * this.cart.days;
+                page1.find(`.js-summ-item[data-id=${item.productId}]`).html(summ.toString());
+            });
+        }
     }
 
     setCartSum(): void {
-        var summ: number = 0;
-        this.cart.listProducts.forEach((item) => {
-            summ += (item.count * item.price);
-        });
-
-        var days = this.cart.getDays();
-        if (days>0) {
-            summ = summ * days; 
+        if (this.cartSum.length>0) {
+            var summ: number = 0;
+            this.cart.listProducts.forEach((item) => {
+                summ += (item.count * item.price);
+            });
+            
+            summ = summ * this.cart.days;
+            this.cartSum.html(summ.toString()); 
         }
-        this.cartSum.html(summ.toString());
     }
 
     setProductsCount(): void {
-        var summ = 0;
-        this.cart.listProducts.forEach((item) => {
-            summ += item.count;
-        });
-        this.cartCount.html(summ.toString());
+        if (this.cartCount.length>0) {
+            var summ = 0;
+            this.cart.listProducts.forEach((item) => {
+                summ += item.count;
+            });
+            this.cartCount.html(summ.toString());
+        }
     }
 }
-
 
 var cartManager: CartManager;
 
 $(() => {
     cartManager = new CartManager();
     cartManager.setCountAllProducts();
+    cartManager.setSummAllProducts();
     if ($(".js-cart").length > 0) {
         cartManager.setProductsCount();
 
@@ -163,17 +184,22 @@ $(() => {
             var count = cartManager.cart.addToCart(itemId, itemMax, itemPrice);
 
             cartManager.setProductsCount();
-            cartManager.setCountOneProductInOrderPage($(e.currentTarget),count);
+            cartManager.setCountOneProductInOrderPage($(e.currentTarget), count);
+            cartManager.setSummOneProductInOrderPage(itemId, itemPrice,count);
+            cartManager.setCartSum();
         });
     }
 
     if ($(".js-removecart").length > 0) {
         $(document).on("click", ".js-removecart", (e) => {
             var itemId = $(e.currentTarget).data("id");
+            var itemPrice = $(e.currentTarget).data("price");
+            var count = cartManager.cart.removeFromCart(itemId);
 
-            var count =cartManager.cart.removeFromCart(itemId);
             cartManager.setProductsCount();
             cartManager.setCountOneProductInOrderPage($(e.currentTarget), count);
+            cartManager.setSummOneProductInOrderPage(itemId, itemPrice,count);
+            cartManager.setCartSum();
         });
     }
 

@@ -1,10 +1,3 @@
-var RadioButton = (function () {
-    function RadioButton() {
-    }
-    RadioButton.prototype.setRadio = function () {
-    };
-    return RadioButton;
-}());
 $(function () {
     var radioButtons = $(".radio-btns");
     if (radioButtons.length > 0) {
@@ -14,4 +7,3 @@ $(function () {
         });
     }
 });
-//# sourceMappingURL=controls.js.map

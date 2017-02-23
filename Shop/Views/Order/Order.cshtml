@@ -1,4 +1,5 @@
-﻿@using Shop.Models
+﻿@using System.Globalization
+@using Shop.Models
 @using AdvancedClasses
 @using Shop.db.Entities
 @model OrderClientPage
@@ -7,7 +8,6 @@
     if (Model != null)
     {
         Page.Title = "Аренда чемоданов | Chemodan.online";
-
         @section head {
             <meta name="description" content="@Model.Description">
             <meta name="keywords" content="@Model.Keywords">
@@ -49,16 +49,16 @@
                     </div>
                     <div class="col-md-2">
                         <div class="js-control-count">
-                            <span class="js-removecart" data-id="@item.id">-</span>
+                            <span class="js-removecart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)">-</span>
                             <span class="js-count-item" data-id="@item.id">0</span>
-                            <span class="js-addcart" data-id="@item.id" data-price="@item.price.ToString("##.##")" data-max="@item.maxCount">+</span>
+                            <span class="js-addcart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)" data-max="@item.maxCount">+</span>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <span>@item.price</span>
+                        <span>@item.price.ToString("F2", CultureInfo.InvariantCulture)</span>
                     </div>
                     <div class="col-md-2">
-                        <span>@item.price</span>
+                        <span class="js-summ-item" data-id="@item.id">0</span>
                         <span>    X</span>
                     </div>
                 </div>

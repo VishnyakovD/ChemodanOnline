@@ -11,6 +11,7 @@ var Cart = (function () {
         this.listProducts = [];
         this.dateFrom = new Date();
         this.dateTo = new Date();
+        this.setDays();
         this.getCartCookie();
     }
     Cart.prototype.addToCart = function (id, maxCount, price) {
@@ -66,12 +67,14 @@ var Cart = (function () {
         }
         return this.listProducts.map(function (item) { return item.productId; });
     };
-    Cart.prototype.getDays = function () {
-        var oneDay = 1000 * 60 * 60 * 24;
+    Cart.prototype.setDays = function () {
         var t = this.dateTo.getTime();
         var f = this.dateFrom.getTime();
-        var days = Math.round(Math.abs((t - f) / oneDay));
-        return days;
+        var days = Math.round(Math.abs((t - f) / 86400000));
+        if (days < 1) {
+            days = 1;
+        }
+        this.days = days;
     };
     return Cart;
 }());
@@ -87,31 +90,48 @@ var CartManager = (function () {
             countControl.find(".js-count-item").html(count.toString());
         }
     };
+    CartManager.prototype.setSummOneProductInOrderPage = function (id, price, count) {
+        var page1 = $(".js-order-page1");
+        if (page1.length > 0) {
+            page1.find(".js-summ-item[data-id=" + id + "]").html((price * count * this.cart.days).toString());
+        }
+    };
     CartManager.prototype.setCountAllProducts = function () {
         var page1 = $(".js-order-page1");
         if (page1.length > 0) {
             this.cart.listProducts.forEach(function (item) {
-                var element = $(".js-count-item[data-id=" + item.productId + "]").html(item.count.toString());
+                page1.find(".js-count-item[data-id=" + item.productId + "]").html(item.count.toString());
+            });
+        }
+    };
+    CartManager.prototype.setSummAllProducts = function () {
+        var _this = this;
+        var page1 = $(".js-order-page1");
+        if (page1.length > 0) {
+            this.cart.listProducts.forEach(function (item) {
+                var summ = item.count * item.price * _this.cart.days;
+                page1.find(".js-summ-item[data-id=" + item.productId + "]").html(summ.toString());
             });
         }
     };
     CartManager.prototype.setCartSum = function () {
-        var summ = 0;
-        this.cart.listProducts.forEach(function (item) {
-            summ += (item.count * item.price);
-        });
-        var days = this.cart.getDays();
-        if (days > 0) {
-            summ = summ * days;
+        if (this.cartSum.length > 0) {
+            var summ = 0;
+            this.cart.listProducts.forEach(function (item) {
+                summ += (item.count * item.price);
+            });
+            summ = summ * this.cart.days;
+            this.cartSum.html(summ.toString());
         }
-        this.cartSum.html(summ.toString());
     };
     CartManager.prototype.setProductsCount = function () {
-        var summ = 0;
-        this.cart.listProducts.forEach(function (item) {
-            summ += item.count;
-        });
-        this.cartCount.html(summ.toString());
+        if (this.cartCount.length > 0) {
+            var summ = 0;
+            this.cart.listProducts.forEach(function (item) {
+                summ += item.count;
+            });
+            this.cartCount.html(summ.toString());
+        }
     };
     return CartManager;
 }());
@@ -119,6 +139,7 @@ var cartManager;
 $(function () {
     cartManager = new CartManager();
     cartManager.setCountAllProducts();
+    cartManager.setSummAllProducts();
     if ($(".js-cart").length > 0) {
         cartManager.setProductsCount();
         $(document).on("click", ".js-cart", function (e) {
@@ -134,18 +155,22 @@ $(function () {
             var count = cartManager.cart.addToCart(itemId, itemMax, itemPrice);
             cartManager.setProductsCount();
             cartManager.setCountOneProductInOrderPage($(e.currentTarget), count);
+            cartManager.setSummOneProductInOrderPage(itemId, itemPrice, count);
+            cartManager.setCartSum();
         });
     }
     if ($(".js-removecart").length > 0) {
         $(document).on("click", ".js-removecart", function (e) {
             var itemId = $(e.currentTarget).data("id");
+            var itemPrice = $(e.currentTarget).data("price");
             var count = cartManager.cart.removeFromCart(itemId);
             cartManager.setProductsCount();
             cartManager.setCountOneProductInOrderPage($(e.currentTarget), count);
+            cartManager.setSummOneProductInOrderPage(itemId, itemPrice, count);
+            cartManager.setCartSum();
         });
     }
     if ($(".js-order-summ").length > 0) {
         cartManager.setCartSum();
     }
 });
-//# sourceMappingURL=cart.js.map

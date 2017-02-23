@@ -1,12 +1,4 @@
-﻿class RadioButton {
-
-    setRadio() {
-        
-    }
-}
-
-
-$(() => {
+﻿$(() => {
 
     var radioButtons = $(".radio-btns");
     if (radioButtons.length>0) {

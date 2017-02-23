@@ -23,4 +23,3 @@ $(function () {
         }
     });
 });
-//# sourceMappingURL=menu.js.map

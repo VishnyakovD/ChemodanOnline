@@ -1,4 +1,5 @@
-﻿@using Shop.Models
+﻿@using System.Globalization
+@using Shop.Models
 @model SKUModel
 @{
     if (Model != null)
@@ -130,15 +131,13 @@
           <div class="pull-right">
             <span class="priceLabel">Цена</span>
 
-            @if (Model.price > Model.priceAct)
-            {
-                <span class="priceBgSkuInfo">
-                    @Model.price.ToString("####")
-                    <span class="currencyBg">грн</span>
+   
+                <span>
+                  @Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)
+                    <span>грн</span>
                 </span>
-            }
-            <span class="label priceSmSkuInfo">@Model.priceAct.ToString("####")<span class="currencySm currencySmCart">грн</span></span>
-            <span class="btn btn-info-block js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("##.##")" data-max="@Model.maxCount">Добавить</span>
+      
+            <span class="btn btn-info-block js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount">Добавить</span>
 
           </div>
 

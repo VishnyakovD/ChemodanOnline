@@ -20,11 +20,13 @@ namespace Shop.Models.Builders
     {
         private IImagesPath ImagesPath;
         private ISkuViewerBuilder SkuViewerBuilder;
+        public long DefaultValueHasInStock { set; get; }
         public OrderBuilder(IDataService dataService, IImagesPath imagesPath, ISkuViewerBuilder skuViewerBuilder)
             : base(dataService, imagesPath)
         {
             this.ImagesPath = imagesPath;
             this.SkuViewerBuilder = skuViewerBuilder;
+            DefaultValueHasInStock = long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
         }
 
         public OrderClientPage Build(long[] ids)

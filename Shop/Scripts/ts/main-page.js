@@ -25,4 +25,3 @@ $(function () {
         mainPage.getInfoBlock($(e.currentTarget).data("id"), $(e.currentTarget).data("type"));
     });
 });
-//# sourceMappingURL=main-page.js.map
