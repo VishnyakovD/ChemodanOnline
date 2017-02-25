@@ -32,6 +32,8 @@ namespace Shop.Models.Builders
         public OrderClientPage Build(long[] ids)
         {
             var model = new OrderClientPage();
+            model.Order.From=DateTime.Now;
+            model.Order.To=DateTime.Now.AddDays(+1);
             model.Order.Products = SkuViewerBuilder.BuildListProductsByIds(ids);
             model.DeliveryTypes = dataService.List<DeliveryType>();
             model.PaymentTypes = dataService.List<PaymentType>();
