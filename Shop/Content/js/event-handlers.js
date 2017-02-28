@@ -34,7 +34,6 @@ function loadDialogContent(url) {
         success: function (data) {
             $('#DialogDataEditBody').html(data);
             $("#DialogDataEdit").dialog("open");
-            $("textarea:not([textbox=true]").click();
         }
     });
 }

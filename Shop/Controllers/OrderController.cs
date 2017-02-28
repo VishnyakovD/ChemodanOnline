@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Web.Http;
 using System.Web.Http.Routing.Constraints;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -49,6 +50,19 @@ namespace Shop.Controllers
                 return Content(err.ToString(), "text/html");
             }
             return View("Order",model);
+        }
+
+        public ActionResult CreateOrder(string order)
+        {
+            try
+            {
+        
+            }
+            catch (Exception err)
+            {
+                return Content(err.ToString(), "text/html");
+            }
+            return Content("Ла ла ла, заказ создан", "text/html");
         }
 
 

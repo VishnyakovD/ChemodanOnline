@@ -1,3 +1,10 @@
+var InputErrorItem = (function () {
+    function InputErrorItem(inputName, inputError) {
+        this.inputName = inputName;
+        this.inputError = inputError;
+    }
+    return InputErrorItem;
+}());
 var CartItem = (function () {
     function CartItem(productId, count, price) {
         this.productId = productId;
@@ -10,8 +17,8 @@ var Cart = (function () {
     function Cart() {
         var date = new Date();
         this.listProducts = [];
-        this.dateFrom = new Date(date.setHours(0, 0, 0, 0));
-        this.dateTo = new Date(date.setHours(23, 59, 59, 99));
+        this.from = new Date(date.setHours(0, 0, 0, 0));
+        this.to = new Date(date.setHours(23, 59, 59, 99));
         this.setDays();
         this.getCartCookie();
     }
@@ -60,8 +67,8 @@ var Cart = (function () {
             return;
         var cartCook = JSON.parse($.cookie("cart"));
         this.listProducts = cartCook.listProducts;
-        this.dateFrom = new Date(cartCook.dateFrom.toString());
-        this.dateTo = new Date(cartCook.dateTo.toString());
+        this.from = new Date(cartCook.from.toString());
+        this.to = new Date(cartCook.to.toString());
     };
     Cart.prototype.getProductIds = function () {
         if (this.listProducts.length < 1) {
@@ -70,8 +77,8 @@ var Cart = (function () {
         return this.listProducts.map(function (item) { return item.productId; });
     };
     Cart.prototype.setDays = function () {
-        var t = this.dateTo.getTime();
-        var f = this.dateFrom.getTime();
+        var t = this.to.getTime();
+        var f = this.from.getTime();
         var days = Math.ceil(((t - f) / 86400000));
         if (days < 1) {
             days = 1;
@@ -79,10 +86,56 @@ var Cart = (function () {
         this.days = days;
     };
     Cart.prototype.setDatesFromAndTo = function (from, to) {
-        this.dateFrom = new Date(new Date(from).setHours(0, 0, 0, 0));
-        this.dateTo = new Date(new Date(to).setHours(23, 59, 59, 99));
+        this.from = new Date(new Date(from).setHours(0, 0, 0, 0));
+        this.to = new Date(new Date(to).setHours(23, 59, 59, 99));
         this.setDays();
         this.setCartCookie();
+    };
+    Cart.prototype.validate = function () {
+        var arrors = [];
+        if (this.from.toString() === "Invalid Date" || this.from.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0)) {
+            arrors.push(new InputErrorItem("From", ""));
+        }
+        if (this.to.toString() === "Invalid Date" || this.to.setHours(23, 59, 59, 99) <= this.from.setHours(23, 59, 59, 99)) {
+            arrors.push(new InputErrorItem("To", ""));
+        }
+        if (this.clientEmail === "" || !this.clientEmail.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,}$/)) {
+            arrors.push(new InputErrorItem("ClientEmail", ""));
+        }
+        if (this.clientFirstName === "") {
+            arrors.push(new InputErrorItem("ClientFirstName", ""));
+        }
+        if (this.clientLastName === "") {
+            arrors.push(new InputErrorItem("ClientLastName", ""));
+        }
+        if (this.clientPhone === "") {
+            arrors.push(new InputErrorItem("ClientPhone", ""));
+        }
+        if (this.paymentType < 1) {
+            arrors.push(new InputErrorItem("PaymentType", ""));
+        }
+        if (this.deliveryType === 2 || this.deliveryType === 3) {
+            //arrors.push(new InputErrorItem("DeliveryType", ""));
+            if (this.city === "") {
+                arrors.push(new InputErrorItem("City", ""));
+            }
+            if (this.flat === "") {
+                arrors.push(new InputErrorItem("Flat", ""));
+            }
+            if (this.home === "") {
+                arrors.push(new InputErrorItem("Home", ""));
+            }
+            if (this.typeStreet === "") {
+                arrors.push(new InputErrorItem("TypeStreet", ""));
+            }
+            if (this.level === "") {
+                arrors.push(new InputErrorItem("Level", ""));
+            }
+            if (this.street === "") {
+                arrors.push(new InputErrorItem("Street", ""));
+            }
+        }
+        return arrors;
     };
     return Cart;
 }());
@@ -149,7 +202,7 @@ var CartManager = (function () {
     };
     CartManager.prototype.setDateFrom = function (event) {
         var date = new Date(event.target.value);
-        this.cart.dateFrom = new Date(date.setHours(0, 0, 0, 0));
+        this.cart.from = new Date(date.setHours(0, 0, 0, 0));
         this.cart.setDays();
         this.setCartSum();
         this.setCountAllProducts();
@@ -157,11 +210,32 @@ var CartManager = (function () {
     };
     CartManager.prototype.setDateTo = function (event) {
         var date = new Date(event.target.value);
-        this.cart.dateTo = new Date(date.setHours(23, 59, 59, 99));
+        this.cart.to = new Date(date.setHours(23, 59, 59, 99));
         this.cart.setDays();
         this.setCartSum();
         this.setCountAllProducts();
         this.setSummAllProducts();
+    };
+    CartManager.prototype.validateCart = function () {
+        var errors = this.cart.validate();
+        var orderPages = $(".js-order-pages");
+        orderPages.find(".error").removeClass("error");
+        errors.forEach(function (item) {
+            orderPages.find("[name=" + item.inputName + "]").addClass("error");
+        });
+        if (errors.length > 0) {
+            return false;
+        }
+        return true;
+    };
+    CartManager.prototype.visibilityAddres = function (visible) {
+        var orderPage = $(".js-order-pages");
+        if (visible) {
+            orderPage.find(".js-addres").removeClass("hide");
+        }
+        else {
+            orderPage.find(".js-addres").addClass("hide");
+        }
     };
     return CartManager;
 }());
@@ -175,7 +249,7 @@ $(function () {
                 window.location.href = $(e.currentTarget).find("div").data("href") + "?ids=" + cartManager.cart.getProductIds();
             }
             else {
-                $("#ServerMessage").html("ваша корзина пуста");
+                message.showMessage("ваша корзина пуста");
             }
         });
     }
@@ -196,7 +270,6 @@ $(function () {
             var itemId = $(e.currentTarget).data("id");
             var itemPrice = $(e.currentTarget).data("price");
             var itemRemoveAll = $(e.currentTarget).data("remove-all");
-            console.log(itemRemoveAll);
             var count = 0;
             if (itemRemoveAll == "true") {
                 count = cartManager.cart.removeFromCart(itemId, true);
@@ -215,21 +288,38 @@ $(function () {
     }
     if ($(".js-confirm-order").length > 0) {
         $(document).on("click", ".js-confirm-order", function (e) {
-            //ClientLastName
-            //ClientFirstName
-            //ClientEmail
-            //ClientPhone
-            //City
-            //Home
-            //TypeStreet
-            //Level
-            //Street
-            //Flat
-            //DeliveryType
-            //PaymentType
-            //
-            //
-            //
+            var orderPage = $(".js-order-pages");
+            if (orderPage.length > 0) {
+                cartManager.cart.clientLastName = orderPage.find("[name=ClientLastName]").val();
+                cartManager.cart.clientFirstName = orderPage.find("[name=ClientFirstName]").val();
+                cartManager.cart.clientEmail = orderPage.find("[name=ClientEmail]").val();
+                cartManager.cart.clientPhone = orderPage.find("[name=ClientPhone]").val();
+                cartManager.cart.city = orderPage.find("[name=City]").val();
+                cartManager.cart.home = orderPage.find("[name=Home]").val();
+                cartManager.cart.typeStreet = orderPage.find("[name=TypeStreet]").val();
+                cartManager.cart.level = orderPage.find("[name=Level]").val();
+                cartManager.cart.street = orderPage.find("[name=Street]").val();
+                cartManager.cart.flat = orderPage.find("[name=Flat]").val();
+                cartManager.cart.deliveryType = parseInt(orderPage.find("[name=DeliveryType]").val());
+                cartManager.cart.paymentType = parseInt(orderPage.find("[name=PaymentType]").val());
+                if (cartManager.validateCart()) {
+                    $.post("/Order/CreateOrder/", { order: JSON.stringify(cartManager.cart) })
+                        .done(function (result) {
+                        message.showMessage(result);
+                        //если заказ создан нужно почистить куки и показать всплывающее окно с крестиком
+                    });
+                }
+            }
+        });
+    }
+    if ($(".js-delivery-type").length > 0) {
+        $(document).on("click", ".js-delivery-type", function (e) {
+            if ($(e.currentTarget).data("id") === 2 || $(e.currentTarget).data("id") === 3) {
+                cartManager.visibilityAddres(true);
+            }
+            else {
+                cartManager.visibilityAddres(false);
+            }
         });
     }
     if ($(".js-card-dates").length > 0) {

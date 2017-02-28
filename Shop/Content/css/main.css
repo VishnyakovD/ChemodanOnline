@@ -236,6 +236,10 @@
       .radio-btns div.selected .r1 .r2 {
         background: black; }
 
+input.error, span.error, div.error {
+  border: 1px solid #fe8080;
+  background-color: rgba(255, 109, 109, 0.05); }
+
 body {
   font-family: 'Ubuntu Condensed', sans-serif;
   padding-top: 10px;

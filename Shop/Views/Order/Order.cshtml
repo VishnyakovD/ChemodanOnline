@@ -143,43 +143,44 @@
                         <input class="form-control" type="text" name="ClientPhone" value="@Model.Order.ClientPhone" />
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-12">Адрес доставки</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Город</label>
-                        <input class="form-control" type="text" name="City" value="@Model.Order.City" />
+                <div class="js-addres hide">
+                    <div class="row">
+                        <div class="col-md-12">Адрес доставки</div>
                     </div>
-                    <div class="col-md-6">
-                        <label>Дом</label>
-                        <input class="form-control" type="text" name="Home" value="@Model.Order.Home" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Город</label>
+                            <input class="form-control" type="text" name="City" value="@Model.Order.City" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Дом</label>
+                            <input class="form-control" type="text" name="Home" value="@Model.Order.Home" />
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Тип улицы</label>
-                        <select class="form-control" name="TypeStreet">
-                            @foreach (var item in TypesStreet.Types)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Тип улицы</label>
+                            <select class="form-control" name="TypeStreet">
+                                @foreach (var item in TypesStreet.Types)
                         {
-                                <option value="@item">@item</option>
+                                    <option value="@item">@item</option>
                         }
-                        </select>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Этаж</label>
+                            <input class="form-control" type="text" name="Level" value="@Model.Order.Level" />
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label>Этаж</label>
-                        <input class="form-control" type="text" name="Level" value="@Model.Order.Level" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Улица</label>
-                        <input class="form-control" type="text" name="Street" value="@Model.Order.Street" />
-                    </div>
-                    <div class="col-md-6">
-                        <label>Квартира</label>
-                        <input class="form-control" type="text" name="Flat" value="@Model.Order.Flat" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Улица</label>
+                            <input class="form-control" type="text" name="Street" value="@Model.Order.Street" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Квартира</label>
+                            <input class="form-control" type="text" name="Flat" value="@Model.Order.Flat" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -197,13 +198,13 @@
                         <div class="radio-btns js-delivery-types">
                             @{var selected = "selected";}
                             @foreach (var delType in Model.DeliveryTypes)
-                        {
-                                <div class="@selected js-set-ratio js-delivery-type" data-id="@delType.Id">
-                                    <span class="r1"><span class="r2"></span></span> @delType.Name
-                                </div>
-                            selected = "";
-                        }
-                            <input type="hidden" name="DeliveryType" value="@Model.Order.DeliveryType" />
+                                {
+                                        <div class="@selected js-set-ratio js-delivery-type" data-id="@delType.Id">
+                                            <span class="r1"><span class="r2"></span></span> @delType.Name
+                                        </div>
+                                    selected = "";
+                                }
+                            <input type="hidden" name="DeliveryType" value="@Model.DeliveryTypes.First().Id" />
                         </div>
                     </div>
                 </div>
@@ -216,13 +217,13 @@
                         <div class="radio-btns js-radio-btns">
                             @{selected = "selected";}
                             @foreach (var delType in Model.PaymentTypes)
-                        {
-                                <div class="@selected js-set-ratio js-payment-type" data-id="@delType.Id">
-                                    <span class="r1"><span class="r2"></span></span> @delType.Name
-                                </div>
-                            selected = "";
-                        }
-                            <input type="hidden" name="PaymentType" value="@Model.Order.PaymentType" />
+                            {
+                                    <div class="@selected js-set-ratio js-payment-type" data-id="@delType.Id">
+                                        <span class="r1"><span class="r2"></span></span> @delType.Name
+                                    </div>
+                                selected = "";
+                            }
+                            <input type="hidden" name="PaymentType" value="@Model.PaymentTypes.First().Id" />
                         </div>
                     </div>
                 </div>
