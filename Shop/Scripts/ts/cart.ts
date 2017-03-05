@@ -59,14 +59,15 @@ class Cart {
             if (item[0].count < maxCount) {
                 item[0].count += 1;
                 countResult = item[0].count;
-                $("#ServerMessage").html("товар добавлен в корзину");
+                message.showMessage("товар добавлен в корзину");
             } else {
                 countResult = item[0].count;
-                $("#ServerMessage").html("нельзя добавить");
+                message.showMessage("нельзя добавить");
             }
             
         } else {
             this.listProducts.push(new CartItem(id, 1, price));
+            message.showMessage("товар добавлен в корзину");
             countResult = 1;
         }
         this.setCartCookie();
@@ -131,10 +132,12 @@ class Cart {
     validate():InputErrorItem [] {
         var arrors = [];
 
-        if (this.from.toString() ==="Invalid Date" || this.from.setHours(0, 0, 0, 0)<new Date().setHours(0, 0, 0, 0) ) {
+        if (this.from.toString() === "Invalid Date" || this.from.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0) ) {
             arrors.push(new InputErrorItem("From", ""));
         }
-        if (this.to.toString() === "Invalid Date" || this.to.setHours(23, 59, 59, 99) <= this.from.setHours(23, 59, 59, 99)) {
+
+        var dateFrom = new Date(this.from.toDateString());
+        if (this.to.toString() === "Invalid Date" || this.to.setHours(23, 59, 59, 99) <= dateFrom.setHours(23, 59, 59, 99)) {
             arrors.push(new InputErrorItem("To", ""));
         }
 

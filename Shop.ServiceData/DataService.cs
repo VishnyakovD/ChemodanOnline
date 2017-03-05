@@ -26,7 +26,7 @@ namespace Shop.DataService
         List<Order> ListOrdersByDeliveryType(long deliveryType);
         List<Order> ListOrdersByPaymentType(long paymentType);
         List<Order> ListOrdersByOrderState(long state);
-
+        long AddOrUpdateOrder(Order order);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -1172,6 +1172,16 @@ namespace Shop.DataService
                     var orderDb = db.GetRepository<Order>().TryOne(order.Id);
                     if (orderDb == null)
                     {
+                        var skuList = db.GetRepository<Sku>().Many(order.Products.Select(item=>item.ProductId).Distinct().ToArray());
+                        foreach (var item in order.Products)
+                        {
+                            var tmpItem = skuList.First(elem => elem.id == item.ProductId);
+                            item.Article = tmpItem.articul;
+                            item.FullPrice = tmpItem.price;
+                            item.NaturalPrice = tmpItem.priceAct;
+                            item.PriceDay = tmpItem.chemodanType.priceDay;
+                            item.ProductName = tmpItem.name;
+                        }
                         result = db.GetRepository<Order>().Add(order).Id;
                     }
                     else
@@ -1183,6 +1193,7 @@ namespace Shop.DataService
                         orderDb.OrderState = order.OrderState;
                         orderDb.PaymentType = order.PaymentType;
                         orderDb.Pdf = order.Pdf;
+
                         if (orderDb.Client == null)
                         {
                             orderDb.Client=new Client();
@@ -1190,14 +1201,14 @@ namespace Shop.DataService
                         tmpId = orderDb.Client.id;
                         orderDb.Client = order.Client;
                         orderDb.Client.id = tmpId;
-                        tmpId = 0;
+                        
                         if (orderDb.Client.editAdress==null)
                         {
                             orderDb.Client.editAdress=new EditAdress();
                         }
-                        tmpId = orderDb.Client.editAdress.id;
+                        order.Client.editAdress.id= orderDb.Client.editAdress.id;
                         orderDb.Client.editAdress = order.Client.editAdress;
-                        orderDb.Client.editAdress.id = tmpId;
+                       
                         db.GetRepository<Order>().Update(orderDb);
                         result = orderDb.Id;
                     }

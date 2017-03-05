@@ -25,6 +25,7 @@ namespace Shop.db.Repository
         void AddOrUpdate(T obj);
         Type GetRealClass(object obj);
         void AddOrUpdateMany(List<T> obj);
+        List<T> Many(long[] ids);
     }
 
     public class Repository<T> : IRepository, IRepository<T> where T : class
@@ -62,10 +63,10 @@ namespace Shop.db.Repository
 
         public void AddMany(List<T> obj)
         {
-            for(int i=0;i<obj.Count;i++)
+            foreach (T t in obj)
             {
-                session.Save(obj[i]);
-            }            
+                session.Save(t);
+            }
         }
 
         public void AddOrUpdateMany(List<T> obj)

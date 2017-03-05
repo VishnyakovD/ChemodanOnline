@@ -10,9 +10,9 @@
     <property name="ProductId" />
     <property name="ProductName" />
     <property name="Article" />
+    <property name="Code" />
     <property name="PriceDay" />
     <property name="FullPrice" />
-    <property name="Code" />
     <property name="NaturalPrice" />
   </class>
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Web.Configuration;
+using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Http.Routing.Constraints;
 using System.Web.Mvc;
@@ -26,6 +28,7 @@ namespace Shop.Controllers
     public class OrderController : BaseController
       {
           private IOrderBuilder OrderBulder;
+          private long DefaultOrderState;
         public OrderController(ILogger logger,
             IAdminModelBuilder adminModelBuilder,
             IDataService dataService,
@@ -35,6 +38,7 @@ namespace Shop.Controllers
             : base(logger, adminModelBuilder, dataService, imagesPath, skuModelBuilder)
         {
             OrderBulder = orderBulder;
+            DefaultOrderState = long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
         }
 
         public ActionResult Index(string ids)
@@ -56,7 +60,54 @@ namespace Shop.Controllers
         {
             try
             {
-        
+                if (!string.IsNullOrEmpty(order))
+                {
+                    var ser = new JavaScriptSerializer();
+                    dynamic serObject =ser.DeserializeObject(order);
+                   
+                    var listProducts = (serObject["listProducts"] as dynamic[]);
+                    if (listProducts != null&& listProducts.Any())
+                    {
+                        var tmpProductList = new List<OrderProduct>();
+                        foreach (var item in listProducts)
+                        {
+                            var count = int.Parse(item["count"].ToString());
+                            for (int i = 0; i < count; i++)
+                            {
+                                tmpProductList.Add(new OrderProduct() { ProductId = long.Parse(item["productId"].ToString()) });
+                            }
+                        }
+                          
+                        var orderData = new Order
+                        {
+                            Client =
+                            {
+                                lastName = serObject["clientLastName"],
+                                name = serObject["clientFirstName"],
+                                email = serObject["clientEmail"],
+                                mPhone = serObject["clientPhone"],
+                                editAdress =
+                                {
+                                    city = serObject["city"],
+                                    numHome = serObject["home"],
+                                    typeStreet = serObject["typeStreet"],
+                                    level = serObject["level"],
+                                    street = serObject["street"],
+                                    numFlat = serObject["flat"]
+                                }
+                            },
+                            DeliveryType = {Id = long.Parse(serObject["deliveryType"].ToString())},
+                            PaymentType = {Id = long.Parse(serObject["paymentType"].ToString()) },
+                            OrderState= { Id = DefaultOrderState},
+                            Products = tmpProductList,
+                            From = DateTime.Parse(serObject["from"].ToString()),
+                            To = DateTime.Parse(serObject["to"].ToString())
+
+                        };
+                        dataService.AddOrUpdateOrder(orderData);
+                    }
+                }
+
             }
             catch (Exception err)
             {

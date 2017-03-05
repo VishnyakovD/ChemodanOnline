@@ -19,10 +19,8 @@
     <property name="isUse" />
     <property name="birthDate" />
     <many-to-one name="adress" lazy="false" class="Adress" />
-    <many-to-one name="editAdress" lazy="false" class="EditAdress"  cascade = "save-update" />
+    <many-to-one name="editAdress" lazy="false" class="EditAdress"  cascade="save-update" />
     <many-to-one name="sex" lazy="false" class="Sex" />
- 
-    
   </class>
  
 </hibernate-mapping>

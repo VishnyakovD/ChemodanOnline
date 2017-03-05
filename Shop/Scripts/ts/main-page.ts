@@ -32,6 +32,9 @@ $(() => {
         mainPage.getInfoBlock($(e.currentTarget).data("id"), $(e.currentTarget).data("type"));
     });
 
+    $(document).on("click", "a", (e) => {
+        document.location.href = $(e.currentTarget).attr("href");
+    });
 
 
 });

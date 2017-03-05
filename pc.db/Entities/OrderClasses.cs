@@ -8,11 +8,14 @@ namespace Shop.db.Entities
       public class Order
       {
         public virtual long Id { get; set; }
+        //public virtual long OrderNumber { get; set; }
+        //public virtual int OrderPrefix { get; set; }
+        //public virtual string OrderComment { get; set; }
         public virtual DateTime From { get; set; }
         public virtual DateTime To { get; set; }
         public virtual Client Client { get; set; }
         public virtual OrderInfoFile Pdf { get; set; }
-        public virtual List<OrderProduct> Products { get; set; }
+        public virtual IList<OrderProduct> Products { get; set; }
         public virtual DeliveryType DeliveryType { get; set; }
         public virtual PaymentType PaymentType { get; set; }
         public virtual OrderState OrderState { get; set; }
@@ -20,9 +23,11 @@ namespace Shop.db.Entities
 
         public Order()
         {
-          Products=new List<OrderProduct>();
+          Client=new Client();
+          Products =new List<OrderProduct>();
           DeliveryType = new DeliveryType();
           PaymentType = new PaymentType();
+          OrderState=new OrderState();
         }
       }
 
@@ -36,6 +41,7 @@ namespace Shop.db.Entities
         public virtual decimal PriceDay { get; set; }
         public virtual decimal FullPrice { get; set; }
         public virtual decimal NaturalPrice { get; set; }
+        //public int Count { get; set; }
 
         public OrderProduct()
         {

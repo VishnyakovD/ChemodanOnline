@@ -3,20 +3,23 @@
                    assembly="Shop.db"
                    namespace="Shop.db.Entities">
 
-  <class name="Order">
+  <class name="Order" table="[Order]">
     <id name="Id" >
       <generator class="identity" />
     </id>
-    <property name="From" />
-    <property name="To" />
+    <property name="From" column="[From]"/>
+    <property name="To" column="[To]"/>
+    <!--<property name="OrderNumber" />-->
+    <!--<property name="OrderPrefix" />-->
+    <!--<property name="OrderComment" />-->
     
-    <many-to-one name="Client" lazy="false" class="Client" />
+    <many-to-one name="Client" lazy="false" class="Client" column="[Client]"  cascade="save-update" />
     <many-to-one name="Pdf" lazy="false" class="OrderInfoFile" />
     <many-to-one name="DeliveryType" lazy="false" class="DeliveryType" />
     <many-to-one name="PaymentType" lazy="false" class="PaymentType" />
     <many-to-one name="OrderState" lazy="false" class="OrderState" />
     
-    <bag name="Products" inverse="true" lazy="false" cascade="save-update">
+    <bag name="Products" inverse="true" lazy="false" >
       <key column="OrderId"/>
       <one-to-many class="OrderProduct"/>
     </bag>
