@@ -1,24 +1,24 @@
 ﻿@model Shop.Models.MenuModel
 
-<div class="text-center hidden-lg hidden-md">
-    <a href="/" title="Chemodan.online"><img src="~/Content/img/logo.png" alt="Chemodan.online"></a>
-</div>
 <div class="top-menu-container">
-    <div class="top-menu-btn hidden-lg hidden-md hidden-sm js-click-top-menu-btn">
+    <div class="top-menu-btn pull-left hidden-lg hidden-md hidden-sm js-click-top-menu-btn">
         <span class="glyphicon glyphicon-menu-hamburger"></span>
     </div>
 
-    <div class="logo hidden-xs hidden-sm">
+    <div class="logo">
         <a href="/" title="Chemodan.online"><img src="~/Content/img/logo.png" alt="Chemodan.online"></a>
     </div>
 
     <div class="cart js-cart">
-        <span class="count js-count">0</span>
-        <div data-href="/Order" class="text"><img src="~/Content/img/icons/cart.png" alt="Chemodan.online">Корзина</div>
+        <div data-href="/Order" class="text">
+            <img src="~/Content/img/icons/cart.png" alt="Chemodan.online">
+            <span class="hidden-xs">Корзина </span>
+            <span class="count js-count">0</span>
+        </div>
     </div>
 
 
-    <div class="top-menu-body hidden-xs">
+    <div class="top-menu-body pull-right hidden-xs">
         @if (Model != null && Model.topMenuItems != null)
         {
             foreach (var item in Model.topMenuItems)

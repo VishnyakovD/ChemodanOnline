@@ -107,7 +107,6 @@ namespace Shop.Controllers
                         dataService.AddOrUpdateOrder(orderData);
                     }
                 }
-
             }
             catch (Exception err)
             {
@@ -116,6 +115,12 @@ namespace Shop.Controllers
             return Content("Ла ла ла, заказ создан", "text/html");
         }
 
+        public ActionResult OrdersAdmin()
+        {
+            var model=OrderBulder.BuildOrders(DateTime.Now.AddYears(-2), DateTime.Now.AddYears(2));
 
+
+            return View(model);
+        }
     }
 }

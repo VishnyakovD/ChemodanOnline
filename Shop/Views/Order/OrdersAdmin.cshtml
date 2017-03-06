@@ -1,0 +1,46 @@
+﻿@using System.Globalization
+@using Shop.Models
+@using AdvancedClasses
+@using Shop.db.Entities
+@model OrdersAdminPage
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Model != null)
+    {
+        Page.Title = "Аренда чемоданов | Chemodan.online";
+    }
+}
+
+@{ Html.RenderPartial("~/Views/Admin/AdminMenuPartial.cshtml"); }
+
+<div class="row">
+    <div class="col-md-12">
+        <table>
+            <tr>
+                <th>ид</th>
+                <th>ФИО</th>
+                <th>тел</th>
+                <th>оплата</th>
+                <th>статус</th>
+              
+            </tr>
+            @foreach (var item in Model.Orders)
+            {
+                /*
+
+                PaymentType = item.PaymentType,
+                OrderState = item.OrderState
+                 */
+                <tr>
+                    <td>@item.OrderId</td>
+                    <td>@item.ClientLastName @item.ClientFirstName</td>
+                    <td>@item.ClientPhone</td>
+                    <td>@item.PaymentType.Name</td>
+                    <td>@item.OrderState.Name</td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>
+

@@ -8,12 +8,16 @@
 @import "scss-styles/controls.scss";
 
 body{
-    font-family: 'Ubuntu Condensed', sans-serif;
-    padding-top: 10px;
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 20px;
     color:black;
 
     a, a:link, a:visited, a:hover {
         text-decoration:none;
+    }
+
+    .container{
+        width:100%!important;
     }
 }
 

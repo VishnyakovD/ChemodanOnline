@@ -11,6 +11,7 @@ namespace Shop.db.Entities
         //public virtual long OrderNumber { get; set; }
         //public virtual int OrderPrefix { get; set; }
         //public virtual string OrderComment { get; set; }
+        //public virtual DateTime OrderDate { get; set; }
         public virtual DateTime From { get; set; }
         public virtual DateTime To { get; set; }
         public virtual Client Client { get; set; }

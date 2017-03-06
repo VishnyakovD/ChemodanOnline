@@ -14,6 +14,7 @@ namespace Shop.Models.Builders
     public interface IOrderBuilder
     {
         OrderClientPage Build(long[] ids);
+        OrdersAdminPage BuildOrders(DateTime from, DateTime to);
     }
 
     public class OrderBuilder : MenuBuilder, IOrderBuilder
@@ -32,11 +33,31 @@ namespace Shop.Models.Builders
         public OrderClientPage Build(long[] ids)
         {
             var model = new OrderClientPage();
-            model.Order.From=DateTime.Now;
-            model.Order.To=DateTime.Now.AddDays(+1);
+            model.Order.From=DateTime.Now.Date;
+            model.Order.To=DateTime.Now.Date.AddDays(+1);
             model.Order.Products = SkuViewerBuilder.BuildListProductsByIds(ids);
             model.DeliveryTypes = dataService.List<DeliveryType>();
             model.PaymentTypes = dataService.List<PaymentType>();
+            model.topMenuItems = BuildTopMenu();
+            return model;
+        }
+
+        public OrdersAdminPage BuildOrders(DateTime from, DateTime to){
+            var model = new OrdersAdminPage();
+
+            var tmpOrders = dataService.ListOrdersByDates(from, to);
+            model.Orders = tmpOrders.Select(item=>new OrderModel() {
+                OrderId = item.Id,
+                ClientFirstName = item.Client.name,
+                ClientLastName = item.Client.lastName,
+                ClientPhone = item.Client.mPhone,
+                PaymentType = item.PaymentType,
+                OrderState = item.OrderState
+               
+            }).ToList();
+
+            //model.DeliveryTypes = dataService.List<DeliveryType>();
+            //model.PaymentTypes = dataService.List<PaymentType>();
             model.topMenuItems = BuildTopMenu();
             return model;
         }

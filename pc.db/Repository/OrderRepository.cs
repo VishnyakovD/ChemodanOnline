@@ -19,7 +19,7 @@ namespace Shop.db.Repository
         public List<Order> AllByDates(DateTime from, DateTime to)
         {
             return session.QueryOver<Order>()
-                .Where(order => order.From>=from&&order.To<=to)
+                //.Where(order => order.From>=from&&order.To<=to)
                 .List() as List<Order>;
         }
 

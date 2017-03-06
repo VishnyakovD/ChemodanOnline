@@ -44,13 +44,32 @@ namespace Shop.Models
         public List<ShortSKUModel> Products  { get; set; }
         public DeliveryType DeliveryType { get; set; }
         public PaymentType PaymentType { get; set; }
+        public OrderState OrderState { get; set; }
 
         public OrderModel()
         {
             Products=new List<ShortSKUModel>();
             DeliveryType=new DeliveryType();
             PaymentType=new PaymentType();
+            OrderState = new OrderState();
         }
     }
 
+
+    public class OrdersAdminPage : MenuModel
+    {
+        public List<OrderModel> Orders { get; set; }
+        //public List<DeliveryType> DeliveryTypes { get; set; }
+        //public List<PaymentType> PaymentTypes { get; set; }
+
+        //public string Description { get; set; }
+        //public string Keywords { get; set; }
+
+        public OrdersAdminPage()
+        {
+            Orders = new List<OrderModel>();
+            //DeliveryTypes = new List<DeliveryType>();
+           // PaymentTypes = new List<PaymentType>();
+        }
+    }
 }

@@ -1,9 +1,6 @@
 ﻿.main-page-swipe {
-  min-height: 350px;
-  max-height: 350px;
-  height: 350px;
-  overflow: hidden;
-  margin-top: 15px; }
+  max-height: 400px;
+  overflow: hidden; }
 
 .main-page-favorite-swipe {
   min-height: 390px;

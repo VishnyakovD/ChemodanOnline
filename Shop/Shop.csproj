@@ -243,6 +243,7 @@
     </Content>
     <Content Include="Content\Images\box.png" />
     <Content Include="Content\img\icons\cart.png" />
+    <Content Include="Content\img\icons\size.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\jHtmlArea\jHtmlArea.ColorPickerMenu.css" />
     <Content Include="Content\jHtmlArea\jHtmlArea.css" />
@@ -385,6 +386,7 @@
     <Content Include="Views\Admin\SkuListChemodanTrackingPartial.cshtml" />
     <Content Include="Views\Admin\SkuChemodanTrackingDataPartial.cshtml" />
     <Content Include="Views\Order\Order.cshtml" />
+    <Content Include="Views\Order\OrdersAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
