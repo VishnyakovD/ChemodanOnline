@@ -167,12 +167,24 @@
         }
 
         .cart {
-            padding: 20px 5px 20px 5px;
+            padding: 10px;
+
+            .text {
+                img {
+                    width: 20px;
+                    height: 21px;
+                    margin-right: 0;
+                }
+            }
+
+            .count {
+                position: absolute;
+                margin-left: -10px;
+                margin-top: -3px;
+            }
         }
     }
 }
-
-
 
 @media (max-width: 767px) {
     .top-menu-container {

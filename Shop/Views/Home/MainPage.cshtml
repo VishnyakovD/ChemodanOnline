@@ -31,42 +31,73 @@
         </div>
     </div>
 
-    <div class="row info-category">
-        @foreach (var item in Model.ListBlockInfo)
-        {
+        <div class="row info-category">
+
+            @*@foreach (var item in Model.ListBlockInfo)
+            {*@
+            @if (Model.ListBlockInfo.Any()) { 
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="item">
+                    <div class="text-block pull-right">
+                        <div class="title">
+                            <a href="@Model.ListBlockInfo[0].Link">@Model.ListBlockInfo[0].Title</a>
+                        </div>
+                        <div class="name">
+                            <img src="~/Content/img/icons/size.png"/><span>@Model.ListBlockInfo[0].name</span>
+                        </div>
+
+                        <div class="description">
+                            <span>@Model.ListBlockInfo[0].Description</span>
+                        </div>
+
+                        <div class="button">
+                            <a class="btn" href="@Model.ListBlockInfo[0].Link">Выбрать</a>
+                        </div>
+
+                    </div>
+                    <div class="img-block pull-right">
+                        <img src="@path@Model.ListBlockInfo[0].Image"/>
+                    </div>
+                </div>
+            </div>
 
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="item">
                     <div class="text-block">
                         <div class="title">
-                            <a href="@item.Link">@item.Title</a>
+                            <a href="@Model.ListBlockInfo[1].Link">@Model.ListBlockInfo[1].Title</a>
                         </div>
                         <div class="name">
-                            <img src="~/Content/img/icons/size.png" /><span>@item.name</span>
+                            <img src="~/Content/img/icons/size.png" /><span>@Model.ListBlockInfo[1].name</span>
                         </div>
 
                         <div class="description">
-                            <span>@item.Description</span>
+                            <span>@Model.ListBlockInfo[1].Description</span>
                         </div>
 
                         <div class="button">
-                            <a class="btn" href="@item.Link">Выбрать</a>
+                            <a class="btn" href="@Model.ListBlockInfo[1].Link">Выбрать</a>
                         </div>
 
                     </div>
                     <div class="img-block">
-                        <img src="@path@item.Image" />
+                        <img src="@path@Model.ListBlockInfo[1].Image" />
                     </div>
                 </div>
             </div>
-        }
-    </div>
+            @*}*@
+            }
+        </div>
 
     <div class="row">
         <div class="col-ms-12">
-            <h1 class="title-product-swiper">@Model.TitleProduct</h1>
+            <div class="text-center">
+                <div class="title-main-page">@Model.TitleProduct</div>
+            </div>
+            <div class="hr-title"></div>
         </div>
     </div>
+
 
     <div class="swiper-container main-page-favorite-swipe js-main-page-favorite-swiper">
 
@@ -76,16 +107,22 @@
                 <div class="swiper-slide">
                     <div class="short-product carusel">
                         <div class="line1">
-                            <img src="@item.smalPhotoPath" />
+                            <img src="@item.smalPhotoPath"/>
                         </div>
-
                         <div class="line2">
-                            <span class="art">арт. @item.articul</span>
+                            <span class="art-text">арт.</span>
+                            <span class="art">@item.articul</span>
+                        </div>
+                        <div class="line3">
+                            <span class="size-text">размер</span>
+                            <span class="size">@item.articul</span>
+                        </div>
+                        <div class="line4">
                             <span class="price">@item.price.ToString("#### грн.")</span>
                         </div>
 
-                        <div class="line3">
-                            <a href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})" class="btn btn-info-block">Посмотреть</a>
+                        <div class="line5">
+                            <a href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})" class="button-default">Посмотреть</a>
                         </div>
                     </div>
                 </div>
