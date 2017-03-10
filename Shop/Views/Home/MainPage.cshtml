@@ -7,7 +7,7 @@
 }
 
 <div>
-    <div class="swiper-container main-page-swipe js-main-page-swiper">
+    <div class="swiper-container main-page-swipe js-main-page-swiper hidden-xs">
 
         <div class="swiper-wrapper">
             @foreach (var item in Model.ListCaruselItem)
@@ -63,7 +63,7 @@
 
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="item">
-                    <div class="text-block">
+                    <div class="text-block pull-left">
                         <div class="title">
                             <a href="@Model.ListBlockInfo[1].Link">@Model.ListBlockInfo[1].Title</a>
                         </div>
@@ -80,7 +80,7 @@
                         </div>
 
                     </div>
-                    <div class="img-block">
+                    <div class="img-block pull-left">
                         <img src="@path@Model.ListBlockInfo[1].Image" />
                     </div>
                 </div>

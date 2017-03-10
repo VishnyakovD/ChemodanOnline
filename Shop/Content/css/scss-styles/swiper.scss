@@ -1,13 +1,29 @@
 ﻿.main-page-swipe{
-    //min-height: 400px;
     max-height: 400px;
-    overflow:hidden;
-
+        .swiper-slide {
+        img{
+            width:100%;
+            display:block;
+        }
+    }
 }
 
 .main-page-favorite-swipe {
-    min-height: 400px;
-    max-height: 400px;
-    overflow: hidden;
-    //border:1px black solid;
+   
+
+}
+
+//@media (min-width: 1200px) {}
+
+@media (min-width: 992px) /*and (max-width: 1199px )*/ {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px ) {
+
+}
+
+
+@media (max-width: 767px) {
+
 }

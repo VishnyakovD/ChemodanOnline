@@ -1,9 +1,6 @@
 ﻿.main-page-swipe {
-  max-height: 400px;
-  overflow: hidden; }
-
-.main-page-favorite-swipe {
-  min-height: 400px;
-  max-height: 400px;
-  overflow: hidden; }
+  max-height: 400px; }
+  .main-page-swipe .swiper-slide img {
+    width: 100%;
+    display: block; }
 
