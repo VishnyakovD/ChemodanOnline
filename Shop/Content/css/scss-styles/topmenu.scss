@@ -112,8 +112,17 @@
 }*/
 
 @media (min-width: 992px) /*and (max-width: 1199px )*/ {
+            .logo {
+            a {
+                img {
+                    height: auto;
+                    width: 175px;
+                }
+            }
+        }
     .top-menu-container {
-        margin-bottom: 20px;
+               padding:0 24px;
+       margin-bottom:20px;
 
         .top-menu-body {
             font-size: 14px;
@@ -123,14 +132,7 @@
             padding: 15px 15px 45px 15px;
         }
 
-        .logo {
-            a {
-                img {
-                    height: auto;
-                    width: 175px;
-                }
-            }
-        }
+
 
         .cart {
                 margin-left: 10px;
@@ -140,8 +142,17 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px ) {
+            .logo {
+            a {
+                img {
+                    height: auto;
+                    width: 125px;
+                }
+            }
+        }
     .top-menu-container {
-        margin-bottom: 20px;
+       padding:0 30px;
+       margin-bottom:20px;
 
         .top-menu-body {
             font-size: 13px;
@@ -151,14 +162,7 @@
             padding: 15px 11px 35px 11px;
         }
 
-        .logo {
-            a {
-                img {
-                    height: auto;
-                    width: 125px;
-                }
-            }
-        }
+
 
         .cart {
             padding: 10px;
@@ -181,15 +185,7 @@
 }
 
 @media (max-width: 767px) {
-    body{
-        padding-top: 15px!important;
-    }
-    .top-menu-container {
-        min-height: 65px;
-        max-height: 65px;
-        text-align: center;
-
-        .logo {
+            .logo {
             vertical-align: top;
 
             a {
@@ -198,6 +194,15 @@
                 }
             }
         }
+    body{
+        padding-top: 15px!important;
+    }
+    .top-menu-container {
+        min-height: 65px;
+        max-height: 65px;
+        text-align: center;
+        padding:0 15px;
+
 
         .cart {
             padding: 10px;

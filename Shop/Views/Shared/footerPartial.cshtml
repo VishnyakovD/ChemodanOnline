@@ -11,40 +11,47 @@
         @Html.AntiForgeryToken()
         <div><input type="submit" class="btn btn-blue" value="Выход" /></div>
     }
+    @*@{ Html.RenderPartial("AddMailingPartial"); }*@
 }
 
-@*<div class="container">*@
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="logo">
-                    <a href="/" title="Chemodan.online"><img src="~/Content/img/logo.png" alt="Chemodan.online"></a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                
-
-
-            </div>
-            <div class="col-md-4">
-                @*@{ Html.RenderPartial("AddMailingPartial"); }*@
-            </div>
-
-            
-
-           
+<footer>
+    <div class="line1">
+        <div class="logo hidden-xs">
+            <a href="/" title="Chemodan.online"><img src="~/Content/img/logo.png" alt="Chemodan.online"></a>
         </div>
-        <div class="line2">
+        <div class="footer-menu  hidden-xs">
+            @if (Model != null && Model.topMenuItems != null)
+            {
+                foreach (var item in Model.topMenuItems)
+                {
+                    <div>
+                        <a href="@item.path">@item.name</a>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="footer-addres">
+            <div>+38 (067) 514 54 87</div>
+            <div>zakaz.che@gmail.com</div>
             <div>
-                Copyright © Chemodan Online. All Right Reserved 2017
-            </div>
-  
-            <div class="pull-right">
-                <img src="~/Content/img/icons/visa.png"/>
-                <img src="~/Content/img/icons/master.png" />
+                <a href="#">
+                    <img src="~/Content/img/icons/cart.png" /></a>
+                <a href="#">
+                    <img src="~/Content/img/icons/cart.png" /></a>
             </div>
         </div>
-    </footer>
-@*</div>*@
+
+
+    </div>
+    <div class="line2">
+        <div>
+            Copyright © Chemodan Online. All Right Reserved 2017
+        </div>
+
+        <div class="pull-right">
+            <img src="~/Content/img/icons/visa.png" />
+            <img src="~/Content/img/icons/master.png" />
+        </div>
+    </div>
+</footer>
