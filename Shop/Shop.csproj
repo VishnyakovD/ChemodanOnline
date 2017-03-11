@@ -243,7 +243,9 @@
     </Content>
     <Content Include="Content\Images\box.png" />
     <Content Include="Content\img\icons\cart.png" />
+    <Content Include="Content\img\icons\master.png" />
     <Content Include="Content\img\icons\size.png" />
+    <Content Include="Content\img\icons\visa.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\jHtmlArea\jHtmlArea.ColorPickerMenu.css" />
     <Content Include="Content\jHtmlArea\jHtmlArea.css" />
