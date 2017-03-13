@@ -4,30 +4,30 @@
     .line1 {
 
         img {
-            width: 80%;
+            width: 70%;
         }
     }
 
     .line2 {
-    min-height: 20px;
-    max-height: 20px;
-    overflow:hidden;
-    vertical-align:middle;
+        min-height: 20px;
+        max-height: 20px;
+        overflow: hidden;
+        vertical-align: middle;
     }
 
     .line3 {
-    min-height: 20px;
-    max-height: 20px;
-    overflow:hidden;
-    vertical-align:middle;
+        min-height: 20px;
+        max-height: 20px;
+        overflow: hidden;
+        vertical-align: middle;
     }
 
     .line4 {
-        margin-top:10px;
+        margin-top: 10px;
     }
 
     .line5 {
-        margin-top:10px;
+        margin-top: 10px;
     }
 
     .txt {
@@ -53,18 +53,23 @@
         vertical-align: middle;
     }
 
-    &.carusel {
-        // max-height: 390px;
-        // min-height: 390px;
-        // padding-top: 0;
-        .line1 {
-            text-align: center;
+    &.list-item {
+        margin-top: 20px;
+        margin-bottom: 20px;
 
-            img {
-                // max-height: 280px;
-                // min-height: 280px;
-                //  width: auto;
-            }
+        .line1 {
+            border-radius: 5px;
+            border: solid 1px #ededed;
+        }
+
+        .line2{
+            position: absolute;
+            top: 30px;
+            left: 25px;
+            background: rgba(255, 255, 255, 0.76);
+        }
+        .line3{
+            margin-top: 10px;
         }
     }
 }

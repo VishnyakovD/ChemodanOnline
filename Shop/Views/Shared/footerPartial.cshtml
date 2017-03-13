@@ -1,18 +1,6 @@
 ﻿@model Shop.Models.MenuModel
 
-@if (WebSecurity.IsAuthenticated)
-{
-    if (User.IsInRole("Admin"))
-    {
-        <div><a href="@Url.Action("Administrator", "Admin")">@WebSecurity.CurrentUserName</a></div>
-    }
-    using (Html.BeginForm("LogOff", "Account"))
-    {
-        @Html.AntiForgeryToken()
-        <div><input type="submit" class="btn btn-blue" value="Выход" /></div>
-    }
-    @*@{ Html.RenderPartial("AddMailingPartial"); }*@
-}
+
 
 <footer>
     <div class="line1">

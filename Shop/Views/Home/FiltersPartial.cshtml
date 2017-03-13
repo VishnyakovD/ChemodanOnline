@@ -5,15 +5,23 @@
 
 
 <div class="filters js-product-filter">
-    <div style="display: inline-block">
-        <div>@Shop.Resources.Default.ChemodanTypes</div>
+    <div>
+        <div class="filter-name">@Shop.Resources.Default.ChemodanTypes</div>
         <ul>
             @foreach (var filter in Model.ChemodanTypes)
             {
                 <li class="js-filter-item"
                     data-filter-id="@filter.Id"
                     data-filter-type="@FilterType.ChemodanType"
-                    data-is-selected="false">@filter.Value</li>
+                    data-is-selected="false">
+                    <span>
+                        <input type="checkbox" />
+                        <span class="txt js-txt">
+                            @filter.Value
+                        </span>
+                   </span>
+
+                </li>
             }
         </ul>
     </div>
@@ -24,15 +32,21 @@
 
     @foreach (var filter in Model.Specifications)
     {
-        <div style="display: inline-block">
-            <div>@filter.Specification.name</div>
+        <div>
+            <div class="filter-name">@filter.Specification.name</div>
             <ul>
                 @foreach (var value in filter.Values)
                 {
                     <li class="js-filter-item"
                         data-filter-id="@filter.Specification.id"
                         data-filter-type="@FilterType.Specification"
-                        data-is-selected="false">@value.Value</li>
+                        data-is-selected="false">
+                        <span>
+                            <input type="checkbox" />
+                            <span class="txt js-txt">@value.Value</span>
+                        </span>
+
+                    </li>
                 }
             </ul>
         </div>

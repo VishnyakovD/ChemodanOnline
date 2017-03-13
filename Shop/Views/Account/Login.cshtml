@@ -5,39 +5,62 @@
 }
 
 
-<section id="loginForm">
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-    <div class="row">
-        <div class="col-md-4">
-            @Html.LabelFor(m => m.UserName)
-            @Html.TextBoxFor(m => m.UserName)
-            @Html.ValidationMessageFor(m => m.UserName)
+@if (WebSecurity.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <div><a href="@Url.Action("Administrator", "Admin")">@WebSecurity.CurrentUserName</a>
         </div>
-
-        <div class="col-md-4">
-            @Html.LabelFor(m => m.Password)
-            @Html.PasswordFor(m => m.Password)
-            @Html.ValidationMessageFor(m => m.Password)
+    }
+    using (Html.BeginForm("LogOff", "Account"))
+    {
+        @Html.AntiForgeryToken()
+        <div><input type="submit" class="btn btn-blue" value="Выход"/>
         </div>
-    
-         @*<div class="row">
-        <div class="col-md-5">
-            @Html.CheckBoxFor(m => m.RememberMe)
-            @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-        </div>
-    </div>*@
-     
-        <div class="col-md-4">
-            <input class="btn btn-blue" type="submit" value="Войти" />
-        </div>
-    </div>
-    
-
-
+    }
+    @*@{ Html.RenderPartial("AddMailingPartial"); }*@
 }
-</section>
+else
+{
+    <section id="loginForm">
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName)
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+
+                @*<div class="row">
+                        <div class="col-md-5">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                        </div>
+                    </div>*@
+
+                <div class="col-md-4">
+                    <input class="btn btn-blue" type="submit" value="Войти" />
+                </div>
+            </div>
+
+
+
+        }
+    </section>
+}
+
+
+
 
 

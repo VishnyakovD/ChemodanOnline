@@ -9,8 +9,11 @@
 }
 
 .main-page-favorite-swipe {
-   
+   margin-bottom:20px;
+   .swiper-slide{
+       border-right:1px solid #d6d6d6;
 
+   }
 }
 
 //@media (min-width: 1200px) {}

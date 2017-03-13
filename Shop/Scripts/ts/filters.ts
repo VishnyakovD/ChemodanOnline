@@ -14,45 +14,45 @@ class FilterItemValue {
 }
 
 class FilterModel {
-    FilterSpecifications: FilterItemValue[];
-    FilterChemodanTypes: FilterItemValue[];
-    FilterCategoryes: FilterItemValue[];
+    filterSpecifications: FilterItemValue[];
+    filterChemodanTypes: FilterItemValue[];
+    filterCategoryes: FilterItemValue[];
 
     listProductsQuery: JQuery;
 
     constructor() {
-        this.FilterSpecifications = [];
-        this.FilterChemodanTypes = [];
-        this.FilterCategoryes = [];
+        this.filterSpecifications = [];
+        this.filterChemodanTypes = [];
+        this.filterCategoryes = [];
 
         this.listProductsQuery = $(".js-list-products");
     }
 
-    ActivateFilter(id: number, type: string, isSelected: boolean, value: string): void {
+   activateFilter(id: number, type: string, isSelected: boolean, value: string): void {
 
         var filterValue = new FilterItemValue(id,type, true, value);
-        if (this.FilterCategoryes.length===0) {
-            this.FilterCategoryes.push(new FilterItemValue($(".js-filter-cat").val(), " ", true, " "));
+        if (this.filterCategoryes.length===0) {
+            this.filterCategoryes.push(new FilterItemValue($(".js-filter-cat").val(), " ", true, " "));
         }
         switch (type) {
             case "Specification":
 
-                if (this.FilterSpecifications.length === 0) {
-                    this.FilterSpecifications.push(filterValue);
+                if (this.filterSpecifications.length === 0) {
+                    this.filterSpecifications.push(filterValue);
                 } else {
 
                     if (isSelected) {
                         var tmpArr = [];
-                        this.FilterSpecifications.forEach((item) => {
+                        this.filterSpecifications.forEach((item) => {
                             if (item.Value === filterValue.Value && item.Id === filterValue.Id) {
 
                             } else {
                                 tmpArr.push(item);
                             }
                         });
-                        this.FilterSpecifications = tmpArr;
+                        this.filterSpecifications = tmpArr;
                     } else {
-                        this.FilterSpecifications.push(filterValue);
+                        this.filterSpecifications.push(filterValue);
                     }
                 }
 
@@ -62,22 +62,22 @@ class FilterModel {
                 break;
 
             case "ChemodanType":
-                if (this.FilterChemodanTypes.length === 0) {
-                    this.FilterChemodanTypes.push(filterValue);
+                if (this.filterChemodanTypes.length === 0) {
+                    this.filterChemodanTypes.push(filterValue);
                 } else {
 
                     if (isSelected) {
                         var tmpArr = [];
-                        this.FilterChemodanTypes.forEach((item) => {
+                        this.filterChemodanTypes.forEach((item) => {
                             if (item.Value === filterValue.Value && item.Id === filterValue.Id) {
 
                             } else {
                                 tmpArr.push(item);
                             }
                         });
-                        this.FilterChemodanTypes = tmpArr;
+                        this.filterChemodanTypes = tmpArr;
                     } else {
-                        this.FilterChemodanTypes.push(filterValue);
+                        this.filterChemodanTypes.push(filterValue);
                     }
 
                 }
@@ -86,10 +86,10 @@ class FilterModel {
         }
 
 
-        $.post('/Home/listProducts/', {
-            filtersSp: JSON.stringify(this.FilterSpecifications),
-            filtersTp: JSON.stringify(this.FilterChemodanTypes),
-            filtersCt: JSON.stringify(this.FilterCategoryes)
+        $.post('/Home/ListProducts/', {
+            filtersSp: JSON.stringify(this.filterSpecifications),
+            filtersTp: JSON.stringify(this.filterChemodanTypes),
+            filtersCt: JSON.stringify(this.filterCategoryes)
         })
             .done((data) => {
                 this.listProductsQuery.html(data);
@@ -107,18 +107,20 @@ $(() => {
 
         $(document).on("click", ".js-filter-item", (e) => {
             
-            filterModel.ActivateFilter(
+            filterModel.activateFilter(
                 $(e.currentTarget).data("filter-id"),
                 $(e.currentTarget).data("filter-type"),
                 $(e.currentTarget).data("is-selected"),
-                $(e.currentTarget).html());
+                $(e.currentTarget).find(".js-txt").html());
 
           if ($(e.currentTarget).hasClass("active")) {
               $(e.currentTarget).removeClass("active");
               $(e.currentTarget).data("is-selected", false);
+              $(e.currentTarget).find("input").prop("checked",false);
           } else {
               $(e.currentTarget).addClass("active");
-              $(e.currentTarget).data("is-selected",true);
+              $(e.currentTarget).data("is-selected", true);
+              $(e.currentTarget).find("input").prop("checked", true);
           }
         });
     }

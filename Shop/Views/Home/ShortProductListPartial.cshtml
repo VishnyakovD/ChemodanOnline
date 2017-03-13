@@ -1,9 +1,7 @@
 ﻿@using AdvancedClasses
 @model List<Shop.Models.ShortSKUModel>
 
-
-
-    @foreach (var product in Model)
-    {
-        Html.RenderPartial("~/Views/Home/ShortSkuPartial.cshtml", product);
-    }
+@foreach (var product in Model)
+{
+    Html.RenderPartial("~/Views/Home/ShortSkuPartial.cshtml", product);
+}

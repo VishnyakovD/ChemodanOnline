@@ -5,20 +5,26 @@
 
 @if (Model != null)
 {
-    <div class="col-cx-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="short-product">
+    <div class="col-cx-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="short-product list-item">
             <div class="line1">
                 <img src="@Model.smalPhotoPath" />
             </div>
-
             <div class="line2">
-                <span class="art">арт. @Model.articul</span>
-                <span class="price">@Model.price.ToString("#### грн.")</span>
+                <span class="txt">арт.:</span>
+                <span class="val">@Model.articul</span>
             </div>
-
             <div class="line3">
-                <a href="@Url.Action("SkuInfo", "Home", new { idSku = Model.id })" class="btn btn-info-block">Посмотреть</a>
+                <span class="val">@Model.category</span>
+            </div>
+            <div class="line4">
+                <span class="txt">в день:</span>
+                <span class="price">@Model.price.ToString("####")</span>
+                <span class="val">грн.</span>
+            </div>
+            <div class="line5">
+                <a href="@Url.Action("SkuInfo", "Home", new {idSku = Model.id})" class="button-info">Посмотреть</a>
             </div>
         </div>
-      </div>
+    </div>
 }

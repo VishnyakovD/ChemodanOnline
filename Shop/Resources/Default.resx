@@ -135,4 +135,7 @@
   <data name="RequiredInput" xml:space="preserve">
     <value>Это поле обязательно для заполнения</value>
   </data>
+  <data name="Chemodans" xml:space="preserve">
+    <value>Чемоданы</value>
+  </data>
 </root>

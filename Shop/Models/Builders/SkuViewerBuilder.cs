@@ -64,6 +64,8 @@ namespace Shop.Models.Builders
                 articul = item.articul,
                 price = item.chemodanType.priceDay,
                 name = item.name,
+                category = item.chemodanType.name,
+                maxCount = item.listChemodanTracking.Count(i => i.Location.id == DefaultValueHasInStock),
                 smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList(); 
         }
@@ -84,26 +86,26 @@ namespace Shop.Models.Builders
                 model.skuList = BuildListProductsByFilters(filters);
             }
 
-            var tmpList = dataService.ListProductByDisplayType(DisplayType.Favorite);
-            if (filters.ChemodanLocationID > 0)
-            {
-               // var location = session.Get<ChemodanLocation>(filters.ChemodanLocationID);
-                tmpList =
-                    tmpList?.Where(sku => sku.listChemodanTracking.Any(track => track.Location.id == filters.ChemodanLocationID)).ToList();
-            }
-            if (tmpList != null && tmpList.Count > 0)
-            {
-                model.ListProduct = tmpList.Select(item => new ShortSKUModel()
-                {
-                    articul = item.articul,
-                    id = item.id,
-                    price = item.chemodanType.priceDay,
-                    smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
-                }).ToList();
-            }
+            //var tmpList = dataService.ListProductByDisplayType(DisplayType.Favorite);
+            //if (filters.ChemodanLocationID > 0)
+            //{
+            //   // var location = session.Get<ChemodanLocation>(filters.ChemodanLocationID);
+            //    tmpList =
+            //        tmpList?.Where(sku => sku.listChemodanTracking.Any(track => track.Location.id == filters.ChemodanLocationID)).ToList();
+            //}
+            //if (tmpList != null && tmpList.Count > 0)
+            //{
+            //    model.ListProduct = tmpList.Select(item => new ShortSKUModel()
+            //    {
+            //        articul = item.articul,
+            //        id = item.id,
+            //        price = item.chemodanType.priceDay,
+            //        smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+            //    }).ToList();
+            //}
 
             model.Filters = dataService.Filters();
-            model.TitleProduct = Shop.Resources.Default.FavoriteProducts;
+            model.TitleProduct = Shop.Resources.Default.Chemodans;
             model.menu = BuildMenu();
             model.topMenuItems = BuildTopMenu();
             return model;
@@ -122,6 +124,8 @@ namespace Shop.Models.Builders
                     id = item.id,
                     price = item.chemodanType.priceDay,
                     name = item.name,
+                    category = item.chemodanType.name,
+                    maxCount = item.listChemodanTracking.Count(i => i.Location.id == DefaultValueHasInStock),
                     smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
                 }).ToList();
             }
@@ -141,6 +145,7 @@ namespace Shop.Models.Builders
                     id = item.id,
                     price = item.chemodanType.priceDay,
                     name = item.name,
+                    category = item.chemodanType.name,
                     maxCount = item.listChemodanTracking.Count(i => i.Location.id == DefaultValueHasInStock),
                 smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
                 }).ToList();

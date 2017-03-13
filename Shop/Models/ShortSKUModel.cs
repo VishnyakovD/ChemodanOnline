@@ -12,6 +12,7 @@ namespace Shop.Models
     {
         public long id { get; set; }
         public string articul { get; set; }
+        public string category { get; set; }
         public string name { get; set; }
         public decimal price { get; set; }
         public string smalPhotoPath { get; set; }

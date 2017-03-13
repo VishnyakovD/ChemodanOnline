@@ -61,6 +61,15 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Чемоданы.
+        /// </summary>
+        public static string Chemodans {
+            get {
+                return ResourceManager.GetString("Chemodans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Тип чемодана.
         /// </summary>
         public static string ChemodanTypes {

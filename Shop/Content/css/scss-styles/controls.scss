@@ -16,7 +16,19 @@ input, span, div {
     font-size: 16px;
     letter-spacing: 0.8px;
     text-align: center;
-    color: #999999;
+    color: #999!important;
+    padding: 15px 30px;
+    display: inline-block;
+}
+
+.button-info{
+    width: 100%;
+    border-radius: 8px;
+    border: solid 1px #22b2da;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    text-align: center;
+    color: #22b2da!important;
     padding: 15px 30px;
     display: inline-block;
 }
@@ -28,4 +40,17 @@ input, span, div {
     color: #fff;
     border-radius: 0;
     font-size: 17px;
+}
+
+
+.title-filter{
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.67;
+  letter-spacing: 0.9px;
+  text-align: center;
+  color: #0d0d0d;
+  text-align:left;
+  text-transform:uppercase;
+  margin-bottom:40px;
 }
