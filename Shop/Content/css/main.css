@@ -210,14 +210,6 @@
         text-align: center;
         color: #ffffff; }
 
-.btn-info-block, .btn-info-block:hover {
-  background: #3c3b3b;
-  cursor: pointer;
-  padding: 10px 40px;
-  color: #fff;
-  border-radius: 0;
-  font-size: 17px; }
-
 .title-main-page {
   position: relative;
   font-family: 'Open Sans';
@@ -489,24 +481,43 @@ footer {
     width: 100%;
     display: block; }
 
-.short-product .line1 {
+.short-product {
   text-align: center; }
   .short-product .line1 img {
-    width: 100%; }
-
-.short-product.carusel {
-  max-height: 390px;
-  min-height: 390px;
-  padding-top: 0; }
+    width: 80%; }
+  .short-product .line2 {
+    min-height: 20px;
+    max-height: 20px;
+    overflow: hidden;
+    vertical-align: middle; }
+  .short-product .line3 {
+    min-height: 20px;
+    max-height: 20px;
+    overflow: hidden;
+    vertical-align: middle; }
+  .short-product .line4 {
+    margin-top: 10px; }
+  .short-product .line5 {
+    margin-top: 10px; }
+  .short-product .txt {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.4px;
+    color: #808080;
+    vertical-align: middle; }
+  .short-product .val {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.4px;
+    color: #333333;
+    vertical-align: middle; }
+  .short-product .price {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    vertical-align: middle; }
   .short-product.carusel .line1 {
     text-align: center; }
-    .short-product.carusel .line1 img {
-      max-height: 280px;
-      min-height: 280px;
-      width: auto; }
-
-.short-product .line5 {
-  text-align: center; }
 
 .filters li {
   font-weight: normal;
@@ -539,11 +550,7 @@ footer {
       .radio-btns div.selected .r1 .r2 {
         background: black; }
 
-a, a:visited {
-  color: black;
-  text-decoration: none; }
-
-a:hover {
+a, a:visited, a:hover {
   color: black;
   text-decoration: none; }
 
@@ -554,13 +561,20 @@ input.error, span.error, div.error {
 .button-default {
   border-radius: 8px;
   border: solid 1px #999999;
-  font-family: 'Open Sans';
   font-size: 16px;
-  line-height: 1.88;
   letter-spacing: 0.8px;
   text-align: center;
   color: #999999;
-  padding: 19px 37px; }
+  padding: 15px 30px;
+  display: inline-block; }
+
+.btn-info-block, .btn-info-block:hover {
+  background: #3c3b3b;
+  cursor: pointer;
+  padding: 10px 40px;
+  color: #fff;
+  border-radius: 0;
+  font-size: 17px; }
 
 body {
   font-family: 'Open Sans', sans-serif;

@@ -26,8 +26,8 @@
         }
     }
 
-    .top-menu-btn:active{
-        opacity:0.6;
+    .top-menu-btn:active {
+        opacity: 0.6;
     }
 
     .top-menu-body {
@@ -112,17 +112,18 @@
 }*/
 
 @media (min-width: 992px) /*and (max-width: 1199px )*/ {
-            .logo {
-            a {
-                img {
-                    height: auto;
-                    width: 175px;
-                }
+    .logo {
+        a {
+            img {
+                height: auto;
+                width: 175px;
             }
         }
+    }
+
     .top-menu-container {
-               padding:0 24px;
-       margin-bottom:20px;
+        padding: 0 24px;
+        margin-bottom: 20px;
 
         .top-menu-body {
             font-size: 14px;
@@ -135,24 +136,25 @@
 
 
         .cart {
-                margin-left: 10px;
+            margin-left: 10px;
             padding: 20px 0 20px 20px;
         }
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px ) {
-            .logo {
-            a {
-                img {
-                    height: auto;
-                    width: 125px;
-                }
+    .logo {
+        a {
+            img {
+                height: auto;
+                width: 125px;
             }
         }
+    }
+
     .top-menu-container {
-       padding:0 30px;
-       margin-bottom:20px;
+        padding: 0 30px;
+        margin-bottom: 20px;
 
         .top-menu-body {
             font-size: 13px;
@@ -185,23 +187,25 @@
 }
 
 @media (max-width: 767px) {
-            .logo {
-            vertical-align: top;
+    .logo {
+        vertical-align: top;
 
-            a {
-                img {
-                    width: 135px;
-                }
+        a {
+            img {
+                width: 135px;
             }
         }
-    body{
-        padding-top: 15px!important;
     }
+
+    body {
+        padding-top: 15px !important;
+    }
+
     .top-menu-container {
         min-height: 65px;
         max-height: 65px;
         text-align: center;
-        padding:0 15px;
+        padding: 0 15px;
 
 
         .cart {

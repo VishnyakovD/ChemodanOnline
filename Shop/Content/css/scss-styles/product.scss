@@ -1,39 +1,70 @@
 ﻿.short-product {
+    text-align: center;
+
     .line1 {
-        text-align: center;
 
         img {
-            width: 100%;
-        }
-    }
-
-    &.carusel {
-        max-height: 390px;
-        min-height: 390px;
-        padding-top: 0;
-
-        .line1 {
-            text-align: center;
-
-            img {
-                max-height: 280px;
-                min-height: 280px;
-                width: auto;
-            }
+            width: 80%;
         }
     }
 
     .line2 {
-
+    min-height: 20px;
+    max-height: 20px;
+    overflow:hidden;
+    vertical-align:middle;
     }
 
     .line3 {
+    min-height: 20px;
+    max-height: 20px;
+    overflow:hidden;
+    vertical-align:middle;
     }
 
     .line4 {
+        margin-top:10px;
     }
 
     .line5 {
-        text-align: center;
+        margin-top:10px;
+    }
+
+    .txt {
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 0.4px;
+        color: #808080;
+        vertical-align: middle;
+    }
+
+    .val {
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 0.4px;
+        color: #333333;
+        vertical-align: middle;
+    }
+
+    .price {
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        vertical-align: middle;
+    }
+
+    &.carusel {
+        // max-height: 390px;
+        // min-height: 390px;
+        // padding-top: 0;
+        .line1 {
+            text-align: center;
+
+            img {
+                // max-height: 280px;
+                // min-height: 280px;
+                //  width: auto;
+            }
+        }
     }
 }

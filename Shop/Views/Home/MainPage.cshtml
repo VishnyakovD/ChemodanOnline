@@ -110,17 +110,17 @@
                             <img src="@item.smalPhotoPath"/>
                         </div>
                         <div class="line2">
-                            <span class="art-text">арт.</span>
-                            <span class="art">@item.articul</span>
+                            <span class="txt">артикул:</span>
+                            <span class="val">@item.articul</span>
                         </div>
                         <div class="line3">
-                            <span class="size-text">размер</span>
-                            <span class="size">@item.articul</span>
+                            <span class="val">Большой</span>
                         </div>
                         <div class="line4">
-                            <span class="price">@item.price.ToString("#### грн.")</span>
+                            <span class="txt">в день:</span>
+                            <span class="price">@item.price.ToString("####")</span>
+                            <span class="val">грн.</span>
                         </div>
-
                         <div class="line5">
                             <a href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})" class="button-default">Посмотреть</a>
                         </div>

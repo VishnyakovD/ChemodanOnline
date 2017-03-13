@@ -66,15 +66,6 @@
     }
 }
 
-.btn-info-block, .btn-info-block:hover {
-    background: #3c3b3b;
-    cursor: pointer;
-    padding: 10px 40px;
-    color: #fff;
-    border-radius: 0;
-    font-size: 17px;
-}
-
 .title-main-page {
     position: relative;
     font-family: 'Open Sans';
@@ -247,7 +238,6 @@
     }
 }
 
-
 @media (max-width: 767px) {
     .title-main-page {
         margin-top: 50px;
@@ -322,7 +312,6 @@
         }
     }
 }
-
 
 footer {
     border-top: 1px solid #0d0d0d;
