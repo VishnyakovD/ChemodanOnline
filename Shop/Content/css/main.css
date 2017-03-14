@@ -582,12 +582,16 @@ footer {
     display: inline-block;
     border-radius: 20px;
     padding: 8px 15px;
-    margin: 0 5px;
+    margin: 5px;
     cursor: pointer; }
   .selected-filters span:last-of-type {
     color: #808080;
     background: none;
     padding: 8px 15px 8px 5px; }
+  .selected-filters .filter-clear {
+    padding: 0 !important;
+    margin: 0 !important;
+    color: black !important; }
 
 .radio-btns div {
   color: gray;

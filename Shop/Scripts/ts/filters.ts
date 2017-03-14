@@ -18,6 +18,7 @@ class FilterModel {
     filterChemodanTypes: FilterItemValue[];
     filterCategoryes: FilterItemValue[];
 
+    selectedFiltersQuery: JQuery;
     listProductsQuery: JQuery;
 
     constructor() {
@@ -26,12 +27,13 @@ class FilterModel {
         this.filterCategoryes = [];
 
         this.listProductsQuery = $(".js-list-products");
+        this.selectedFiltersQuery = $(".js-selected-filters");
     }
 
-   activateFilter(id: number, type: string, isSelected: boolean, value: string): void {
+    activateFilter(id: number, type: string, isSelected: boolean, value: string): void {
 
-        var filterValue = new FilterItemValue(id,type, true, value);
-        if (this.filterCategoryes.length===0) {
+        var filterValue = new FilterItemValue(id, type, true, value);
+        if (this.filterCategoryes.length === 0) {
             this.filterCategoryes.push(new FilterItemValue($(".js-filter-cat").val(), " ", true, " "));
         }
         switch (type) {
@@ -82,7 +84,13 @@ class FilterModel {
 
                 }
                 break;
-        default:
+
+            case "ClearAll":
+                this.filterSpecifications = [];
+                this.filterChemodanTypes = [];
+                //this.filterCategoryes = [];
+                break;
+            default:
         }
 
 
@@ -95,33 +103,69 @@ class FilterModel {
                 this.listProductsQuery.html(data);
             });
     }
-   }
+
+    unCheckFilter(element: JQuery): void {
+        element.removeClass("active");
+        element.data("is-selected", "false");
+        element.find("input").prop("checked", false);
+    }
+
+    checkFilter(element: JQuery): void {
+        element.addClass("active");
+        element.data("is-selected", "true");
+        element.find("input").prop("checked", true);
+    }
+
+    createCheckedFilter(filterId: number, filterType: string, filterText: string) {
+        this.selectedFiltersQuery.prepend(`
+                <span data-filter-id="${filterId}" data-filter-type="${filterType}">
+                    ${filterText}
+                    <span class="glyphicon glyphicon-remove-sign filter-clear"></span>
+                </span>
+                                        `);
+    }
+
+    removeCheckedFilter(filterId: number, filterType: string, filterText: string) {
+        this.selectedFiltersQuery.find(`span[data-filter-id="${filterId}"][data-filter-type="${filterType}"]`).remove();
+    }
+}
 
 
 var filterModel: FilterModel;
 
 $(() => {
 
-    if ($(".js-filter-item").length>0) {
+    if ($(".js-filter-item").length > 0) {
         filterModel = new FilterModel();
 
         $(document).on("click", ".js-filter-item", (e) => {
-            
-            filterModel.activateFilter(
-                $(e.currentTarget).data("filter-id"),
-                $(e.currentTarget).data("filter-type"),
-                $(e.currentTarget).data("is-selected"),
-                $(e.currentTarget).find(".js-txt").html());
+            var fId = $(e.currentTarget).data("filter-id");
+            var type = $(e.currentTarget).data("filter-type");
+           // var isSelected = $(e.currentTarget).data("is-selected");
+            var isSelected = $(e.currentTarget).hasClass("active");
+            var text= $(e.currentTarget).find(".js-txt").html();
 
-          if ($(e.currentTarget).hasClass("active")) {
-              $(e.currentTarget).removeClass("active");
-              $(e.currentTarget).data("is-selected", false);
-              $(e.currentTarget).find("input").prop("checked",false);
-          } else {
-              $(e.currentTarget).addClass("active");
-              $(e.currentTarget).data("is-selected", true);
-              $(e.currentTarget).find("input").prop("checked", true);
-          }
+            filterModel.activateFilter(fId,type,isSelected,text);
+
+            if ($(e.currentTarget).hasClass("active")) {
+                filterModel.unCheckFilter($(e.currentTarget));
+                filterModel.removeCheckedFilter(fId, type, text);
+            } else {
+                filterModel.checkFilter($(e.currentTarget));
+                filterModel.createCheckedFilter(fId,type,text);
+            }
+        });
+
+        $(document).on("click", ".js-filter-clear", (e) => {
+            //var fId = $(e.currentTarget).data("filter-id");
+            //var type = $(e.currentTarget).data("filter-type");
+
+            filterModel.activateFilter(null, "ClearAll", false, null);
+
+            var filterItems = $(".js-filter-item.active");
+            filterItems.find("input").prop("checked", false);
+            filterItems.removeClass("active");
+            filterModel.selectedFiltersQuery.find("span:not('.js-filter-clear')").remove();
         });
     }
 

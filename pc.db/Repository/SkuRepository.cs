@@ -103,6 +103,11 @@ namespace Shop.db.Repository
                 // skus = (from sku in skus from skuSpec in sku.listSpecification where filters.Specifications.Contains(new FilterItemValue {Id = skuSpec.staticspec.id, Value = skuSpec.value}) select sku).ToList();
             }
 
+            if (skus==null)
+            {
+                skus = session.QueryOver<Sku>().Where(sku =>sku.isHide == false).List();
+            }
+
             if (filters.ChemodanLocationID>0)
             {
                // var location = session.Get<ChemodanLocation>(filters.ChemodanLocationID);

@@ -50,20 +50,26 @@
     letter-spacing: 0.7px;
     text-align: center;
     color: #0d0d0d;
-    text-align:left;
+    text-align: left;
 
     span {
         background-color: #dbdbdb;
         display: inline-block;
         border-radius: 20px;
         padding: 8px 15px;
-        margin: 0 5px;
-        cursor:pointer;
+        margin: 5px;
+        cursor: pointer;
     }
 
-        span:last-of-type {
-            color: #808080;
-            background:none;
-            padding: 8px 15px 8px 5px;
+    span:last-of-type {
+        color: #808080;
+        background: none;
+        padding: 8px 15px 8px 5px;
+    }
+
+    .filter-clear{
+        padding:0!important;
+        margin:0!important;
+        color:black!important;
     }
 }
