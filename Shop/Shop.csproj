@@ -243,6 +243,8 @@
     </Content>
     <Content Include="Content\Images\box.png" />
     <Content Include="Content\img\icons\cart.png" />
+    <Content Include="Content\img\icons\facebook-logo.png" />
+    <Content Include="Content\img\icons\instagram-logo.png" />
     <Content Include="Content\img\icons\master.png" />
     <Content Include="Content\img\icons\size.png" />
     <Content Include="Content\img\icons\visa.png" />

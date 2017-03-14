@@ -348,12 +348,18 @@ footer {
             color: #0d0d0d;
             float: right;
             font-size: 18px;
-                text-align: right;
-                padding-top:5px;
+            text-align: right;
+            padding-top: 5px;
 
-                a{
-                        padding: 6px;
+            a {
+                padding: 6px;
+
+                img {
+                    width: 20px;
+                    height: 20px;
                 }
+            }
+
             div {
                 display: block;
             }
@@ -430,13 +436,14 @@ footer {
             color: #0d0d0d;
             font-size: 10px;
 
-                     .footer-addres {
+            .footer-addres {
                 font-size: 18px;
-                text-align :center;
-                    width: 100%;
-                img{
-                    height:20px;
-                    width:20px;
+                text-align: center;
+                width: 100%;
+
+                img {
+                    height: 20px;
+                    width: 20px;
                 }
             }
         }
@@ -447,7 +454,6 @@ footer {
             max-height: 40px;
             line-height: 5.6;
             letter-spacing: 0.5px;
-
         }
     }
 }

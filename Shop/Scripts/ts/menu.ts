@@ -1,16 +1,26 @@
 ﻿class TopMenu {
 
     menu: JQuery;
+    menuBig:JQuery;
     constructor() {
         this.menu = $(".js-top-menu-body-mobile");
+        this.menuBig = $(".js-menu-body a");
+
+        this.menuBig.each((i, element) => {
+            console.log(element);
+            if (window.location.href.indexOf($(element).attr("href")) > 0) {
+                $(element).addClass("active");
+                return;
+            }
+        });
     }
 
-    Show(): void {
+    show(): void {
         this.menu.toggleClass("toggled");
         // this.menu.slideDown("slow");
     }
 
-    Hide(): void {
+    hide(): void {
         this.menu.removeClass("toggled");
     }
 }
@@ -22,9 +32,9 @@ $(() => {
 
     $(document).on("click", ".js-click-top-menu-btn", (e) => {
         if (!topMenu.menu.hasClass("toggled")) {
-            topMenu.Show();
+            topMenu.show();
         } else {
-            topMenu.Hide();
+            topMenu.hide();
         }
     });
 

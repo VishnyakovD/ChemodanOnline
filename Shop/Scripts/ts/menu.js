@@ -1,12 +1,20 @@
 var TopMenu = (function () {
     function TopMenu() {
         this.menu = $(".js-top-menu-body-mobile");
+        this.menuBig = $(".js-menu-body a");
+        this.menuBig.each(function (i, element) {
+            console.log(element);
+            if (window.location.href.indexOf($(element).attr("href")) > 0) {
+                $(element).addClass("active");
+                return;
+            }
+        });
     }
-    TopMenu.prototype.Show = function () {
+    TopMenu.prototype.show = function () {
         this.menu.toggleClass("toggled");
         // this.menu.slideDown("slow");
     };
-    TopMenu.prototype.Hide = function () {
+    TopMenu.prototype.hide = function () {
         this.menu.removeClass("toggled");
     };
     return TopMenu;
@@ -16,10 +24,10 @@ $(function () {
     topMenu = new TopMenu();
     $(document).on("click", ".js-click-top-menu-btn", function (e) {
         if (!topMenu.menu.hasClass("toggled")) {
-            topMenu.Show();
+            topMenu.show();
         }
         else {
-            topMenu.Hide();
+            topMenu.hide();
         }
     });
 });
