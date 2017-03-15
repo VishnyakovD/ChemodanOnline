@@ -28,134 +28,145 @@
 
 @if (Model != null)
 {
-
-    <div class="row">
-        <div class="col-md-12">
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            @if (Model.listPhoto != null && Model.listPhoto.Any())
-            {
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        @for (int i = 0; i < Model.listPhoto.Count(); i++)
-                        {
-                            if (i == 0)
-                            {
-                                <li data-target="#carousel-example-generic" data-slide-to="@i" class="active"></li>
-                            }
-                            else
-                            {
-                                <li data-target="#carousel-example-generic" data-slide-to="@i"></li>
-                            }
-
-                        }
-                    </ol>
-                    <div class="carousel-inner" role="listbox">
-                        @for (int i = 0; i < Model.listPhoto.Count(); i++)
-                        {
-                            if (i == 0)
-                            {
-                                <div class="item active">
-                                    <img class="col-md-12" src="@Model.listPhoto[i].path" />
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="item">
-                                    <img class="col-md-12" src="@Model.listPhoto[i].path" />
-                                </div>
-                            }
-
-                        }
-                    </div>
-                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Предыдущее</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Следующее</span>
-                    </a>
+    <div class="product-card">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs">
+                <div class="breadcrumbs">
+                    <a href="/">Главная</a>
+                    <span>></span>
+                    <a href="/Home/ListSkuOnCategory?idCat=10010">Чемоданы</a>
+                    <span>></span>
+                    <a href="/Home/SkuInfo?idSku=@Model.id">@Model.name</a>
                 </div>
-            }
-            else
-            {
-                <img class="col-md-12" src="@Model.smalPhotoPath" />
-            }
+            </div>
         </div>
 
-        <div class="col-md-6">
-
-            @if (Model.listSpecification != null && Model.listSpecification.Any())
-            {
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-bordered table-condensed">
-                            <tr>
-                                <th colspan="2">Характеристики</th>
-                            </tr>
-                            <tr>
-                                <td>Артикул</td>
-                                <td>@Model.articul</td>
-
-                            </tr>
-                            @foreach (var spec in Model.listSpecification)
-                            {
-                                <tr>
-                                    <td>@spec.staticspec.name</td>
-                                    <td>@spec.value</td>
-                                </tr>
-                            }
-                        </table>
-                    </div>
-                </div>
-            }
-
-            @if (!string.IsNullOrEmpty(Model.description))
-            {
-                <div class="row">
-                    <div class="col-md-12">
-                        <b>Описание</b>
-                        <div>@(new HtmlString(Model.description))</div>
-                    </div>
-                </div>
-            }
-
-            @if (!string.IsNullOrEmpty(Model.care))
-            {
-                <div class="row">
-                    <div class="col-md-12">
-                        <b>Уход</b>
-                        <div>@(new HtmlString(Model.care))</div>
-                    </div>
-                </div>
-            }
-
-            <div class="pull-right">
-                <span class="priceLabel">Цена</span>
-
-
-                <span>
-                    @Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)
-                    <span>грн</span>
-                </span>
-
-                <span class="btn btn-info-block js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount">Добавить</span>
-
+        <div class="row hidden-xs hidden-sm">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div class="title text-left">@Model.name</div>
             </div>
 
+        </div>
 
-            @if (Model.id > 0 && User.IsInRole("Admin"))
-            {
-                <div>
-                    <a class="btn btn-lg btn-info" href="@Url.Action("SkuData", "Admin", new { id = Model.id })">Редактировать товар</a>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                @if (Model.listPhoto != null && Model.listPhoto.Any())
+                {
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            @for (int i = 0; i < Model.listPhoto.Count(); i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <li data-target="#carousel-example-generic" data-slide-to="@i" class="active"></li>
+                                }
+                                else
+                                {
+                                    <li data-target="#carousel-example-generic" data-slide-to="@i"></li>
+                                }
+
+                            }
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+                            @for (int i = 0; i < Model.listPhoto.Count(); i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <div class="item active">
+                                        <img class="col-md-12" src="@Model.listPhoto[i].path" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="item">
+                                        <img class="col-md-12" src="@Model.listPhoto[i].path" />
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Предыдущее</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Следующее</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <img class="col-md-12" src="@Model.smalPhotoPath" />
+                }
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="title tablet text-left hidden-lg hidden-md">@Model.name</div>
+                <div class="art">арт.@Model.articul</div>
+                <div class="prices">
+                    <div class="line1">
+                        <span class="price-value">@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)</span>
+                        <span class="price-curency">грн.</span>
+                        <span class="dotted"></span>
+                        <span class="text">Аренда в день</span>
+                    </div>
+
+                    <div class="line2">
+                        <span class="price-value">@Model.price.ToString("F2", CultureInfo.InvariantCulture) грн.</span>
+                        <span class="dotted"></span>
+                        <span class="text">Залоговая сумма</span>
+                    </div>
+
                 </div>
-            }
+                <div class="product-tabs">
+                    <div class="tab active">
+                        <span>Характеристики</span>
+                    </div>
+                    <div class="tab">
+                        <span>Описание</span>
+                    </div>
+                </div>
+                <div class="product-tabs-content">
+                    <div>
+                        @foreach (var spec in Model.listSpecification)
+                        {
+                            <div class="spec-item">
+                                <span class="spec-text">@spec.staticspec.name</span>
+                                <span class="dotted"></span>
+                                <span class="spec-value">@spec.value</span>
+                            </div>
+                        }
+                    </div>
+                    <div class="hidden">
+                        @(new HtmlString(Model.description))
 
+
+                        @if (!string.IsNullOrEmpty(Model.care))
+                        {
+
+                           <div>@(new HtmlString(Model.care))</div>
+                        }
+                    </div>
+                </div>
+
+                <div class="button-info blue js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount">Добавить в корзину</div>
+                
+
+                @if (Model.id > 0 && User.IsInRole("Admin"))
+                {
+                    <br/>
+                    <br/>
+                    <br/>
+                        <a class="btn btn-default" href="@Url.Action("SkuData", "Admin", new {id = Model.id})">Редактировать товар</a>
+                   
+                }
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+            </div>
         </div>
 
     </div>

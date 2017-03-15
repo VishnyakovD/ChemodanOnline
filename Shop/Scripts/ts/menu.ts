@@ -7,7 +7,6 @@
         this.menuBig = $(".js-menu-body a");
 
         this.menuBig.each((i, element) => {
-            console.log(element);
             if (window.location.href.indexOf($(element).attr("href")) > 0) {
                 $(element).addClass("active");
                 return;

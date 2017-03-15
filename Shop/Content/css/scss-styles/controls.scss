@@ -19,6 +19,7 @@ input, span, div {
     color: #999!important;
     padding: 15px 30px;
     display: inline-block;
+    cursor:pointer;
 }
 
 .button-info{
@@ -31,13 +32,33 @@ input, span, div {
     color: #22b2da!important;
     padding: 15px 30px;
     display: inline-block;
+    cursor:pointer;
+
+    &.blue{
+        background-color: #22b2da;
+        color:white!important;
+        font-weight:bold;
+        text-transform:uppercase;
+    }
+}
+
+.button-default {
+    border-radius: 8px;
+    border: solid 1px #999999;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    text-align: center;
+    color: #999!important;
+    padding: 15px 30px;
+    display: inline-block;
+    cursor:pointer;
 }
 
 .btn-info-block, .btn-info-block:hover {
     background: #3c3b3b;
     cursor: pointer;
     padding: 10px 40px;
-    color: #fff;
+    color: #fff!important;
     border-radius: 0;
     font-size: 17px;
 }

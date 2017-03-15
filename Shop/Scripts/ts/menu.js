@@ -3,7 +3,6 @@ var TopMenu = (function () {
         this.menu = $(".js-top-menu-body-mobile");
         this.menuBig = $(".js-menu-body a");
         this.menuBig.each(function (i, element) {
-            console.log(element);
             if (window.location.href.indexOf($(element).attr("href")) > 0) {
                 $(element).addClass("active");
                 return;
@@ -31,3 +30,4 @@ $(function () {
         }
     });
 });
+//# sourceMappingURL=menu.js.map
