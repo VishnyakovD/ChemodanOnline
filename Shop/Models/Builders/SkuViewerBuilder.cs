@@ -179,6 +179,30 @@ namespace Shop.Models.Builders
             {     
                  skuModel = SKUModelBuilder.ConvertSkuBDToSkuModel(sku);
             }
+
+            var tmpList = dataService.ListProductByDisplayType(DisplayType.Favorite);
+            var DefaultValueHasInStock = long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
+            if (DefaultValueHasInStock > 0)
+            {
+                // var location = session.Get<ChemodanLocation>(filters.ChemodanLocationID);
+                tmpList =
+                    tmpList?.Where(skuItem => skuItem.listChemodanTracking.Any(track => track.Location.id == DefaultValueHasInStock)).ToList();
+            }
+            if (tmpList != null && tmpList.Count > 0)
+            {
+                skuModel.ListProduct = tmpList.Select(item => new ShortSKUModel()
+                {
+                    articul = item.articul,
+                    id = item.id,
+                    price = item.chemodanType.priceDay,
+                    category = item.chemodanType.name,
+                    name = item.name,
+                    smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+                }).ToList();
+            }
+
+
+            skuModel.TitleProduct = Shop.Resources.Default.FavoriteProducts;
             skuModel.menu = BuildMenu();
             skuModel.topMenuItems = BuildTopMenu();
             return skuModel;

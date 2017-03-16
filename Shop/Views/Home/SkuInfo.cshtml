@@ -29,8 +29,8 @@
 @if (Model != null)
 {
     <div class="product-card">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs">
+        <div class="row hidden-xs hidden-sm">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="breadcrumbs">
                     <a href="/">Главная</a>
                     <span>></span>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 @if (Model.listPhoto != null && Model.listPhoto.Any())
                 {
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -76,13 +76,13 @@
                                 if (i == 0)
                                 {
                                     <div class="item active">
-                                        <img class="col-md-12" src="@Model.listPhoto[i].path" />
+                                        <img class="col-md-12" src="@Model.listPhoto[i].path"/>
                                     </div>
                                 }
                                 else
                                 {
                                     <div class="item">
-                                        <img class="col-md-12" src="@Model.listPhoto[i].path" />
+                                        <img class="col-md-12" src="@Model.listPhoto[i].path"/>
                                     </div>
                                 }
 
@@ -100,10 +100,20 @@
                 }
                 else
                 {
-                    <img class="col-md-12" src="@Model.smalPhotoPath" />
+                    <img class="col-md-12" src="@Model.smalPhotoPath"/>
                 }
+                <div class="pay-one-click full-width hidden-xs hidden-lg hidden-md">
+                    <div class="line1">
+                        <input type="tel" placeholder="0XX XXX XX XX"/>
+                    </div>
+                    <div class="line2">
+                        <div class="js-pay-one-click">
+                            Заказать в один клик
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-lg-4">
                 <div class="title tablet text-left hidden-lg hidden-md">@Model.name</div>
                 <div class="art">арт.@Model.articul</div>
                 <div class="prices">
@@ -134,6 +144,7 @@
                         @foreach (var spec in Model.listSpecification)
                         {
                             <div class="spec-item">
+                                <span class="rect"></span>
                                 <span class="spec-text">@spec.staticspec.name</span>
                                 <span class="dotted"></span>
                                 <span class="spec-value">@spec.value</span>
@@ -147,28 +158,123 @@
                         @if (!string.IsNullOrEmpty(Model.care))
                         {
 
-                           <div>@(new HtmlString(Model.care))</div>
+                            <div>@(new HtmlString(Model.care))</div>
                         }
                     </div>
                 </div>
 
                 <div class="button-info blue js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount">Добавить в корзину</div>
-                
+
 
                 @if (Model.id > 0 && User.IsInRole("Admin"))
                 {
                     <br/>
                     <br/>
                     <br/>
-                        <a class="btn btn-default" href="@Url.Action("SkuData", "Admin", new {id = Model.id})">Редактировать товар</a>
-                   
+                    <a class="btn btn-default" href="@Url.Action("SkuData", "Admin", new {id = Model.id})">Редактировать товар</a>
+
                 }
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-4 col-md-4 col-lg-4 hidden-xs hidden-sm">
+                <div class="product-info-block">
+                    <div class="line1">Самовывоз</div>
+                    <div class="line2">
+                        <a href="/" target="_blank">
+                            <img src="~/Content/img/icons/loc.png"/>
+                            г. Киев, ул. Янгола, 57
+                        </a>
+                    </div>
+                </div>
 
+                <div class="product-info-block">
+                    <div class="line1">Гарантия гигиены</div>
+                    <div class="line2">
+                        <a href="/" target="_blank">
+                            <img src="~/Content/img/icons/assistant.png"/>
+                            Прочитайте об гигиена чемоданов
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pay-one-click">
+                    <div class="line1">
+                        <input type="tel" placeholder="0XX XXX XX XX"/>
+                    </div>
+                    <div class="line2">
+                        <div class="js-pay-one-click">
+                            Заказать в один клик
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <div class="row hidden-md hidden-lg">
+            <div class="col-xs-6 col-sm-6">
+                <div class="product-info-block">
+                    <div class="line1">Самовывоз</div>
+                    <div class="line2">
+                        <a href="/" target="_blank">
+                            <img src="~/Content/img/icons/loc.png" />
+                            г. Киев, ул. Янгола, 57
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6">
+                <div class="product-info-block">
+                    <div class="line1">Гарантия гигиены</div>
+                    <div class="line2">
+                        <a href="/" target="_blank">
+                            <img src="~/Content/img/icons/assistant.png" />
+                            Прочитайте про гигиену чемоданов
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-ms-12">
+                <div class="text-center">
+                    <div class="title-main-page">@Model.TitleProduct</div>
+                </div>
+                <div class="hr-title"></div>
+            </div>
+        </div>
+
+
+        <div class="swiper-container main-page-favorite-swipe js-main-page-favorite-swiper">
+
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.ListProduct)
+                {
+                    <div class="swiper-slide">
+                        <div class="short-product">
+                            <div class="line1">
+                                <img src="@item.smalPhotoPath" />
+                            </div>
+                            <div class="line2">
+                                <span class="txt">артикул:</span>
+                                <span class="val">@item.articul</span>
+                            </div>
+                            <div class="line3">
+                                <span class="val">@item.category</span>
+                            </div>
+                            <div class="line4">
+                                <span class="txt">в день:</span>
+                                <span class="price">@item.price.ToString("####")</span>
+                                <span class="val">грн.</span>
+                            </div>
+                            <div class="line5">
+                                <a href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})" class="button-default">Посмотреть</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
     </div>
 }
 

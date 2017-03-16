@@ -219,7 +219,8 @@
             display: inline-block;
 
             &.active {
-                font-weight: normal;
+                padding: 39px 10px 15px 10px;
+                font-weight: bold;
                 border-bottom: 2px black solid;
             }
         }
@@ -238,31 +239,122 @@
         letter-spacing: 0.4px;
         text-align: left;
         color: #0d0d0d;
-        border-bottom:1px solid black;
+        border-bottom: 1px solid black;
 
         .spec-item {
             position: relative;
             margin: 13px 0;
-            .dotted{
-                bottom: 5px;
+
+            .rect {
+                display: inline-block;
+                width: 4px;
+                height: 4px;
+                background-color: #000000;
+                margin-right: 10px;
+                margin-bottom: 3px;
             }
+
+            .dotted {
+                bottom: 5px;
+                margin-left: 20px;
+                width: 80%;
+            }
+
             .spec-text {
-                background:white;
-                 padding-right:10px;
+                background: white;
+                padding-right: 10px;
             }
 
             .spec-value {
-                    float: right;
-                    background:white;
-                    padding-left:10px;
+                float: right;
+                background: white;
+                padding-left: 10px;
+            }
+        }
+    }
+
+    .product-info-block {
+        padding: 36px 28px;
+
+        .line1 {
+            font-size: 14px;
+            letter-spacing: 0.4px;
+            margin-bottom: 10px;
+        }
+
+        .line2 {
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0.4px;
+
+            a {
+                text-decoration: underline;
+            }
+
+            img {
+                margin-right: 14px;
+                width: 14px;
             }
         }
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px ) {
-    .art {
-        padding:15px 0 30px 0;
+.pay-one-click {
+    border: solid 1px #22b2da;
+    border-radius: 5px;
+    min-width: 245px;
+    max-width: 245px;
+    margin: 36px 28px;
+
+    .line1 {
+        padding-top: 9px;
+        font-size: 14px;
+        letter-spacing: 1.4px;
+        text-align: center;
+        color: #0d0d0d;
+        border-bottom: solid 1px #22b2da;
+        min-height: 49px;
+        max-height: 49px;
+
+        input {
+            border: none;
+            text-align: center;
+            font-size: 14px;
+            letter-spacing: 1.4px;
+            color: #0d0d0d;
+        }
+    }
+
+    .line2 {
+        font-size: 14px;
+        letter-spacing: 0.7px;
+        text-align: center;
+        color: #22b2da;
+        min-height: 49px;
+        max-height: 49px;
+
+        div {
+            height: 49px;
+            padding-top: 12px;
+            cursor: pointer;
+            user-select: none;
+            text-transform: uppercase;
+        }
+
+        div:active {
+            opacity: 0.7;
+        }
+    }
+
+    &.full-width {
+        min-width: 100%;
+        max-width: 100%;
+        margin: 30px 0;
     }
 }
 
+@media (min-width: 768px) and (max-width: 991px ) {
+    .art {
+        padding: 15px 0 30px 0;
+    }
+}

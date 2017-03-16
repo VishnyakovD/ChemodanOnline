@@ -1,4 +1,4 @@
-﻿a, a:visited,a:hover {
+﻿a, a:visited, a:hover {
     color: black;
     text-decoration: none;
 }
@@ -16,29 +16,38 @@ input, span, div {
     font-size: 16px;
     letter-spacing: 0.8px;
     text-align: center;
-    color: #999!important;
+    color: #999 !important;
     padding: 15px 30px;
     display: inline-block;
-    cursor:pointer;
+    cursor: pointer;
+
+    &:active {
+        opacity: 0.7;
+    }
 }
 
-.button-info{
+.button-info {
     width: 100%;
     border-radius: 8px;
     border: solid 1px #22b2da;
     font-size: 16px;
     letter-spacing: 0.8px;
     text-align: center;
-    color: #22b2da!important;
+    color: #22b2da !important;
     padding: 15px 30px;
     display: inline-block;
-    cursor:pointer;
+    cursor: pointer;
+    user-select: none;
 
-    &.blue{
+    &.blue {
         background-color: #22b2da;
-        color:white!important;
-        font-weight:bold;
-        text-transform:uppercase;
+        color: white !important;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    &:active {
+        opacity: 0.7;
     }
 }
 
@@ -48,30 +57,39 @@ input, span, div {
     font-size: 16px;
     letter-spacing: 0.8px;
     text-align: center;
-    color: #999!important;
+    color: #999 !important;
     padding: 15px 30px;
     display: inline-block;
-    cursor:pointer;
+    cursor: pointer;
+    user-select: none;
+
+    &:active {
+        opacity: 0.7;
+    }
 }
 
 .btn-info-block, .btn-info-block:hover {
     background: #3c3b3b;
     cursor: pointer;
     padding: 10px 40px;
-    color: #fff!important;
+    color: #fff !important;
     border-radius: 0;
     font-size: 17px;
+
+    &:active {
+        opacity: 0.7;
+    }
 }
 
 
-.title-filter{
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 1.67;
-  letter-spacing: 0.9px;
-  text-align: center;
-  color: #0d0d0d;
-  text-align:left;
-  text-transform:uppercase;
-  margin-bottom:40px;
+.title-filter {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.67;
+    letter-spacing: 0.9px;
+    text-align: center;
+    color: #0d0d0d;
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 40px;
 }

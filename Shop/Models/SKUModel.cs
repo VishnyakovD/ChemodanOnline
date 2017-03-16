@@ -81,10 +81,14 @@ namespace Shop.Models
 
         public int maxCount { get; set; }
 
+        public List<ShortSKUModel> ListProduct { set; get; }
+        public string TitleProduct { get; set; }
+
 
 
         public SKUModel()
         {
+            ListProduct=new List<ShortSKUModel>();
             care = string.Empty;
             isHide = false;
             price = 0;
