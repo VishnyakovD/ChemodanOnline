@@ -4,8 +4,32 @@
     width: 100%;
     display: block; }
 
+.card-page-swipe {
+  margin-bottom: 20px; }
+  .card-page-swipe .swiper-slide img {
+    width: 100%;
+    display: block; }
+
 .main-page-favorite-swipe {
   margin-bottom: 20px; }
   .main-page-favorite-swipe .swiper-slide {
     border-right: 1px solid #d6d6d6; }
+
+.swiper-button-prev {
+  background-image: url("../img/icons/prev.png");
+  padding: 10px;
+  width: 45px;
+  height: 34px;
+  opacity: 0.5; }
+  .swiper-button-prev:active {
+    opacity: 1; }
+
+.swiper-button-next {
+  background-image: url("../img/icons/next.png");
+  padding: 10px;
+  width: 45px;
+  height: 34px;
+  opacity: 0.5; }
+  .swiper-button-next:active {
+    opacity: 1; }
 

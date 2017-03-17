@@ -334,7 +334,7 @@ $(() => {
             var itemRemoveAll = $(e.currentTarget).data("remove-all");
 
             var count = 0;
-            if (itemRemoveAll == "true") {
+            if (itemRemoveAll) {
                 count = cartManager.cart.removeFromCart(itemId, true);
             } else {
                 count = cartManager.cart.removeFromCart(itemId, false);

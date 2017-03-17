@@ -230,6 +230,12 @@
     <Content Include="Content\css\scss-styles\main-page.min.css">
       <DependentUpon>main-page.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\scss-styles\order.css">
+      <DependentUpon>order.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\css\scss-styles\order.min.css">
+      <DependentUpon>order.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\scss-styles\product.css" />
     <Content Include="Content\css\scss-styles\product.min.css">
       <DependentUpon>product.css</DependentUpon>
@@ -254,10 +260,13 @@
     <Content Include="Content\Images\box.png" />
     <Content Include="Content\img\icons\assistant.png" />
     <Content Include="Content\img\icons\cart.png" />
+    <Content Include="Content\img\icons\clear.png" />
     <Content Include="Content\img\icons\facebook-logo.png" />
     <Content Include="Content\img\icons\instagram-logo.png" />
     <Content Include="Content\img\icons\loc.png" />
     <Content Include="Content\img\icons\master.png" />
+    <Content Include="Content\img\icons\next.png" />
+    <Content Include="Content\img\icons\prev.png" />
     <Content Include="Content\img\icons\size.png" />
     <Content Include="Content\img\icons\visa.png" />
     <Content Include="Content\img\logo.png" />
@@ -306,6 +315,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\css\main.scss" />
+    <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

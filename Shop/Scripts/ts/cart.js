@@ -273,7 +273,7 @@ $(function () {
             var itemPrice = $(e.currentTarget).data("price");
             var itemRemoveAll = $(e.currentTarget).data("remove-all");
             var count = 0;
-            if (itemRemoveAll == "true") {
+            if (itemRemoveAll) {
                 count = cartManager.cart.removeFromCart(itemId, true);
             }
             else {
@@ -334,4 +334,3 @@ $(function () {
     cartManager.setCountAllProducts();
     cartManager.setSummAllProducts();
 });
-//# sourceMappingURL=cart.js.map

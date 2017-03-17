@@ -130,5 +130,61 @@
   {
     "outputFile": "Content/css/scss-styles/product.css",
     "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/main.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/order.css",
+    "inputFile": "Content/css/scss-styles/order.scss"
   }
 ]
