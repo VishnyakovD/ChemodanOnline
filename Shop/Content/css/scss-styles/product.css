@@ -201,14 +201,22 @@
     .info-category .item .description {
       text-align: left;
       overflow: hidden; }
-    .info-category .item .button {
-      background-color: #22b2da;
-      border-radius: 8px; }
-      .info-category .item .button a {
-        display: block;
-        height: 100%;
-        text-align: center;
-        color: #ffffff; }
+
+.button {
+  background-color: #22b2da;
+  border-radius: 8px; }
+  .button a, .button span, .button span:hover {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    color: white;
+    text-transform: uppercase; }
+    .button a.button-order, .button span.button-order, .button span:hover.button-order {
+      font-size: 14px;
+      letter-spacing: 0.4px;
+      text-align: center;
+      color: white;
+      padding: 10px 12px; }
 
 .title-main-page {
   position: relative;
@@ -959,11 +967,12 @@ footer {
         width: 13px;
         height: 13px; }
 
-.order-dates {
+.order-info {
+  margin-bottom: 20px;
   border-radius: 3px;
   background-color: #ebf1f2;
   padding-bottom: 35px; }
-  .order-dates .title {
+  .order-info .title {
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.4px;
@@ -971,33 +980,70 @@ footer {
     color: #0d0d0d;
     border-bottom: 1px solid #b3b3b3;
     padding: 20px 23px; }
-  .order-dates .dates-label {
+  .order-info .info-label {
     padding: 20px 23px 13px 20px;
     font-size: 13px;
     font-weight: 300;
     letter-spacing: 0.3px;
     color: #000000; }
-  .order-dates .date-values {
+  .order-info .date-values {
     margin: 0 23px 0px 23px;
     max-height: 35px;
     min-height: 35px;
     border-radius: 3px;
-    background-color: #ffffff; }
-    .order-dates .date-values input {
+    background-color: #ffffff;
+    padding-left: 8px;
+    white-space: nowrap;
+    display: inline-block; }
+    .order-info .date-values img {
+      width: 15px;
+      padding: 8px 0; }
+    .order-info .date-values input {
       border: none;
       text-align: center;
-      width: 125px;
+      width: 103px;
+      outline: none;
+      font-size: 13px;
+      letter-spacing: 0.7px; }
+    .order-info .date-values input:focus {
       outline: none; }
-    .order-dates .date-values input:focus {
-      outline: none; }
-    .order-dates .date-values input[type=date]::-webkit-inner-spin-button {
+    .order-info .date-values input[type=date]::-webkit-inner-spin-button {
       -webkit-appearance: none;
       display: none; }
-    .order-dates .date-values input[type="date"]::-webkit-clear-button {
+    .order-info .date-values input[type=date]::-webkit-calendar-picker-indicator {
+      opacity: 1;
+      padding: 13px 7px;
+      cursor: pointer; }
+    .order-info .date-values input[type="date"]::-webkit-clear-button {
       -webkit-appearance: none;
       display: none; }
-    .order-dates .date-values input[type="date"]::-ms-clear {
+    .order-info .date-values input[type="date"]::-ms-clear {
       display: none; }
+  .order-info .order-summ-block {
+    padding: 20px 23px 13px 20px;
+    text-align: center;
+    position: relative; }
+    .order-info .order-summ-block .summ-label {
+      font-size: 14px;
+      letter-spacing: 0.4px;
+      color: #0d0d0d;
+      float: left;
+      display: inline-block;
+      padding-top: 12px; }
+    .order-info .order-summ-block .order-summ-val {
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 0.7px;
+      text-align: center;
+      color: #0d0d0d; }
+    .order-info .order-summ-block hr.order {
+      padding: 0;
+      margin: 15px 0;
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #b3b3b3; }
 
 a, a:visited, a:hover {
   color: black;
@@ -1081,6 +1127,9 @@ input.error, span.error, div.error {
   text-align: left;
   text-transform: uppercase;
   margin-bottom: 40px; }
+
+.long-minus {
+  display: inline-block; }
 
 body {
   font-family: 'Open Sans', sans-serif;

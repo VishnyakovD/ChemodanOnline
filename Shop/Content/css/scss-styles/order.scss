@@ -171,7 +171,8 @@
     }
 }
 
-.order-dates {
+.order-info {
+    margin-bottom: 20px;
     border-radius: 3px;
     background-color: #ebf1f2;
     padding-bottom: 35px;
@@ -186,7 +187,7 @@
         padding: 20px 23px;
     }
 
-    .dates-label {
+    .info-label {
         padding: 20px 23px 13px 20px;
         font-size: 13px;
         font-weight: 300;
@@ -200,16 +201,25 @@
         min-height: 35px;
         border-radius: 3px;
         background-color: #ffffff;
+        padding-left: 8px;
+        white-space: nowrap;
+            display: inline-block;
+
+        img {
+            width: 15px;
+            padding: 8px 0;
+        }
 
         input {
             border: none;
             text-align: center;
-            width: 125px;
+            width: 103px;
             outline: none;
+            font-size: 13px;
+            letter-spacing: 0.7px;
         }
 
-                input:focus {
-
+        input:focus {
             outline: none;
         }
 
@@ -220,8 +230,9 @@
         }
 
         input[type=date]::-webkit-calendar-picker-indicator {
-            //  -webkit-appearance: none;
-            //  display: none;
+            opacity: 1;
+            padding: 13px 7px;
+            cursor: pointer;
         }
 
         input[type="date"]::-webkit-clear-button {
@@ -232,6 +243,38 @@
         input[type="date"]::-ms-clear {
             display: none;
         }
+    }
 
+    .order-summ-block {
+        padding: 20px 23px 13px 20px;
+        text-align: center;
+        position: relative;
+
+        .summ-label {
+            font-size: 14px;
+            letter-spacing: 0.4px;
+            color: #0d0d0d;
+            float: left;
+            display: inline-block;
+            padding-top: 12px;
+        }
+
+        .order-summ-val {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 0.7px;
+            text-align: center;
+            color: #0d0d0d;
+        }
+
+        hr.order {
+            padding: 0;
+            margin: 15px 0;
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #b3b3b3;
+        }
     }
 }

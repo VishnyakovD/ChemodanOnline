@@ -262,6 +262,7 @@ class CartManager {
         this.setCartSum();
         this.setCountAllProducts();
         this.setSummAllProducts();
+      //  $(".js-card-dates input[name=From]").val(`${this.cart.from.toDateString()}`);
     } 
        
     setDateTo(event:any):void {
@@ -271,6 +272,7 @@ class CartManager {
         this.setCartSum();
         this.setCountAllProducts();
         this.setSummAllProducts();
+      //  $(".js-card-dates input[name=To]").val(this.cart.to.toString());
     }
 
     validateCart():boolean {

@@ -27,8 +27,25 @@
                 </div>
             </div>
 
+            <div class="row hidden-md hidden-lg">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="order-info">
+                        <div class="title">Период бронирования</div>
+
+                        <div class="info-label">Выбор даты *</div>
+
+                        <div class="date-values js-card-dates">
+                            <img src="~/Content/img/icons/calendar.png" />
+                            <input type="date" name="From" value="@Model.Order.From.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateFrom(event)" />
+                            <span class="long-minus">—</span>
+                            <input type="date" name="To" value="@Model.Order.To.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateTo(event)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
-                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 order-table">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 order-table">
                     <div class="row head">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                             Товар
@@ -43,96 +60,92 @@
                             Стоимость
                         </div>
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                            
+
                         </div>
                     </div>
                     <div class="body">
                         @foreach (var item in Model.Order.Products)
                          {
-                            <div class="row js-cart-line">
-                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                    <div class="item">
-                                        <div class="product-info">
-                                            <div class="img-block">
-                                                <img src="@item.smalPhotoPath" />
-                                            </div>
-                                            <div class="txt-block">
-                                                <div class="line1">@item.name</div>
-                                                <div class="line2">Артикул @item.articul</div>
-                                            </div>
+                        <div class="row js-cart-line">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <div class="item">
+                                    <div class="product-info">
+                                        <div class="img-block">
+                                            <img src="@item.smalPhotoPath" />
                                         </div>
-  
-                                    </div>
-                                </div>
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <div class="item js-control-count">
-                                        <div class="cell">
-                                            <div class="counter">
-                                                <span class="js-removecart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)">-</span>
-                                                <span class="cont-item js-count-item" data-id="@item.id">0</span>
-                                                <span class="js-addcart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)" data-max="@item.maxCount">+</span>
-                                            </div>
+                                        <div class="txt-block">
+                                            <div class="line1">@item.name</div>
+                                            <div class="line2">Артикул @item.articul</div>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                    <div class="item">
-                                        <span class="num">@item.price.ToString("F2", CultureInfo.InvariantCulture)</span>
-                                        <span class="txt"> грн.</span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                    <div class="item">
-                                        <span class="num js-summ-item" data-id="@item.id">0</span>
-                                        <span class="txt"> грн.</span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                                    <div class="item">
-                                        <span class="clear-line js-removecart" data-id="@item.id" data-remove-all="true">
-                                            <img src="~/Content/img/icons/clear.png" />
-                                        </span>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="item js-control-count">
+                                    <div class="cell">
+                                        <div class="counter">
+                                            <span class="js-removecart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)">-</span>
+                                            <span class="cont-item js-count-item" data-id="@item.id">0</span>
+                                            <span class="js-addcart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)" data-max="@item.maxCount">+</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <div class="item">
+                                    <span class="num">@item.price.ToString("F2", CultureInfo.InvariantCulture)</span>
+                                    <span class="txt"> грн.</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <div class="item">
+                                    <span class="num js-summ-item" data-id="@item.id">0</span>
+                                    <span class="txt"> грн.</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <div class="item">
+                                    <span class="clear-line js-removecart" data-id="@item.id" data-remove-all="true">
+                                        <img src="~/Content/img/icons/clear.png" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                         }
                     </div>
                 </div>
 
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <div class="order-dates">
+                <div class="col-xs-5 col-sm-12 col-md-5 col-lg-5">
+                    <div class="order-info hidden-sm hidden-xs">
                         <div class="title">Период бронирования</div>
 
-                        <div class="dates-label">Выбор даты *</div>
+                        <div class="info-label">Выбор даты *</div>
 
                         <div class="date-values js-card-dates">
+                            <img src="~/Content/img/icons/calendar.png" />
                             <input type="date" name="From" value="@Model.Order.From.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateFrom(event)" />
+                            <span class="long-minus">—</span>
                             <input type="date" name="To" value="@Model.Order.To.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateTo(event)" />
                         </div>
                     </div>
 
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            Сумма в корзине
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span>К оплате:</span>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="order-summ">
-                                <span class="js-order-summ">0</span> грн.
+                    <div class="order-info">
+                        <div class="title">Сумма в корзине</div>
+                        <div class="order-summ-block">
+                            <div class="summ-content">
+                                <span class="summ-label">К оплате:</span>
+                                <span class="order-summ-val text-center js-order-summ">0</span> грн.
+                            </div>
+                            <hr class="order"/>
+                            <br/>
+                            <br/>
+                            <div class="button">
+                                <span class="btn button-order">Оформить заказ →</span>
                             </div>
                         </div>
-                    </div>
+                    
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span>Оформить заказ--></span>
-                        </div>
                     </div>
 
                 </div>

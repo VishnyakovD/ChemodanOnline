@@ -186,5 +186,13 @@
   {
     "outputFile": "Content/css/scss-styles/order.css",
     "inputFile": "Content/css/scss-styles/order.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/controls.css",
+    "inputFile": "Content/css/scss-styles/controls.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/controls.css",
+    "inputFile": "Content/css/scss-styles/controls.scss"
   }
 ]

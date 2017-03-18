@@ -218,6 +218,12 @@
     <Content Include="Content\css\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\scss-styles\controls.css">
+      <DependentUpon>controls.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\css\scss-styles\controls.min.css">
+      <DependentUpon>controls.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\scss-styles\fonts.css">
       <DependentUpon>fonts.scss</DependentUpon>
     </Content>
@@ -259,6 +265,7 @@
     </Content>
     <Content Include="Content\Images\box.png" />
     <Content Include="Content\img\icons\assistant.png" />
+    <Content Include="Content\img\icons\calendar.png" />
     <Content Include="Content\img\icons\cart.png" />
     <Content Include="Content\img\icons\clear.png" />
     <Content Include="Content\img\icons\facebook-logo.png" />

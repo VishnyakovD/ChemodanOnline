@@ -209,6 +209,7 @@ var CartManager = (function () {
         this.setCartSum();
         this.setCountAllProducts();
         this.setSummAllProducts();
+        //  $(".js-card-dates input[name=From]").val(`${this.cart.from.toDateString()}`);
     };
     CartManager.prototype.setDateTo = function (event) {
         var date = new Date(event.target.value);
@@ -217,6 +218,7 @@ var CartManager = (function () {
         this.setCartSum();
         this.setCountAllProducts();
         this.setSummAllProducts();
+        //  $(".js-card-dates input[name=To]").val(this.cart.to.toString());
     };
     CartManager.prototype.validateCart = function () {
         var errors = this.cart.validate();
