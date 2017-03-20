@@ -15,7 +15,7 @@
     }
 }
 <div class="container">
-    <div class="js-order-pages">
+    <div class="order-pages js-order-pages">
         <div class="js-order-page1">
 
             <div class="row">
@@ -27,97 +27,108 @@
                 </div>
             </div>
 
-            <div class="row hidden-md hidden-lg">
-                <div class="col-xs-12 col-sm-12">
-                    <div class="order-info">
-                        <div class="title">Период бронирования</div>
+            @*<div class="row hidden-md hidden-lg">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="order-info">
+                            <div class="title">Период бронирования</div>
 
-                        <div class="info-label">Выбор даты *</div>
+                            <div class="info-label">Выбор даты *</div>
 
-                        <div class="date-values js-card-dates">
-                            <img src="~/Content/img/icons/calendar.png" />
-                            <input type="date" name="From" value="@Model.Order.From.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateFrom(event)" />
-                            <span class="long-minus">—</span>
-                            <input type="date" name="To" value="@Model.Order.To.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateTo(event)" />
+                            <div class="date-values js-card-dates">
+                                <img src="~/Content/img/icons/calendar.png" />
+                                <input type="date" name="From" value="@Model.Order.From.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateFrom(event)" />
+                                <span class="long-minus">—</span>
+                                <input type="date" name="To" value="@Model.Order.To.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateTo(event)" />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>*@
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 order-table">
-                    <div class="row head">
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="row head hidden-xs">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
                             Товар
                         </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-sm-3 col-md-3 col-lg-3">
                             Количество
                         </div>
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             Цена аренды
                         </div>
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             Стоимость
                         </div>
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <div class="col-sm-1 col-md-1 col-lg-1">
 
                         </div>
                     </div>
                     <div class="body">
                         @foreach (var item in Model.Order.Products)
-                         {
-                        <div class="row js-cart-line">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                <div class="item">
-                                    <div class="product-info">
-                                        <div class="img-block">
-                                            <img src="@item.smalPhotoPath" />
+                        {
+                            <div class="row js-cart-line">
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                    <div class="item">
+                                        <div class="product-info">
+                                            <div class="img-block">
+                                                <img src="@item.smalPhotoPath" />
+                                            </div>
+                                            <div class="txt-block">
+                                                <div class="line1">
+                                                    @item.name
+                                                    <span class="clear-line mobile js-removecart text-right hidden-lg hidden-md hidden-sm" data-id="@item.id" data-remove-all="true">
+                                                        <img src="~/Content/img/icons/clear.png" />
+                                                    </span>
+                                                </div>
+                                                <div class="line2">Артикул @item.articul</div>
+                                            </div>
                                         </div>
-                                        <div class="txt-block">
-                                            <div class="line1">@item.name</div>
-                                            <div class="line2">Артикул @item.articul</div>
-                                        </div>
-                                    </div>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                <div class="item js-control-count">
-                                    <div class="cell">
-                                        <div class="counter">
-                                            <span class="js-removecart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)">-</span>
-                                            <span class="cont-item js-count-item" data-id="@item.id">0</span>
-                                            <span class="js-addcart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)" data-max="@item.maxCount">+</span>
+                                <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                                    <div class="item js-control-count">
+                                        <div class="cell">
+                                            <div class="txt-label hidden-lg hidden-md hidden-sm">Количестиво</div>
+                                            <div class="counter">
+                                                <span class="js-removecart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)">-</span>
+                                                <span class="cont-item js-count-item" data-id="@item.id">0</span>
+                                                <span class="js-addcart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)" data-max="@item.maxCount">+</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                <div class="item">
-                                    <span class="num">@item.price.ToString("F2", CultureInfo.InvariantCulture)</span>
-                                    <span class="txt"> грн.</span>
+                                <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+
+                                    <div class="item">
+                                        <div class="txt-label hidden-lg hidden-md hidden-sm">Цена аренды</div>
+                                        <span class="num">@item.price.ToString("F2", CultureInfo.InvariantCulture)</span>
+                                        <span class="txt"> грн.</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+
+                                    <div class="item">
+
+                                        <div class="txt-label hidden-lg hidden-md hidden-sm">Стоимость</div>
+                                        <span class="num js-summ-item" data-id="@item.id">0</span>
+                                        <span class="txt"> грн.</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-md-1 hidden-xs">
+                                    <div class="item">
+                                        <span class="clear-line js-removecart" data-id="@item.id" data-remove-all="true">
+                                            <img src="~/Content/img/icons/clear.png" />
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                <div class="item">
-                                    <span class="num js-summ-item" data-id="@item.id">0</span>
-                                    <span class="txt"> грн.</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                                <div class="item">
-                                    <span class="clear-line js-removecart" data-id="@item.id" data-remove-all="true">
-                                        <img src="~/Content/img/icons/clear.png" />
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
                         }
                     </div>
                 </div>
 
-                <div class="col-xs-5 col-sm-12 col-md-5 col-lg-5">
-                    <div class="order-info hidden-sm hidden-xs">
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                    <div class="order-info @*hidden-sm hidden-xs*@">
                         <div class="title">Период бронирования</div>
 
                         <div class="info-label">Выбор даты *</div>
@@ -137,15 +148,13 @@
                                 <span class="summ-label">К оплате:</span>
                                 <span class="order-summ-val text-center js-order-summ">0</span> грн.
                             </div>
-                            <hr class="order"/>
-                            <br/>
-                            <br/>
-                            <div class="button">
-                                <span class="btn button-order">Оформить заказ →</span>
+                            <hr class="order" />
+                            <div class="margin-block">
+                                <div class="button">
+                                    <span class="btn button-order">Оформить заказ →</span>
+                                </div>
                             </div>
                         </div>
-                    
-
                     </div>
 
                 </div>
@@ -154,149 +163,189 @@
 
         </div>
 
-
+        @{ var addressCells = "col-xs-12 col-sm-6 col-md-6 col-lg-6";}
         <div class="js-order-page2">
+
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="text-left">
+                        <div class="title-main-page">Оформление заказа</div>
+                    </div>
+                    <div class="hr-title"></div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 pull-right">
+
+                    <div class="order-info">
+                        <div class="title">Ваш заказ</div>
+                        <div class="margin-block">
+                            <div class="info-label radio">Доставка:</div>
+
+                            <div class="radio-btns order-radios js-delivery-types">
+                                @{var selected = "selected";}
+                                @foreach (var delType in Model.DeliveryTypes)
+                            {
+                            <div class="@selected js-set-ratio js-delivery-type" data-id="@delType.Id">
+                                <span class="r1"><span class="r2"></span></span> @delType.Name
+                            </div>
+                                selected = "";
+                            }
+                                <input type="hidden" name="DeliveryType" value="@Model.DeliveryTypes.First().Id" />
+                            </div>
+                        </div>
+
+                        <div class="margin-block">
+                            <div class="info-label radio">Оплата:</div>
+                            <div class="radio-btns order-radios js-radio-btns">
+                                @{selected = "selected";}
+                                @foreach (var delType in Model.PaymentTypes)
+                            {
+                            <div class="@selected js-set-ratio js-payment-type" data-id="@delType.Id">
+                                <span class="r1"><span class="r2"></span></span> @delType.Name
+                            </div>
+                                selected = "";
+                            }
+                                <input type="hidden" name="PaymentType" value="@Model.PaymentTypes.First().Id" />
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="order-summ-block">
+
+                            <hr class="order" />
+
+                            <div class="summ-content">
+                                <span class="summ-label">К оплате:</span>
+                                <span class="order-summ-val text-center js-order-summ">0</span> грн.
+                            </div>
+
+                            <hr class="order" />
+                            <div class="hidden-xs">
+                              
+
+
+                                <div class="order-checkbox">
+                                    <input type="checkbox" />
+                                    <span>Я, согласен <a href="/">с условиями договора</a>, а также обработкой моих персональных данных</span>
+                                </div>
+
+
+                                <br />
+                                <div class="button js-confirm-order">
+                                    <span class="btn button-order">Подтвердить заказ →</span>
+                                </div>
+
+                            </div>
+            
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 pull-left">
+
+
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="text-left">
-                                <div class="title-main-page">Контактные данные</div>
-                            </div>
-                            <div class="hr-title"></div>
+                             <div class="title-form">Контактные данные</div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+
+
+                        <div class="@addressCells">
                             <label>Фамилия *</label>
-                            <input class="form-control" type="text" name="ClientLastName" value="@Model.Order.ClientLastName" />
+                            <input class="form-control" type="text" name="ClientLastName" value="@Model.Order.ClientLastName"/>
                         </div>
-                        <div class="col-md-6">
+                        <div class="@addressCells">
                             <label>Имя *</label>
-                            <input class="form-control" type="text" name="ClientFirstName" value="@Model.Order.ClientFirstName" />
+                            <input class="form-control" type="text" name="ClientFirstName" value="@Model.Order.ClientFirstName"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="@addressCells">
                             <label>Email *</label>
                             <input class="form-control" type="text" name="ClientEmail" value="@Model.Order.ClientEmail" />
                         </div>
-                        <div class="col-md-6">
+                        <div class="@addressCells">
                             <label>Телефон *</label>
                             <input class="form-control" type="text" name="ClientPhone" value="@Model.Order.ClientPhone" />
                         </div>
                     </div>
                     <div class="js-addres hide">
-                        <div class="row">
-                            <div class="col-md-12">Адрес доставки</div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="title-form">Адрес доставки</div>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="@addressCells">
                                 <label>Город</label>
-                                <input class="form-control" type="text" name="City" value="@Model.Order.City" />
+                                <input class="form-control" type="text" name="City" value="@Model.Order.City"/>
                             </div>
-                            <div class="col-md-6">
+                            <div class="@addressCells">
                                 <label>Дом</label>
-                                <input class="form-control" type="text" name="Home" value="@Model.Order.Home" />
+                                <input class="form-control" type="text" name="Home" value="@Model.Order.Home"/>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="@addressCells">
                                 <label>Тип улицы</label>
                                 <select class="form-control" name="TypeStreet">
                                     @foreach (var item in TypesStreet.Types)
                                     {
-                                    <option value="@item">@item</option>
+                                        <option value="@item">@item</option>
                                     }
                                 </select>
                             </div>
-                            <div class="col-md-6">
+                            <div class="@addressCells">
                                 <label>Этаж</label>
-                                <input class="form-control" type="text" name="Level" value="@Model.Order.Level" />
+                                <input class="form-control" type="text" name="Level" value="@Model.Order.Level"/>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="@addressCells">
                                 <label>Улица</label>
-                                <input class="form-control" type="text" name="Street" value="@Model.Order.Street" />
+                                <input class="form-control" type="text" name="Street" value="@Model.Order.Street"/>
                             </div>
-                            <div class="col-md-6">
+                            <div class="@addressCells">
                                 <label>Квартира</label>
-                                <input class="form-control" type="text" name="Flat" value="@Model.Order.Flat" />
+                                <input class="form-control" type="text" name="Flat" value="@Model.Order.Flat"/>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
 
-                    <div class="row">
-                        <div class="col-md-12">Ваш заказ</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span>Доставка</span>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="radio-btns js-delivery-types">
-                                @{var selected = "selected";}
-                                @foreach (var delType in Model.DeliveryTypes)
-                                {
-                                <div class="@selected js-set-ratio js-delivery-type" data-id="@delType.Id">
-                                    <span class="r1"><span class="r2"></span></span> @delType.Name
-                                </div>
-                                    selected = "";
-                                }
-                                <input type="hidden" name="DeliveryType" value="@Model.DeliveryTypes.First().Id" />
+            </div>
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 pull-right">
+
+                    <div class="order-info hidden-sm hidden-md hidden-lg">
+
+                        <div class="order-summ-block">
+
+                            <div class="order-checkbox">
+                                <input type="checkbox" />
+                                <span>Я, согласен <a href="/">с условиями договора</a>, а также обработкой моих персональных данных</span>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span>Оплата</span>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="radio-btns js-radio-btns">
-                                @{selected = "selected";}
-                                @foreach (var delType in Model.PaymentTypes)
-                                {
-                                <div class="@selected js-set-ratio js-payment-type" data-id="@delType.Id">
-                                    <span class="r1"><span class="r2"></span></span> @delType.Name
-                                </div>
-                                    selected = "";
-                                }
-                                <input type="hidden" name="PaymentType" value="@Model.PaymentTypes.First().Id" />
+
+                            <br />
+                            <div class="button js-confirm-order">
+                                <span class="btn button-order">Подтвердить заказ →</span>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span>К оплате:</span>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="order-summ">
-                                <span class="js-order-summ">0</span> грн.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span>Я согласен с условиями договора и бла бла бла и бла бла бла....</span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="js-confirm-order" style="display: block; padding: 5px; border: 1px black solid; text-align: center;border-radius: 5px">Подтвердить заказ--></span>
                         </div>
 
                     </div>
 
                 </div>
-
             </div>
         </div>
 

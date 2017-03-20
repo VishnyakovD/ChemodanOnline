@@ -1,29 +1,26 @@
-﻿.radio-btns div {
-  color: gray;
-  cursor: pointer; }
-  .radio-btns div .r1 {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 1px solid gray;
-    border-radius: 100%; }
-    .radio-btns div .r1 .r2 {
-      display: inline-block;
-      border-radius: 100%;
-      margin: 3px;
-      width: 12px;
-      height: 12px; }
-  .radio-btns div.selected {
-    color: black; }
-    .radio-btns div.selected .r1 {
-      border-color: black; }
-      .radio-btns div.selected .r1 .r2 {
-        background: black; }
+﻿.order-pages label {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 2.14;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: #0d0d0d; }
 
-.order-table [class*='col-'] {
+.order-pages .title-form {
+  border-radius: 3px;
+  background-color: #f0f6f7;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.88;
+  letter-spacing: 1.3px;
+  color: #0d0d0d;
+  padding: 20px;
+  text-transform: uppercase; }
+
+.order-pages .order-table [class*='col-'] {
   padding: 0; }
 
-.order-table .head {
+.order-pages .order-table .head {
   min-height: 52px;
   max-height: 52px;
   border-radius: 3px;
@@ -32,37 +29,45 @@
   letter-spacing: 0.3px;
   color: #808080;
   padding-left: 20px; }
-  .order-table .head div {
+  .order-pages .order-table .head div {
     padding: 18px 0 20px 0; }
 
-.order-table .body {
-  margin-top: 20px; }
-  .order-table .body .item {
+.order-pages .order-table .body {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px; }
+  .order-pages .order-table .body .item {
     display: table;
     width: 100%; }
-    .order-table .body .item .product-info .img-block {
+    .order-pages .order-table .body .item .product-info .img-block {
       display: table-cell;
       width: 55px; }
-      .order-table .body .item .product-info .img-block img {
+      .order-pages .order-table .body .item .product-info .img-block img {
         max-width: 55px; }
-    .order-table .body .item .product-info .txt-block {
+    .order-pages .order-table .body .item .product-info .txt-block {
       display: table-cell;
       vertical-align: middle;
       font-size: 13px;
-      letter-spacing: 0.3px; }
-      .order-table .body .item .product-info .txt-block .line1 {
+      letter-spacing: 0.3px;
+      width: 100%; }
+      .order-pages .order-table .body .item .product-info .txt-block .line1 {
         margin-left: 20px;
         line-height: 1.77;
         color: #0d0d0d; }
-      .order-table .body .item .product-info .txt-block .line2 {
+      .order-pages .order-table .body .item .product-info .txt-block .line2 {
         margin-left: 20px;
         line-height: 2.31;
         color: #808080; }
-    .order-table .body .item .cell {
+    .order-pages .order-table .body .item .txt-label {
+      font-size: 14px;
+      letter-spacing: 0.7px;
+      color: #808080; }
+    .order-pages .order-table .body .item .cell {
       display: table-cell;
       vertical-align: middle;
       height: 100%; }
-    .order-table .body .item .counter {
+    .order-pages .order-table .body .item .counter {
       margin-top: 20px;
       min-height: 40px;
       max-height: 40px;
@@ -75,53 +80,57 @@
       color: #000000;
       overflow: hidden;
       white-space: nowrap; }
-      .order-table .body .item .counter span:first-of-type {
+      .order-pages .order-table .body .item .counter span:first-of-type {
         font-size: 25px;
         color: #b3b3b3;
         display: inline-block;
         float: left;
         padding: 5px 13px 9px 13px;
         line-height: 1;
-        vertical-align: middle; }
-      .order-table .body .item .counter span:last-of-type {
+        vertical-align: middle;
+        cursor: pointer; }
+      .order-pages .order-table .body .item .counter span:last-of-type {
         font-size: 25px;
         color: #b3b3b3;
         display: inline-block;
         float: right;
         padding: 6px 13px 8px 13px;
         line-height: 1;
-        vertical-align: middle; }
-      .order-table .body .item .counter .cont-item {
+        vertical-align: middle;
+        cursor: pointer; }
+      .order-pages .order-table .body .item .counter .cont-item {
         display: inline-block;
         line-height: 2.5; }
-    .order-table .body .item .num {
+    .order-pages .order-table .body .item .num {
       margin-top: 29px;
       display: inline-block;
       font-size: 16.3px;
       line-height: 1.25;
       letter-spacing: 0.5px;
       color: #003663; }
-    .order-table .body .item .txt {
+    .order-pages .order-table .body .item .txt {
       margin-top: 29px;
       display: inline-block;
       font-size: 13px;
       line-height: 1.53;
       letter-spacing: 0.4px; }
-    .order-table .body .item .clear-line {
+    .order-pages .order-table .body .item .clear-line {
       margin-top: 25px;
       display: inline-block;
       padding: 5px;
       float: right; }
-      .order-table .body .item .clear-line img {
+      .order-pages .order-table .body .item .clear-line img {
         width: 13px;
         height: 13px; }
+      .order-pages .order-table .body .item .clear-line.mobile {
+        margin-top: -10px; }
 
-.order-info {
-  margin-bottom: 20px;
+.order-pages .order-info {
+  margin-bottom: 15px;
   border-radius: 3px;
   background-color: #ebf1f2;
   padding-bottom: 35px; }
-  .order-info .title {
+  .order-pages .order-info .title {
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.4px;
@@ -129,13 +138,20 @@
     color: #0d0d0d;
     border-bottom: 1px solid #b3b3b3;
     padding: 20px 23px; }
-  .order-info .info-label {
-    padding: 20px 23px 13px 20px;
+  .order-pages .order-info .info-label {
+    padding: 20px 0 13px 20px;
     font-size: 13px;
     font-weight: 300;
     letter-spacing: 0.3px;
-    color: #000000; }
-  .order-info .date-values {
+    color: #000000;
+    display: inline-block; }
+    .order-pages .order-info .info-label.radio {
+      padding: 0;
+      margin: 0;
+      vertical-align: top; }
+  .order-pages .order-info .margin-block {
+    padding: 20px 0 13px 20px; }
+  .order-pages .order-info .date-values {
     margin: 0 23px 0px 23px;
     max-height: 35px;
     min-height: 35px;
@@ -144,53 +160,74 @@
     padding-left: 8px;
     white-space: nowrap;
     display: inline-block; }
-    .order-info .date-values img {
+    .order-pages .order-info .date-values img {
       width: 15px;
       padding: 8px 0; }
-    .order-info .date-values input {
+    .order-pages .order-info .date-values input {
       border: none;
       text-align: center;
       width: 103px;
       outline: none;
       font-size: 13px;
       letter-spacing: 0.7px; }
-    .order-info .date-values input:focus {
+    .order-pages .order-info .date-values input:focus {
       outline: none; }
-    .order-info .date-values input[type=date]::-webkit-inner-spin-button {
+    .order-pages .order-info .date-values input[type=date]::-webkit-inner-spin-button {
       -webkit-appearance: none;
       display: none; }
-    .order-info .date-values input[type=date]::-webkit-calendar-picker-indicator {
+    .order-pages .order-info .date-values input[type=date]::-webkit-calendar-picker-indicator {
       opacity: 1;
       padding: 13px 7px;
       cursor: pointer; }
-    .order-info .date-values input[type="date"]::-webkit-clear-button {
+    .order-pages .order-info .date-values input[type="date"]::-webkit-clear-button {
       -webkit-appearance: none;
       display: none; }
-    .order-info .date-values input[type="date"]::-ms-clear {
+    .order-pages .order-info .date-values input[type="date"]::-ms-clear {
       display: none; }
-  .order-info .order-summ-block {
+  .order-pages .order-info .order-radios {
+    display: inline-block;
+    margin-left: 20px; }
+  .order-pages .order-info .order-summ-block {
     padding: 20px 23px 13px 20px;
     text-align: center;
     position: relative; }
-    .order-info .order-summ-block .summ-label {
+    .order-pages .order-info .order-summ-block .summ-label {
       font-size: 14px;
       letter-spacing: 0.4px;
       color: #0d0d0d;
       float: left;
       display: inline-block;
       padding-top: 12px; }
-    .order-info .order-summ-block .order-summ-val {
+    .order-pages .order-info .order-summ-block .order-summ-val {
       font-size: 26px;
       font-weight: bold;
       letter-spacing: 0.7px;
       text-align: center;
       color: #0d0d0d; }
-    .order-info .order-summ-block hr.order {
+    .order-pages .order-info .order-summ-block hr.order {
       padding: 0;
-      margin: 15px 0;
-      position: absolute;
-      left: 0;
-      right: 0;
+      margin: 15px -21px;
+      right: -2px;
       height: 1px;
-      background-color: #b3b3b3; }
+      background-color: #b3b3b3;
+      display: block;
+      position: relative; }
+
+.order-pages .order-checkbox {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+  color: #808080;
+  margin-left: 30px; }
+  .order-pages .order-checkbox input {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+    margin-left: -38px; }
+  .order-pages .order-checkbox a {
+    text-decoration: underline; }
 

@@ -42,11 +42,11 @@
     text-align: center;
     color: white;
     text-transform: uppercase; }
-    .button a .button-order, .button span .button-order, .button span:hover .button-order {
+    .button a.button-order, .button span.button-order, .button span:hover.button-order {
       font-size: 14px;
       letter-spacing: 0.4px;
       text-align: center;
-      color: #0d0d0d;
+      color: white;
       padding: 10px 12px; }
 
 .title-main-page {
@@ -60,7 +60,8 @@
   display: inline-block;
   padding-left: 20px;
   padding-right: 20px;
-  z-index: 1; }
+  z-index: 1;
+  text-transform: uppercase; }
 
 .hr-title {
   height: 1px;
