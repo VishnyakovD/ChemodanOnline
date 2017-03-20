@@ -1,37 +1,35 @@
-﻿.info-category {
-  font-family: 'Open Sans'; }
-  .info-category .item {
-    border: 1px solid #f5f5f5;
-    background-color: #f5f5f5;
-    display: table; }
-    .info-category .item .text-block {
-      display: table-cell;
-      vertical-align: top; }
-    .info-category .item .img-block {
-      display: table-cell;
-      vertical-align: top; }
-      .info-category .item .img-block img {
-        width: 100%; }
-    .info-category .item .title {
-      overflow: hidden;
-      text-align: left;
-      color: #000000;
-      text-transform: uppercase; }
-      .info-category .item .title a, .info-category .item .title a:visited {
-        color: black;
-        text-decoration: none; }
-      .info-category .item .title a:hover {
-        color: black;
-        text-decoration: none; }
-    .info-category .item .name {
-      text-align: left;
-      color: #22b2da;
-      overflow: hidden; }
-      .info-category .item .name span {
-        vertical-align: text-top; }
-    .info-category .item .description {
-      text-align: left;
-      overflow: hidden; }
+﻿.info-category .item {
+  border: 1px solid #f5f5f5;
+  background-color: #f5f5f5;
+  display: table; }
+  .info-category .item .text-block {
+    display: table-cell;
+    vertical-align: top; }
+  .info-category .item .img-block {
+    display: table-cell;
+    vertical-align: top; }
+    .info-category .item .img-block img {
+      width: 100%; }
+  .info-category .item .title {
+    overflow: hidden;
+    text-align: left;
+    color: #000000;
+    text-transform: uppercase; }
+    .info-category .item .title a, .info-category .item .title a:visited {
+      color: black;
+      text-decoration: none; }
+    .info-category .item .title a:hover {
+      color: black;
+      text-decoration: none; }
+  .info-category .item .name {
+    text-align: left;
+    color: #22b2da;
+    overflow: hidden; }
+    .info-category .item .name span {
+      vertical-align: text-top; }
+  .info-category .item .description {
+    text-align: left;
+    overflow: hidden; }
 
 .button {
   background-color: #22b2da;
@@ -51,7 +49,6 @@
 
 .title-main-page {
   position: relative;
-  font-family: 'Open Sans';
   line-height: 1.15;
   letter-spacing: 1.3px;
   text-align: center;
@@ -87,9 +84,9 @@
     .info-category .item .img-block {
       width: 40%; }
     .info-category .item .title {
-      max-height: 29px;
-      min-height: 29px;
-      font-size: 18px;
+      max-height: 25px;
+      min-height: 25px;
+      font-size: 16px;
       font-weight: bold;
       line-height: 1.36;
       letter-spacing: 1.1px; }

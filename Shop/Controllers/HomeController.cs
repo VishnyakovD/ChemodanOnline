@@ -42,13 +42,33 @@ namespace Shop.Controllers
             this.mainPageBuilder = mainPageBuilder;
         }
 
-        public ActionResult ListSkuOnCategory(long idCat=-1)
+        public ActionResult ListSkuOnCategory(long idCat=-1, int ctype=-1)
         {
+            FilterItemValue[] types = null;
+
+            //ctype = 1 - большие
+            //ctype = 2 - большие
+            if (ctype==1)
+            {
+                types = JsonConvert.DeserializeObject<FilterItemValue[]>("[{\"Id\":3,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"\\nбольшой  | 55,00000\\n \"}]");
+            }else if (ctype == 2)
+            {
+                types =
+                    JsonConvert.DeserializeObject<FilterItemValue[]>(
+                        "[{\"Id\":1,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"\\n ручная кладь | 25,00000\\n \"}]");
+            }
+            else
+            {
+                types=new FilterItemValue[] {};
+            }
+            
+
             var filters = new FilterFoDb();
             filters.ChemodanLocationID = DefaultValueHasInStock;
             filters.Categories = idCat < 1 ?
                 new FilterItemValue[] {new FilterItemValue() {Id = DefaultSkuCategory}} :
                 new FilterItemValue[] { new FilterItemValue() { Id = idCat } };
+            filters.ChemodanTypes = types;
 
             var model = skuViewerBuilder.Build(filters);
             return View("ListSkuOnCategory", model);

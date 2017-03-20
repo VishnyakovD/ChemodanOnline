@@ -1,5 +1,4 @@
 ﻿.info-category {
-    font-family: 'Open Sans';
 
     .item {
         border: 1px solid #f5f5f5;
@@ -77,7 +76,6 @@
 
 .title-main-page {
     position: relative;
-    font-family: 'Open Sans';
     line-height: 1.15;
     letter-spacing: 1.3px;
     text-align: center;
@@ -128,9 +126,9 @@
             }
 
             .title {
-                max-height: 29px;
-                min-height: 29px;
-                font-size: 18px;
+                max-height: 25px;
+                min-height: 25px;
+                font-size: 16px;
                 font-weight: bold;
                 line-height: 1.36;
                 letter-spacing: 1.1px;
