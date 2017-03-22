@@ -336,4 +336,3 @@ $(function () {
     cartManager.setCountAllProducts();
     cartManager.setSummAllProducts();
 });
-//# sourceMappingURL=cart.js.map

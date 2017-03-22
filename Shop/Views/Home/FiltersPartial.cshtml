@@ -8,26 +8,24 @@
     <div>
         <div class="filter-name">@Shop.Resources.Default.ChemodanTypes</div>
         <ul>
+            @{ var iter1 = 0;}
             @foreach (var filter in Model.ChemodanTypes)
             {
-                <li class="js-filter-item"
+                <li class="js-filter-item @filter.Selected"
                     data-filter-id="@filter.Id"
                     data-filter-type="@FilterType.ChemodanType"
-                    data-is-selected="false">
+                    data-is-selected="@string.Format("{0}",(filter.Selected== "active") ?true:false)"
+                    data-filter-text="@string.Format("{0}",iter1++)">
                     <span>
-                        <input type="checkbox" />
+                        <input type="checkbox" @string.Format("{0}",(filter.Selected== "active") ?"checked":"") />
                         <span class="txt js-txt">
                             @filter.Value
                         </span>
                    </span>
-
                 </li>
             }
         </ul>
     </div>
-
-
-
 
 
     @foreach (var filter in Model.Specifications)
@@ -37,12 +35,13 @@
             <ul>
                 @foreach (var value in filter.Values)
                 {
-                    <li class="js-filter-item"
+                    <li class="js-filter-item  @value.Selected"
                         data-filter-id="@filter.Specification.id"
                         data-filter-type="@FilterType.Specification"
-                        data-is-selected="false">
+                          data-is-selected="@string.Format("{0}",(value.Selected== "active") ?true:false)"
+                        data-filter-text="@value.Value">
                         <span>
-                            <input type="checkbox" />
+                            <input type="checkbox" @string.Format("{0}",(value.Selected== "active") ?"checked":"")/>
                             <span class="txt js-txt">@value.Value</span>
                         </span>
 

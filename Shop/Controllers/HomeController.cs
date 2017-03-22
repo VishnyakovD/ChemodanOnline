@@ -50,12 +50,12 @@ namespace Shop.Controllers
             //ctype = 2 - большие
             if (ctype==1)
             {
-                types = JsonConvert.DeserializeObject<FilterItemValue[]>("[{\"Id\":3,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"\\nбольшой  | 55,00000\\n \"}]");
+                types = JsonConvert.DeserializeObject<FilterItemValue[]>("[{\"Id\":3,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"большой  | 55,00000\"}]");
             }else if (ctype == 2)
             {
                 types =
                     JsonConvert.DeserializeObject<FilterItemValue[]>(
-                        "[{\"Id\":1,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"\\n ручная кладь | 25,00000\\n \"}]");
+                        "[{\"Id\":1,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"ручная кладь | 25,00000\"}]");
             }
             else
             {

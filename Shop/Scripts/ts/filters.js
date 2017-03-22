@@ -92,32 +92,40 @@ var FilterModel = (function () {
         element.data("is-selected", "true");
         element.find("input").prop("checked", true);
     };
-    FilterModel.prototype.createCheckedFilter = function (filterId, filterType, filterText) {
-        this.selectedFiltersQuery.prepend("\n                <span data-filter-id=\"" + filterId + "\" data-filter-type=\"" + filterType + "\">\n                    " + filterText + "\n                    <span class=\"glyphicon glyphicon-remove-sign filter-clear\"></span>\n                </span>\n                                        ");
+    FilterModel.prototype.createCheckedFilter = function (filterId, filterType, valueId, filterText) {
+        this.selectedFiltersQuery.prepend("\n                <span class=\"js-filter-remove-one\" data-filter-id=\"" + filterId + "\" data-filter-type=\"" + filterType + "\" data-filter-text=\"" + valueId + "\">\n                    " + filterText + "\n                    <span class=\"glyphicon glyphicon-remove-sign filter-clear\"></span>\n                </span>\n                                        ");
+        if (this.selectedFiltersQuery.find(".js-filter-remove-one").length < 2) {
+            this.selectedFiltersQuery.append("<span class=\"js-filter-clear\">\u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C</span>");
+        }
     };
     FilterModel.prototype.removeCheckedFilter = function (filterId, filterType, filterText) {
-        this.selectedFiltersQuery.find("span[data-filter-id=\"" + filterId + "\"][data-filter-type=\"" + filterType + "\"]").remove();
+        this.selectedFiltersQuery.find("span[data-filter-id=\"" + filterId + "\"][data-filter-type=\"" + filterType + "\"][data-filter-text=\"" + filterText + "\"]").remove();
+        if (this.selectedFiltersQuery.find(".js-filter-remove-one").length < 1) {
+            this.selectedFiltersQuery.find(".js-filter-clear").remove();
+        }
     };
     return FilterModel;
 }());
 var filterModel;
 $(function () {
-    if ($(".js-filter-item").length > 0) {
+    var filterItems = $(".js-filter-item");
+    if (filterItems.length > 0) {
         filterModel = new FilterModel();
         $(document).on("click", ".js-filter-item", function (e) {
             var fId = $(e.currentTarget).data("filter-id");
             var type = $(e.currentTarget).data("filter-type");
+            var valueId = $(e.currentTarget).data("filter-text");
             // var isSelected = $(e.currentTarget).data("is-selected");
             var isSelected = $(e.currentTarget).hasClass("active");
             var text = $(e.currentTarget).find(".js-txt").html();
-            filterModel.activateFilter(fId, type, isSelected, text);
+            filterModel.activateFilter(fId, type, isSelected, valueId);
             if ($(e.currentTarget).hasClass("active")) {
                 filterModel.unCheckFilter($(e.currentTarget));
-                filterModel.removeCheckedFilter(fId, type, text);
+                filterModel.removeCheckedFilter(fId, type, valueId);
             }
             else {
                 filterModel.checkFilter($(e.currentTarget));
-                filterModel.createCheckedFilter(fId, type, text);
+                filterModel.createCheckedFilter(fId, type, valueId, text);
             }
         });
         $(document).on("click", ".js-filter-clear", function (e) {
@@ -127,8 +135,27 @@ $(function () {
             var filterItems = $(".js-filter-item.active");
             filterItems.find("input").prop("checked", false);
             filterItems.removeClass("active");
-            filterModel.selectedFiltersQuery.find("span:not('.js-filter-clear')").remove();
+            filterModel.selectedFiltersQuery.find("span").remove(); //:not('.js-filter-clear')
+        });
+        $(document).on("click", ".js-filter-remove-one", function (e) {
+            var fId = $(e.currentTarget).data("filter-id");
+            var type = $(e.currentTarget).data("filter-type");
+            var text = $(e.currentTarget).data("filter-text");
+            filterModel.activateFilter(fId, type, true, text);
+            filterModel.removeCheckedFilter(fId, type, text);
+            var filterItem = $(".js-filter-item.active[data-filter-id=\"" + fId + "\"][data-filter-type=\"" + type + "\"][data-filter-text=\"" + text + "\"]");
+            filterItem.find("input").prop("checked", false);
+            filterItem.removeClass("active");
+            $(e.currentTarget).remove();
+        });
+        filterItems.filter(".active").each(function (i, element) {
+            var fId = $(element).data("filter-id");
+            var type = $(element).data("filter-type");
+            var valueId = $(element).data("filter-text");
+            var text = $(element).find(".js-txt").html();
+            //filterModel.activateFilter(fId, type, true, valueId);
+            filterModel.filterChemodanTypes.push(new FilterItemValue(fId, type, true, valueId));
+            filterModel.createCheckedFilter(fId, type, valueId, text);
         });
     }
 });
-//# sourceMappingURL=filters.js.map

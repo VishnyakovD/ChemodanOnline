@@ -105,6 +105,11 @@ namespace Shop.Models.Builders
             //}
 
             model.Filters = dataService.Filters();
+            foreach (var item in model.Filters.ChemodanTypes)
+            {
+                if (!filters.ChemodanTypes.Any(i => i.Id == item.Id)) continue;
+                item.Selected = "active";
+            }
             model.TitleProduct = Shop.Resources.Default.Chemodans;
             model.menu = BuildMenu();
             model.topMenuItems = BuildTopMenu();

@@ -74,6 +74,7 @@ namespace Shop.db.Repository
     {
         public long Id { get; set; }
         public string Value { get; set; }
+        public string Selected { get; set; }
     }
 
   

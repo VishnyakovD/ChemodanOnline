@@ -224,6 +224,12 @@
     <Content Include="Content\css\scss-styles\controls.min.css">
       <DependentUpon>controls.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\scss-styles\filters.css">
+      <DependentUpon>filters.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\css\scss-styles\filters.min.css">
+      <DependentUpon>filters.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\scss-styles\fonts.css">
       <DependentUpon>fonts.scss</DependentUpon>
     </Content>
