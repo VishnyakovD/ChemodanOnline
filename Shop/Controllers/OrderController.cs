@@ -125,11 +125,12 @@ namespace Shop.Controllers
             return View(model);
         }
 
-        public ActionResult PayOneClick(string phone, long productId, long createDate)
+        public ActionResult PayOneClick(string phone, long productId, string createDate)
         {
             var result = string.Empty;
             try
             {
+                var date=DateTime.Parse(createDate);
                 var userId=0;
                 var userName = string.Empty;
                 if (WebSecurity.IsAuthenticated)
@@ -139,7 +140,7 @@ namespace Shop.Controllers
                 }
                 var order = new OrderOneClick
                 {
-                    CreateDate = new DateTime(createDate),
+                    CreateDate = date,
                     Phone = phone,
                     ProductId = productId,
                     UserId = userId,

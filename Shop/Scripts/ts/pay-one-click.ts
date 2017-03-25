@@ -5,12 +5,10 @@
         var productId = $(e.currentTarget).data("product-id");
 
 
-        var date = new Date();  
-        var epochTicks = 621355968000000000;
-        var ticksPerMillisecond = 10000;
-        var datetime = epochTicks + (date.getTime() * ticksPerMillisecond);
+        var date = new Date();
+        var stringDate = date.toLocaleDateString() + " " + date.toLocaleTimeString();
 
-        $.post("/Order/PayOneClick/", { phone: phone.val(), productId: productId, createDate: datetime})
+        $.post("/Order/PayOneClick/", { phone: phone.val(), productId: productId, createDate: stringDate})
             .done(result => {
                 message.showMessage(result);
                 phone.val("");
