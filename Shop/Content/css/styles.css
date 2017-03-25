@@ -1,130 +1,44 @@
-
-
-#headmenu {
-    position: relative;
-    line-height: 30px;
-    font-family: 'Lato';
-    padding: 10px 0px 10px 0px;
-    border-bottom: 1px solid #db7093;
-    margin-bottom: 10px;
-}
-
-
-
-.slide-image {
-    width: 100%;
-}
-
-.carousel-holder {
-    border-bottom: 1px solid #db7093;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-
 .carousel-control,
 .item {
     border-radius: 4px;
 }
 
-.caption {
-    height: 55px;
-    overflow: hidden;
-}
-
-.caption h4 {
-    white-space: nowrap;
-}
-
-.thumbnail img {
-    width: 100%;
-}
-
-.ratings {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
-}
-
-.thumbnail {
-    padding: 0;
-}
-
-.thumbnail .caption-full {
-    padding: 9px;
-    color: #333;
-}
-
 .btn-blue {
     background-color: #EE0F84;
-    color: white!important;
-    /*margin-top: 5px;*/
-    padding: 2px 16px!important;
+    color: white !important;
+    padding: 2px 16px !important;
 }
 
 .btn-gray {
-       color: #404e5c!important;
+    color: #404e5c !important;
 }
 
-
-.skuitem {
-    box-shadow: 0px 0px 18px rgba(208, 175, 192, 0.5);
-    position: relative;
-    float: left;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    zoom: 1;
-    background: none;
-    border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+.panel-body-color {
+    background-color: #F5F5F5 !important;
 }
 
+.panel-head-color {
+    background-color: #7C848C !important;
+    color: white !important;
+}
 
+.panel-head-color a {
+    color: white !important;
+}
 
-    .leftmenuitem {
-    padding-bottom: 15px;
+.adm-panel-menu {
     margin-bottom: 15px;
-    border-bottom: 1px dashed #EE0F84;
-    /* height: 110px; */
-    /* width: 170px; */
-    /* padding-top: 15px; */
-    text-align: center;
 }
 
-    .leftmenuitem a {
-    /*border: 2px white solid;*/
-    padding: 25px;
-    border-radius: 50px;
-    width: 80%;
-    display: block;
+.adm-panel-menu-btn {
+    margin-right: 10px;
+    background-color: #409EAF;
 }
 
-    .panel-body-color {
-        background-color: #F5F5F5!important;
-    }
-    .panel-head-color {
-        background-color: #7C848C!important;
-        color: white!important;
-    }
-
-        .panel-head-color a {
-        color: white!important;
-    }
-
-    .adm-panel-menu {
-        margin-bottom: 15px;
-    }
-    
-    .adm-panel-menu-btn {
-         margin-right: 10px;
-         background-color: #409EAF;
-    }
-
-    .cart-amount-row-table {
-        color: #666666;
-        font-size: 15px;
-    }
+.cart-amount-row-table {
+    color: #666666;
+    font-size: 15px;
+}
 
 .hero-spacer {
     margin-top: 50px;
@@ -134,15 +48,14 @@
     margin-bottom: 30px;
 }
 
-
-
 input {
     color: black;
     height: 30px;
 }
+
 textarea {
-   color: black;
-    height:300px!important;
+    color: black;
+    height: 300px !important;
 }
 
 select {
@@ -150,83 +63,36 @@ select {
     height: 30px;
 }
 
-
-.cartPosition {
-  position: absolute!important;
-  right: 0!important;
+#ServerMessage, .message {
+    font-size: 150%;
+    border: 1px solid #666666;
+    background: ghostwhite;
+    width: 50%;
+    padding: 20px;
+    position: fixed;
+    top: 40%;
+    left: 25vw;
+    text-align: center;
+    z-index: 99999;
+    color: gray;
 }
 
-.thumbnail {
-    border: 0!important;
-}
-
-
-.row {
-  margin-bottom: 5px!important;
-}
-
-.smallPhoto {
-    width: auto;
-}
-
-
-.img-thumbnail {
-  border: 0;
-    border-radius: 0;
-    background: none;
-    padding: 0;
+.mailing {
+    display: inline-block !important;
+    width: 50% !important;
 }
 
 
-
-    #ServerMessage,.message {
-            font-size: 150%;
-            border: 1px solid #666666;
-            background: ghostwhite;
-            width: 50%;
-            padding: 20px;
-            position: fixed;
-            top: 40%;
-            left: 25vw;
-            text-align: center;
-            z-index: 99999;
-            color: gray;
-    }
-
-
-    .ToolBar .h1,.h2,.h3,.h4,.h5,.h6 {
-        margin: 0!important;
-    }
-
-    .mailing{
-        display: inline-block!important;
-        width: 50%!important;
-    }
-
-
-    #disqus_thread {
-     position: relative;
-    }
+#disqus_thread {
+    position: relative;
+}
 
     #disqus_thread:after {
-         content: "";
-         display: block;
-         height: 55px;
-         width: 100%;
-         position: absolute;
-         bottom: 0;
-         background: white;
+        content: "";
+        display: block;
+        height: 55px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        background: white;
     }
-
-.shortskuname {
-    font-size: 107%;
-    overflow: hidden;
-    text-align: center;
-    display: block;
-    max-height: 25px;
-    height: 25px;
-    width: 97%;
-    border-radius: 5px;
-    /*background: rgba(238, 15, 132, 0.12);*/
-    padding-top: 3px;
-}

@@ -21,6 +21,7 @@ using Shop.Logger;
 using Shop.Models;
 using Shop.Models.Builders;
 using Shop.Modules;
+using WebMatrix.WebData;
 
 namespace Shop.Controllers
 {
@@ -115,12 +116,47 @@ namespace Shop.Controllers
             return Content("Ла ла ла, заказ создан", "text/html");
         }
 
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
         public ActionResult OrdersAdmin()
         {
             var model=OrderBulder.BuildOrders(DateTime.Now.AddYears(-2), DateTime.Now.AddYears(2));
 
 
             return View(model);
+        }
+
+        public ActionResult PayOneClick(string phone, long productId, long createDate)
+        {
+            var result = string.Empty;
+            try
+            {
+                var userId=0;
+                var userName = string.Empty;
+                if (WebSecurity.IsAuthenticated)
+                {
+                    userName = WebSecurity.CurrentUserName;
+                    userId = WebSecurity.CurrentUserId;
+                }
+                var order = new OrderOneClick
+                {
+                    CreateDate = new DateTime(createDate),
+                    Phone = phone,
+                    ProductId = productId,
+                    UserId = userId,
+                    UserName = userName
+                };
+                result= dataService.AddOrUpdateOrderOneClick(order).ToString();
+                
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+                throw;
+            }
+
+            return Content(result, "html");
+
+
         }
     }
 }

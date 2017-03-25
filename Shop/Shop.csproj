@@ -171,6 +171,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PayOneClickModel.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountAdminModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
@@ -308,12 +309,11 @@
     <Content Include="Content\jquery-ui\jquery-ui.structure.min.css" />
     <Content Include="Content\jquery-ui\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui\jquery-ui.theme.min.css" />
-    <Content Include="Content\js\bootstrap.js" />
-    <Content Include="Content\js\bootstrap.min.js" />
-    <Content Include="Content\js\event-handlers.js" />
-    <Content Include="Content\js\html5shiv.js" />
-    <Content Include="Content\js\respond.min.js" />
-    <Content Include="Content\js\scripts.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\event-handlers.js" />
+    <Content Include="Scripts\html5shiv.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scripts.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -426,6 +426,8 @@
     <Content Include="Views\Admin\SkuChemodanTrackingDataPartial.cshtml" />
     <Content Include="Views\Order\Order.cshtml" />
     <Content Include="Views\Order\OrdersAdmin.cshtml" />
+    <Content Include="Views\Home\FavoriteProductsPartial.cshtml" />
+    <Content Include="Views\Home\PayOneClickPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
@@ -460,6 +462,7 @@
     <Content Include="Views\Admin\Administrator.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\ts\pay-one-click.ts" />
     <TypeScriptCompile Include="Scripts\ts\message.ts" />
     <TypeScriptCompile Include="Scripts\ts\controls.ts" />
     <TypeScriptCompile Include="Scripts\ts\cart.ts" />

@@ -1,0 +1,12 @@
+﻿@model Shop.Models.PayOneClickModel
+
+<div class="pay-one-click js-pay-one-click @Model.Classes">
+    <div class="line1">
+        <input type="tel" placeholder="0XX XXX XX XX" />
+    </div>
+    <div class="line2">
+        <div data-product-id="@Model.ProductId" onclick="payOneClick.payOneClick(event);">
+            Заказать в один клик
+        </div>
+    </div>
+</div>

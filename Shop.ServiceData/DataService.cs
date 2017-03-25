@@ -27,6 +27,7 @@ namespace Shop.DataService
         List<Order> ListOrdersByPaymentType(long paymentType);
         List<Order> ListOrdersByOrderState(long state);
         long AddOrUpdateOrder(Order order);
+        long AddOrUpdateOrderOneClick(OrderOneClick order);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -61,7 +62,7 @@ namespace Shop.DataService
         void AddIPToMonitor(IPMonitor monitor);
     }
 
-    public class DataService:IDataService
+    public class DataService : IDataService
     {
         private IDb dbService;
         private ILogger logger;
@@ -90,7 +91,7 @@ namespace Shop.DataService
 
         public T Get<T>(long id) where T : class, new()
         {
-            var result =new T();
+            var result = new T();
             try
             {
                 dbService.Run(db =>
@@ -115,7 +116,7 @@ namespace Shop.DataService
                     var itemDB = db.GetRepository<ChemodanProvider>().TryOne(item.id);
                     if (itemDB == null)
                     {
-                        result=  db.GetRepository<ChemodanProvider>().Add(item).id;
+                        result = db.GetRepository<ChemodanProvider>().Add(item).id;
                     }
                     else
                     {
@@ -133,7 +134,7 @@ namespace Shop.DataService
                         //itemDB.adress = item.adress;
                         if (itemDB.editAdress == null)
                         {
-                            itemDB.editAdress=new EditAdress();
+                            itemDB.editAdress = new EditAdress();
                         }
                         itemDB.editAdress.office = item.editAdress.office;
                         itemDB.editAdress.postCode = item.editAdress.postCode;
@@ -154,7 +155,7 @@ namespace Shop.DataService
             }
             catch (Exception err)
             {
-                result =-1;
+                result = -1;
                 logger.Error(err.Message);
             }
             return result;
@@ -319,8 +320,8 @@ namespace Shop.DataService
             {
                 dbService.Run(db =>
                 {
-                    var brandDB= db.GetRepository<Brand>().TryOne(brand.id);
-                    if (brandDB==null)
+                    var brandDB = db.GetRepository<Brand>().TryOne(brand.id);
+                    if (brandDB == null)
                     {
                         db.GetRepository<Brand>().Add(brand);
                     }
@@ -351,7 +352,7 @@ namespace Shop.DataService
                     var articleDB = db.GetRepository<Article>().TryOne(article.id);
                     if (articleDB == null)
                     {
-                      result=  db.GetRepository<Article>().Add(article).id;
+                        result = db.GetRepository<Article>().Add(article).id;
                     }
                     else
                     {
@@ -380,7 +381,7 @@ namespace Shop.DataService
                     var iblockDB = db.GetRepository<InfoBlockItem>().TryOne(iblock.id);
                     if (iblockDB == null)
                     {
-                      result=  db.GetRepository<InfoBlockItem>().Add(iblock).id;
+                        result = db.GetRepository<InfoBlockItem>().Add(iblock).id;
                     }
                     else
                     {
@@ -443,7 +444,7 @@ namespace Shop.DataService
                         db.GetRepository<StaticCategory>().Add(category);
                     }
                     else
-                    {   
+                    {
                         categoryDB.name = category.name;
                         categoryDB.description = category.description;
                         categoryDB.bodyText = category.bodyText;
@@ -501,7 +502,7 @@ namespace Shop.DataService
                     var SkuDB = db.GetRepository<Sku>().TryOne(sku.id);
                     if (SkuDB == null)
                     {
-                      result=  db.GetRepository<Sku>().Add(sku).id;
+                        result = db.GetRepository<Sku>().Add(sku).id;
                     }
                     else
                     {
@@ -576,8 +577,8 @@ namespace Shop.DataService
             {
                 dbService.Run(db =>
                 {
-                  var menu = db.GetRepository<MenuItem>().TryOne(idMinuItem);
-                  db.GetRepository<MenuItem>().Remove(menu);
+                    var menu = db.GetRepository<MenuItem>().TryOne(idMinuItem);
+                    db.GetRepository<MenuItem>().Remove(menu);
                 });
                 result = true;
             }
@@ -587,7 +588,7 @@ namespace Shop.DataService
             }
             return result;
         }
- 
+
         public bool AddSmalPhotoToSku(long id, Photo photo)
         {
             var result = false;
@@ -600,7 +601,8 @@ namespace Shop.DataService
                     {
                         SkuDB.smalPhoto = photo;
                         db.GetRepository<Sku>().Update(SkuDB);
-                        result = true;}
+                        result = true;
+                    }
                 });
             }
             catch (Exception err)
@@ -649,7 +651,7 @@ namespace Shop.DataService
                         {
                             sku.listPhoto = new List<PhotoBig>();
                         }
-                        sku.listPhoto.Add(new PhotoBig() { name = photo.name,path = photo.path,skuId = sku.id });
+                        sku.listPhoto.Add(new PhotoBig() { name = photo.name, path = photo.path, skuId = sku.id });
                         db.GetRepository<Sku>().Update(sku);
                         result = true;
                     }
@@ -692,7 +694,7 @@ namespace Shop.DataService
             {
                 dbService.Run(db =>
                 {
-                    result = ((MailingRepository) db.GetRepository<Mailing>()).AllMailingByActive(isActive).ToList();
+                    result = ((MailingRepository)db.GetRepository<Mailing>()).AllMailingByActive(isActive).ToList();
                 });
             }
             catch (Exception err)
@@ -709,7 +711,7 @@ namespace Shop.DataService
             {
                 dbService.Run(db =>
                 {
-                    result = ((InfoBlockItemRepository) db.GetRepository<InfoBlockItem>()).ListByType(type).ToList();
+                    result = ((InfoBlockItemRepository)db.GetRepository<InfoBlockItem>()).ListByType(type).ToList();
                 });
             }
             catch (Exception err)
@@ -744,7 +746,7 @@ namespace Shop.DataService
             {
                 dbService.Run(db =>
                 {
-                    result = db.GetRepository<StaticSpecification>().All().OrderBy(sp=>sp.sortPriority).ToList();
+                    result = db.GetRepository<StaticSpecification>().All().OrderBy(sp => sp.sortPriority).ToList();
                 });
             }
             catch (Exception err)
@@ -767,7 +769,7 @@ namespace Shop.DataService
                     }
                     else
                     {
-                        result = db.GetRepository<MenuItem>().All(); 
+                        result = db.GetRepository<MenuItem>().All();
                     }
                 });
             }
@@ -795,8 +797,8 @@ namespace Shop.DataService
                 logger.Error(err.Message);
             }
             return result;
-        }   
-        
+        }
+
         public void AddIPToMonitor(IPMonitor monitor)
         {
             try
@@ -826,16 +828,16 @@ namespace Shop.DataService
                         }
 
                         var oldspec = sku.listSpecification.FirstOrDefault(s => s.staticspec.id == spec.id);
-                        if (oldspec!=null)
+                        if (oldspec != null)
                         {
                             oldspec.value = specValue;
                         }
                         else
                         {
-                            sku.listSpecification.Add(new Specification() { staticspec = spec, skuId = sku.id, value = specValue });                            
+                            sku.listSpecification.Add(new Specification() { staticspec = spec, skuId = sku.id, value = specValue });
                         }
                         db.GetRepository<Sku>().Update(sku);
-                        result = true; 
+                        result = true;
                     }
                 });
             }
@@ -850,7 +852,7 @@ namespace Shop.DataService
         public bool SetChemodanTrackingToSku(ChemodanTracking item)
         {
             var result = false;
-            if (item.skuId < 1&& item.Id<1)
+            if (item.skuId < 1 && item.Id < 1)
             {
                 return false;
             }
@@ -894,7 +896,7 @@ namespace Shop.DataService
             {
                 dbService.Run(db =>
                 {
-                    result = ((OrderRepository)db.GetRepository<Order>()).AllByDates(from,to);
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByDates(from, to);
                 });
             }
             catch (Exception err)
@@ -1003,11 +1005,11 @@ namespace Shop.DataService
                 {
                     var sku = db.GetRepository<Sku>().TryOne(id);
                     var category = db.GetRepository<StaticCategory>().TryOne(idCat);
-                    if (sku!=null&&category!=null)
+                    if (sku != null && category != null)
                     {
                         if (sku.listCategory == null)
                         {
-                            sku.listCategory=new List<Category>();
+                            sku.listCategory = new List<Category>();
                         }
 
                         if (!sku.listCategory.Any(s => s.staticcat.id == category.id))
@@ -1026,7 +1028,7 @@ namespace Shop.DataService
             return result;
         }
 
-        public bool RemoveSKUFromCategory(long id,long idCat)
+        public bool RemoveSKUFromCategory(long id, long idCat)
         {
             var result = false;
             try
@@ -1034,7 +1036,7 @@ namespace Shop.DataService
                 dbService.Run(db =>
                 {
                     var cat = db.GetRepository<Category>().TryOne(idCat);
-                    if (cat!=null)
+                    if (cat != null)
                     {
                         db.GetRepository<Category>().Remove(cat);
                         result = true;
@@ -1089,7 +1091,7 @@ namespace Shop.DataService
             {
                 dbService.Run(db =>
                 {
-                    result = ((SkuRepository) db.GetRepository<Sku>()).Many(ids);
+                    result = ((SkuRepository)db.GetRepository<Sku>()).Many(ids);
                 });
             }
             catch (Exception err)
@@ -1115,24 +1117,24 @@ namespace Shop.DataService
             return result;
         }
 
-		public Mailing GetMailingByEmail(string email)
-		{
-			var result = new Mailing();
-			try
-			{
-				dbService.Run(db =>
-				{
-					result = ((MailingRepository)db.GetRepository<Mailing>()).OneByEmail(email);
-				});
-			}
-			catch (Exception err)
-			{
-				logger.Error(err.Message);
-			}
-			return result;
-		}
+        public Mailing GetMailingByEmail(string email)
+        {
+            var result = new Mailing();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((MailingRepository)db.GetRepository<Mailing>()).OneByEmail(email);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
 
-		public long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation)
+        public long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation)
         {
             long result = 0;
             try
@@ -1172,7 +1174,7 @@ namespace Shop.DataService
                     var orderDb = db.GetRepository<Order>().TryOne(order.Id);
                     if (orderDb == null)
                     {
-                        var skuList = db.GetRepository<Sku>().Many(order.Products.Select(item=>item.ProductId).Distinct().ToArray());
+                        var skuList = db.GetRepository<Sku>().Many(order.Products.Select(item => item.ProductId).Distinct().ToArray());
                         foreach (var item in order.Products)
                         {
                             var tmpItem = skuList.First(elem => elem.id == item.ProductId);
@@ -1196,19 +1198,19 @@ namespace Shop.DataService
 
                         if (orderDb.Client == null)
                         {
-                            orderDb.Client=new Client();
+                            orderDb.Client = new Client();
                         }
                         tmpId = orderDb.Client.id;
                         orderDb.Client = order.Client;
                         orderDb.Client.id = tmpId;
-                        
-                        if (orderDb.Client.editAdress==null)
+
+                        if (orderDb.Client.editAdress == null)
                         {
-                            orderDb.Client.editAdress=new EditAdress();
+                            orderDb.Client.editAdress = new EditAdress();
                         }
-                        order.Client.editAdress.id= orderDb.Client.editAdress.id;
+                        order.Client.editAdress.id = orderDb.Client.editAdress.id;
                         orderDb.Client.editAdress = order.Client.editAdress;
-                       
+
                         db.GetRepository<Order>().Update(orderDb);
                         result = orderDb.Id;
                     }
@@ -1222,6 +1224,38 @@ namespace Shop.DataService
             return result;
         }
 
+        public long AddOrUpdateOrderOneClick(OrderOneClick order)
+        {
+            long result = 0;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    var orderDb = db.GetRepository<OrderOneClick>().TryOne(order.Id);
+                    if (orderDb == null)
+                    {
+                        result = db.GetRepository<OrderOneClick>().Add(order).Id;
+                    }
+                    else
+                    {
+                        orderDb.CreateDate = order.CreateDate;
+                        orderDb.IsComplite = order.IsComplite;
+                        orderDb.Phone = order.Phone;
+                        orderDb.ProductId = order.ProductId;
+                        orderDb.UserId = order.UserId;
+                        orderDb.UserName = order.UserName;
+                        db.GetRepository<OrderOneClick>().Update(orderDb);
+                        result = orderDb.Id;
+                    }
+                });
+            }
+            catch (Exception err)
+            {
+                result = 0;
+                logger.Error(err.Message);
+            }
+            return result;
+        }
     }
 }
 //1570 lines

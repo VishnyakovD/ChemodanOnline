@@ -76,16 +76,10 @@
                 {
                     <img class="col-md-12" src="@Model.smalPhotoPath"/>
                 }
-                <div class="pay-one-click full-width hidden-xs hidden-lg hidden-md">
-                    <div class="line1">
-                        <input type="tel" placeholder="0XX XXX XX XX"/>
-                    </div>
-                    <div class="line2">
-                        <div class="js-pay-one-click">
-                            Заказать в один клик
-                        </div>
-                    </div>
-                </div>
+
+
+                @{Html.RenderPartial("PayOneClickPartial", new PayOneClickModel("full-width hidden-xs hidden-lg hidden-md", Model.id, ""));}
+
             </div>
             <div class="col-xs-12 col-sm-8 col-md-4 col-lg-4">
                 <div class="title tablet text-left hidden-lg hidden-md">@Model.name</div>
@@ -143,10 +137,7 @@
                 @if (Model.id > 0 && User.IsInRole("Admin"))
                 {
                     <br/>
-                    <br/>
-                    <br/>
                     <a class="btn btn-default" href="@Url.Action("SkuData", "Admin", new {id = Model.id})">Редактировать товар</a>
-
                 }
             </div>
             <div class="col-xs-4 col-md-4 col-lg-4 hidden-xs hidden-sm">
@@ -170,16 +161,8 @@
                     </div>
                 </div>
 
-                <div class="pay-one-click">
-                    <div class="line1">
-                        <input type="tel" placeholder="0XX XXX XX XX"/>
-                    </div>
-                    <div class="line2">
-                        <div class="js-pay-one-click">
-                            Заказать в один клик
-                        </div>
-                    </div>
-                </div>
+                @{Html.RenderPartial("PayOneClickPartial", new PayOneClickModel("",Model.id,""));}
+
             </div>
         </div>
 
@@ -217,38 +200,8 @@
             </div>
         </div>
 
+        @{Html.RenderPartial("FavoriteProductsPartial",Model.ListProduct);}
 
-        <div class="swiper-container main-page-favorite-swipe js-main-page-favorite-swiper">
-
-            <div class="swiper-wrapper">
-                @foreach (var item in Model.ListProduct)
-                {
-                    <div class="swiper-slide">
-                        <div class="short-product">
-                            <div class="line1">
-                                <img src="@item.smalPhotoPath" />
-                            </div>
-                            <div class="line2">
-                                <span class="txt">артикул:</span>
-                                <span class="val">@item.articul</span>
-                            </div>
-                            <div class="line3">
-                                <span class="val">@item.category</span>
-                            </div>
-                            <div class="line4">
-                                <span class="txt">в день:</span>
-                                <span class="price">@item.price.ToString("####")</span>
-                                <span class="val">грн.</span>
-                            </div>
-                            <div class="line5">
-                                <a href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})" class="button-default">Посмотреть</a>
-                            </div>
-                        </div>
-                    </div>
-                }
-
-            </div>
-        </div>
     </div>
 }
 

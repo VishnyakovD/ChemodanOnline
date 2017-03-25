@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs" />
+    <Compile Include="Entities\OrderOneClick.cs" />
     <Compile Include="Entities\OrderClasses.cs" />
     <Compile Include="Entities\ChemodanTracking.cs" />
     <Compile Include="Entities\ChemodanLocation.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Entities\TypeStreet.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\OrderOneClickRepository.cs" />
     <Compile Include="Repository\OrderInfoFileRepository.cs" />
     <Compile Include="Repository\PaymentTypeRepository.cs" />
     <Compile Include="Repository\DeliveryTypeRepository.cs" />
@@ -241,6 +243,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mappings\OrderState.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mappings\OrderOneClick.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

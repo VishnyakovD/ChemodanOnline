@@ -163,6 +163,8 @@ namespace Shop.db
 				retvar = (IRepository<T>)(new PaymentTypeRepository(session));
 			else if (typeof(T) == typeof(OrderInfoFile))
 				retvar = (IRepository<T>)(new OrderInfoFileRepository(session));
+			else if (typeof(T) == typeof(OrderOneClick))
+				retvar = (IRepository<T>)(new OrderOneClickRepository(session));
 
 
 
