@@ -92,52 +92,55 @@ var Cart = (function () {
         this.setDays();
         this.setCartCookie();
     };
-    Cart.prototype.validate = function () {
-        var arrors = [];
-        if (this.from.toString() === "Invalid Date" || this.from.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0)) {
-            arrors.push(new InputErrorItem("From", ""));
-        }
-        var dateFrom = new Date(this.from.toDateString());
-        if (this.to.toString() === "Invalid Date" || this.to.setHours(23, 59, 59, 99) <= dateFrom.setHours(23, 59, 59, 99)) {
-            arrors.push(new InputErrorItem("To", ""));
+    Cart.prototype.validate = function (datesOnly) {
+        var errors = [];
+        if (datesOnly) {
+            if (this.from.toString() === "Invalid Date" || this.from.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0)) {
+                errors.push(new InputErrorItem("From", ""));
+            }
+            var dateFrom = new Date(this.from.toDateString());
+            if (this.to.toString() === "Invalid Date" || this.to.setHours(23, 59, 59, 99) <= dateFrom.setHours(23, 59, 59, 99)) {
+                errors.push(new InputErrorItem("To", ""));
+            }
+            return errors;
         }
         if (this.clientEmail === "" || !this.clientEmail.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,}$/)) {
-            arrors.push(new InputErrorItem("ClientEmail", ""));
+            errors.push(new InputErrorItem("ClientEmail", ""));
         }
         if (this.clientFirstName === "") {
-            arrors.push(new InputErrorItem("ClientFirstName", ""));
+            errors.push(new InputErrorItem("ClientFirstName", ""));
         }
         if (this.clientLastName === "") {
-            arrors.push(new InputErrorItem("ClientLastName", ""));
+            errors.push(new InputErrorItem("ClientLastName", ""));
         }
         if (this.clientPhone === "") {
-            arrors.push(new InputErrorItem("ClientPhone", ""));
+            errors.push(new InputErrorItem("ClientPhone", ""));
         }
         if (this.paymentType < 1) {
-            arrors.push(new InputErrorItem("PaymentType", ""));
+            errors.push(new InputErrorItem("PaymentType", ""));
         }
         if (this.deliveryType === 2 || this.deliveryType === 3) {
-            //arrors.push(new InputErrorItem("DeliveryType", ""));
+            //errors.push(new InputErrorItem("DeliveryType", ""));
             if (this.city === "") {
-                arrors.push(new InputErrorItem("City", ""));
+                errors.push(new InputErrorItem("City", ""));
             }
             if (this.flat === "") {
-                arrors.push(new InputErrorItem("Flat", ""));
+                errors.push(new InputErrorItem("Flat", ""));
             }
             if (this.home === "") {
-                arrors.push(new InputErrorItem("Home", ""));
+                errors.push(new InputErrorItem("Home", ""));
             }
             if (this.typeStreet === "") {
-                arrors.push(new InputErrorItem("TypeStreet", ""));
+                errors.push(new InputErrorItem("TypeStreet", ""));
             }
             if (this.level === "") {
-                arrors.push(new InputErrorItem("Level", ""));
+                errors.push(new InputErrorItem("Level", ""));
             }
             if (this.street === "") {
-                arrors.push(new InputErrorItem("Street", ""));
+                errors.push(new InputErrorItem("Street", ""));
             }
         }
-        return arrors;
+        return errors;
     };
     return Cart;
 }());
@@ -220,14 +223,15 @@ var CartManager = (function () {
         this.setSummAllProducts();
         //  $(".js-card-dates input[name=To]").val(this.cart.to.toString());
     };
-    CartManager.prototype.validateCart = function () {
-        var errors = this.cart.validate();
+    CartManager.prototype.validateCart = function (datesOnly) {
+        var errors = this.cart.validate(datesOnly);
         var orderPages = $(".js-order-pages");
         orderPages.find(".error").removeClass("error");
         errors.forEach(function (item) {
             orderPages.find("[name=" + item.inputName + "]").addClass("error");
         });
         if (errors.length > 0) {
+            orderPages.find(".error").first().focus();
             return false;
         }
         return true;
@@ -244,6 +248,8 @@ var CartManager = (function () {
     return CartManager;
 }());
 var cartManager;
+var orderPage1;
+var orderPage2;
 $(function () {
     cartManager = new CartManager();
     if ($(".js-cart").length > 0) {
@@ -306,7 +312,7 @@ $(function () {
                 cartManager.cart.flat = orderPage.find("[name=Flat]").val();
                 cartManager.cart.deliveryType = parseInt(orderPage.find("[name=DeliveryType]").val());
                 cartManager.cart.paymentType = parseInt(orderPage.find("[name=PaymentType]").val());
-                if (cartManager.validateCart()) {
+                if (cartManager.validateCart(false)) {
                     $.post("/Order/CreateOrder/", { order: JSON.stringify(cartManager.cart) })
                         .done(function (result) {
                         message.showMessage(result);
@@ -335,5 +341,15 @@ $(function () {
     }
     cartManager.setCountAllProducts();
     cartManager.setSummAllProducts();
+    orderPage1 = $(".js-order-page1");
+    if (orderPage1.length > 0) {
+        orderPage2 = $(".js-order-page2");
+        $(document).on("click", ".js-pre-confirm-order", function (e) {
+            if (cartManager.validateCart(true)) {
+                orderPage1.addClass("hide");
+                orderPage2.removeClass("hide");
+            }
+        });
+    }
 });
 //# sourceMappingURL=cart.js.map

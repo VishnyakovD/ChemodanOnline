@@ -99,37 +99,42 @@
                     </div>
 
                 </div>
-                <div class="product-tabs">
-                    <div class="tab active">
-                        <span>Характеристики</span>
+
+
+                <div class="js-tabs-block">
+                    <div class="product-tabs">
+                        <div class="tab js-product-tab-title active" data-id="1">
+                            <span>Характеристики</span>
+                        </div>
+                        <div class="tab js-product-tab-title" data-id="2">
+                            <span>Описание</span>
+                        </div>
                     </div>
-                    <div class="tab">
-                        <span>Описание</span>
+                    <div class="product-tabs-content js-product-tabs">
+                        <div class="js-product-tab-content" data-id="1">
+                            @foreach (var spec in Model.listSpecification)
+                        {
+                                <div class="spec-item">
+                                    <span class="rect"></span>
+                                    <span class="spec-text">@spec.staticspec.name</span>
+                                    <span class="dotted"></span>
+                                    <span class="spec-value">@spec.value</span>
+                                </div>
+                        }
+                        </div>
+                        <div class="js-product-tab-content hidden" data-id="2">
+                            @(new HtmlString(Model.description))
+
+
+                            @if (!string.IsNullOrEmpty(Model.care))
+                        {
+
+                                <div>@(new HtmlString(Model.care))</div>
+                        }
+                        </div>
                     </div>
                 </div>
-                <div class="product-tabs-content">
-                    <div>
-                        @foreach (var spec in Model.listSpecification)
-                        {
-                            <div class="spec-item">
-                                <span class="rect"></span>
-                                <span class="spec-text">@spec.staticspec.name</span>
-                                <span class="dotted"></span>
-                                <span class="spec-value">@spec.value</span>
-                            </div>
-                        }
-                    </div>
-                    <div class="hidden">
-                        @(new HtmlString(Model.description))
 
-
-                        @if (!string.IsNullOrEmpty(Model.care))
-                        {
-
-                            <div>@(new HtmlString(Model.care))</div>
-                        }
-                    </div>
-                </div>
 
                 <div class="button-info blue js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount">Добавить в корзину</div>
 

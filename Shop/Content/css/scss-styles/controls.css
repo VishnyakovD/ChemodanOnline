@@ -18,8 +18,8 @@ a, a:visited, a:hover {
   text-decoration: none; }
 
 input.error, span.error, div.error {
-  border: 1px solid #fe8080;
-  background-color: rgba(255, 109, 109, 0.05); }
+  border: 1px solid #fe8080 !important;
+  background-color: rgba(255, 109, 109, 0.05) !important; }
 
 .radio-btns div {
   color: gray;

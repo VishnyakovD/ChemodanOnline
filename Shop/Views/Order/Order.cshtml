@@ -27,23 +27,6 @@
                 </div>
             </div>
 
-            @*<div class="row hidden-md hidden-lg">
-                    <div class="col-xs-12 col-sm-12">
-                        <div class="order-info">
-                            <div class="title">Период бронирования</div>
-
-                            <div class="info-label">Выбор даты *</div>
-
-                            <div class="date-values js-card-dates">
-                                <img src="~/Content/img/icons/calendar.png" />
-                                <input type="date" name="From" value="@Model.Order.From.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateFrom(event)" />
-                                <span class="long-minus">—</span>
-                                <input type="date" name="To" value="@Model.Order.To.Date.ToString("yyyy-MM-dd")" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" onchange="cartManager.setDateTo(event)" />
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 order-table">
                     <div class="row head hidden-xs">
@@ -150,7 +133,7 @@
                             </div>
                             <hr class="order" />
                             <div class="margin-block">
-                                <div class="button">
+                                <div class="button js-pre-confirm-order">
                                     <span class="btn button-order">Оформить заказ →</span>
                                 </div>
                             </div>
@@ -164,7 +147,7 @@
         </div>
 
         @{ var addressCells = "col-xs-12 col-sm-6 col-md-6 col-lg-6";}
-        <div class="js-order-page2">
+        <div class="js-order-page2 hide">
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -235,10 +218,12 @@
                                 </div>
 
 
-                                <br />
-                                <div class="button js-confirm-order">
+                                <br/>
+                            
+                                <div class="button js-confirm-order disabled" >
                                     <span class="btn button-order">Подтвердить заказ →</span>
                                 </div>
+                          
 
                             </div>
             

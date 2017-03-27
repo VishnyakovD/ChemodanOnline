@@ -215,6 +215,9 @@
       text-align: center;
       color: white;
       padding: 10px 12px; }
+  .button.disabled {
+    opacity: 0.2;
+    cursor: not-allowed !important; }
 
 .title-main-page {
   position: relative;
@@ -1134,8 +1137,8 @@ a, a:visited, a:hover {
   text-decoration: none; }
 
 input.error, span.error, div.error {
-  border: 1px solid #fe8080;
-  background-color: rgba(255, 109, 109, 0.05); }
+  border: 1px solid #fe8080 !important;
+  background-color: rgba(255, 109, 109, 0.05) !important; }
 
 .radio-btns div {
   color: gray;
@@ -1257,4 +1260,52 @@ body {
   color: black;
   letter-spacing: 1.25px;
   margin-top: 20px; }
+
+.deliv-and-pay .article-info-block div {
+  display: inline-block; }
+
+.deliv-and-pay .article-info-block .img {
+  border: 1px black solid;
+  padding: 8px;
+  border-radius: 100%; }
+  .deliv-and-pay .article-info-block .img img {
+    width: 18px; }
+
+.deliv-and-pay .article-info-block .text {
+  margin-left: 30px;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 2.14;
+  letter-spacing: 0.4px;
+  color: #0d0d0d;
+  text-transform: uppercase; }
+
+.deliv-and-pay .default-label {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: #808080; }
+
+.deliv-and-pay .big-label {
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1.67;
+  letter-spacing: 0.5px;
+  color: #0d0d0d; }
+
+.deliv-and-pay .row {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.deliv-and-pay .operator {
+  padding: 10px 10px 10px 70px;
+  position: relative;
+  border: solid 1px #d9d9d9;
+  height: 50px; }
+  .deliv-and-pay .operator img {
+    position: absolute;
+    height: 25px;
+    left: 10px; }
 

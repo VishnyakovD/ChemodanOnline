@@ -57,7 +57,7 @@
     background-color: #22b2da;
     border-radius: 8px;
 
-    a,a:hover,a:visited, span, span:hover {
+    a, a:hover, a:visited, span, span:hover {
         font-weight: bold;
         display: block;
         text-align: center;
@@ -72,7 +72,14 @@
             padding: 10px 12px;
         }
     }
+
+    &.disabled {
+        opacity: 0.2;
+        cursor: not-allowed!important;
+    }
 }
+
+
 
 .title-main-page {
     position: relative;

@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\SController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\MailingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -271,6 +272,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\box.png" />
+    <Content Include="Content\img\icons\bank.png" />
+    <Content Include="Content\img\icons\card.png" />
+    <Content Include="Content\img\icons\cart1.png" />
+    <Content Include="Content\img\icons\dost.png" />
+    <Content Include="Content\img\icons\head.png" />
     <Content Include="Content\img\icons\assistant.png" />
     <Content Include="Content\img\icons\calendar.png" />
     <Content Include="Content\img\icons\cart.png" />
@@ -280,16 +286,11 @@
     <Content Include="Content\img\icons\loc.png" />
     <Content Include="Content\img\icons\master.png" />
     <Content Include="Content\img\icons\next.png" />
+    <Content Include="Content\img\icons\oper.png" />
     <Content Include="Content\img\icons\prev.png" />
     <Content Include="Content\img\icons\size.png" />
     <Content Include="Content\img\icons\visa.png" />
     <Content Include="Content\img\logo.png" />
-    <Content Include="Content\jHtmlArea\jHtmlArea.ColorPickerMenu.css" />
-    <Content Include="Content\jHtmlArea\jHtmlArea.css" />
-    <Content Include="Content\jHtmlArea\jHtmlArea.Editor.css" />
-    <Content Include="Content\jHtmlArea\jHtmlArea.png" />
-    <Content Include="Content\jHtmlArea\jHtmlArea_Toolbar_Group_BG.png" />
-    <Content Include="Content\jHtmlArea\jHtmlArea_Toolbar_Group__Btn_Select_BG.png" />
     <Content Include="Content\jquery-ui\images\img-ui-bg_glass_75_e6e6e6_1x400.png" />
     <Content Include="Content\jquery-ui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -302,9 +303,8 @@
     <Content Include="Content\jquery-ui\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\jquery-ui\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\jquery-ui\jquery-ui.css" />
-    <Content Include="Content\jquery-ui\jquery-ui.js" />
     <Content Include="Content\jquery-ui\jquery-ui.min.css" />
-    <Content Include="Content\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Content\jquery-ui\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui\jquery-ui.structure.min.css" />
     <Content Include="Content\jquery-ui\jquery-ui.theme.css" />
@@ -428,6 +428,7 @@
     <Content Include="Views\Order\OrdersAdmin.cshtml" />
     <Content Include="Views\Home\FavoriteProductsPartial.cshtml" />
     <Content Include="Views\Home\PayOneClickPartial.cshtml" />
+    <Content Include="Views\S\Dap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
@@ -462,6 +463,7 @@
     <Content Include="Views\Admin\Administrator.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\ts\card.ts" />
     <TypeScriptCompile Include="Scripts\ts\pay-one-click.ts" />
     <TypeScriptCompile Include="Scripts\ts\message.ts" />
     <TypeScriptCompile Include="Scripts\ts\controls.ts" />

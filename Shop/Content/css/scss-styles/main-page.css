@@ -46,6 +46,9 @@
       text-align: center;
       color: white;
       padding: 10px 12px; }
+  .button.disabled {
+    opacity: 0.2;
+    cursor: not-allowed !important; }
 
 .title-main-page {
   position: relative;

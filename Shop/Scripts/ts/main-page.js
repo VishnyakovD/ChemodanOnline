@@ -24,7 +24,7 @@ $(function () {
     $(document).on("click", ".js-show-info-block-item", function (e) {
         mainPage.getInfoBlock($(e.currentTarget).data("id"), $(e.currentTarget).data("type"));
     });
-    $(document).on("click", "a", function (e) {
+    $(document).on("click", "a:not('[data-ajax=\"true\"]')", function (e) {
         document.location.href = $(e.currentTarget).attr("href");
     });
 });
