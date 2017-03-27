@@ -1286,7 +1286,8 @@ body {
   font-weight: 300;
   letter-spacing: 0.4px;
   text-align: left;
-  color: #808080; }
+  color: #808080;
+  vertical-align: sub; }
 
 .deliv-and-pay .big-label {
   display: inline-block;
