@@ -40,6 +40,12 @@ namespace Shop.Controllers
             return View(model);
         }
 
+        public ActionResult Faq()
+        {
+            var model = menuBuilder.BuildAllMenu();
+            return View(model);
+        }
+
 
     }
 }

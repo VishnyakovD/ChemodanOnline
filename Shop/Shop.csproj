@@ -220,6 +220,12 @@
     <Content Include="Content\css\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\scss-styles\articles.css">
+      <DependentUpon>articles.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\css\scss-styles\articles.min.css">
+      <DependentUpon>articles.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\scss-styles\controls.css">
       <DependentUpon>controls.scss</DependentUpon>
     </Content>
@@ -275,6 +281,8 @@
     <Content Include="Content\img\icons\bank.png" />
     <Content Include="Content\img\icons\card.png" />
     <Content Include="Content\img\icons\cart1.png" />
+    <Content Include="Content\img\icons\case.png" />
+    <Content Include="Content\img\icons\caselike.png" />
     <Content Include="Content\img\icons\dost.png" />
     <Content Include="Content\img\icons\head.png" />
     <Content Include="Content\img\icons\assistant.png" />
@@ -286,10 +294,12 @@
     <Content Include="Content\img\icons\loc.png" />
     <Content Include="Content\img\icons\master.png" />
     <Content Include="Content\img\icons\next.png" />
+    <Content Include="Content\img\icons\note.png" />
     <Content Include="Content\img\icons\oper.png" />
     <Content Include="Content\img\icons\prev.png" />
     <Content Include="Content\img\icons\size.png" />
     <Content Include="Content\img\icons\visa.png" />
+    <Content Include="Content\img\icons\wallet.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\jquery-ui\images\img-ui-bg_glass_75_e6e6e6_1x400.png" />
     <Content Include="Content\jquery-ui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -342,6 +352,7 @@
     <Content Include="Content\css\scss-styles\filters.scss" />
     <Content Include="Content\css\scss-styles\order.scss" />
     <Content Include="Content\css\scss-styles\controls.scss" />
+    <Content Include="Content\css\scss-styles\articles.scss" />
     <None Include="Properties\PublishProfiles\hosting.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
@@ -429,6 +440,7 @@
     <Content Include="Views\Home\FavoriteProductsPartial.cshtml" />
     <Content Include="Views\Home\PayOneClickPartial.cshtml" />
     <Content Include="Views\S\Dap.cshtml" />
+    <Content Include="Views\S\Faq.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

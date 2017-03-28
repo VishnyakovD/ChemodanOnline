@@ -198,5 +198,9 @@
   {
     "outputFile": "Content/css/scss-styles/filters.css",
     "inputFile": "Content/css/scss-styles/filters.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/articles.css",
+    "inputFile": "Content/css/scss-styles/articles.scss"
   }
 ]

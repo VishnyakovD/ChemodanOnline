@@ -23,7 +23,6 @@
     opacity: 0.6; }
   .top-menu-container .top-menu-body {
     display: inline-block;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     line-height: 1.88;
     letter-spacing: 0.4px;
@@ -1244,23 +1243,6 @@ input.error, span.error, div.error {
 .long-minus {
   display: inline-block; }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  padding-top: 20px;
-  color: black; }
-  body a, body a:link, body a:visited, body a:hover {
-    text-decoration: none; }
-  body .container {
-    width: 100% !important; }
-
-.head-text {
-  font-size: 26px;
-  font-weight: 500;
-  text-align: center;
-  color: black;
-  letter-spacing: 1.25px;
-  margin-top: 20px; }
-
 .deliv-and-pay .article-info-block div {
   display: inline-block; }
 
@@ -1304,9 +1286,85 @@ body {
   padding: 10px 10px 10px 70px;
   position: relative;
   border: solid 1px #d9d9d9;
-  height: 50px; }
+  min-height: 50px; }
   .deliv-and-pay .operator img {
     position: absolute;
     height: 25px;
     left: 10px; }
+
+@media (max-width: 767px) {
+  .deliv-and-pay .default-label, .deliv-and-pay .big-label, .deliv-and-pay .text, .deliv-and-pay .info-label {
+    text-align: center !important; }
+  .deliv-and-pay .text {
+    font-size: 13px; } }
+
+.faq .panel {
+  border: none; }
+  .faq .panel .panel-heading .header {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    color: #0d0d0d;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0; }
+    .faq .panel .panel-heading .header a {
+      display: block;
+      padding: 8px 22px; }
+      .faq .panel .panel-heading .header a span {
+        margin-right: 30px; }
+      .faq .panel .panel-heading .header a span.glyphicon-minus {
+        display: inline-block; }
+      .faq .panel .panel-heading .header a span.glyphicon-plus {
+        display: none; }
+      .faq .panel .panel-heading .header a.collapsed span.glyphicon-minus {
+        display: none; }
+      .faq .panel .panel-heading .header a.collapsed span.glyphicon-plus {
+        display: inline-block; }
+  .faq .panel .panel-body {
+    padding: 40px 80px;
+    border: none !important; }
+
+.faq .image-text {
+  padding-left: 85px;
+  position: relative;
+  min-height: 51px; }
+  .faq .image-text .image {
+    position: absolute;
+    left: 0;
+    border: 1px black solid;
+    padding: 13px;
+    border-radius: 100%; }
+    .faq .image-text .image img {
+      width: 23px; }
+  .faq .image-text .text {
+    font-size: 16px;
+    line-height: 1.88;
+    letter-spacing: 0.4px;
+    color: #0d0d0d; }
+
+.faq .text-only {
+  font-size: 16px;
+  line-height: 1.75;
+  letter-spacing: 0.4px;
+  color: #0d0d0d; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 20px;
+  color: black; }
+  body a, body a:link, body a:visited, body a:hover {
+    text-decoration: none; }
+  body .container {
+    width: 100% !important; }
+
+.head-text {
+  font-size: 26px;
+  font-weight: 500;
+  text-align: center;
+  color: black;
+  letter-spacing: 1.25px;
+  margin-top: 20px; }
 

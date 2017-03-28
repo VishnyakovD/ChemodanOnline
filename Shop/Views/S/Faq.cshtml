@@ -1,0 +1,95 @@
+﻿@model Shop.Models.MenuModel
+
+@{
+    Page.Title = "Аренда чемоданов | Chemodan.online";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container order-pages faq">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-left">
+                <div class="title-main-page">FAQ</div>
+            </div>
+            <div class="hr-title"></div>
+        </div>
+    </div>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="panelcol1">
+                <h4 class="header">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#panellink1" aria-expanded="true" aria-controls="panellink1">
+                        <span class="glyphicon glyphicon-minus"></span>
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Как арендовать чемодан
+                    </a>
+                </h4>
+            </div>
+            <div id="panellink1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="panelcol1">
+                <div class="panel-body">
+
+                    <div class="image-text">
+                        <div class="image">
+                            <img src="~/Content/img/icons/case.png" />
+                        </div>
+                        <div class="text">Выбрать в каталоге чемодан</div>
+                    </div>
+                    <br />
+                    <div class="image-text">
+                        <div class="image">
+                            <img src="~/Content/img/icons/calendar.png" />
+                        </div>
+                        <div class="text">Выбрать даты аренды</div>
+                    </div>
+                    <br />
+                    <div class="image-text">
+                        <div class="image">
+                            <img src="~/Content/img/icons/wallet.png" />
+                        </div>
+                        <div class="text">
+                            Оплатить залоговую сумму.
+                            Стоимость аренды включена в залоговую сумму.
+                        </div>
+                    </div>
+                    <br />
+                    <div class="image-text">
+                        <div class="image">
+                            <img src="~/Content/img/icons/note.png" />
+                        </div>
+                        <div class="text">Подписать договор аренды.</div>
+                    </div>
+                    <br />
+                    <div class="image-text">
+                        <div class="image">
+                            <img src="~/Content/img/icons/caselike.png" />
+                        </div>
+                        <div class="text">Получить чемодан</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="false">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="panelcol3">
+                <h4 class="header">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion3" href="#panellink3" aria-expanded="true" aria-controls="panellink3">
+                        <span class="glyphicon glyphicon-minus"></span>
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Как арендовать чемодан
+                    </a>
+                </h4>
+            </div>
+            <div id="panellink3" class="panel-collapse" role="tabpanel" aria-labelledby="panelcol3">
+                <div class="panel-body">
+                    <div class="text-only">
+                        Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
