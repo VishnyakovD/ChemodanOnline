@@ -283,7 +283,9 @@
     <Content Include="Content\img\icons\cart1.png" />
     <Content Include="Content\img\icons\case.png" />
     <Content Include="Content\img\icons\caselike.png" />
+    <Content Include="Content\img\icons\clean.png" />
     <Content Include="Content\img\icons\dost.png" />
+    <Content Include="Content\img\icons\fast.png" />
     <Content Include="Content\img\icons\head.png" />
     <Content Include="Content\img\icons\assistant.png" />
     <Content Include="Content\img\icons\calendar.png" />
@@ -292,10 +294,14 @@
     <Content Include="Content\img\icons\facebook-logo.png" />
     <Content Include="Content\img\icons\instagram-logo.png" />
     <Content Include="Content\img\icons\loc.png" />
+    <Content Include="Content\img\icons\mail.png" />
+    <Content Include="Content\img\icons\map.jpg" />
     <Content Include="Content\img\icons\master.png" />
     <Content Include="Content\img\icons\next.png" />
     <Content Include="Content\img\icons\note.png" />
     <Content Include="Content\img\icons\oper.png" />
+    <Content Include="Content\img\icons\passport.png" />
+    <Content Include="Content\img\icons\phone.png" />
     <Content Include="Content\img\icons\prev.png" />
     <Content Include="Content\img\icons\size.png" />
     <Content Include="Content\img\icons\visa.png" />
@@ -441,6 +447,7 @@
     <Content Include="Views\Home\PayOneClickPartial.cshtml" />
     <Content Include="Views\S\Dap.cshtml" />
     <Content Include="Views\S\Faq.cshtml" />
+    <Content Include="Views\S\Cnt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

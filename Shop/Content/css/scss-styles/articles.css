@@ -71,13 +71,13 @@
       .faq .panel .panel-heading .header a span {
         margin-right: 30px; }
       .faq .panel .panel-heading .header a span.glyphicon-minus {
-        display: inline-block; }
+        display: none; }
       .faq .panel .panel-heading .header a span.glyphicon-plus {
-        display: none; }
-      .faq .panel .panel-heading .header a.collapsed span.glyphicon-minus {
-        display: none; }
-      .faq .panel .panel-heading .header a.collapsed span.glyphicon-plus {
         display: inline-block; }
+      .faq .panel .panel-heading .header a[aria-expanded="true"] span.glyphicon-minus {
+        display: inline-block; }
+      .faq .panel .panel-heading .header a[aria-expanded="true"] span.glyphicon-plus {
+        display: none; }
   .faq .panel .panel-body {
     padding: 40px 80px;
     border: none !important; }
@@ -96,13 +96,81 @@
       width: 23px; }
   .faq .image-text .text {
     font-size: 16px;
-    line-height: 1.88;
     letter-spacing: 0.4px;
-    color: #0d0d0d; }
+    color: #0d0d0d;
+    display: inline-block;
+    margin-top: 12px; }
+  .faq .image-text.line-view {
+    padding-left: 0;
+    position: inherit;
+    min-height: initial;
+    text-align: center; }
+    .faq .image-text.line-view .image {
+      position: initial;
+      left: 0;
+      border: none;
+      padding: 0px;
+      border-radius: 0; }
+      .faq .image-text.line-view .image img {
+        width: auto; }
+    .faq .image-text.line-view .text {
+      font-size: 14px;
+      line-height: 1.86;
+      letter-spacing: 0.4px;
+      color: #0d0d0d;
+      text-transform: uppercase; }
 
 .faq .text-only {
   font-size: 16px;
   line-height: 1.75;
   letter-spacing: 0.4px;
   color: #0d0d0d; }
+
+@media (max-width: 768px) {
+  .faq .panel .panel-body {
+    padding: 20px 20px; } }
+
+.contacts .map {
+  width: 100%; }
+
+.contacts .info .line {
+  text-align: right;
+  font-size: 14px;
+  line-height: 2.14;
+  letter-spacing: 0.4px;
+  color: #0d0d0d;
+  display: table; }
+  .contacts .info .line .title {
+    padding-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left; }
+  .contacts .info .line label {
+    display: table-cell;
+    font-weight: normal;
+    min-width: 80px;
+    text-align: right; }
+  .contacts .info .line span {
+    padding-left: 25px;
+    display: table-cell;
+    color: #808080;
+    font-weight: normal; }
+
+.contacts .info label {
+  font-size: 14px;
+  line-height: 2.14;
+  letter-spacing: 0.4px;
+  color: #0d0d0d;
+  padding: 0 0 0 10px;
+  margin: 0; }
+
+@media (max-width: 991px) {
+  .info {
+    text-align: center; }
+    .info .line {
+      display: inline-block !important;
+      text-align: center !important;
+      width: 100%; }
+      .info .line .tltle {
+        text-align: center; } }
 

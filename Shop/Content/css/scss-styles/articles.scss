@@ -101,22 +101,23 @@
                         margin-right: 30px;
                     }
 
-                    span.glyphicon-minus {
-                        display: inline-block;
-                    }
 
-                    span.glyphicon-plus {
+                    span.glyphicon-minus {
                         display: none;
                     }
 
+                    span.glyphicon-plus {
+                        display: inline-block;
+                    }
 
-                    &.collapsed {
+                    &[aria-expanded="true"] {
+
                         span.glyphicon-minus {
-                            display: none;
+                            display: inline-block;
                         }
 
                         span.glyphicon-plus {
-                            display: inline-block;
+                            display: none;
                         }
                     }
                 }
@@ -148,9 +149,37 @@
 
         .text {
             font-size: 16px;
-            line-height: 1.88;
             letter-spacing: 0.4px;
             color: #0d0d0d;
+            display: inline-block;
+            margin-top: 12px;
+        }
+
+        &.line-view {
+            padding-left: 0;
+            position: inherit;
+            min-height: initial;
+            text-align: center;
+
+            .image {
+                position: initial;
+                left: 0;
+                border: none;
+                padding: 0px;
+                border-radius: 0;
+
+                img {
+                    width: auto;
+                }
+            }
+
+            .text {
+                font-size: 14px;
+                line-height: 1.86;
+                letter-spacing: 0.4px;
+                color: #0d0d0d;
+                text-transform: uppercase;
+            }
         }
     }
 
@@ -161,3 +190,78 @@
         color: #0d0d0d;
     }
 }
+
+@media (max-width:768px) {
+    .faq {
+        .panel {
+            .panel-body {
+                padding: 20px 20px;
+            }
+        }
+    }
+}
+//-----------------------------------------------------------------
+.contacts {
+    .map {
+       width:100%;
+    }
+
+    .info {
+        .line {
+            text-align: right;
+            font-size: 14px;
+            line-height: 2.14;
+            letter-spacing: 0.4px;
+            color: #0d0d0d;
+            display: table;
+
+            .title {
+                padding-top: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+                text-align: left;
+            }
+
+            label {
+                display: table-cell;
+                font-weight: normal;
+                min-width: 80px;
+                text-align: right;
+            }
+
+            span {
+                padding-left: 25px;
+                display: table-cell;
+                color: #808080;
+                font-weight: normal;
+            }
+        }
+
+        label {
+            font-size: 14px;
+            line-height: 2.14;
+            letter-spacing: 0.4px;
+            color: #0d0d0d;
+            padding: 0 0 0 10px;
+            margin: 0;
+        }
+    }
+}
+@media (max-width:991px) {
+    .info {
+        text-align: center;
+
+        .line {
+            display: inline-block !important;
+            text-align: center !important;
+            width: 100%;
+
+            .title {
+                text-align: center!important;
+            }
+        }
+    }
+}
+//--------------------------------------------------------------
+
+

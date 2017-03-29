@@ -46,6 +46,10 @@ namespace Shop.Controllers
             return View(model);
         }
 
-
+        public ActionResult Cnt()
+        {
+            var model = menuBuilder.BuildAllMenu();
+            return View(model);
+        }
     }
 }
