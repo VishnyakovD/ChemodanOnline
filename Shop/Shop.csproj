@@ -213,6 +213,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\main.css">
       <DependentUpon>main.scss</DependentUpon>
@@ -278,6 +282,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\box.png" />
+    <Content Include="Content\img\1.jpg" />
     <Content Include="Content\img\icons\bank.png" />
     <Content Include="Content\img\icons\card.png" />
     <Content Include="Content\img\icons\cart1.png" />
@@ -320,6 +325,8 @@
     <Content Include="Content\jquery-ui\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\jquery-ui\jquery-ui.css" />
     <Content Include="Content\jquery-ui\jquery-ui.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Content\jquery-ui\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui\jquery-ui.structure.min.css" />
@@ -359,6 +366,14 @@
     <Content Include="Content\css\scss-styles\order.scss" />
     <Content Include="Content\css\scss-styles\controls.scss" />
     <Content Include="Content\css\scss-styles\articles.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\hosting.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
@@ -448,6 +463,8 @@
     <Content Include="Views\S\Dap.cshtml" />
     <Content Include="Views\S\Faq.cshtml" />
     <Content Include="Views\S\Cnt.cshtml" />
+    <Content Include="Views\S\Arts.cshtml" />
+    <Content Include="Views\S\Art.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

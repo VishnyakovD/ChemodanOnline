@@ -203,7 +203,7 @@
 //-----------------------------------------------------------------
 .contacts {
     .map {
-       width:100%;
+        width: 100%;
     }
 
     .info {
@@ -247,6 +247,7 @@
         }
     }
 }
+
 @media (max-width:991px) {
     .info {
         text-align: center;
@@ -257,7 +258,7 @@
             width: 100%;
 
             .title {
-                text-align: center!important;
+                text-align: center !important;
             }
         }
     }
@@ -265,3 +266,112 @@
 //--------------------------------------------------------------
 
 
+.articles {
+
+    .short-article {
+        margin-top: 15px;
+        margin-bottom: 15px;
+
+        .line1 {
+            img {
+                width: 100%;
+            }
+        }
+
+        .line2 {
+            a {
+                font-size: 14px;
+                font-weight: bold;
+                line-height: 1.29;
+                letter-spacing: 0.4px;
+                color: #0d0d0d;
+            }
+
+            margin-top: 20px;
+            min-height: 35px;
+            max-height: 35px;
+            overflow: hidden;
+        }
+
+        .line3 {
+            margin-top: 15px;
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 1.5;
+            letter-spacing: 0.3px;
+            color: #808080;
+            min-height: 50px;
+            max-height: 50px;
+            overflow: hidden;
+        }
+    }
+
+
+    .art-tabs {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        color: #808080;
+        text-transform: uppercase;
+
+        .tab.active {
+            color: #333333;
+        }
+    }
+
+    .article {
+        .header {
+            position: relative;
+            margin-bottom: 35px;
+            text-align: center;
+
+            img {
+                width: 100%;
+            }
+
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                line-height: 1.17;
+                letter-spacing: 0.6px;
+                color: #ffffff;
+                position: absolute;
+                top: 40%;
+                left: 0;
+                right: 0;
+            }
+        }
+
+        .text {
+            padding-left: 4%;
+            padding-right: 4%;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.75;
+            letter-spacing: 0.4px;
+            color: #0d0d0d;
+        }
+
+        blockquote {
+            margin: 35px 8%;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.86;
+            letter-spacing: 0.4px;
+            color: #808080;
+            border-color: #22b2da;
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .articles {
+        .article {
+            .header {
+                .title {
+                    font-size:18px;
+                }
+            }
+        }
+    }
+}

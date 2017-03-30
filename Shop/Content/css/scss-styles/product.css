@@ -675,55 +675,6 @@ footer {
     .product-card .prices .line2 .dotted {
       bottom: 6px; }
 
-.product-card .product-tabs {
-  font-size: 16px;
-  letter-spacing: 0.4px;
-  color: #0d0d0d;
-  font-weight: 300;
-  border-bottom: 1px black solid; }
-  .product-card .product-tabs .tab {
-    padding: 40px 10px 15px 10px;
-    cursor: pointer;
-    display: inline-block; }
-    .product-card .product-tabs .tab.active {
-      padding: 39px 10px 15px 10px;
-      font-weight: bold;
-      border-bottom: 2px black solid; }
-  .product-card .product-tabs .tab:last-of-type {
-    margin-left: 20px; }
-
-.product-card .product-tabs-content {
-  margin-top: 30px;
-  margin-bottom: 40px;
-  padding-bottom: 15px;
-  font-size: 14px;
-  font-weight: 300;
-  letter-spacing: 0.4px;
-  text-align: left;
-  color: #0d0d0d;
-  border-bottom: 1px solid black; }
-  .product-card .product-tabs-content .spec-item {
-    position: relative;
-    margin: 13px 0; }
-    .product-card .product-tabs-content .spec-item .rect {
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      background-color: #000000;
-      margin-right: 10px;
-      margin-bottom: 3px; }
-    .product-card .product-tabs-content .spec-item .dotted {
-      bottom: 5px;
-      margin-left: 20px;
-      width: 80%; }
-    .product-card .product-tabs-content .spec-item .spec-text {
-      background: white;
-      padding-right: 10px; }
-    .product-card .product-tabs-content .spec-item .spec-value {
-      float: right;
-      background: white;
-      padding-left: 10px; }
-
 .product-card .product-info-block {
   padding: 36px 28px; }
   .product-card .product-info-block .line1 {
@@ -1116,6 +1067,9 @@ footer {
   .order-pages .order-checkbox a {
     text-decoration: underline; }
 
+.border-none {
+  border: none !important; }
+
 .margin-top-10 {
   margin-top: 10px; }
 
@@ -1242,6 +1196,55 @@ input.error, span.error, div.error {
 
 .long-minus {
   display: inline-block; }
+
+.product-tabs {
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  color: #0d0d0d;
+  font-weight: 300;
+  border-bottom: 1px black solid; }
+  .product-tabs .tab {
+    padding: 40px 10px 15px 10px;
+    cursor: pointer;
+    display: inline-block; }
+    .product-tabs .tab.active {
+      padding: 39px 10px 15px 10px;
+      font-weight: bold;
+      border-bottom: 2px black solid; }
+  .product-tabs .tab:last-of-type {
+    margin-left: 20px; }
+
+.product-tabs-content {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  padding-bottom: 15px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: #0d0d0d;
+  border-bottom: 1px solid black; }
+  .product-tabs-content .spec-item {
+    position: relative;
+    margin: 13px 0; }
+    .product-tabs-content .spec-item .rect {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background-color: #000000;
+      margin-right: 10px;
+      margin-bottom: 3px; }
+    .product-tabs-content .spec-item .dotted {
+      bottom: 5px;
+      margin-left: 20px;
+      width: 80%; }
+    .product-tabs-content .spec-item .spec-text {
+      background: white;
+      padding-right: 10px; }
+    .product-tabs-content .spec-item .spec-value {
+      float: right;
+      background: white;
+      padding-left: 10px; }
 
 .deliv-and-pay .article-info-block div {
   display: inline-block; }
@@ -1418,6 +1421,81 @@ input.error, span.error, div.error {
       width: 100%; }
       .info .line .title {
         text-align: center !important; } }
+
+.articles .short-article {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+  .articles .short-article .line1 img {
+    width: 100%; }
+  .articles .short-article .line2 {
+    margin-top: 20px;
+    min-height: 35px;
+    max-height: 35px;
+    overflow: hidden; }
+    .articles .short-article .line2 a {
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1.29;
+      letter-spacing: 0.4px;
+      color: #0d0d0d; }
+  .articles .short-article .line3 {
+    margin-top: 15px;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+    color: #808080;
+    min-height: 50px;
+    max-height: 50px;
+    overflow: hidden; }
+
+.articles .art-tabs {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #808080;
+  text-transform: uppercase; }
+  .articles .art-tabs .tab.active {
+    color: #333333; }
+
+.articles .article .header {
+  position: relative;
+  margin-bottom: 35px;
+  text-align: center; }
+  .articles .article .header img {
+    width: 100%; }
+  .articles .article .header .title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.17;
+    letter-spacing: 0.6px;
+    color: #ffffff;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0; }
+
+.articles .article .text {
+  padding-left: 4%;
+  padding-right: 4%;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.4px;
+  color: #0d0d0d; }
+
+.articles .article blockquote {
+  margin: 35px 8%;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.86;
+  letter-spacing: 0.4px;
+  color: #808080;
+  border-color: #22b2da; }
+
+@media (max-width: 768px) {
+  .articles .article .header .title {
+    font-size: 18px; } }
 
 body {
   font-family: 'Open Sans', sans-serif;

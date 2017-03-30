@@ -51,5 +51,17 @@ namespace Shop.Controllers
             var model = menuBuilder.BuildAllMenu();
             return View(model);
         }
+
+        public ActionResult Arts()
+        {
+            var model = menuBuilder.BuildAllMenu();
+            return View(model);
+        }
+
+        public ActionResult Art(long id)
+        {
+            var model = menuBuilder.BuildAllMenu();
+            return View(model);
+        }
     }
 }
