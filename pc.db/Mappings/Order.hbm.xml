@@ -23,7 +23,7 @@
     <many-to-one name="PaymentType" lazy="false" class="PaymentType" />
     <many-to-one name="OrderState" lazy="false" class="OrderState" />
     
-    <bag name="Products" inverse="true" lazy="false" >
+    <bag name="Products" inverse="true" lazy="false" cascade="save-update">
       <key column="OrderId"/>
       <one-to-many class="OrderProduct"/>
     </bag>

@@ -65,17 +65,22 @@ namespace Shop.Models
     public class OrdersAdminPage : MenuModel
     {
         public List<OrderModel> Orders { get; set; }
-        //public List<DeliveryType> DeliveryTypes { get; set; }
-        //public List<PaymentType> PaymentTypes { get; set; }
-
+        public List<DeliveryType> DeliveryTypes { get; set; }
+        public List<PaymentType> PaymentTypes { get; set; }
+        public List<OrderState> OrderStates { get; set; }
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }
         //public string Description { get; set; }
         //public string Keywords { get; set; }
 
         public OrdersAdminPage()
         {
             Orders = new List<OrderModel>();
-            //DeliveryTypes = new List<DeliveryType>();
-           // PaymentTypes = new List<PaymentType>();
+            DeliveryTypes = new List<DeliveryType>();
+            PaymentTypes = new List<PaymentType>();
+            OrderStates = new List<OrderState>();
+            From = DateTime.Now.Date.AddDays(-1).Date;
+            To = DateTime.Now.Date.AddDays(1);
         }
     }
 }

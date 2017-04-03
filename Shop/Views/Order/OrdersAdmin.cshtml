@@ -12,31 +12,67 @@
 }
 
 @{ Html.RenderPartial("~/Views/Admin/AdminMenuPartial.cshtml"); }
+<div class="admindrders">
+    @using (Ajax.BeginForm("FilterOrders", new AjaxOptions { UpdateTargetId = "adminorders" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filter-row">
+                    <div class="flter-item">
+                        <label>Период</label><br />
+                        <div class="date-values border">
+                            <img src="~/Content/img/icons/calendar.png" />
+                            <input type="date" name="From" value="@Model.From.Date.ToString("yyyy-MM-dd")" min="@(new DateTime(2016,01,01))" />
+                            <span class="long-minus">—</span>
+                            <input type="date" name="To" value="@Model.To.Date.ToString("yyyy-MM-dd")" min="@(new DateTime(2016,01,01))" />
+                        </div>
+                    </div>
+                    <div class="flter-item">
+                        <label>Оплачен</label>
+                        <select name="IsPaid" class="form-control">
+                            <option value="all">не выбрано</option>
+                            <option value="true">да</option>
+                            <option value="false">нет</option>
+                        </select>
+                    </div>
+                    <div class="flter-item">
+                        <label>Статус</label>
+                        <select name="OrderState" class="form-control">
+                            <option value="all">не выбрано</option>
+                            @foreach (var item in Model.OrderStates)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="flter-item">
+                        <button type="submit" class="btn btn-danger">Применить</button>
+                    </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <table>
-            <tr>
-                <th>№ заказа</th>
-                <th>Дата</th>
-                <th>Фамилия Имя</th>
-                <th>Телефон</th>
-                <th>Оплачен</th>
-                <th>Статус</th>
-              
-            </tr>
-            @foreach (var item in Model.Orders)
-            {
+                </div>
+
+            </div>
+        </div>
+    }
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-condensed table-hover">
                 <tr>
-                    <td><a href="/Order/EditOrder?id=@item.OrderId">@item.OrderNumber</a></td>
-                    <td>@item.ClientLastName @item.ClientFirstName</td>
-                    <td>@item.ClientPhone</td>
-                    <td>@item.PaymentType.Name</td>
-                    <td>@item.OrderState.Name</td>
+                    <th>№ заказа</th>
+                    <th>Дата</th>
+                    <th>Фамилия Имя</th>
+                    <th>Телефон</th>
+                    <th>Доставка</th>
+                    <th>Оплачен</th>
+                    <th>Статус</th>
                 </tr>
-            }
-        </table>
+                <tbody id="adminorders">
+                    @{Html.RenderPartial("OrdersAdminPartial",Model.Orders);}
+                </tbody>
+            </table>
 
+        </div>
     </div>
 </div>
-

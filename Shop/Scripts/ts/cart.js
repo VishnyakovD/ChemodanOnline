@@ -68,8 +68,12 @@ var Cart = (function () {
             return;
         var cartCook = JSON.parse($.cookie("cart"));
         this.listProducts = cartCook.listProducts;
-        this.from = new Date(cartCook.from.toString());
-        this.to = new Date(cartCook.to.toString());
+        if (cartCook.from != null) {
+            this.from = new Date(cartCook.from.toString());
+        }
+        if (cartCook.to != null) {
+            this.to = new Date(cartCook.to.toString());
+        }
     };
     Cart.prototype.getProductIds = function () {
         if (this.listProducts.length < 1) {

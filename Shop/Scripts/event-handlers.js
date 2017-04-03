@@ -1,47 +1,66 @@
-﻿$("#EditCartDialog").dialog({
-    autoOpen: false,
-    maxWidth: '80%',
-    maxHeight: 'auto',
-    width: '80%',
-    height: 'auto',
-    my: "center",
-    at: "center",
-    of: window,
-    modal: true
+﻿//$("#EditCartDialog").dialog({
+//    autoOpen: false,
+//    maxWidth: '80%',
+//    maxHeight: 'auto',
+//    width: '80%',
+//    height: 'auto',
+//    my: "center",
+//    at: "center",
+//    of: window,
+//    modal: true
+//});
+
+
+
+//function editCartClick(parameters) {
+//    $("#EditCartDialog").dialog("open");
+//}
+$(document).ready(function () {
+    //$("#DialogDataEdit").dialog({
+    //    autoOpen: false,
+    //    width: '80%',
+    //    height: 'auto',
+    //    my: "center",
+    //    at: "center",
+    //    of: window,
+    //    modal: true
+    //});
+
+
+    $("#MailingEmailButton").click(function () {
+        var emailvalue = $("#MailingEmail").val();
+        if (emailvalue == "" || !emailvalue.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,}$/)) {
+            $("#ServerMessage").html("Неверный формат e-mail");
+            return;
+        }
+
+        $.ajax({
+            url: '/Mailing/AddEmailToMailing?email=' + $("#MailingEmail").val(),
+            success: function (data) {
+                $("#MailingEmail").val();
+                $("#ServerMessage").html(data);
+            }
+        });
+    });
 });
 
-
-
-function editCartClick(parameters) {
-    $("#EditCartDialog").dialog("open");
-}
-
-
-$("#DialogDataEdit").dialog({
-    autoOpen: false,
-    width: '80%',
-    height: 'auto',
-    my: "center",
-    at: "center",
-    of: window,
-    modal: true
-});
 
 
 function loadDialogContent(url) {
     $.ajax({
         url: url,
         success: function (data) {
-            $('#DialogDataEditBody').html(data);
-            $("#DialogDataEdit").dialog("open");
+            message.showMessageWnd(data, null);
+            //$('#DialogDataEditBody').html(data);
+            // $("#DialogDataEdit").dialog("open");
         }
     });
 }
 
-$('#DialogDataEditBody').submit(function (event) {
-    $("#DialogDataEdit").dialog("close");
-    $('#DialogDataEditBody').html("");
-    });
+//$('#DialogDataEditBody').submit(function (event) {
+//    $("#DialogDataEdit").dialog("close");
+//    $('#DialogDataEditBody').html("");
+//});
 
 function showCatData(url) {
     loadDialogContent(url);
@@ -59,19 +78,3 @@ function ShowServerMessage() {
         }, 900);
     }
 }
-
-$("#MailingEmailButton").click(function () {
-    var emailvalue = $("#MailingEmail").val();
-    if (emailvalue == "" || !emailvalue.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,}$/)) {
-        $("#ServerMessage").html("Неверный формат e-mail");
-        return;
-    }
-
-    $.ajax({
-        url: '/Mailing/AddEmailToMailing?email=' + $("#MailingEmail").val(),
-        success: function (data) {
-            $("#MailingEmail").val();
-            $("#ServerMessage").html(data);
-        }
-    });
-});

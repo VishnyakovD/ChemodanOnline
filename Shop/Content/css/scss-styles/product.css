@@ -987,39 +987,6 @@ footer {
       vertical-align: top; }
   .order-pages .order-info .margin-block {
     padding: 20px 0 13px 20px; }
-  .order-pages .order-info .date-values {
-    margin: 0 23px 0px 23px;
-    max-height: 35px;
-    min-height: 35px;
-    border-radius: 3px;
-    background-color: #ffffff;
-    padding-left: 8px;
-    white-space: nowrap;
-    display: inline-block; }
-    .order-pages .order-info .date-values img {
-      width: 15px;
-      padding: 8px 0; }
-    .order-pages .order-info .date-values input {
-      border: none;
-      text-align: center;
-      width: 103px;
-      outline: none;
-      font-size: 13px;
-      letter-spacing: 0.7px; }
-    .order-pages .order-info .date-values input:focus {
-      outline: none; }
-    .order-pages .order-info .date-values input[type=date]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      display: none; }
-    .order-pages .order-info .date-values input[type=date]::-webkit-calendar-picker-indicator {
-      opacity: 1;
-      padding: 13px 7px;
-      cursor: pointer; }
-    .order-pages .order-info .date-values input[type="date"]::-webkit-clear-button {
-      -webkit-appearance: none;
-      display: none; }
-    .order-pages .order-info .date-values input[type="date"]::-ms-clear {
-      display: none; }
   .order-pages .order-info .order-radios {
     display: inline-block;
     margin-left: 20px; }
@@ -1066,6 +1033,19 @@ footer {
     margin-left: -38px; }
   .order-pages .order-checkbox a {
     text-decoration: underline; }
+
+.admindrders .filter-row {
+  margin-bottom: 10px; }
+  .admindrders .filter-row .flter-item {
+    display: inline-block; }
+
+.admindrders .date-values {
+  margin: 0;
+  max-height: 33px;
+  min-height: 33px; }
+
+.admindrders .btn {
+  vertical-align: baseline; }
 
 .border-none {
   border: none !important; }
@@ -1245,6 +1225,42 @@ input.error, span.error, div.error {
       float: right;
       background: white;
       padding-left: 10px; }
+
+.date-values {
+  margin: 0 23px 0px 23px;
+  max-height: 35px;
+  min-height: 35px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  padding-left: 8px;
+  white-space: nowrap;
+  display: inline-block; }
+  .date-values.border {
+    border: 1px solid #22b2da; }
+  .date-values img {
+    width: 15px;
+    padding: 8px 0; }
+  .date-values input {
+    border: none;
+    text-align: center;
+    width: 103px;
+    outline: none;
+    font-size: 13px;
+    letter-spacing: 0.7px; }
+  .date-values input:focus {
+    outline: none; }
+  .date-values input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none; }
+  .date-values input[type=date]::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    padding: 13px 7px;
+    cursor: pointer; }
+  .date-values input[type="date"]::-webkit-clear-button {
+    -webkit-appearance: none;
+    display: none; }
+  .date-values input[type="date"]::-ms-clear {
+    display: none; }
 
 .deliv-and-pay .article-info-block div {
   display: inline-block; }

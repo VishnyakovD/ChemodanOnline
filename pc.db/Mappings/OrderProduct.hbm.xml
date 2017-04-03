@@ -14,6 +14,7 @@
     <property name="PriceDay" />
     <property name="FullPrice" />
     <property name="NaturalPrice" />
+    <property name="OrderId" />
   </class>
 
 </hibernate-mapping>

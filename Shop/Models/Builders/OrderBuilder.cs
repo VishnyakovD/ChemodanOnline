@@ -14,7 +14,8 @@ namespace Shop.Models.Builders
     public interface IOrderBuilder
     {
         OrderClientPage Build(long[] ids);
-        OrdersAdminPage BuildOrders(DateTime from, DateTime to);
+        OrdersAdminPage BuildOrders(OrderFilter filter);
+        List<OrderModel> OrdersModel(OrderFilter filter);
     }
 
     public class OrderBuilder : MenuBuilder, IOrderBuilder
@@ -42,11 +43,23 @@ namespace Shop.Models.Builders
             return model;
         }
 
-        public OrdersAdminPage BuildOrders(DateTime from, DateTime to){
+        public OrdersAdminPage BuildOrders(OrderFilter filter)
+        {
             var model = new OrdersAdminPage();
+            model.Orders = OrdersModel(filter);
 
-            var tmpOrders = dataService.ListOrdersByDates(from, to);
-            model.Orders = tmpOrders.Select(item=>new OrderModel() {
+            model.DeliveryTypes = dataService.List<DeliveryType>();
+            model.PaymentTypes = dataService.List<PaymentType>();
+            model.OrderStates = dataService.List<OrderState>();
+            model.topMenuItems = BuildTopMenu();
+            return model;
+        }
+
+        public List<OrderModel> OrdersModel(OrderFilter filter)
+        {
+            var tmpOrders = dataService.ListOrdersByFilter(filter);
+            return tmpOrders.Select(item => new OrderModel()
+            {
                 OrderId = item.Id,
                 ClientFirstName = item.Client.name,
                 ClientLastName = item.Client.lastName,
@@ -55,15 +68,10 @@ namespace Shop.Models.Builders
                 OrderState = item.OrderState,
                 IsPaid = item.IsPaid,
                 CreateDate = item.CreateDate,
-                OrderNumber = item.OrderNumber
-               
+                OrderNumber = item.OrderNumber,
+                DeliveryType = item.DeliveryType
             }).ToList();
-
-            //model.DeliveryTypes = dataService.List<DeliveryType>();
-            //model.PaymentTypes = dataService.List<PaymentType>();
-            model.topMenuItems = BuildTopMenu();
-            return model;
-        }
+        } 
 
     }
 }

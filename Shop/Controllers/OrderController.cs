@@ -109,6 +109,11 @@ namespace Shop.Controllers
                             To = DateTime.Parse(serObject["to"].ToString()),
                             CreateDate = DateTime.Parse(serObject["createDate"].ToString())
                         };
+                        if (orderData.DeliveryType.Id==1)
+                        {
+                            orderData.Client.adress = null;
+                            orderData.Client.editAdress = null;
+                        }
                         orderData = dataService.AddOrUpdateOrder(orderData);
                         result = "Заказ создан номер: "+ orderData.OrderNumber.ToString();
 
@@ -130,10 +135,22 @@ namespace Shop.Controllers
         [System.Web.Mvc.Authorize(Roles = "Admin")]
         public ActionResult OrdersAdmin()
         {
-            var model = OrderBulder.BuildOrders(DateTime.Now.AddYears(-2), DateTime.Now.AddYears(2));
+            var filter=new OrderFilter();
+            var model = OrderBulder.BuildOrders(filter);
 
 
             return View(model);
+        }
+
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult FilterOrders(OrderFilter filter)
+        { 
+            if(filter==null)
+            {
+                filter = new OrderFilter();
+            }
+        var model = OrderBulder.OrdersModel(filter);
+            return PartialView("OrdersAdminPartial", model);
         }
 
         public ActionResult PayOneClick(string phone, long productId, string createDate)

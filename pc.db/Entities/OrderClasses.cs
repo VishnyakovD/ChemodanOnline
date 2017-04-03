@@ -38,6 +38,7 @@ namespace Shop.db.Entities
       {
         public virtual long Id { get; set; }
         public virtual long ProductId { get; set; }
+        public virtual long OrderId { get; set; }
         public virtual string ProductName { get; set; }
         public virtual string Article { get; set; }
         public virtual string Code { get; set; }
@@ -102,4 +103,20 @@ namespace Shop.db.Entities
         }
       }
 
+
+    public class OrderFilter
+    {
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }
+        public long DeliveryType { get; set; }
+        public long OrderState { get; set; }
+        public bool? IsPaid { get; set; }
+
+
+        public OrderFilter()
+        {
+            From = DateTime.Now.Date.AddDays(-1).Date;
+            To = DateTime.Now.Date.AddDays(1);
+        }
+    }
 }

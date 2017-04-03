@@ -177,3 +177,39 @@ input.error, span.error, div.error {
       background: white;
       padding-left: 10px; }
 
+.date-values {
+  margin: 0 23px 0px 23px;
+  max-height: 35px;
+  min-height: 35px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  padding-left: 8px;
+  white-space: nowrap;
+  display: inline-block; }
+  .date-values.border {
+    border: 1px solid #22b2da; }
+  .date-values img {
+    width: 15px;
+    padding: 8px 0; }
+  .date-values input {
+    border: none;
+    text-align: center;
+    width: 103px;
+    outline: none;
+    font-size: 13px;
+    letter-spacing: 0.7px; }
+  .date-values input:focus {
+    outline: none; }
+  .date-values input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none; }
+  .date-values input[type=date]::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    padding: 13px 7px;
+    cursor: pointer; }
+  .date-values input[type="date"]::-webkit-clear-button {
+    -webkit-appearance: none;
+    display: none; }
+  .date-values input[type="date"]::-ms-clear {
+    display: none; }
+

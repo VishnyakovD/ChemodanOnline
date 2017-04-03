@@ -15,13 +15,30 @@ namespace Shop.db.Repository
         {
         }
 
-
-        public List<Order> AllByDates(DateTime from, DateTime to)
+        public List<Order> AllByFilters(OrderFilter filter)
         {
-            return session.QueryOver<Order>()
-                //.Where(order => order.From>=from&&order.To<=to)
-                .List() as List<Order>;
+            var query= session.QueryOver<Order>().Where(order => order.CreateDate.Date >= filter.From && order.CreateDate <= filter.To);
+            if (filter.DeliveryType>0)
+            {
+                query = query.Where(order => order.DeliveryType.Id == filter.DeliveryType);
+            }
+            if (filter.OrderState > 0)
+            {
+                query = query.Where(order => order.OrderState.Id == filter.OrderState);
+            }
+            if (filter.IsPaid.HasValue)
+            {
+                query = query.Where(order => order.IsPaid == filter.IsPaid.Value);
+            }
+            return query.List().ToList();
         }
+
+        //public List<Order> AllByDates(DateTime from, DateTime to)
+        //{
+        //    return session.QueryOver<Order>()
+        //        .Where(order => order.From.Date>=from&&order.To.Date.AddDays(1).AddSeconds(-1)<=to)
+        //        .List().ToList();
+        //}
 
         public List<Order> AllByClientPhone(string phone)
         {

@@ -23,6 +23,7 @@ namespace Shop.Models.Builders
             var model = new AdminModel();
             model.menu = BuildMenu();
             model.topMenuItems = BuildTopMenu();
+
             return model;
         }
 

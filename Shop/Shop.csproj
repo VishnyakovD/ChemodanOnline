@@ -461,6 +461,7 @@
     <Content Include="Views\S\Cnt.cshtml" />
     <Content Include="Views\S\Arts.cshtml" />
     <Content Include="Views\S\Art.cshtml" />
+    <Content Include="Views\Order\OrdersAdminPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

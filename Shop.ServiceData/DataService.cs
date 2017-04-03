@@ -21,11 +21,11 @@ namespace Shop.DataService
         List<Sku> ListProductsByFilters(FilterFoDb filters);
         List<Sku> ListProductsByIds(long[] ids);
         bool SetChemodanTrackingToSku(ChemodanTracking item);
-        List<Order> ListOrdersByDates(DateTime from, DateTime to);
-        List<Order> ListOrdersByPhone(string phone);
-        List<Order> ListOrdersByDeliveryType(long deliveryType);
-        List<Order> ListOrdersByPaymentType(long paymentType);
-        List<Order> ListOrdersByOrderState(long state);
+        List<Order> ListOrdersByFilter(OrderFilter filter);
+        //List<Order> ListOrdersByPhone(string phone);
+        //List<Order> ListOrdersByDeliveryType(long deliveryType);
+        //List<Order> ListOrdersByPaymentType(long paymentType);
+        //List<Order> ListOrdersByOrderState(long state);
         Order AddOrUpdateOrder(Order order);
         long AddOrUpdateOrderOneClick(OrderOneClick order);
         bool PaidOrder(int num);
@@ -890,14 +890,14 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<Order> ListOrdersByDates(DateTime from, DateTime to)
+        public List<Order> ListOrdersByFilter(OrderFilter filter)
         {
             var result = new List<Order>();
             try
             {
                 dbService.Run(db =>
                 {
-                    result = ((OrderRepository)db.GetRepository<Order>()).AllByDates(from, to);
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByFilters(filter);
                 });
             }
             catch (Exception err)
@@ -907,73 +907,73 @@ namespace Shop.DataService
             return result;
         }
 
-        public List<Order> ListOrdersByPhone(string phone)
-        {
-            var result = new List<Order>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = ((OrderRepository)db.GetRepository<Order>()).AllByClientPhone(phone);
-                });
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //public List<Order> ListOrdersByPhone(string phone)
+        //{
+        //    var result = new List<Order>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = ((OrderRepository)db.GetRepository<Order>()).AllByClientPhone(phone);
+        //        });
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
-        public List<Order> ListOrdersByDeliveryType(long deliveryType)
-        {
-            var result = new List<Order>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = ((OrderRepository)db.GetRepository<Order>()).AllByDeliveryType(deliveryType);
-                });
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //public List<Order> ListOrdersByDeliveryType(long deliveryType)
+        //{
+        //    var result = new List<Order>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = ((OrderRepository)db.GetRepository<Order>()).AllByDeliveryType(deliveryType);
+        //        });
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
-        public List<Order> ListOrdersByPaymentType(long paymentType)
-        {
-            var result = new List<Order>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = ((OrderRepository)db.GetRepository<Order>()).AllByPaymentType(paymentType);
-                });
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //public List<Order> ListOrdersByPaymentType(long paymentType)
+        //{
+        //    var result = new List<Order>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = ((OrderRepository)db.GetRepository<Order>()).AllByPaymentType(paymentType);
+        //        });
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
-        public List<Order> ListOrdersByOrderState(long state)
-        {
-            var result = new List<Order>();
-            try
-            {
-                dbService.Run(db =>
-                {
-                    result = ((OrderRepository)db.GetRepository<Order>()).AllByOrderState(state);
-                });
-            }
-            catch (Exception err)
-            {
-                logger.Error(err.Message);
-            }
-            return result;
-        }
+        //public List<Order> ListOrdersByOrderState(long state)
+        //{
+        //    var result = new List<Order>();
+        //    try
+        //    {
+        //        dbService.Run(db =>
+        //        {
+        //            result = ((OrderRepository)db.GetRepository<Order>()).AllByOrderState(state);
+        //        });
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        logger.Error(err.Message);
+        //    }
+        //    return result;
+        //}
 
         public bool RemoveSpecificationFromSKU(long id, long idSpec)
         {
@@ -1176,7 +1176,13 @@ namespace Shop.DataService
                     if (orderDb == null)
                     {
                         var skuList = db.GetRepository<Sku>().Many(order.Products.Select(item => item.ProductId).Distinct().ToArray());
-                        foreach (var item in order.Products)
+                        var tmpOrderProducts = new List<OrderProduct>();
+                        tmpOrderProducts.AddRange(order.Products);
+                        order.Products = null;
+
+                        result = db.GetRepository<Order>().Add(order);
+
+                        foreach (var item in tmpOrderProducts)
                         {
                             var tmpItem = skuList.First(elem => elem.id == item.ProductId);
                             item.Article = tmpItem.articul;
@@ -1184,8 +1190,10 @@ namespace Shop.DataService
                             item.NaturalPrice = tmpItem.priceAct;
                             item.PriceDay = tmpItem.chemodanType.priceDay;
                             item.ProductName = tmpItem.name;
+                            item.OrderId = result.Id;
                         }
-                        result = db.GetRepository<Order>().Add(order);
+                        result.Products = tmpOrderProducts;
+                        db.GetRepository<Order>().Update(result);
                     }
                     else
                     {
