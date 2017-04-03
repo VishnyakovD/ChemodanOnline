@@ -26,8 +26,9 @@ namespace Shop.DataService
         List<Order> ListOrdersByDeliveryType(long deliveryType);
         List<Order> ListOrdersByPaymentType(long paymentType);
         List<Order> ListOrdersByOrderState(long state);
-        long AddOrUpdateOrder(Order order);
+        Order AddOrUpdateOrder(Order order);
         long AddOrUpdateOrderOneClick(OrderOneClick order);
+        bool PaidOrder(int num);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -1164,9 +1165,9 @@ namespace Shop.DataService
             return result;
         }
 
-        public long AddOrUpdateOrder(Order order)
+        public Order AddOrUpdateOrder(Order order)
         {
-            long result = 0;
+            Order result = null;
             try
             {
                 dbService.Run(db =>
@@ -1184,7 +1185,7 @@ namespace Shop.DataService
                             item.PriceDay = tmpItem.chemodanType.priceDay;
                             item.ProductName = tmpItem.name;
                         }
-                        result = db.GetRepository<Order>().Add(order).Id;
+                        result = db.GetRepository<Order>().Add(order);
                     }
                     else
                     {
@@ -1195,6 +1196,7 @@ namespace Shop.DataService
                         orderDb.OrderState = order.OrderState;
                         orderDb.PaymentType = order.PaymentType;
                         orderDb.Pdf = order.Pdf;
+                        orderDb.IsPaid = order.IsPaid;
 
                         if (orderDb.Client == null)
                         {
@@ -1210,15 +1212,16 @@ namespace Shop.DataService
                         }
                         order.Client.editAdress.id = orderDb.Client.editAdress.id;
                         orderDb.Client.editAdress = order.Client.editAdress;
+                        orderDb.OrderPrefix = order.OrderPrefix;
+                        orderDb.OrderComment = order.OrderComment;
 
                         db.GetRepository<Order>().Update(orderDb);
-                        result = orderDb.Id;
+                        result = orderDb;
                     }
                 });
             }
             catch (Exception err)
             {
-                result = 0;
                 logger.Error(err.Message);
             }
             return result;
@@ -1252,6 +1255,30 @@ namespace Shop.DataService
             catch (Exception err)
             {
                 result = 0;
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public bool PaidOrder(int num)
+        {
+            bool result = false;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    var orderDb = ((OrderRepository) db.GetRepository<Order>()).OneByOrderNumber(num);
+                    if (orderDb != null)
+                    {
+                        orderDb.IsPaid = true;
+                        db.GetRepository<Order>().Update(orderDb);
+                        result = true;
+                    }
+                });
+            }
+            catch (Exception err)
+            {
+                result = false;
                 logger.Error(err.Message);
             }
             return result;

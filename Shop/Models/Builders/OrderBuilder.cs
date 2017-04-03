@@ -52,7 +52,10 @@ namespace Shop.Models.Builders
                 ClientLastName = item.Client.lastName,
                 ClientPhone = item.Client.mPhone,
                 PaymentType = item.PaymentType,
-                OrderState = item.OrderState
+                OrderState = item.OrderState,
+                IsPaid = item.IsPaid,
+                CreateDate = item.CreateDate,
+                OrderNumber = item.OrderNumber
                
             }).ToList();
 

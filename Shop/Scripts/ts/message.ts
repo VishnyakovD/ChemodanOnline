@@ -14,6 +14,20 @@
                 this.message.html("");
             }, 900);
     }
+
+    showMessageWnd(text: string, link:string): void {
+        var btn = "<button type='button' onclick='message.closeMessageWnd();' class='close'><span>&times;</span></button>";
+        if (link!=null && link.length>0) {
+            btn = "<a class='close' href='" + link + "'><span>&times;</span></a>";
+        }
+        this.message.html(btn+text);
+        this.message.show();
+    }
+
+    closeMessageWnd(): void {
+        this.message.hide();
+        this.message.html("");
+    }
 }
 
 var message: MessageManager;

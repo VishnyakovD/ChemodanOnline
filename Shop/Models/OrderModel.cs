@@ -41,6 +41,12 @@ namespace Shop.Models
         public string Flat { get; set; }
         public string PdfLink { get; set; }
 
+        public int OrderNumber { get; set; }
+        public int OrderPrefix { get; set; }
+        public string OrderComment { get; set; }
+        public DateTime CreateDate { get; set; }
+        public bool IsPaid { get; set; }
+
         public List<ShortSKUModel> Products  { get; set; }
         public DeliveryType DeliveryType { get; set; }
         public PaymentType PaymentType { get; set; }

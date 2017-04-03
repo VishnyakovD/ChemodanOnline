@@ -8,10 +8,12 @@ namespace Shop.db.Entities
       public class Order
       {
         public virtual long Id { get; set; }
-        //public virtual long OrderNumber { get; set; }
-        //public virtual int OrderPrefix { get; set; }
-        //public virtual string OrderComment { get; set; }
-        //public virtual DateTime OrderDate { get; set; }
+
+        public virtual int OrderNumber { get; set; }
+        public virtual int OrderPrefix { get; set; }
+        public virtual string OrderComment { get; set; }
+        public virtual DateTime CreateDate { get; set; }
+        public virtual bool IsPaid { get; set; }
         public virtual DateTime From { get; set; }
         public virtual DateTime To { get; set; }
         public virtual Client Client { get; set; }

@@ -17,22 +17,18 @@
     <div class="col-md-12">
         <table>
             <tr>
-                <th>ид</th>
-                <th>ФИО</th>
-                <th>тел</th>
-                <th>оплата</th>
-                <th>статус</th>
+                <th>№ заказа</th>
+                <th>Дата</th>
+                <th>Фамилия Имя</th>
+                <th>Телефон</th>
+                <th>Оплачен</th>
+                <th>Статус</th>
               
             </tr>
             @foreach (var item in Model.Orders)
             {
-                /*
-
-                PaymentType = item.PaymentType,
-                OrderState = item.OrderState
-                 */
                 <tr>
-                    <td>@item.OrderId</td>
+                    <td><a href="/Order/EditOrder?id=@item.OrderId">@item.OrderNumber</a></td>
                     <td>@item.ClientLastName @item.ClientFirstName</td>
                     <td>@item.ClientPhone</td>
                     <td>@item.PaymentType.Name</td>

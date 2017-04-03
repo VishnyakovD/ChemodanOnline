@@ -100,7 +100,7 @@ namespace Shop.Models.Builders
             //        articul = item.articul,
             //        id = item.id,
             //        price = item.chemodanType.priceDay,
-            //        smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+            //        smalPhotoPath =string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
             //    }).ToList();
             //}
 
@@ -131,7 +131,7 @@ namespace Shop.Models.Builders
                     name = item.name,
                     category = item.chemodanType.name,
                     maxCount = item.listChemodanTracking.Count(i => i.Location.id == DefaultValueHasInStock),
-                    smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+                    smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList();
             }
             return model;
@@ -152,7 +152,7 @@ namespace Shop.Models.Builders
                     name = item.name,
                     category = item.chemodanType.name,
                     maxCount = item.listChemodanTracking.Count(i => i.Location.id == DefaultValueHasInStock),
-                smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+                smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList();
             }
             return model;
@@ -202,7 +202,7 @@ namespace Shop.Models.Builders
                     price = item.chemodanType.priceDay,
                     category = item.chemodanType.name,
                     name = item.name,
-                    smalPhotoPath = imagesPath.GetImagesPath() + item.smalPhoto.path
+                    smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList();
             }
 

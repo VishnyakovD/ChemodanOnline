@@ -51,6 +51,13 @@ namespace Shop.db.Repository
                 .List() as List<Order>;
         }
 
+        public Order OneByOrderNumber(int num)
+        {
+            return session.QueryOver<Order>()
+                .Where(order => order.OrderNumber == num)
+                .List().First();
+        }
+
 
     }
 }

@@ -1,4 +1,9 @@
-﻿class InputErrorItem {
+﻿declare class Wayforpay {
+    constructor();
+    run(object: any, f1?: any, f2?: any, f3?: any);
+}
+
+class InputErrorItem {
     inputName: string;
     inputError: string;
 
@@ -35,13 +40,11 @@ class Cart {
     flat: string;
     deliveryType: number;
     paymentType: number;
-
-
+    createDate: string;
 
     listProducts: CartItem[];
     count: number;
     days: number;
-
 
     constructor() {
         var date = new Date();
@@ -189,11 +192,15 @@ class CartManager {
     cart: Cart;
     cartCount: JQuery;
     cartSum: JQuery;
+    isReadContract: boolean;
+    payOnlineItem:any;
 
     constructor() {
         this.cart = new Cart();
         this.cartCount = $(".js-count");
         this.cartSum = $(".js-order-summ");
+        this.isReadContract = false;
+        this.payOnlineItem = {};
     }
 
     removeCartLineInOrderPage(curent: JQuery): void {
@@ -285,7 +292,7 @@ class CartManager {
         errors.forEach(item => {
             orderPages.find(`[name=${item.inputName}]`).addClass("error");
         });
-        
+
         if (errors.length > 0) {
             orderPages.find(`.error`).first().focus();
             return false;
@@ -301,6 +308,63 @@ class CartManager {
             orderPage.find(".js-addres").addClass("hide");
         }
 
+    }
+
+    setReadContract(event: any): void {
+        this.isReadContract = $(event.currentTarget).prop("checked");
+        if (this.isReadContract) {
+            $(".js-confirm-order").removeClass("disabled");
+        } else {
+            $(".js-confirm-order").addClass("disabled");
+        }
+    }
+
+    pay(elem:any): void {
+        var payOnline = new Wayforpay();
+        if (elem!==null) {
+            cartManager.payOnlineItem = JSON.parse(elem); 
+        }
+        payOnline.run({
+            merchantAccount: cartManager.payOnlineItem.merchantAccount,
+            merchantDomainName: cartManager.payOnlineItem.merchantDomainName,
+            authorizationType: cartManager.payOnlineItem.authorizationType,
+            merchantSignature: cartManager.payOnlineItem.merchantSignature,
+            orderReference: cartManager.payOnlineItem.orderReference,
+            orderDate: cartManager.payOnlineItem.orderDate,
+            amount: cartManager.payOnlineItem.amount,
+            currency: cartManager.payOnlineItem.currency,
+            productName: cartManager.payOnlineItem.productName,
+            productPrice: cartManager.payOnlineItem.productPrice,
+            productCount: cartManager.payOnlineItem.productCount,
+            clientFirstName: cartManager.payOnlineItem.clientFirstName,
+            clientLastName: cartManager.payOnlineItem.clientLastName,
+            clientEmail: cartManager.payOnlineItem.clientEmail,
+            clientPhone: cartManager.payOnlineItem.clientPhone,
+            holdTimeout: cartManager.payOnlineItem.holdTimeout,
+            merchantTransactionType: cartManager.payOnlineItem.merchantTransactionType
+        },
+            response => {
+                //console.log("approved");
+                //console.log(response.recToken);
+                if (response.reasonCode == 1100) {
+
+                    $.post("/Order/PaidOrder/", { num: cartManager.payOnlineItem.orderReference})
+                        .done(result => {
+                            console.log("order paid : " + result);
+                            message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
+                            $(".js-order-pages").html("");
+                        });
+                }
+            },
+            response => {
+                console.log("declined");
+                console.log(response);
+            },
+            response => {
+                console.log("pending or in processing");
+                console.log(response);
+            }
+        );
     }
 }
 
@@ -361,27 +425,41 @@ $(() => {
     if ($(".js-confirm-order").length > 0) {
         $(document).on("click", ".js-confirm-order", (e) => {
             var orderPage = $(".js-order-pages");
-            if (orderPage.length > 0) {
-                cartManager.cart.clientLastName = orderPage.find("[name=ClientLastName]").val();
-                cartManager.cart.clientFirstName = orderPage.find("[name=ClientFirstName]").val();
-                cartManager.cart.clientEmail = orderPage.find("[name=ClientEmail]").val();
-                cartManager.cart.clientPhone = orderPage.find("[name=ClientPhone]").val();
-                cartManager.cart.city = orderPage.find("[name=City]").val();
-                cartManager.cart.home = orderPage.find("[name=Home]").val();
-                cartManager.cart.typeStreet = orderPage.find("[name=TypeStreet]").val();
-                cartManager.cart.level = orderPage.find("[name=Level]").val();
-                cartManager.cart.street = orderPage.find("[name=Street]").val();
-                cartManager.cart.flat = orderPage.find("[name=Flat]").val();
-                cartManager.cart.deliveryType = parseInt(orderPage.find("[name=DeliveryType]").val());
-                cartManager.cart.paymentType = parseInt(orderPage.find("[name=PaymentType]").val());
-                if (cartManager.validateCart(false)) {
-                    $.post("/Order/CreateOrder/", { order: JSON.stringify(cartManager.cart) })
-                        .done(result => {
-                            message.showMessage(result);
-                            //если заказ создан нужно почистить куки и показать всплывающее окно с крестиком
-                        });
-                }
+
+            if (cartManager.isReadContract === false) {
+                return;
             }
+            var date = new Date();
+            cartManager.cart.clientLastName = orderPage.find("[name=ClientLastName]").val();
+            cartManager.cart.clientFirstName = orderPage.find("[name=ClientFirstName]").val();
+            cartManager.cart.clientEmail = orderPage.find("[name=ClientEmail]").val();
+            cartManager.cart.clientPhone = orderPage.find("[name=ClientPhone]").val();
+            cartManager.cart.city = orderPage.find("[name=City]").val();
+            cartManager.cart.home = orderPage.find("[name=Home]").val();
+            cartManager.cart.typeStreet = orderPage.find("[name=TypeStreet]").val();
+            cartManager.cart.level = orderPage.find("[name=Level]").val();
+            cartManager.cart.street = orderPage.find("[name=Street]").val();
+            cartManager.cart.flat = orderPage.find("[name=Flat]").val();
+            cartManager.cart.deliveryType = parseInt(orderPage.find("[name=DeliveryType]").val());
+            cartManager.cart.paymentType = parseInt(orderPage.find("[name=PaymentType]").val());
+            cartManager.cart.createDate = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+            if (cartManager.validateCart(false)) {
+                var orderPages = $(".js-order-pages");
+                    //
+                $.post("/Order/CreateOrder/", { order: JSON.stringify(cartManager.cart) })
+                    .done(result => {
+                        $.removeCookie('cart', { path: '/' });
+                        if (cartManager.cart.paymentType !== 2) { //2 - признак оплаты онлайн
+                            message.showMessageWnd(result, "/");
+                            orderPages.html("");
+                        } else {
+                            orderPages.find(".js-confirm-order").remove();
+                            orderPages.find(".js-repay-order").removeClass("hide");
+                            cartManager.pay(result);
+                        }
+                    });
+            }
+
         });
     }
 
@@ -417,5 +495,20 @@ $(() => {
                 orderPage2.removeClass("hide");
             }
         });
+
+        $(document).on("click", ".js-repay-order", (e) => {
+            cartManager.pay(null);
+        });
     }
 });
+
+
+
+
+
+
+
+
+
+
+

@@ -3,15 +3,19 @@
                    assembly="Shop.db"
                    namespace="Shop.db.Entities">
 
-  <class name="Order" table="[Order]">
+  <class name="Order" table="[Order]" lazy="false">
     <id name="Id" >
       <generator class="identity" />
     </id>
     <property name="From" column="[From]"/>
     <property name="To" column="[To]"/>
-    <!--<property name="OrderNumber" />-->
-    <!--<property name="OrderPrefix" />-->
-    <!--<property name="OrderComment" />-->
+
+   <property name="OrderNumber" generated="insert" insert="false" update="false"/>
+    
+    <property name="OrderPrefix" />
+    <property name="OrderComment" />
+    <property name="IsPaid" />
+    <property name="CreateDate" />
     
     <many-to-one name="Client" lazy="false" class="Client" column="[Client]"  cascade="save-update" />
     <many-to-one name="Pdf" lazy="false" class="OrderInfoFile" />
@@ -25,4 +29,17 @@
     </bag>
   </class>
 
+<database-object>
+    <create>
+      ALTER TABLE [Order] DROP COLUMN OrderNumber
+      drop SEQUENCE LastOrderNumber
+      create SEQUENCE LastOrderNumber
+      START WITH 1500
+      INCREMENT BY 1 ;
+      GO
+      ALTER TABLE [Order] ADD OrderNumber INT NOT NULL DEFAULT (NEXT VALUE FOR LastOrderNumber)
+    </create>
+  <drop></drop>
+  </database-object>
+<!-- -->
 </hibernate-mapping>

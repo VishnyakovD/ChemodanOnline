@@ -375,9 +375,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\hosting.pubxml" />
-    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.3.js" />
-    <Content Include="Scripts\jquery-2.1.3.min.js" />
     <None Include="Scripts\jquery-3.1.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
@@ -408,7 +405,6 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\jquery-2.1.3.min.map" />
     <Content Include="Views\Admin\BrandDataPartial.cshtml" />
     <Content Include="Views\Admin\StaticCategoryDataPartial.cshtml" />
     <Content Include="Views\Admin\ListBrandsPartial.cshtml" />
@@ -500,10 +496,10 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\ts\card.ts" />
+    <TypeScriptCompile Include="Scripts\ts\cart.ts" />
     <TypeScriptCompile Include="Scripts\ts\pay-one-click.ts" />
     <TypeScriptCompile Include="Scripts\ts\message.ts" />
     <TypeScriptCompile Include="Scripts\ts\controls.ts" />
-    <TypeScriptCompile Include="Scripts\ts\cart.ts" />
     <TypeScriptCompile Include="Scripts\ts\filters.ts" />
     <TypeScriptCompile Include="Scripts\ts\main-page.ts" />
     <TypeScriptCompile Include="Scripts\ts\menu.ts" />
