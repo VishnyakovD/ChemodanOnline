@@ -16,6 +16,7 @@ namespace Shop.Models.Builders
         OrderClientPage Build(long[] ids);
         OrdersAdminPage BuildOrders(OrderFilter filter);
         List<OrderModel> OrdersModel(OrderFilter filter);
+        List<OrderModel> OrdersModel(string filterType, string filterValue);
     }
 
     public class OrderBuilder : MenuBuilder, IOrderBuilder
@@ -53,6 +54,41 @@ namespace Shop.Models.Builders
             model.OrderStates = dataService.List<OrderState>();
             model.topMenuItems = BuildTopMenu();
             return model;
+        }
+
+        public List<OrderModel> OrdersModel(string filterType, string filterValue)
+        {
+            List<Order> tmpOrders = new List<Order>();
+            if (filterType=="phone")
+            {
+                tmpOrders = dataService.ListOrdersByPhone(filterValue);
+            }
+
+            if (filterType == "name")
+            {
+                tmpOrders = dataService.ListOrdersBySecondName(filterValue);
+            }
+
+            if (filterType=="order")
+            {
+                int order = 0;
+                int.TryParse(filterValue,out order);
+                tmpOrders = dataService.ListOrdersByOrderNumber(order);
+            }
+            
+            return tmpOrders.Select(item => new OrderModel()
+            {
+                OrderId = item.Id,
+                ClientFirstName = item.Client.name,
+                ClientLastName = item.Client.lastName,
+                ClientPhone = item.Client.mPhone,
+                PaymentType = item.PaymentType,
+                OrderState = item.OrderState,
+                IsPaid = item.IsPaid,
+                CreateDate = item.CreateDate,
+                OrderNumber = item.OrderNumber,
+                DeliveryType = item.DeliveryType
+            }).ToList();
         }
 
         public List<OrderModel> OrdersModel(OrderFilter filter)

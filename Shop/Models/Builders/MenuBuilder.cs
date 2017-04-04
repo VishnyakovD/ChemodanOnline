@@ -67,7 +67,5 @@ namespace Shop.Models.Builders
             var menus = new MenuModel { menu = BuildMenu(), topMenuItems = dataService.ListMenuItem(1)};
             return menus;
         }
-
-
     }
 }

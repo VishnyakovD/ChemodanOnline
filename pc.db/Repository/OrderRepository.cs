@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NHibernate;
+using NHibernate.Linq;
 using Shop.db.Entities;
 
 namespace Shop.db.Repository
@@ -17,8 +18,8 @@ namespace Shop.db.Repository
 
         public List<Order> AllByFilters(OrderFilter filter)
         {
-            var query= session.QueryOver<Order>().Where(order => order.CreateDate.Date >= filter.From && order.CreateDate <= filter.To);
-            if (filter.DeliveryType>0)
+            var query = session.QueryOver<Order>().Where(order => order.CreateDate.Date >= filter.From && order.CreateDate <= filter.To);
+            if (filter.DeliveryType > 0)
             {
                 query = query.Where(order => order.DeliveryType.Id == filter.DeliveryType);
             }
@@ -40,39 +41,46 @@ namespace Shop.db.Repository
         //        .List().ToList();
         //}
 
-        public List<Order> AllByClientPhone(string phone)
+        public List<Order> AllByOrderNumber(int num)
         {
             return session.QueryOver<Order>()
-                .Where(order => order.Client.mPhone==phone)
-                .List() as List<Order>;
+                .Where(order => order.OrderNumber == num)
+                .List().ToList();
+        }
+
+        public List<Order> AllByClientPhone(string phone)
+        {
+            var query = session.Query<Order>().Where(order => order.Client.mPhone==phone);
+            return query.ToList();
+        }
+
+        public List<Order> AllByClientSecondName(string name)
+        {
+            return session.Query<Order>()
+                .Where(order => order.Client.lastName == name).ToList();
         }
 
         public List<Order> AllByDeliveryType(long deliveryType)
         {
-            return session.QueryOver<Order>()
-                .Where(order => order.DeliveryType.Id== deliveryType)
-                .List() as List<Order>;
+            return session.Query<Order>()
+                .Where(order => order.DeliveryType.Id == deliveryType).ToList();
         }
 
         public List<Order> AllByPaymentType(long paymentType)
         {
-            return session.QueryOver<Order>()
-                .Where(order => order.PaymentType.Id == paymentType)
-                .List() as List<Order>;
+            return session.Query<Order>()
+                .Where(order => order.PaymentType.Id == paymentType).ToList();
         }
 
         public List<Order> AllByOrderState(long state)
         {
-            return session.QueryOver<Order>()
-                .Where(order => order.OrderState.Id == state)
-                .List() as List<Order>;
+            return session.Query<Order>()
+                .Where(order => order.OrderState.Id == state).ToList();
         }
 
         public Order OneByOrderNumber(int num)
         {
-            return session.QueryOver<Order>()
-                .Where(order => order.OrderNumber == num)
-                .List().First();
+            return session.Query<Order>().First(order => order.OrderNumber == num);
         }
 
 

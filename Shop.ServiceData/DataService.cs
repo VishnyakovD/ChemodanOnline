@@ -22,7 +22,9 @@ namespace Shop.DataService
         List<Sku> ListProductsByIds(long[] ids);
         bool SetChemodanTrackingToSku(ChemodanTracking item);
         List<Order> ListOrdersByFilter(OrderFilter filter);
-        //List<Order> ListOrdersByPhone(string phone);
+        List<Order> ListOrdersByPhone(string phone);
+        List<Order> ListOrdersBySecondName(string name);
+        List<Order> ListOrdersByOrderNumber(int num);
         //List<Order> ListOrdersByDeliveryType(long deliveryType);
         //List<Order> ListOrdersByPaymentType(long paymentType);
         //List<Order> ListOrdersByOrderState(long state);
@@ -907,22 +909,56 @@ namespace Shop.DataService
             return result;
         }
 
-        //public List<Order> ListOrdersByPhone(string phone)
-        //{
-        //    var result = new List<Order>();
-        //    try
-        //    {
-        //        dbService.Run(db =>
-        //        {
-        //            result = ((OrderRepository)db.GetRepository<Order>()).AllByClientPhone(phone);
-        //        });
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        logger.Error(err.Message);
-        //    }
-        //    return result;
-        //}
+        public List<Order> ListOrdersByPhone(string phone)
+        {
+            var result = new List<Order>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByClientPhone(phone);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public List<Order> ListOrdersBySecondName(string name)
+        {
+            var result = new List<Order>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByClientSecondName(name);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public List<Order> ListOrdersByOrderNumber(int num)
+        {
+            var result = new List<Order>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((OrderRepository)db.GetRepository<Order>()).AllByOrderNumber(num);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
 
         //public List<Order> ListOrdersByDeliveryType(long deliveryType)
         //{

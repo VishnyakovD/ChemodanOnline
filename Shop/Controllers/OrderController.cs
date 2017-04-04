@@ -153,6 +153,16 @@ namespace Shop.Controllers
             return PartialView("OrdersAdminPartial", model);
         }
 
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult SearchFilterOrders(string filterType,string filterValue)
+        {
+            if (string.IsNullOrEmpty(filterType)|| string.IsNullOrEmpty(filterValue))
+            {
+                return PartialView("OrdersAdminPartial", new List<OrderModel>());
+            }
+        var model = OrderBulder.OrdersModel(filterType, filterValue);
+            return PartialView("OrdersAdminPartial", model);
+        }
         public ActionResult PayOneClick(string phone, long productId, string createDate)
         {
             var result = string.Empty;

@@ -8,7 +8,6 @@ namespace Shop.db.Entities
     public class Client : BaseUser
     {
         public virtual Sex sex { get; set; }
-        
 
         public Client():base()
         {
