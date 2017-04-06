@@ -217,7 +217,7 @@ footer {
     footer .line1 .logo {
       margin: 18px 30px 18px 0;
       vertical-align: top; }
-      footer .line1 .logo a img {
+      footer .line1 .logo a img, footer .line1 .logo a svg {
         height: auto;
         width: 175px; }
     footer .line1 .footer-addres {

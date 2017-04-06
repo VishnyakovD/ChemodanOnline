@@ -7,7 +7,7 @@
     display: inline-block; }
     .top-menu-container .logo a {
       margin: 0; }
-      .top-menu-container .logo a img {
+      .top-menu-container .logo a img, .top-menu-container .logo a svg {
         height: auto; }
   .top-menu-container .top-menu-btn {
     display: inline-block;
@@ -68,7 +68,7 @@
 
         .logo {
             a {
-                img {
+                img,svg {
                     height: auto;
                     width: 200px;
                 }
@@ -81,7 +81,7 @@
     }
 }*/
 @media (min-width: 992px) {
-  .logo a img {
+  .logo a img, .logo a svg {
     height: auto;
     width: 175px; }
   .top-menu-container {
@@ -96,7 +96,7 @@
       padding: 20px 0 20px 20px; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .logo a img {
+  .logo a img, .logo a svg {
     height: auto;
     width: 125px; }
   .top-menu-container {
@@ -120,7 +120,7 @@
 @media (max-width: 767px) {
   .logo {
     vertical-align: top; }
-    .logo a img {
+    .logo a img, .logo a svg {
       width: 135px; }
   body {
     padding-top: 15px !important; }

@@ -10,7 +10,7 @@
         a {
             margin: 0;
 
-            img {
+            img,svg {
                 height: auto;
             }
         }
@@ -97,7 +97,7 @@
 
         .logo {
             a {
-                img {
+                img,svg {
                     height: auto;
                     width: 200px;
                 }
@@ -113,7 +113,7 @@
 @media (min-width: 992px) /*and (max-width: 1199px )*/ {
     .logo {
         a {
-            img {
+            img,svg {
                 height: auto;
                 width: 175px;
             }
@@ -144,7 +144,7 @@
 @media (min-width: 768px) and (max-width: 991px ) {
     .logo {
         a {
-            img {
+            img,svg {
                 height: auto;
                 width: 125px;
             }
@@ -190,7 +190,7 @@
         vertical-align: top;
 
         a {
-            img {
+            img,svg {
                 width: 135px;
             }
         }
