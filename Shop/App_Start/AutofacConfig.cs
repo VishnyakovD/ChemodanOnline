@@ -12,6 +12,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Shop.db;
 using Shop.Logger;
+using Shop.Modules;
 using Shop.ServiceData;
 
 

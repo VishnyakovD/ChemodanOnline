@@ -1,0 +1,9 @@
+﻿@using AdvancedClasses
+@model List<Shop.db.Entities.OrderOneClick>
+
+@foreach (var item in Model)
+{
+    <tr>
+        @{Html.RenderPartial("OrderOneClickAdminPartial", item);}
+    </tr>
+}

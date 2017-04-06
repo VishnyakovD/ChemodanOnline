@@ -292,3 +292,23 @@
          vertical-align: baseline;
     }
 }
+
+
+.admindrder{
+    .row{
+        margin:10px 0;
+    }
+    .line1{
+        div{
+            display:inline-block;
+            font-size:20px;
+        }
+
+        .user{
+            font-size:15px;
+            border-radius:5px;
+            background:#b3b3b3;
+            padding:5px 10px;
+        }
+    }
+}

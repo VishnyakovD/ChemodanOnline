@@ -1,0 +1,14 @@
+﻿@using AdvancedClasses
+@model Shop.db.Entities.OrderOneClick
+
+
+<td>@Model.CreateDate.ToString("dd.MM.yyyy HH:mm:ss")</td>
+<td>@Model.Phone</td>
+<td><a target="_blank" class="btn btn-link" href="/Home/SkuInfo?idSku=@Model.ProductId">товар</a></td>
+<td>@Model.UserName</td>
+<td>
+    @{
+        var eventClick = (!Model.IsComplite) ? "onclick=adminOrderManager.applyOrderOneClickevent(event," +Model.Id+");":string.Empty;
+    }
+    <span class="btn btn-link" @eventClick>@(new HtmlString((Model.IsComplite) ? "<b>Да</b>" : "Нет"))</span>
+</td>

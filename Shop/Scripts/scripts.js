@@ -22,5 +22,9 @@ function onSucssess(ajaxContext) {
         id = -1;
     }
     $("form[action*=AddOrUpdate]").find("#id").first().val(id);
-    $("#ServerMessage").html(ajaxContext.message);
+    message.showMessage(ajaxContext.message);
+}
+
+function onSucssessMessage(ajaxContext) {
+    message.showMessage(ajaxContext);
 }

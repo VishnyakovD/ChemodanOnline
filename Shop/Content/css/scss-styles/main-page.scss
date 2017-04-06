@@ -53,31 +53,6 @@
     }
 }
 
-.button {
-    background-color: #22b2da;
-    border-radius: 8px;
-
-    a, a:hover, a:visited, span, span:hover {
-        font-weight: bold;
-        display: block;
-        text-align: center;
-        color: white;
-        text-transform: uppercase;
-
-        &.button-order {
-            font-size: 14px;
-            letter-spacing: 0.4px;
-            text-align: center;
-            color: white;
-            padding: 10px 12px;
-        }
-    }
-
-    &.disabled {
-        opacity: 0.2;
-        cursor: not-allowed!important;
-    }
-}
 
 
 
@@ -347,12 +322,17 @@ footer {
         color: #0d0d0d;
         overflow: hidden;
 
+
+
         .logo {
             margin: 18px 30px 18px 0;
             vertical-align: top;
 
-            img {
-                width: 100%;
+            a {
+                img {
+                    height: auto;
+                    width: 175px;
+                }
             }
         }
 

@@ -4,7 +4,7 @@
 @foreach (var item in Model)
 {
     <tr>
-        <td><a href="/Order/EditOrder?id=@item.OrderId">@item.OrderNumber</a></td>
+        <td><a class="btn btn-link" href="/Order/EditOrder?id=@item.OrderId">@item.OrderNumber</a></td>
         <td>@item.CreateDate.ToString("dd.MM.yyyy HH:mm:ss")</td>
         <td>@item.ClientLastName @item.ClientFirstName</td>
         <td>@item.ClientPhone</td>

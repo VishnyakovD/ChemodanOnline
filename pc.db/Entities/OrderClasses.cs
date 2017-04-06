@@ -111,6 +111,7 @@ namespace Shop.db.Entities
         public long DeliveryType { get; set; }
         public long OrderState { get; set; }
         public bool? IsPaid { get; set; }
+        public bool? IsComplite { get; set; }
 
 
         public OrderFilter()

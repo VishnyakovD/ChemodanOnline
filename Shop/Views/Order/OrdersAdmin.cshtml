@@ -13,7 +13,7 @@
 
 @{ Html.RenderPartial("~/Views/Admin/AdminMenuPartial.cshtml"); }
 <div class="admindrders">
-    @using (Ajax.BeginForm("SearchFilterOrders", new AjaxOptions {UpdateTargetId = "adminorders"}))
+    @using (Ajax.BeginForm("FilterOrders", new AjaxOptions {UpdateTargetId = "ServerMessage", OnSuccess = "onSucssess" }))
     {
         <div class="row">
             <div class="col-md-12">
@@ -26,7 +26,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input name="filterValue" class="form-control" style="width: 65vw!important"/>
+                        <input name="filterValue" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Применить</button>

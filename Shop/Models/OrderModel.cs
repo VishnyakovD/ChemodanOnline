@@ -65,6 +65,7 @@ namespace Shop.Models
     public class OrdersAdminPage : MenuModel
     {
         public List<OrderModel> Orders { get; set; }
+        public List<OrderOneClick> OneClickOrders { get; set; }
         public List<DeliveryType> DeliveryTypes { get; set; }
         public List<PaymentType> PaymentTypes { get; set; }
         public List<OrderState> OrderStates { get; set; }
@@ -81,6 +82,7 @@ namespace Shop.Models
             OrderStates = new List<OrderState>();
             From = DateTime.Now.Date.AddDays(-1).Date;
             To = DateTime.Now.Date.AddDays(1);
+            OneClickOrders=new List<OrderOneClick>();
         }
     }
 }

@@ -1,0 +1,67 @@
+﻿@using System.Globalization
+@using Shop.Models
+@using AdvancedClasses
+@using Shop.db.Entities
+@model OrdersAdminPage
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Model != null)
+    {
+        Page.Title = "Аренда чемоданов | Chemodan.online";
+    }
+}
+
+@{ Html.RenderPartial("~/Views/Admin/AdminMenuPartial.cshtml"); }
+<div class="admindrders">
+
+    @using (Ajax.BeginForm("FilterOrdersOneClick", new AjaxOptions {UpdateTargetId = "adminorders"}))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filter-row">
+                    <div class="flter-item">
+                        <label>Период</label><br/>
+                        <div class="date-values border">
+                            <img src="~/Content/img/icons/calendar.png"/>
+                            <input type="date" name="From" value="@Model.From.Date.ToString("yyyy-MM-dd")" min="@(new DateTime(2016, 01, 01))"/>
+                            <span class="long-minus">—</span>
+                            <input type="date" name="To" value="@Model.To.Date.ToString("yyyy-MM-dd")" min="@(new DateTime(2016, 01, 01))"/>
+                        </div>
+                    </div>
+                    <div class="flter-item">
+                        <label>Обработан</label>
+                        <select name="IsComplite" class="form-control">
+                            <option value="all">не выбрано</option>
+                            <option value="true">да</option>
+                            <option value="false">нет</option>
+                        </select>
+                    </div>
+                    <div class="flter-item">
+                        <button type="submit" class="btn btn-danger">Применить</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    }
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-condensed table-hover">
+                <tr>
+                    <th>Дата</th>
+                    <th>Телефон</th>
+                    <th>Товар</th>
+                    <th>Пользователь</th>
+                    <th>Обработан</th>
+                </tr>
+                <tbody id="adminorders">
+                @{Html.RenderPartial("OrdersOneClickAdminPartial", Model.OneClickOrders);}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

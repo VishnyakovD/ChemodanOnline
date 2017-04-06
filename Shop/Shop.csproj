@@ -172,6 +172,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Builders\EditOrderModelBuilder.cs" />
+    <Compile Include="Models\EditOrderModel.cs" />
     <Compile Include="Models\PayOneClickModel.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountAdminModel.cs" />
@@ -312,6 +314,7 @@
     <Content Include="Content\img\icons\visa.png" />
     <Content Include="Content\img\icons\wallet.png" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\logo.svg" />
     <Content Include="Content\jquery-ui\images\img-ui-bg_glass_75_e6e6e6_1x400.png" />
     <Content Include="Content\jquery-ui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -462,6 +465,10 @@
     <Content Include="Views\S\Arts.cshtml" />
     <Content Include="Views\S\Art.cshtml" />
     <Content Include="Views\Order\OrdersAdminPartial.cshtml" />
+    <Content Include="Views\Order\OrdersOneClickAdminPartial.cshtml" />
+    <Content Include="Views\Order\OrdersOneClickAdmin.cshtml" />
+    <Content Include="Views\Order\OrderOneClickAdminPartial.cshtml" />
+    <Content Include="Views\Order\EditOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
@@ -496,6 +503,7 @@
     <Content Include="Views\Admin\Administrator.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\ts\admin-orders.ts" />
     <TypeScriptCompile Include="Scripts\ts\card.ts" />
     <TypeScriptCompile Include="Scripts\ts\cart.ts" />
     <TypeScriptCompile Include="Scripts\ts\pay-one-click.ts" />

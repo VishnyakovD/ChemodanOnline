@@ -20,9 +20,6 @@ namespace Shop.Models
             ListCaruselItem=new List<InfoBlockItem>();
             ListProduct = new List<ShortSKUModel>();
         }
-
-
-    
     }
 
 

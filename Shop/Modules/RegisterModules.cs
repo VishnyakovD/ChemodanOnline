@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http.ModelBinding;
-using Autofac;
-using Shop.Models;
+﻿using Autofac;
 using Shop.Models.Builders;
 
-namespace Shop
+namespace Shop.Modules
 {
     public class RegisterModules : Module
     {
@@ -30,6 +24,8 @@ namespace Shop
             builder.RegisterType<MainPageBuilder>().As<IMainPageBuilder>();
 
             builder.RegisterType<OrderBuilder>().As<IOrderBuilder>();
+
+            builder.RegisterType<EditOrderModelBuilder>().As<IEditOrderModelBuilder>();
 
         }
     }

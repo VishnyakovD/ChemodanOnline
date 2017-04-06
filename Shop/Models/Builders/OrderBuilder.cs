@@ -17,6 +17,8 @@ namespace Shop.Models.Builders
         OrdersAdminPage BuildOrders(OrderFilter filter);
         List<OrderModel> OrdersModel(OrderFilter filter);
         List<OrderModel> OrdersModel(string filterType, string filterValue);
+        OrdersAdminPage BuildOrdersOneClick(OrderFilter filter);
+        List<OrderOneClick> OrdersModelOneClick(OrderFilter filter);
     }
 
     public class OrderBuilder : MenuBuilder, IOrderBuilder
@@ -52,6 +54,17 @@ namespace Shop.Models.Builders
             model.DeliveryTypes = dataService.List<DeliveryType>();
             model.PaymentTypes = dataService.List<PaymentType>();
             model.OrderStates = dataService.List<OrderState>();
+            model.topMenuItems = BuildTopMenu();
+            return model;
+        }
+        public OrdersAdminPage BuildOrdersOneClick(OrderFilter filter)
+        {
+            var model = new OrdersAdminPage();
+            model.OneClickOrders = OrdersModelOneClick(filter);
+
+            //model.DeliveryTypes = dataService.List<DeliveryType>();
+            //model.PaymentTypes = dataService.List<PaymentType>();
+            //model.OrderStates = dataService.List<OrderState>();
             model.topMenuItems = BuildTopMenu();
             return model;
         }
@@ -107,7 +120,13 @@ namespace Shop.Models.Builders
                 OrderNumber = item.OrderNumber,
                 DeliveryType = item.DeliveryType
             }).ToList();
-        } 
+        }
+
+        public List<OrderOneClick> OrdersModelOneClick(OrderFilter filter)
+        {
+            var tmpOrders = dataService.ListOrdersOneClick(filter);
+            return tmpOrders;
+        }
 
     }
 }

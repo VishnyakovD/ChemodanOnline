@@ -22,6 +22,7 @@ namespace Shop.DataService
         List<Sku> ListProductsByIds(long[] ids);
         bool SetChemodanTrackingToSku(ChemodanTracking item);
         List<Order> ListOrdersByFilter(OrderFilter filter);
+        List<OrderOneClick> ListOrdersOneClick(OrderFilter filter);
         List<Order> ListOrdersByPhone(string phone);
         List<Order> ListOrdersBySecondName(string name);
         List<Order> ListOrdersByOrderNumber(int num);
@@ -30,6 +31,7 @@ namespace Shop.DataService
         //List<Order> ListOrdersByOrderState(long state);
         Order AddOrUpdateOrder(Order order);
         long AddOrUpdateOrderOneClick(OrderOneClick order);
+        OrderOneClick ApplyOrderOneClick(long id, int userId, string userName);
         bool PaidOrder(int num);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
@@ -909,6 +911,23 @@ namespace Shop.DataService
             return result;
         }
 
+        public List<OrderOneClick> ListOrdersOneClick(OrderFilter filter)
+        {
+            var result = new List<OrderOneClick>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result = ((OrderOneClickRepository)db.GetRepository<OrderOneClick>()).AllOrdersOneClick(filter);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
         public List<Order> ListOrdersByPhone(string phone)
         {
             var result = new List<Order>();
@@ -1304,6 +1323,31 @@ namespace Shop.DataService
             return result;
         }
 
+        public OrderOneClick ApplyOrderOneClick(long id,int userId, string userName)
+        {
+            try
+            {
+                OrderOneClick orderDb = null;
+                dbService.Run(db =>
+                {
+                    orderDb = db.GetRepository<OrderOneClick>().TryOne(id);
+                    if (orderDb != null)
+                    {
+                        orderDb.IsComplite = true;
+                        orderDb.UserId =userId;
+                        orderDb.UserName = userName;
+                        db.GetRepository<OrderOneClick>().Update(orderDb);
+                    }
+                });
+                return orderDb;
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return null;
+        }
+
         public bool PaidOrder(int num)
         {
             bool result = false;
@@ -1311,7 +1355,7 @@ namespace Shop.DataService
             {
                 dbService.Run(db =>
                 {
-                    var orderDb = ((OrderRepository) db.GetRepository<Order>()).OneByOrderNumber(num);
+                    var orderDb = ((OrderRepository)db.GetRepository<Order>()).OneByOrderNumber(num);
                     if (orderDb != null)
                     {
                         orderDb.IsPaid = true;

@@ -1,0 +1,88 @@
+﻿@using System.Globalization
+@using Shop.Models
+@using AdvancedClasses
+@using Shop.db.Entities
+@model EditOrderModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Model != null)
+    {
+        Page.Title = "Аренда чемоданов | Chemodan.online";
+    }
+}
+
+@{ Html.RenderPartial("~/Views/Admin/AdminMenuPartial.cshtml"); }
+
+@using (Ajax.BeginForm("SaveOrderAdmin", new AjaxOptions { OnSuccess = "onSucssessMessage" }))
+{
+    <div class="admindrder">
+        <div class="row line1">
+            <div class="col-md-2">
+                <input type="hidden" name="Id" value="@Model.Order.OrderId" />
+                <div><span>Заказ : </span> <b>@Model.Order.OrderNumber</b></div>
+            </div>
+
+            <div class="col-md-4">
+                <div><span>Создан : </span> <b>@Model.Order.CreateDate</b></div>
+            </div>
+
+            <div class="col-md-3">
+                <div>Оплачен : <span class="user">@((Model.Order.IsPaid) ? "Да" : "Нет")</span></div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="pull-right">Пользователь : <span class="user">@WebSecurity.CurrentUserName</span></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </div>
+
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-default">Печать</button>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <span>Статус</span>
+                <select class="form-control" name="OrderState">
+                    @foreach (var item in Model.OrderStates)
+                    {
+                        <option @((Model.Order.OrderState.Id == item.Id) ? "selected" : "") value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <span>Доставка</span>
+                <select class="form-control" name="DeliveryType">
+                    @foreach (var item in Model.DeliveryTypes)
+                    {
+                        <option @((Model.Order.DeliveryType.Id == item.Id) ? "selected" : "") value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <span>Комментарий</span>
+                <textarea class="form-control" name="OrderComment">@Model.Order.OrderComment</textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12"></div>
+        </div>
+
+
+
+    </div>
+}
+

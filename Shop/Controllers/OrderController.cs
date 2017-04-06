@@ -31,6 +31,7 @@ namespace Shop.Controllers
     public class OrderController : BaseController
     {
         private IOrderBuilder OrderBulder;
+        private IEditOrderModelBuilder EditOrderModelBuilder;
         private long DefaultOrderState;
 
         public OrderController(ILogger logger,
@@ -38,11 +39,12 @@ namespace Shop.Controllers
             IDataService dataService,
             IImagesPath imagesPath,
             ISKUModelBuilder skuModelBuilder,
-            IOrderBuilder orderBulder)
+            IOrderBuilder orderBulder, IEditOrderModelBuilder editOrderModelBuilder)
             : base(logger, adminModelBuilder, dataService, imagesPath, skuModelBuilder)
         {
             OrderBulder = orderBulder;
             DefaultOrderState = long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
+            EditOrderModelBuilder = editOrderModelBuilder;
         }
 
         public ActionResult Index(string ids)
@@ -137,9 +139,26 @@ namespace Shop.Controllers
         {
             var filter=new OrderFilter();
             var model = OrderBulder.BuildOrders(filter);
-
-
             return View(model);
+        }
+
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult OrdersOneClickAdmin()
+        {
+            var filter=new OrderFilter();
+            var model = OrderBulder.BuildOrdersOneClick(filter);
+            return View(model);
+        }
+
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult FilterOrdersOneClick(OrderFilter filter)
+        {
+            if (filter == null)
+            {
+                filter = new OrderFilter();
+            }
+            var model = OrderBulder.OrdersModelOneClick(filter);
+            return PartialView("OrdersOneClickAdminPartial", model);
         }
 
         [System.Web.Mvc.Authorize(Roles = "Admin")]
@@ -184,7 +203,8 @@ namespace Shop.Controllers
                     UserId = userId,
                     UserName = userName
                 };
-                result = dataService.AddOrUpdateOrderOneClick(order).ToString();
+                dataService.AddOrUpdateOrderOneClick(order);
+                result = "В ближайшее время вам позвонит наш сотрудник";
             }
             catch (Exception ex)
             {
@@ -213,9 +233,31 @@ namespace Shop.Controllers
         [System.Web.Mvc.Authorize(Roles = "Admin")]
         public ActionResult EditOrder(long id)
         {
-            //var model = OrderBulder.BuildOrder(id);
-            return View(/*model*/);
+            var model = EditOrderModelBuilder.Build(id);
+            return View(model);
         }
+
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult ApplyOneClickOrder(long id)
+        {
+            var userId = 0;
+            var userName = string.Empty;
+            if (WebSecurity.IsAuthenticated)
+            {
+                userName = WebSecurity.CurrentUserName;
+                userId = WebSecurity.CurrentUserId;
+            }
+            var model = dataService.ApplyOrderOneClick(id, userId, userName);
+            return PartialView("OrderOneClickAdminPartial", model);
+        }
+
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult SaveOrderAdmin(OrderModel order)
+        {
+
+            return Content("Сохранено");
+        }
+
 
         //[HttpPost]
         //public object PayLockSumm(string data)
