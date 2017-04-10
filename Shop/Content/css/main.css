@@ -816,6 +816,114 @@ footer {
       color: #fefefe;
       background-color: #1b1b1b; } }
 
+.order-table [class*='col-'] {
+  padding: 0; }
+
+.order-table .head {
+  min-height: 52px;
+  max-height: 52px;
+  border-radius: 3px;
+  background-color: #f0f6f7;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  color: #808080;
+  padding-left: 20px; }
+  .order-table .head div {
+    padding: 18px 0 20px 0; }
+
+.order-table .body {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px; }
+  .order-table .body .item {
+    display: table;
+    width: 100%; }
+    .order-table .body .item .product-info .img-block {
+      display: table-cell;
+      width: 55px; }
+      .order-table .body .item .product-info .img-block img {
+        max-width: 55px; }
+    .order-table .body .item .product-info .txt-block {
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      width: 100%; }
+      .order-table .body .item .product-info .txt-block .line1 {
+        margin-left: 20px;
+        line-height: 1.77;
+        color: #0d0d0d; }
+      .order-table .body .item .product-info .txt-block .line2 {
+        margin-left: 20px;
+        line-height: 2.31;
+        color: #808080; }
+    .order-table .body .item .txt-label {
+      font-size: 14px;
+      letter-spacing: 0.7px;
+      color: #808080; }
+    .order-table .body .item .cell {
+      display: table-cell;
+      vertical-align: middle;
+      height: 100%; }
+    .order-table .body .item .counter {
+      margin-top: 20px;
+      min-height: 40px;
+      max-height: 40px;
+      width: 110px;
+      border-radius: 3px;
+      border: solid 1px #b3b3b3;
+      font-size: 16px;
+      letter-spacing: normal;
+      text-align: center;
+      color: #000000;
+      overflow: hidden;
+      white-space: nowrap; }
+      .order-table .body .item .counter span:first-of-type {
+        font-size: 25px;
+        color: #b3b3b3;
+        display: inline-block;
+        float: left;
+        padding: 5px 13px 9px 13px;
+        line-height: 1;
+        vertical-align: middle;
+        cursor: pointer; }
+      .order-table .body .item .counter span:last-of-type {
+        font-size: 25px;
+        color: #b3b3b3;
+        display: inline-block;
+        float: right;
+        padding: 6px 13px 8px 13px;
+        line-height: 1;
+        vertical-align: middle;
+        cursor: pointer; }
+      .order-table .body .item .counter .cont-item {
+        display: inline-block;
+        line-height: 2.5; }
+    .order-table .body .item .num {
+      margin-top: 29px;
+      display: inline-block;
+      font-size: 16.3px;
+      line-height: 1.25;
+      letter-spacing: 0.5px;
+      color: #003663; }
+    .order-table .body .item .txt {
+      margin-top: 29px;
+      display: inline-block;
+      font-size: 13px;
+      line-height: 1.53;
+      letter-spacing: 0.4px; }
+    .order-table .body .item .clear-line {
+      margin-top: 25px;
+      display: inline-block;
+      padding: 5px;
+      float: right; }
+      .order-table .body .item .clear-line img {
+        width: 13px;
+        height: 13px; }
+      .order-table .body .item .clear-line.mobile {
+        margin-top: -10px; }
+
 .order-pages label {
   font-size: 14px;
   font-weight: 300;
@@ -834,114 +942,6 @@ footer {
   color: #0d0d0d;
   padding: 20px;
   text-transform: uppercase; }
-
-.order-pages .order-table [class*='col-'] {
-  padding: 0; }
-
-.order-pages .order-table .head {
-  min-height: 52px;
-  max-height: 52px;
-  border-radius: 3px;
-  background-color: #f0f6f7;
-  font-size: 12px;
-  letter-spacing: 0.3px;
-  color: #808080;
-  padding-left: 20px; }
-  .order-pages .order-table .head div {
-    padding: 18px 0 20px 0; }
-
-.order-pages .order-table .body {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-left: 15px;
-  padding-right: 15px; }
-  .order-pages .order-table .body .item {
-    display: table;
-    width: 100%; }
-    .order-pages .order-table .body .item .product-info .img-block {
-      display: table-cell;
-      width: 55px; }
-      .order-pages .order-table .body .item .product-info .img-block img {
-        max-width: 55px; }
-    .order-pages .order-table .body .item .product-info .txt-block {
-      display: table-cell;
-      vertical-align: middle;
-      font-size: 13px;
-      letter-spacing: 0.3px;
-      width: 100%; }
-      .order-pages .order-table .body .item .product-info .txt-block .line1 {
-        margin-left: 20px;
-        line-height: 1.77;
-        color: #0d0d0d; }
-      .order-pages .order-table .body .item .product-info .txt-block .line2 {
-        margin-left: 20px;
-        line-height: 2.31;
-        color: #808080; }
-    .order-pages .order-table .body .item .txt-label {
-      font-size: 14px;
-      letter-spacing: 0.7px;
-      color: #808080; }
-    .order-pages .order-table .body .item .cell {
-      display: table-cell;
-      vertical-align: middle;
-      height: 100%; }
-    .order-pages .order-table .body .item .counter {
-      margin-top: 20px;
-      min-height: 40px;
-      max-height: 40px;
-      width: 110px;
-      border-radius: 3px;
-      border: solid 1px #b3b3b3;
-      font-size: 16px;
-      letter-spacing: normal;
-      text-align: center;
-      color: #000000;
-      overflow: hidden;
-      white-space: nowrap; }
-      .order-pages .order-table .body .item .counter span:first-of-type {
-        font-size: 25px;
-        color: #b3b3b3;
-        display: inline-block;
-        float: left;
-        padding: 5px 13px 9px 13px;
-        line-height: 1;
-        vertical-align: middle;
-        cursor: pointer; }
-      .order-pages .order-table .body .item .counter span:last-of-type {
-        font-size: 25px;
-        color: #b3b3b3;
-        display: inline-block;
-        float: right;
-        padding: 6px 13px 8px 13px;
-        line-height: 1;
-        vertical-align: middle;
-        cursor: pointer; }
-      .order-pages .order-table .body .item .counter .cont-item {
-        display: inline-block;
-        line-height: 2.5; }
-    .order-pages .order-table .body .item .num {
-      margin-top: 29px;
-      display: inline-block;
-      font-size: 16.3px;
-      line-height: 1.25;
-      letter-spacing: 0.5px;
-      color: #003663; }
-    .order-pages .order-table .body .item .txt {
-      margin-top: 29px;
-      display: inline-block;
-      font-size: 13px;
-      line-height: 1.53;
-      letter-spacing: 0.4px; }
-    .order-pages .order-table .body .item .clear-line {
-      margin-top: 25px;
-      display: inline-block;
-      padding: 5px;
-      float: right; }
-      .order-pages .order-table .body .item .clear-line img {
-        width: 13px;
-        height: 13px; }
-      .order-pages .order-table .body .item .clear-line.mobile {
-        margin-top: -10px; }
 
 .order-pages .order-info {
   margin-bottom: 15px;
@@ -1041,6 +1041,9 @@ footer {
   border-radius: 5px;
   background: #b3b3b3;
   padding: 5px 10px; }
+
+.admindrder .product-tabs .tab:last-of-type {
+  margin-left: 0; }
 
 .border-none {
   border: none !important; }

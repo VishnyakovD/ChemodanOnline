@@ -284,10 +284,10 @@ var CartManager = (function () {
             holdTimeout: cartManager.payOnlineItem.holdTimeout,
             merchantTransactionType: cartManager.payOnlineItem.merchantTransactionType
         }, function (response) {
-            //console.log("approved");
-            //console.log(response.recToken);
             if (response.reasonCode == 1100) {
-                $.post("/Order/PaidOrder/", { num: cartManager.payOnlineItem.orderReference })
+                var date = new Date();
+                var stringDate = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+                $.post("/Order/PaidOrder/", { num: cartManager.payOnlineItem.orderReference, paymentId: response.authCode, date: stringDate })
                     .done(function (result) {
                     console.log("order paid : " + result);
                     message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");

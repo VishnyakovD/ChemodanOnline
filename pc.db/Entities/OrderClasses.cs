@@ -5,8 +5,8 @@ using System.Web;
 
 namespace Shop.db.Entities
 {
-      public class Order
-      {
+    public class Order
+    {
         public virtual long Id { get; set; }
 
         public virtual int OrderNumber { get; set; }
@@ -23,19 +23,28 @@ namespace Shop.db.Entities
         public virtual PaymentType PaymentType { get; set; }
         public virtual OrderState OrderState { get; set; }
 
+        public virtual int UserId { get; set; }
+        public virtual string UserName { get; set; }
+        public virtual bool IsHaveContract { get; set; }
+        public virtual DateTime PayDate { get; set; }
+        public virtual string PaymentId { get; set; }
 
         public Order()
         {
-          Client=new Client();
-          Products =new List<OrderProduct>();
-          DeliveryType = new DeliveryType();
-          PaymentType = new PaymentType();
-          OrderState=new OrderState();
+            Client = new Client();
+            Products = new List<OrderProduct>();
+            DeliveryType = new DeliveryType();
+            PaymentType = new PaymentType();
+            OrderState = new OrderState();
+            PayDate = DateTime.MinValue;
+            To = DateTime.MinValue;
+            From = DateTime.MinValue;
+            CreateDate = DateTime.MinValue;
         }
-      }
+    }
 
-      public class OrderProduct
-      {
+    public class OrderProduct
+    {
         public virtual long Id { get; set; }
         public virtual long ProductId { get; set; }
         public virtual long OrderId { get; set; }
@@ -51,10 +60,10 @@ namespace Shop.db.Entities
         {
 
         }
-      }
+    }
 
-      public class DeliveryType
-      {
+    public class DeliveryType
+    {
         public virtual long Id { get; set; }
         public virtual string Name { get; set; }
         public virtual int SortProirity { get; set; }
@@ -64,10 +73,10 @@ namespace Shop.db.Entities
         {
 
         }
-      }
+    }
 
-      public class PaymentType
-      {
+    public class PaymentType
+    {
         public virtual long Id { get; set; }
         public virtual string Name { get; set; }
         public virtual int SortProirity { get; set; }
@@ -77,10 +86,10 @@ namespace Shop.db.Entities
         {
 
         }
-      }
+    }
 
-      public class OrderInfoFile
-      {
+    public class OrderInfoFile
+    {
         public virtual long Id { get; set; }
         public virtual string FileLink { get; set; }
 
@@ -88,10 +97,10 @@ namespace Shop.db.Entities
         {
 
         }
-      }
+    }
 
-      public class OrderState
-      {
+    public class OrderState
+    {
         public virtual long Id { get; set; }
         public virtual string Name { get; set; }
         public virtual int SortProirity { get; set; }
@@ -101,7 +110,7 @@ namespace Shop.db.Entities
         {
 
         }
-      }
+    }
 
 
     public class OrderFilter

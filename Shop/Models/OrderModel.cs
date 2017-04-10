@@ -47,13 +47,21 @@ namespace Shop.Models
         public DateTime CreateDate { get; set; }
         public bool IsPaid { get; set; }
 
+        public bool IsHaveContract { get; set; }
+        public DateTime PayDate { get; set; }
+        public string PaymentId { get; set; }
+        public virtual int UserId { get; set; }
+        public virtual string UserName { get; set; }
+
         public List<ShortSKUModel> Products  { get; set; }
+        public List<OrderProduct> OrderProducts  { get; set; }
         public DeliveryType DeliveryType { get; set; }
         public PaymentType PaymentType { get; set; }
         public OrderState OrderState { get; set; }
 
         public OrderModel()
         {
+            OrderProducts = new List<OrderProduct>();
             Products=new List<ShortSKUModel>();
             DeliveryType=new DeliveryType();
             PaymentType=new PaymentType();

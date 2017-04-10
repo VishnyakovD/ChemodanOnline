@@ -9,6 +9,7 @@
     {
         Page.Title = "Аренда чемоданов | Chemodan.online";
     }
+    var days = (Math.Round((Model.Order.To - Model.Order.From).TotalDays));
 }
 
 @{ Html.RenderPartial("~/Views/Admin/AdminMenuPartial.cshtml"); }
@@ -17,68 +18,289 @@
 {
     <div class="admindrder">
         <div class="row line1">
-            <div class="col-md-2">
-                <input type="hidden" name="Id" value="@Model.Order.OrderId" />
+            <div class="col-md-3">
+                <input type="hidden" name="Order.OrderId" value="@Model.Order.OrderId" />
                 <div><span>Заказ : </span> <b>@Model.Order.OrderNumber</b></div>
             </div>
 
+            <div class="col-md-5">
+                <div><b>@Model.Order.CreateDate</b></div>
+            </div>
+
             <div class="col-md-4">
-                <div><span>Создан : </span> <b>@Model.Order.CreateDate</b></div>
-            </div>
-
-            <div class="col-md-3">
-                <div>Оплачен : <span class="user">@((Model.Order.IsPaid) ? "Да" : "Нет")</span></div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="pull-right">Пользователь : <span class="user">@WebSecurity.CurrentUserName</span></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-success">Сохранить</button>
-            </div>
-
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-default">Печать</button>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <span>Статус</span>
-                <select class="form-control" name="OrderState">
-                    @foreach (var item in Model.OrderStates)
-                    {
-                        <option @((Model.Order.OrderState.Id == item.Id) ? "selected" : "") value="@item.Id">@item.Name</option>
-                    }
-                </select>
+                <div class="pull-right">Пользователь : <span class="user">@Model.Order.UserName</span></div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-4">
-                <span>Доставка</span>
-                <select class="form-control" name="DeliveryType">
-                    @foreach (var item in Model.DeliveryTypes)
-                    {
-                        <option @((Model.Order.DeliveryType.Id == item.Id) ? "selected" : "") value="@item.Id">@item.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success">Сохранить</button>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <span>Комментарий</span>
-                <textarea class="form-control" name="OrderComment">@Model.Order.OrderComment</textarea>
-            </div>
-        </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-default pull-right">Печать</button>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-12"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Статус</span>
+                        <select class="form-control" name="Order.OrderState.Id">
+                            @foreach (var item in Model.OrderStates)
+                            {
+                                <option @((Model.Order.OrderState.Id == item.Id) ? "selected" : "") value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Доставка</span>
+                        <select class="form-control" name="Order.DeliveryType.Id">
+                            @foreach (var item in Model.DeliveryTypes)
+                            {
+                                <option @((Model.Order.DeliveryType.Id == item.Id) ? "selected" : "") value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Комментарий</span>
+                        <textarea class="form-control" name="Order.OrderComment">@Model.Order.OrderComment</textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Договор получен от клиента</span>
+                        <select class="form-control" name="Order.IsHaveContract">
+                            <option @(Model.Order.IsHaveContract ? "selected" : "") value="false">нет</option>
+                            <option @(Model.Order.IsHaveContract ? "selected" : "") value="true">да</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+
+                <div class="js-tabs-block">
+                    <div class="product-tabs">
+                        <div class="tab js-product-tab-title active" data-id="1">
+                            <span>Клиент</span>
+                        </div>
+                        <div class="tab js-product-tab-title" data-id="2">
+                            <span>Чемоданы</span>
+                        </div>
+
+                        <div class="tab js-product-tab-title" data-id="3">
+                            <span>Адрес</span>
+                        </div>
+
+                        <div class="tab js-product-tab-title" data-id="4">
+                            <span>Оплата</span>
+                        </div>
+                    </div>
+                    <div class="product-tabs-content js-product-tabs">
+                        <div class="js-product-tab-content" data-id="1">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Фамилия</label>
+                                    <input class="form-control" type="text" name="Order.ClientLastName" value="@Model.Order.ClientLastName" />
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Имя</label>
+                                    <input class="form-control" type="text" name="Order.ClientFirstName" value="@Model.Order.ClientFirstName" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Email *</label>
+                                    <input class="form-control" type="text" name="Order.ClientEmail" value="@Model.Order.ClientEmail" />
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Телефон *</label>
+                                    <input class="form-control" type="text" name="Order.ClientPhone" value="@Model.Order.ClientPhone" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="js-product-tab-content hide" data-id="2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="date-values border">
+                                        <img src="~/Content/img/icons/calendar.png" />
+                                        <input type="date" name="Order.From" value="@Model.Order.From.Date.ToString("yyyy-MM-dd")" />
+                                        <span class="long-minus">—</span>
+                                        <input type="date" name="Order.To" value="@Model.Order.To.Date.ToString("yyyy-MM-dd")" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Количество дней</label> <label>@days</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 order-table">
+                                    <div class="row head">
+                                        <div class="col-md-3">
+                                            Товар
+                                        </div>
+                                        <div class="col-md-3">
+                                            Аренда/день
+                                        </div>
+                                        <div class="col-md-3">
+                                            Стоимость
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            Залог
+                                        </div>
+                                    </div>
+                                    <div class="body">
+                                        @foreach (var item in Model.Order.OrderProducts)
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="item">
+                                                        <div class="product-info">
+                                                            <div class="txt-block">
+                                                                <div class="line1">
+                                                                    <a class="btn-link" href="/Home/SkuInfo?idSku=@item.ProductId" target="_blank">@item.ProductName</a>
+                                                                </div>
+                                                                <div class="line2">Артикул @item.Article</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="item">
+                                                        <span class="num">@item.PriceDay.ToString("F2", CultureInfo.InvariantCulture)</span>
+                                                        <span class="txt"> грн.</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="item">
+                                                        <span class="num">@((item.PriceDay*(decimal)days).ToString("F2", CultureInfo.InvariantCulture))</span>
+                                                        <span class="txt"> грн.</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="item">
+                                                        <span class="num">@item.FullPrice.ToString("F2", CultureInfo.InvariantCulture)</span>
+                                                        <span class="txt"> грн.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="js-product-tab-content hide" data-id="3">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Город</label>
+                                    <input class="form-control" type="text" name="Order.City" value="@Model.Order.City" />
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Дом</label>
+                                    <input class="form-control" type="text" name="Order.Home" value="@Model.Order.Home" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Тип улицы</label>
+                                    <select class="form-control" name="Order.TypeStreet">
+                                        @foreach (var item in TypesStreet.Types)
+                                        {
+                                        <option @((Model.Order.TypeStreet == item) ? "selected" : "") value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Этаж</label>
+                                    <input class="form-control" type="text" name="Order.Level" value="@Model.Order.Level" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Улица</label>
+                                    <input class="form-control" type="text" name="Order.Street" value="@Model.Order.Street" />
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>Квартира</label>
+                                    <input class="form-control" type="text" name="Order.Flat" value="@Model.Order.Flat" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="js-product-tab-content hide" data-id="4">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Оплачен</label>
+                                    <select class="form-control" name="Order.IsPaid">
+                                        @if (Model.Order.IsPaid)
+                                        {
+                                        <option @(Model.Order.IsHaveContract ? "selected" : "") value="true">да</option>
+                                        }
+                                        else
+                                        {
+                                        <option @(Model.Order.IsHaveContract ? "selected" : "") value="false">нет</option>
+                                        <option @(Model.Order.IsHaveContract ? "selected" : "") value="true">да</option>
+                                        }
+
+
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Дата оплаты</label>
+                                    <span class="form-control">@((Model.Order.PayDate.Year< 1971) ? "не оплачен" : Model.Order.PayDate.ToString())</span>
+                                    @if (Model.Order.PayDate.Year > 1971)
+                                    {
+                                    <input type="hidden" name="Order.PayDate" value="@Model.Order.PayDate" />
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Сумма оплаты</label>
+                                    <span class="form-control" name="OrderPrice">@Model.Order.Products.Sum(item => item.price)</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Тип оплаты</label>
+                                    <select class="form-control" name="Order.PaymentType.Id">
+                                        @if (Model.Order.IsPaid)
+                                        {
+                                        <option selected value="@Model.Order.PaymentType.Id">@Model.Order.PaymentType.Name</option>
+                                        }
+                                        else
+                                        {
+                                            foreach (var delType in Model.PaymentTypes)
+                                            {
+                                        <option @((Model.Order.PaymentType.Id == delType.Id) ? "selected" : "") value="@delType.Id">@delType.Name</option>
+                                            }
+                                        }
+
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>ИД транзакции</label>
+                                    <span class="form-control">@Model.Order.PaymentId</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
 
 

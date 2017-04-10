@@ -32,7 +32,8 @@ namespace Shop.DataService
         Order AddOrUpdateOrder(Order order);
         long AddOrUpdateOrderOneClick(OrderOneClick order);
         OrderOneClick ApplyOrderOneClick(long id, int userId, string userName);
-        bool PaidOrder(int num);
+        bool PaidOrder(int num, string paymentId, DateTime payDate);
+        bool SaveOrder(Order order);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -1348,7 +1349,7 @@ namespace Shop.DataService
             return null;
         }
 
-        public bool PaidOrder(int num)
+        public bool PaidOrder(int num, string paymentId, DateTime payDate)
         {
             bool result = false;
             try
@@ -1359,6 +1360,66 @@ namespace Shop.DataService
                     if (orderDb != null)
                     {
                         orderDb.IsPaid = true;
+                        orderDb.PaymentId = paymentId;
+                        orderDb.PayDate = payDate;
+                        db.GetRepository<Order>().Update(orderDb);
+                        result = true;
+                    }
+                });
+            }
+            catch (Exception err)
+            {
+                result = false;
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public bool SaveOrder(Order order)
+        {
+            bool result = false;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    var orderDb = db.GetRepository<Order>().One(order.Id);
+                    if (orderDb != null)
+                    {
+                        //orderDb.IsPaid = true;
+
+                        //orderDb.Id = order.Id;
+                        //orderDb.OrderNumber = order.OrderNumber;
+
+                        //Поставить иф который будет запрещать редактировать что-то если договор оплачен или находится под конкретным статусом
+
+                        orderDb.Client.name = order.Client.name;
+                        orderDb.Client.lastName = order.Client.lastName;
+                        orderDb.Client.mPhone = order.Client.mPhone;
+                        orderDb.Client.email = order.Client.email;
+
+                        orderDb.OrderState = order.OrderState;
+                        orderDb.DeliveryType = order.DeliveryType;
+                        orderDb.PaymentType = order.PaymentType;
+                        orderDb.OrderComment = order.OrderComment;
+
+                        orderDb.IsHaveContract = order.IsHaveContract;
+                        orderDb.PayDate = order.PayDate;
+                        orderDb.UserId = order.UserId;
+                        orderDb.UserName = order.UserName;
+                        //orderDb.PaymentId = order.PaymentId;
+
+                        orderDb.IsPaid = order.IsPaid;
+
+                        orderDb.Client.editAdress.city = order.Client.editAdress.city;
+                        orderDb.Client.editAdress.typeStreet = order.Client.editAdress.typeStreet;
+                        orderDb.Client.editAdress.street = order.Client.editAdress.street;
+                        orderDb.Client.editAdress.numHome = order.Client.editAdress.numHome;
+                        orderDb.Client.editAdress.level = order.Client.editAdress.level;
+                        orderDb.Client.editAdress.numFlat = order.Client.editAdress.numFlat;
+
+                        orderDb.From = order.From;
+                        orderDb.To = order.To;
+
                         db.GetRepository<Order>().Update(orderDb);
                         result = true;
                     }

@@ -16,6 +16,12 @@
     <property name="OrderComment" />
     <property name="IsPaid" />
     <property name="CreateDate" />
+
+    <property name="UserId" />
+    <property name="UserName" />
+    <property name="IsHaveContract" />
+    <property name="PayDate" />
+    <property name="PaymentId" />
     
     <many-to-one name="Client" lazy="false" class="Client" column="[Client]"  cascade="save-update" />
     <many-to-one name="Pdf" lazy="false" class="OrderInfoFile" />

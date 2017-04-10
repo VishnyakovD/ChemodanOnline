@@ -32,7 +32,7 @@ $(() => {
         mainPage.getInfoBlock($(e.currentTarget).data("id"), $(e.currentTarget).data("type"));
     });
 
-    $(document).on("click", `a:not('[data-ajax="true"]')`, (e) => {
+    $(document).on("click", `a:not('[data-ajax="true"]'):not('[target="_blank"]')`, (e) => {
         document.location.href = $(e.currentTarget).attr("href");
     });
 

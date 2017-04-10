@@ -19,36 +19,54 @@ namespace Shop.Models.Builders
 
     public class EditOrderModelBuilder : MenuBuilder, IEditOrderModelBuilder
     {
-        public EditOrderModelBuilder(IDataService dataService, IImagesPath imagesPath)
+        ISkuViewerBuilder SkuViewerBuilder;
+        public EditOrderModelBuilder(IDataService dataService, IImagesPath imagesPath,ISkuViewerBuilder skuViewerBuilder)
             : base(dataService, imagesPath)
         {
-
+            SkuViewerBuilder = skuViewerBuilder;
         }
 
         public EditOrderModel Build(long id)
         {
-            var model = new EditOrderModel();
+            var order = new EditOrderModel();
             var tmpOrder = dataService.Get<Order>(id);
 
-            model.DeliveryTypes = dataService.List<DeliveryType>();
-            model.PaymentTypes = dataService.List<PaymentType>();
-            model.OrderStates = dataService.List<OrderState>();
+            order.DeliveryTypes = dataService.List<DeliveryType>();
+            order.PaymentTypes = dataService.List<PaymentType>();
+            order.OrderStates = dataService.List<OrderState>();
 
-            model.Order.OrderId = tmpOrder.Id;
-            model.Order.ClientFirstName = tmpOrder.Client.name;
-            model.Order.ClientLastName = tmpOrder.Client.lastName;
-            model.Order.ClientPhone = tmpOrder.Client.mPhone;
-            model.Order.PaymentType = tmpOrder.PaymentType;
-            model.Order.OrderState = tmpOrder.OrderState;
-            model.Order.IsPaid = tmpOrder.IsPaid;
-            model.Order.CreateDate = tmpOrder.CreateDate;
-            model.Order.OrderNumber = tmpOrder.OrderNumber;
-            model.Order.DeliveryType = tmpOrder.DeliveryType;
-           // model.Order.Products = tmpOrder.Products.Select(item=>new ShortSKUModel() {})
+            order.Order.OrderId = tmpOrder.Id;
+            order.Order.ClientFirstName = tmpOrder.Client.name;
+            order.Order.ClientLastName = tmpOrder.Client.lastName;
+            order.Order.ClientPhone = tmpOrder.Client.mPhone;
+            order.Order.OrderComment = tmpOrder.OrderComment;
+            order.Order.ClientEmail = tmpOrder.Client.email;
+            order.Order.PaymentType = tmpOrder.PaymentType;
+            order.Order.OrderState = tmpOrder.OrderState;
+            order.Order.IsPaid = tmpOrder.IsPaid;
+            order.Order.CreateDate = tmpOrder.CreateDate;
+            order.Order.OrderNumber = tmpOrder.OrderNumber;
+            order.Order.DeliveryType = tmpOrder.DeliveryType;
 
+            order.Order.City= tmpOrder.Client.editAdress.city;
+            order.Order.TypeStreet = tmpOrder.Client.editAdress.typeStreet;
+            order.Order.Street = tmpOrder.Client.editAdress.street;
+            order.Order.Home = tmpOrder.Client.editAdress.numHome;
+            order.Order.Level = tmpOrder.Client.editAdress.level;
+            order.Order.Flat = tmpOrder.Client.editAdress.numFlat;
 
-            model.topMenuItems = BuildTopMenu();
-            return model;
+            order.Order.IsHaveContract = tmpOrder.IsHaveContract;
+            order.Order.PayDate = tmpOrder.PayDate;
+            order.Order.PaymentId = tmpOrder.PaymentId;
+            order.Order.UserName = tmpOrder.UserName;
+            order.Order.UserId = tmpOrder.UserId;
+            order.Order.From = tmpOrder.From;
+            order.Order.To = tmpOrder.To;
+
+            order.Order.OrderProducts = tmpOrder.Products.ToList();
+
+            order.topMenuItems = BuildTopMenu();
+            return order;
         }
 
     }

@@ -111,18 +111,18 @@ namespace Shop.Controllers
                             To = DateTime.Parse(serObject["to"].ToString()),
                             CreateDate = DateTime.Parse(serObject["createDate"].ToString())
                         };
-                        if (orderData.DeliveryType.Id==1)
+                        if (orderData.DeliveryType.Id == 1)
                         {
                             orderData.Client.adress = null;
                             orderData.Client.editAdress = null;
                         }
                         orderData = dataService.AddOrUpdateOrder(orderData);
-                        result = "Заказ создан номер: "+ orderData.OrderNumber.ToString();
+                        result = "Заказ создан номер: " + orderData.OrderNumber.ToString();
 
-                        if (orderData.PaymentType.Id==2)
+                        if (orderData.PaymentType.Id == 2)
                         {
                             var pay = new Pay(orderData);
-                            result = pay.ToString(); 
+                            result = pay.ToString();
                         }
                     }
                 }
@@ -137,7 +137,7 @@ namespace Shop.Controllers
         [System.Web.Mvc.Authorize(Roles = "Admin")]
         public ActionResult OrdersAdmin()
         {
-            var filter=new OrderFilter();
+            var filter = new OrderFilter();
             var model = OrderBulder.BuildOrders(filter);
             return View(model);
         }
@@ -145,7 +145,7 @@ namespace Shop.Controllers
         [System.Web.Mvc.Authorize(Roles = "Admin")]
         public ActionResult OrdersOneClickAdmin()
         {
-            var filter=new OrderFilter();
+            var filter = new OrderFilter();
             var model = OrderBulder.BuildOrdersOneClick(filter);
             return View(model);
         }
@@ -163,23 +163,23 @@ namespace Shop.Controllers
 
         [System.Web.Mvc.Authorize(Roles = "Admin")]
         public ActionResult FilterOrders(OrderFilter filter)
-        { 
-            if(filter==null)
+        {
+            if (filter == null)
             {
                 filter = new OrderFilter();
             }
-        var model = OrderBulder.OrdersModel(filter);
+            var model = OrderBulder.OrdersModel(filter);
             return PartialView("OrdersAdminPartial", model);
         }
 
         [System.Web.Mvc.Authorize(Roles = "Admin")]
-        public ActionResult SearchFilterOrders(string filterType,string filterValue)
+        public ActionResult SearchFilterOrders(string filterType, string filterValue)
         {
-            if (string.IsNullOrEmpty(filterType)|| string.IsNullOrEmpty(filterValue))
+            if (string.IsNullOrEmpty(filterType) || string.IsNullOrEmpty(filterValue))
             {
                 return PartialView("OrdersAdminPartial", new List<OrderModel>());
             }
-        var model = OrderBulder.OrdersModel(filterType, filterValue);
+            var model = OrderBulder.OrdersModel(filterType, filterValue);
             return PartialView("OrdersAdminPartial", model);
         }
         public ActionResult PayOneClick(string phone, long productId, string createDate)
@@ -187,7 +187,12 @@ namespace Shop.Controllers
             var result = string.Empty;
             try
             {
-                var date = DateTime.Parse(createDate);
+                DateTime date;
+                if (!DateTime.TryParse(createDate, out date))
+                {
+                    date = DateTime.Now;
+                }
+
                 var userId = 0;
                 var userName = string.Empty;
                 if (WebSecurity.IsAuthenticated)
@@ -214,13 +219,18 @@ namespace Shop.Controllers
             return Content(result, "html");
         }
 
-        public bool PaidOrder(int num)
+        public bool PaidOrder(int num, string paymentId, string date)
         {
             bool result;
             try
             {
+                DateTime createDate;
+                if (!DateTime.TryParse(date, out createDate))
+                {
+                    createDate = DateTime.Now;
+                }
 
-                result = dataService.PaidOrder(num);
+                result = dataService.PaidOrder(num, paymentId, createDate);
             }
             catch (Exception ex)
             {
@@ -254,6 +264,67 @@ namespace Shop.Controllers
         [System.Web.Mvc.Authorize(Roles = "Admin")]
         public ActionResult SaveOrderAdmin(OrderModel order)
         {
+            try
+            {
+                var userId = 0;
+                var userName = string.Empty;
+                if (WebSecurity.IsAuthenticated)
+                {
+                    userName = WebSecurity.CurrentUserName;
+                    userId = WebSecurity.CurrentUserId;
+                }
+
+                var orderDb = new Order();
+
+                orderDb.UserName = userName;
+                orderDb.UserId = userId;
+
+                orderDb.Id = order.OrderId;
+                //orderDb.OrderNumber = order.OrderNumber;
+                orderDb.OrderState = order.OrderState;
+                orderDb.DeliveryType = order.DeliveryType;
+                orderDb.OrderComment = order.OrderComment;
+
+                orderDb.From = order.From;
+                orderDb.To = order.To.Date.AddDays(1).AddSeconds(-1);
+
+                orderDb.IsHaveContract = order.IsHaveContract;
+                if (order.PayDate.Year > 1970)
+                {
+                    orderDb.PayDate = order.PayDate;
+                }
+                orderDb.PaymentType = order.PaymentType;
+
+                if (order.IsPaid && order.PaymentType.Id == 1 &&(order.PayDate.Year <1971))
+                {
+                    orderDb.PayDate = DateTime.Now;
+                }
+                else
+                {
+                    orderDb.PayDate = new DateTime(1970,1,1);
+                }
+
+                orderDb.IsPaid = order.IsPaid;
+
+                orderDb.Client.name = order.ClientFirstName;
+                orderDb.Client.lastName = order.ClientLastName;
+                orderDb.Client.mPhone = order.ClientPhone;
+                orderDb.Client.email = order.ClientEmail;
+
+                orderDb.Client.editAdress.city = order.City;
+                orderDb.Client.editAdress.typeStreet = order.TypeStreet;
+                orderDb.Client.editAdress.street = order.Street;
+                orderDb.Client.editAdress.numHome = order.Home;
+                orderDb.Client.editAdress.level = order.Level;
+                orderDb.Client.editAdress.numFlat = order.Flat;
+
+                dataService.SaveOrder(orderDb);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
             return Content("Сохранено");
         }
@@ -324,7 +395,7 @@ namespace Shop.Controllers
             currency = "UAH";
             productName = "Оплата услуг по договору: " + order.OrderNumber;
             decimal tmpSumm = order.Products.Sum(prod => prod.PriceDay);
-            productPrice =Math.Round((tmpSumm * decimal.Parse(((order.To - order.From).TotalDays).ToString())),2).ToString().Replace(",",".");
+            productPrice = Math.Round((tmpSumm * decimal.Parse(((order.To - order.From).TotalDays).ToString())), 2).ToString().Replace(",", ".");
             amount = productPrice;
             productCount = "1";
             clientFirstName = order.Client.name;
