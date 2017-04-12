@@ -107,6 +107,7 @@ namespace Shop.Controllers
                             PaymentType = { Id = long.Parse(serObject["paymentType"].ToString()) },
                             OrderState = { Id = DefaultOrderState },
                             Products = tmpProductList,
+                            PayDate = new DateTime(1970,1,1),
                             From = DateTime.Parse(serObject["from"].ToString()),
                             To = DateTime.Parse(serObject["to"].ToString()),
                             CreateDate = DateTime.Parse(serObject["createDate"].ToString())
@@ -295,13 +296,13 @@ namespace Shop.Controllers
                 }
                 orderDb.PaymentType = order.PaymentType;
 
-                if (order.IsPaid && order.PaymentType.Id == 1 &&(order.PayDate.Year <1971))
+                if (order.IsPaid && order.PaymentType.Id == 1 && (order.PayDate.Year < 1971))
                 {
                     orderDb.PayDate = DateTime.Now;
                 }
                 else
                 {
-                    orderDb.PayDate = new DateTime(1970,1,1);
+                    orderDb.PayDate = new DateTime(1970, 1, 1);
                 }
 
                 orderDb.IsPaid = order.IsPaid;
@@ -327,6 +328,59 @@ namespace Shop.Controllers
             }
 
             return Content("Сохранено");
+        }
+
+
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult SaveProductToOrder(long dbId, string code, long orderId)
+        {
+            if (dbId < 0 && string.IsNullOrEmpty(code))
+            {
+                return Content("Ошибка : неверные данные", "text/html");
+            }
+
+            try
+            {
+                if (dataService.AddOrUpdateOrderProduct(dbId, code))
+                {
+                    var model = EditOrderModelBuilder.BuildOrderModel(orderId);
+                    return PartialView("EditOrderProductsPartial", model);
+                }
+                else
+                {
+                    return Content("Ошибка : не сработал мотод AddOrUpdateOrderProduct", "text/html");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message, "text/html");
+            }
+
+
+
+
+        }
+
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult ShowChemodanTracking(long productId = -1)
+        {
+
+            if (productId < 1)
+            {
+                return Content("Ошибка : нет такого товара", "text/html");
+            }
+
+            var model = new List<ChemodanTracking>();
+
+            try
+            {
+                model = dataService.ListChemodanTrackingByProductId(productId);
+            }
+            catch (Exception err)
+            {
+                return Content("Ошибка : " + err.Message, "text/html");
+            }
+            return PartialView("ListChemodanTrackingPartial", model);
         }
 
 

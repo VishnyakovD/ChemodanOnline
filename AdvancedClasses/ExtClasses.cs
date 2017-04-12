@@ -18,10 +18,18 @@ namespace AdvancedClasses
             {
                 return false;
             }
-            else
-            {
                 return source.Any();
+        }
+
+        public static List<T> ToListSafe<T>(this ICollection<T> source)
+        {
+            if (!source.AnySafe())
+            {
+                return new List<T>();
             }
+                return source.ToList();
+
         }
     }
+
 }

@@ -377,6 +377,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\css\scss-styles\messages.scss" />
     <None Include="Properties\PublishProfiles\hosting.pubxml" />
     <None Include="Scripts\jquery-3.1.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
@@ -469,6 +470,8 @@
     <Content Include="Views\Order\OrdersOneClickAdmin.cshtml" />
     <Content Include="Views\Order\OrderOneClickAdminPartial.cshtml" />
     <Content Include="Views\Order\EditOrder.cshtml" />
+    <Content Include="Views\Order\EditOrderProductsPartial.cshtml" />
+    <Content Include="Views\Order\ListChemodanTrackingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

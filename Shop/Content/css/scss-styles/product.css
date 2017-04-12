@@ -1045,6 +1045,12 @@ footer {
 .admindrder .product-tabs .tab:last-of-type {
   margin-left: 0; }
 
+.product-to-order select, .product-to-order button {
+  width: 100%; }
+
+.edit-order {
+  font-size: 15px !important; }
+
 .border-none {
   border: none !important; }
 
@@ -1529,6 +1535,21 @@ input.error, span.error, div.error {
 @media (max-width: 768px) {
   .articles .article .header .title {
     font-size: 18px; } }
+
+#ServerMessage, .message {
+  font-size: 150%;
+  border: 1px solid #666666;
+  background: ghostwhite;
+  width: 50%;
+  padding: 20px;
+  position: fixed;
+  top: 40vh;
+  left: 25vw;
+  text-align: center;
+  z-index: 99999;
+  color: gray;
+  max-height: 60vh;
+  overflow: auto; }
 
 body {
   font-family: 'Open Sans', sans-serif;

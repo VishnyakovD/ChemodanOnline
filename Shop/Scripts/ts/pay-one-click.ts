@@ -10,9 +10,9 @@
 
         $.post("/Order/PayOneClick/", { phone: phone.val(), productId: productId, createDate: stringDate})
             .done(result => {
-                message.showMessage(result);
                 phone.val("");
-                //если заказ создан нужно почистить куки и показать всплывающее окно с крестиком
+                $.removeCookie('cart', { path: '/' });
+                message.showMessageWnd(result, "/");
             });
     }
 }

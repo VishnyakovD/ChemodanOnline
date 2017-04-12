@@ -249,6 +249,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdvancedClasses\AdvancedClasses.csproj">
+      <Project>{d658aec5-1d7c-4ed7-9bd2-d0612c775792}</Project>
+      <Name>AdvancedClasses</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

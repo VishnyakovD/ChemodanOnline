@@ -65,8 +65,8 @@
     <script src="~/Scripts/ts/message.js"></script>
     <script src="~/Scripts/ts/pay-one-click.js"></script>
     <script id="widget-wfp-script" language="javascript" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
-<script src="~/Scripts/ts/card.js"></script>
-    @if (Request.Url.OriginalString.Contains("Admin"))
+    <script src="~/Scripts/ts/card.js"></script>
+    @if (WebSecurity.IsAuthenticated && Roles.IsUserInRole("Admin"))
     {
         <script src="~/Scripts/ts/admin-orders.js"></script>
     }

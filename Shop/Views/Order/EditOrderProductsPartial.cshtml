@@ -1,0 +1,51 @@
+﻿@using System.Globalization
+@using AdvancedClasses
+@model Shop.Models.OrderModel
+
+@{
+    var days = (Math.Round((Model.To - Model.From).TotalDays));
+}
+
+@foreach (var item in Model.OrderProducts)
+{
+    <div class="row">
+        <div class="col-md-3">
+            <div class="item">
+                <div class="product-info">
+                    <div class="txt-block">
+                        <div class="line1">
+                            <a class="btn-link" href="/Home/SkuInfo?idSku=@item.ProductId" target="_blank">@item.ProductName</a>
+                        </div>
+                        <div class="line2">Артикул @item.Article</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="item">
+                <span class="num">@item.PriceDay.ToString("F2", CultureInfo.InvariantCulture)</span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="item">
+                <span class="num">@((item.PriceDay * (decimal)days).ToString("F2", CultureInfo.InvariantCulture))</span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="item">
+                <span class="num">@item.FullPrice.ToString("F2", CultureInfo.InvariantCulture)</span>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="product-to-order js-product-to-order">
+                <label class="btn btn-link" onclick="adminOrderManager.showExistProducts(@item.ProductId,@item.Id,@item.OrderId)">
+                    @(string.IsNullOrEmpty(item.Code) ? "добавить" : item.Code)
+                </label>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,15 @@
+﻿#ServerMessage, .message {
+    font-size: 150%;
+    border: 1px solid #666666;
+    background: ghostwhite;
+    width: 50%;
+    padding: 20px;
+    position: fixed;
+    top: 40vh;
+    left: 25vw;
+    text-align: center;
+    z-index: 99999;
+    color: gray;
+    max-height: 60vh;
+    overflow: auto;
+}

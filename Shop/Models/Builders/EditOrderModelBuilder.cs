@@ -14,6 +14,7 @@ namespace Shop.Models.Builders
     public interface IEditOrderModelBuilder
     {
         EditOrderModel Build(long id);
+        OrderModel BuildOrderModel(long id);
 
     }
 
@@ -35,38 +36,51 @@ namespace Shop.Models.Builders
             order.PaymentTypes = dataService.List<PaymentType>();
             order.OrderStates = dataService.List<OrderState>();
 
-            order.Order.OrderId = tmpOrder.Id;
-            order.Order.ClientFirstName = tmpOrder.Client.name;
-            order.Order.ClientLastName = tmpOrder.Client.lastName;
-            order.Order.ClientPhone = tmpOrder.Client.mPhone;
-            order.Order.OrderComment = tmpOrder.OrderComment;
-            order.Order.ClientEmail = tmpOrder.Client.email;
-            order.Order.PaymentType = tmpOrder.PaymentType;
-            order.Order.OrderState = tmpOrder.OrderState;
-            order.Order.IsPaid = tmpOrder.IsPaid;
-            order.Order.CreateDate = tmpOrder.CreateDate;
-            order.Order.OrderNumber = tmpOrder.OrderNumber;
-            order.Order.DeliveryType = tmpOrder.DeliveryType;
-
-            order.Order.City= tmpOrder.Client.editAdress.city;
-            order.Order.TypeStreet = tmpOrder.Client.editAdress.typeStreet;
-            order.Order.Street = tmpOrder.Client.editAdress.street;
-            order.Order.Home = tmpOrder.Client.editAdress.numHome;
-            order.Order.Level = tmpOrder.Client.editAdress.level;
-            order.Order.Flat = tmpOrder.Client.editAdress.numFlat;
-
-            order.Order.IsHaveContract = tmpOrder.IsHaveContract;
-            order.Order.PayDate = tmpOrder.PayDate;
-            order.Order.PaymentId = tmpOrder.PaymentId;
-            order.Order.UserName = tmpOrder.UserName;
-            order.Order.UserId = tmpOrder.UserId;
-            order.Order.From = tmpOrder.From;
-            order.Order.To = tmpOrder.To;
-
-            order.Order.OrderProducts = tmpOrder.Products.ToList();
+            order.Order = BuildOrderModel(id);
 
             order.topMenuItems = BuildTopMenu();
             return order;
+        }
+
+        public OrderModel BuildOrderModel(long id)
+        {
+            var order = dataService.Get<Order>(id);
+            var orderModel = new OrderModel();
+
+            orderModel.OrderId = order.Id;
+            orderModel.ClientFirstName = order.Client.name;
+            orderModel.ClientLastName = order.Client.lastName;
+            orderModel.ClientPhone = order.Client.mPhone;
+            orderModel.OrderComment = order.OrderComment;
+            orderModel.ClientEmail = order.Client.email;
+            orderModel.PaymentType = order.PaymentType;
+            orderModel.OrderState = order.OrderState;
+            orderModel.IsPaid = order.IsPaid;
+            orderModel.CreateDate = order.CreateDate;
+            orderModel.OrderNumber = order.OrderNumber;
+            orderModel.DeliveryType = order.DeliveryType;
+            if (order.Client.editAdress!=null)
+            {
+                orderModel.City = order.Client.editAdress.city;
+                orderModel.TypeStreet = order.Client.editAdress.typeStreet;
+                orderModel.Street = order.Client.editAdress.street;
+                orderModel.Home = order.Client.editAdress.numHome;
+                orderModel.Level = order.Client.editAdress.level;
+                orderModel.Flat = order.Client.editAdress.numFlat;
+            }
+
+
+            orderModel.IsHaveContract = order.IsHaveContract;
+            orderModel.PayDate = order.PayDate;
+            orderModel.PaymentId = order.PaymentId;
+            orderModel.UserName = order.UserName;
+            orderModel.UserId = order.UserId;
+            orderModel.From = order.From;
+            orderModel.To = order.To;
+
+            orderModel.OrderProducts = order.Products.ToList();
+
+            return orderModel;
         }
 
     }

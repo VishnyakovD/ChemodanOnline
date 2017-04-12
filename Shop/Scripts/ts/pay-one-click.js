@@ -8,9 +8,9 @@ var PayOneClick = (function () {
         var stringDate = date.toLocaleDateString() + " " + date.toLocaleTimeString();
         $.post("/Order/PayOneClick/", { phone: phone.val(), productId: productId, createDate: stringDate })
             .done(function (result) {
-            message.showMessage(result);
             phone.val("");
-            //если заказ создан нужно почистить куки и показать всплывающее окно с крестиком
+            $.removeCookie('cart', { path: '/' });
+            message.showMessageWnd(result, "/");
         });
     };
     return PayOneClick;

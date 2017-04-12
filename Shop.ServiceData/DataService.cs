@@ -34,6 +34,8 @@ namespace Shop.DataService
         OrderOneClick ApplyOrderOneClick(long id, int userId, string userName);
         bool PaidOrder(int num, string paymentId, DateTime payDate);
         bool SaveOrder(Order order);
+        List<ChemodanTracking> ListChemodanTrackingByProductId(long id);
+        bool AddOrUpdateOrderProduct(long id, string code);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -855,6 +857,23 @@ namespace Shop.DataService
             return result;
         }
 
+        public List<ChemodanTracking> ListChemodanTrackingByProductId(long id)
+        {
+            var result = new List<ChemodanTracking>();
+            try
+            {
+                dbService.Run(db =>
+                {
+                    result =((ChemodanTrackingRepository) db.GetRepository<ChemodanTracking>()).AllByProductId(id);
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result.ToList();
+        }
+
         public bool SetChemodanTrackingToSku(ChemodanTracking item)
         {
             var result = false;
@@ -1424,6 +1443,34 @@ namespace Shop.DataService
                         result = true;
                     }
                 });
+            }
+            catch (Exception err)
+            {
+                result = false;
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public bool AddOrUpdateOrderProduct(long id, string code)
+        {
+            var result = false;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    var orderProd = db.GetRepository<OrderProduct>().TryOne(id);
+                    if (orderProd == null)
+                    {
+                        // db.GetRepository<OrderProduct>().Add(orderProd);
+                    }
+                    else
+                    {
+                        orderProd.Code = code;
+                        db.GetRepository<OrderProduct>().Update(orderProd);
+                    }
+                });
+                result = true;
             }
             catch (Exception err)
             {

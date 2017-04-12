@@ -58,19 +58,7 @@ select {
     height: 30px;
 }
 
-#ServerMessage, .message {
-    font-size: 150%;
-    border: 1px solid #666666;
-    background: ghostwhite;
-    width: 50%;
-    padding: 20px;
-    position: fixed;
-    top: 40%;
-    left: 25vw;
-    text-align: center;
-    z-index: 99999;
-    color: gray;
-}
+
 
 .mailing {
     display: inline-block !important;

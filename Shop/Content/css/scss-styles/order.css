@@ -227,3 +227,9 @@
 .admindrder .product-tabs .tab:last-of-type {
   margin-left: 0; }
 
+.product-to-order select, .product-to-order button {
+  width: 100%; }
+
+.edit-order {
+  font-size: 15px !important; }
+

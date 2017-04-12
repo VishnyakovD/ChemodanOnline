@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Shop.db.Entities.ChemodanTracking>
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-condensed edit-order">
+        <tr>
+            <th colspan="4">
+                <h4>
+                    Остатки чемоданов
+                </h4>
+            </th>
+        </tr>
+        <tr>
+            <th>ид</th>
+            <th>Складской код</th>
+            <th>Статус</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td onclick="adminOrderManager.saveCodeToOrder(event,'@item.Code')">@item.Code</td>
+                <td>@item.Location.name</td>
+                <td>
+                    <span class="btn btn-blue btn-sm" onclick="showCatData('@Url.Action("ShowChemodanTracking", "Admin", new { Id = item.Id})')">Изменить</span>
+                </td>
+            </tr>
+        }
+    </table>
+}

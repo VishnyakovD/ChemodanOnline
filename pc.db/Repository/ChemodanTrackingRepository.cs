@@ -15,6 +15,12 @@ namespace Shop.db.Repository
         {
         }
 
+        public List<ChemodanTracking> AllByProductId(long productId)
+        {
+            return session.QueryOver<ChemodanTracking>()
+                .Where(a =>a.skuId== productId)
+                .List().ToList();
+        }
 
 
     }
