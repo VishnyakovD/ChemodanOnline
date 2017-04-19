@@ -10,6 +10,8 @@ namespace Shop.db.Entities
         public virtual long Id { get; set; }
 
         public virtual int OrderNumber { get; set; }
+       // public string FullOrderNumber { get; set; }
+
         public virtual int OrderPrefix { get; set; }
         public virtual string OrderComment { get; set; }
         public virtual DateTime CreateDate { get; set; }

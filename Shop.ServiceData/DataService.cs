@@ -36,6 +36,7 @@ namespace Shop.DataService
         bool SaveOrder(Order order);
         List<ChemodanTracking> ListChemodanTrackingByProductId(long id);
         bool AddOrUpdateOrderProduct(long id, string code);
+        Order UpdateOrderNumber(long order);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -1310,6 +1311,28 @@ namespace Shop.DataService
             return result;
         }
 
+        public Order UpdateOrderNumber(long order)
+        {
+            Order result = null;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    var orderDb = db.GetRepository<Order>().TryOne(order);
+
+                    orderDb.OrderPrefix++;
+                   // orderDb.FullOrderNumber = orderDb.OrderNumber + "-" + orderDb.OrderPrefix;
+                    db.GetRepository<Order>().Update(orderDb);
+
+                        result = orderDb;
+                });
+            }
+            catch (Exception err)
+            {
+                logger.Error(err.Message);
+            }
+            return result;
+        }
         public long AddOrUpdateOrderOneClick(OrderOneClick order)
         {
             long result = 0;

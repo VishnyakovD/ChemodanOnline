@@ -1,10 +1,10 @@
 ﻿@using AdvancedClasses
 @model List<Shop.Models.OrderModel>
 
-@foreach (var item in Model)
+@foreach (var item in Model.OrderByDescending(it => it.CreateDate))
 {
     <tr>
-        <td><a class="btn btn-link" href="/Order/EditOrder?id=@item.OrderId">@item.OrderNumber</a></td>
+        <td><a class="btn btn-link" href="/Order/EditOrder?id=@item.OrderId">@((item.OrderPrefix>0)? string.Format("{0}-{1}", item.OrderNumber, item.OrderPrefix) : item.OrderNumber.ToString())</a></td>
         <td>@item.CreateDate.ToString("dd.MM.yyyy HH:mm:ss")</td>
         <td>@item.ClientLastName @item.ClientFirstName</td>
         <td>@item.ClientPhone</td>

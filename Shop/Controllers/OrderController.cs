@@ -107,7 +107,7 @@ namespace Shop.Controllers
                             PaymentType = { Id = long.Parse(serObject["paymentType"].ToString()) },
                             OrderState = { Id = DefaultOrderState },
                             Products = tmpProductList,
-                            PayDate = new DateTime(1970,1,1),
+                            PayDate = new DateTime(1970, 1, 1),
                             From = DateTime.Parse(serObject["from"].ToString()),
                             To = DateTime.Parse(serObject["to"].ToString()),
                             CreateDate = DateTime.Parse(serObject["createDate"].ToString())
@@ -127,6 +127,22 @@ namespace Shop.Controllers
                         }
                     }
                 }
+            }
+            catch (Exception err)
+            {
+                return Content(err.ToString(), "text/html");
+            }
+            return Content(result, "text/html");
+        }
+
+        public ActionResult RepayOrder(long order)
+        {
+            var result = "";
+            try
+            {
+                var orderData = dataService.UpdateOrderNumber(order);
+                var pay = new Pay(orderData);
+                result = pay.ToString();
             }
             catch (Exception err)
             {
@@ -220,7 +236,7 @@ namespace Shop.Controllers
             return Content(result, "html");
         }
 
-        public bool PaidOrder(int num, string paymentId, string date)
+        public bool PaidOrder(string num, string paymentId, string date)
         {
             bool result;
             try
@@ -230,8 +246,8 @@ namespace Shop.Controllers
                 {
                     createDate = DateTime.Now;
                 }
-
-                result = dataService.PaidOrder(num, paymentId, createDate);
+                var orderNum = num.Contains("-") ? int.Parse(num.Split('-')[0]) : int.Parse(num);
+                result = dataService.PaidOrder(orderNum, paymentId, createDate);
             }
             catch (Exception ex)
             {
@@ -418,6 +434,7 @@ namespace Shop.Controllers
 
     public class Pay
     {
+        public long id { set; get; }
         public string merchantAccount { set; get; }
         public string merchantDomainName { set; get; }
         public string authorizationType { set; get; }
@@ -441,10 +458,19 @@ namespace Shop.Controllers
 
         public Pay(Order order)
         {
+            id = order.Id;
             merchantAccount = "test_merch_n1";
             merchantDomainName = "chemodan.online";
             authorizationType = "SimpleSignature";
-            orderReference = order.OrderNumber.ToString();
+            if (order.OrderPrefix > 0)
+            {
+                orderReference = order.OrderNumber + "-" + order.OrderPrefix;
+            }
+            else
+            {
+                orderReference = order.OrderNumber.ToString();
+            }
+
             orderDate = order.CreateDate.ToUniversalTime().Ticks.ToString();
             currency = "UAH";
             productName = "Оплата услуг по договору: " + order.OrderNumber;

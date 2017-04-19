@@ -502,7 +502,8 @@ $(() => {
         });
 
         $(document).on("click", ".js-repay-order", (e) => {
-            cartManager.pay(null);
+            $.post("/Order/RepayOrder/", { order: cartManager.payOnlineItem.id })
+                .done(result => {cartManager.pay(result);});
         });
     }
 });

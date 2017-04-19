@@ -20,7 +20,7 @@
         <div class="row line1">
             <div class="col-md-3">
                 <input type="hidden" name="Order.OrderId" value="@Model.Order.OrderId" />
-                <div><span>Заказ : </span> <b>@Model.Order.OrderNumber</b></div>
+                <div><span>Заказ : </span> <b>@((Model.Order.OrderPrefix > 0) ? string.Format("{0}-{1}", Model.Order.OrderNumber, Model.Order.OrderPrefix) : Model.Order.OrderNumber.ToString())</b></div>
             </div>
 
             <div class="col-md-5">

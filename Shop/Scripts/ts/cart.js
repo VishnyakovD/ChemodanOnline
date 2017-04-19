@@ -421,7 +421,8 @@ $(function () {
             }
         });
         $(document).on("click", ".js-repay-order", function (e) {
-            cartManager.pay(null);
+            $.post("/Order/RepayOrder/", { order: cartManager.payOnlineItem.id })
+                .done(function (result) { cartManager.pay(result); });
         });
     }
 });

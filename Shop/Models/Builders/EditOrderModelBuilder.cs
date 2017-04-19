@@ -58,6 +58,7 @@ namespace Shop.Models.Builders
             orderModel.IsPaid = order.IsPaid;
             orderModel.CreateDate = order.CreateDate;
             orderModel.OrderNumber = order.OrderNumber;
+            orderModel.OrderPrefix = order.OrderPrefix;
             orderModel.DeliveryType = order.DeliveryType;
             if (order.Client.editAdress!=null)
             {

@@ -118,6 +118,7 @@ namespace Shop.Models.Builders
                 IsPaid = item.IsPaid,
                 CreateDate = item.CreateDate,
                 OrderNumber = item.OrderNumber,
+                OrderPrefix = item.OrderPrefix,
                 DeliveryType = item.DeliveryType
             }).ToList();
         }
