@@ -1,0 +1,23 @@
+﻿@model string[]
+
+
+<div class="panel-group" id="accordion@(Model[0])" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="panelcol@(Model[0])">
+            <h4 class="header">
+                <a role="button" data-toggle="collapse" data-parent="#accordion@(Model[0])" href="#panellink@(Model[0])" aria-expanded="false" aria-controls="panellink@(Model[0])">
+                    <span class="glyphicon glyphicon-minus"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    @Model[1]
+                </a>
+            </h4>
+        </div>
+        <div id="panellink@(Model[0])" class="panel-collapse collapse" role="tabpanel" aria-labelledby="panelcol@(Model[0])">
+            <div class="panel-body">
+                <div class="text-only">
+                  @(new HtmlString(Model[2]))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
