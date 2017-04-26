@@ -378,6 +378,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\css\scss-styles\messages.scss" />
+    <Content Include="Content\contract.pdf" />
     <None Include="Properties\PublishProfiles\hosting.pubxml" />
     <None Include="Scripts\jquery-3.1.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />

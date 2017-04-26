@@ -132,14 +132,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="date-values border">
-                                        <img src="~/Content/img/icons/calendar.png" />
-                                        <input type="date" name="Order.From" value="@Model.Order.From.Date.ToString("yyyy-MM-dd")" />
+                                        <img src="~/Content/img/icons/calendar.png"/>
+                                        <input type="date" name="Order.From" value="@Model.Order.From.Date.ToString("yyyy-MM-dd")"/>
                                         <span class="long-minus">—</span>
-                                        <input type="date" name="Order.To" value="@Model.Order.To.Date.ToString("yyyy-MM-dd")" />
+                                        <input type="date" name="Order.To" value="@Model.Order.To.Date.ToString("yyyy-MM-dd")"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Количество дней</label> <label>@days</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Добавить чемодан</label>
+                                   <input type="text" />
+                                   <input type="button" value="Добавить"/>
                                 </div>
                             </div>
                             <div class="row">
