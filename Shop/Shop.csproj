@@ -280,6 +280,7 @@
     </Content>
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\css\swiper.min.css" />
+    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
