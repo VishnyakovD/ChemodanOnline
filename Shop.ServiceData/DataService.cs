@@ -1452,12 +1452,16 @@ namespace Shop.DataService
 
                         orderDb.IsPaid = order.IsPaid;
 
-                        orderDb.Client.editAdress.city = order.Client.editAdress.city;
-                        orderDb.Client.editAdress.typeStreet = order.Client.editAdress.typeStreet;
-                        orderDb.Client.editAdress.street = order.Client.editAdress.street;
-                        orderDb.Client.editAdress.numHome = order.Client.editAdress.numHome;
-                        orderDb.Client.editAdress.level = order.Client.editAdress.level;
-                        orderDb.Client.editAdress.numFlat = order.Client.editAdress.numFlat;
+                        if (order.DeliveryType.Id!=1)
+                        {
+                            orderDb.Client.editAdress.city = order.Client.editAdress.city;
+                            orderDb.Client.editAdress.typeStreet = order.Client.editAdress.typeStreet;
+                            orderDb.Client.editAdress.street = order.Client.editAdress.street;
+                            orderDb.Client.editAdress.numHome = order.Client.editAdress.numHome;
+                            orderDb.Client.editAdress.level = order.Client.editAdress.level;
+                            orderDb.Client.editAdress.numFlat = order.Client.editAdress.numFlat;
+                        }
+
 
                         orderDb.From = order.From;
                         orderDb.To = order.To;

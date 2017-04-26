@@ -16,6 +16,7 @@ namespace Shop.Models
         public string category { get; set; }
         public string name { get; set; }
         public decimal price { get; set; }
+        public decimal fullPrice { get; set; }
         public string smalPhotoPath { get; set; }
         public int maxCount { get; set; }
         public int orderCount { get; set; }

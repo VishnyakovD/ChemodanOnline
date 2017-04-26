@@ -65,6 +65,7 @@ namespace Shop.Models.Builders
                 price = item.chemodanType.priceDay,
                 name = item.name,
                 category = item.chemodanType.name,
+                fullPrice = item.price,
                 maxCount = item.listChemodanTracking.Count(i => i.Location.id == DefaultValueHasInStock),
                 smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList(); 
@@ -130,6 +131,7 @@ namespace Shop.Models.Builders
                     price = item.chemodanType.priceDay,
                     name = item.name,
                     category = item.chemodanType.name,
+                    fullPrice = item.price,
                     maxCount = item.listChemodanTracking.Count(i => i.Location.id == DefaultValueHasInStock),
                     smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList();
@@ -151,6 +153,7 @@ namespace Shop.Models.Builders
                     price = item.chemodanType.priceDay,
                     name = item.name,
                     category = item.chemodanType.name,
+                    fullPrice = item.price,
                     maxCount = item.listChemodanTracking.Count(i => i.Location.id == DefaultValueHasInStock),
                 smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList();
@@ -202,6 +205,7 @@ namespace Shop.Models.Builders
                     price = item.chemodanType.priceDay,
                     category = item.chemodanType.name,
                     name = item.name,
+                    fullPrice = item.price,
                     smalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path)
                 }).ToList();
             }

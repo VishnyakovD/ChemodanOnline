@@ -474,8 +474,9 @@ namespace Shop.Controllers
             orderDate = order.CreateDate.ToUniversalTime().Ticks.ToString();
             currency = "UAH";
             productName = "Оплата услуг по договору: " + order.OrderNumber;
-            decimal tmpSumm = order.Products.Sum(prod => prod.PriceDay);
-            productPrice = Math.Round((tmpSumm * decimal.Parse(((order.To - order.From).TotalDays).ToString())), 2).ToString().Replace(",", ".");
+            //decimal tmpSumm = order.Products.Sum(prod => prod.PriceDay);
+            decimal tmpSumm = order.Products.Sum(prod => prod.FullPrice);
+            productPrice = Math.Round(decimal.Parse(tmpSumm.ToString()), 2).ToString().Replace(",", ".");//Math.Round((tmpSumm * decimal.Parse(((order.To - order.From).TotalDays).ToString())), 2).ToString().Replace(",", ".");
             amount = productPrice;
             productCount = "1";
             clientFirstName = order.Client.name;

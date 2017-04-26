@@ -17,11 +17,13 @@ class CartItem {
     productId: number;
     count: number;
     price: number;
+    zalog:number;
 
-    constructor(productId: number, count: number, price: number) {
+    constructor(productId: number, count: number, price: number, zalog: number) {
         this.productId = productId;
         this.count = count;
         this.price = price;
+        this.zalog = zalog;
     }
 }
 
@@ -45,6 +47,7 @@ class Cart {
     listProducts: CartItem[];
     count: number;
     days: number;
+    zalog: number;
 
     constructor() {
         var date = new Date();
@@ -55,7 +58,7 @@ class Cart {
         this.getCartCookie();
     }
 
-    addToCart(id: number, maxCount: number, price: number): number {
+    addToCart(id: number, maxCount: number, price: number, zalog:number): number {
         var countResult: number;
         var item = this.listProducts.filter(it => it.productId === id);
         if (item.length > 0) {
@@ -69,7 +72,7 @@ class Cart {
             }
 
         } else {
-            this.listProducts.push(new CartItem(id, 1, price));
+            this.listProducts.push(new CartItem(id, 1, price,zalog));
             message.showMessage("товар добавлен в корзину");
             countResult = 1;
         }
@@ -198,6 +201,7 @@ class CartManager {
     cart: Cart;
     cartCount: JQuery;
     cartSum: JQuery;
+    cartSumZalog: JQuery;
     isReadContract: boolean;
     payOnlineItem:any;
 
@@ -205,6 +209,7 @@ class CartManager {
         this.cart = new Cart();
         this.cartCount = $(".js-count");
         this.cartSum = $(".js-order-summ");
+        this.cartSumZalog = $(".js-order-summ-zalog");
         this.isReadContract = false;
         this.payOnlineItem = {};
     }
@@ -261,6 +266,17 @@ class CartManager {
         }
     }
 
+    setCartSumZalog(): void {
+        if (this.cartSum.length > 0) {
+            var summ: number = 0;
+            this.cart.listProducts.forEach((item) => {
+                summ += (item.count * item.zalog);
+            });
+            this.cart.zalog = summ;
+            this.cartSumZalog.html(summ.toString());
+        }
+    }
+
     setProductsCount(): void {
         if (this.cartCount.length > 0) {
             var summ = 0;
@@ -276,6 +292,7 @@ class CartManager {
         this.cart.from = new Date(date.setHours(0, 0, 0, 0));
         this.cart.setDays();
         this.setCartSum();
+        this.setCartSumZalog();
         this.setCountAllProducts();
         this.setSummAllProducts();
         //  $(".js-card-dates input[name=From]").val(`${this.cart.from.toDateString()}`);
@@ -286,6 +303,7 @@ class CartManager {
         this.cart.to = new Date(date.setHours(23, 59, 59, 99));
         this.cart.setDays();
         this.setCartSum();
+        this.setCartSumZalog();
         this.setCountAllProducts();
         this.setSummAllProducts();
         //  $(".js-card-dates input[name=To]").val(this.cart.to.toString());
@@ -396,12 +414,14 @@ $(() => {
             var itemId = $(e.currentTarget).data("id");
             var itemMax = $(e.currentTarget).data("max");
             var itemPrice = $(e.currentTarget).data("price");
-            var count = cartManager.cart.addToCart(itemId, itemMax, itemPrice);
+            var itemZalog = $(e.currentTarget).data("zalog");
+            var count = cartManager.cart.addToCart(itemId, itemMax, itemPrice, itemZalog);
 
             cartManager.setProductsCount();
             cartManager.setCountOneProductInOrderPage($(e.currentTarget), count);
             cartManager.setSummOneProductInOrderPage(itemId, itemPrice, count);
             cartManager.setCartSum();
+            cartManager.setCartSumZalog();
         });
     }
 
@@ -424,6 +444,7 @@ $(() => {
             cartManager.setCountOneProductInOrderPage($(e.currentTarget), count);
             cartManager.setSummOneProductInOrderPage(itemId, itemPrice, count);
             cartManager.setCartSum();
+            cartManager.setCartSumZalog();
         });
     }
 
@@ -485,6 +506,7 @@ $(() => {
 
     if ($(".js-order-summ").length > 0) {
         cartManager.setCartSum();
+        cartManager.setCartSumZalog();
     }
     cartManager.setCountAllProducts();
     cartManager.setSummAllProducts();

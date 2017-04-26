@@ -76,7 +76,7 @@
                                             <div class="counter">
                                                 <span class="js-removecart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)">-</span>
                                                 <span class="cont-item js-count-item" data-id="@item.id">0</span>
-                                                <span class="js-addcart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)" data-max="@item.maxCount">+</span>
+                                                <span class="js-addcart" data-id="@item.id" data-price="@item.price.ToString("F2", CultureInfo.InvariantCulture)" data-max="@item.maxCount" data-zalog="@item.fullPrice.ToString("F2", CultureInfo.InvariantCulture)">+</span>
                                             </div>
                                         </div>
                                     </div>
@@ -130,6 +130,10 @@
                             <div class="summ-content">
                                 <span class="summ-label">К оплате:</span>
                                 <span class="order-summ-val text-center js-order-summ">0</span> грн.
+                            </div>
+                             <div class="summ-content">
+                                <span class="summ-label">Залоговая сумма:</span>
+                                <span class="order-summ-val text-center js-order-summ-zalog">0</span> грн.
                             </div>
                             <hr class="order" />
                             <div class="margin-block">
@@ -207,16 +211,18 @@
                                 <span class="order-summ-val text-center js-order-summ">0</span> грн.
                             </div>
 
+                            <div class="summ-content">
+                                <span class="summ-label">Залоговая сумма:</span>
+                                <span class="order-summ-val text-center js-order-summ-zalog">0</span> грн.
+                            </div>
+
                             <hr class="order" />
                             <div class="hidden-xs">
-                              
-
 
                                 <div class="order-checkbox">
-                                    <input type="checkbox" class="js-read-contract"  onchange="cartManager.setReadContract(event)"  />
+                                    <input type="checkbox" class="js-read-contract" onchange="cartManager.setReadContract(event)"/>
                                     <span>Я, согласен <a href="/">с условиями договора</a>, а также обработкой моих персональных данных</span>
                                 </div>
-
 
                                 <br/>
                             

@@ -136,7 +136,7 @@
                 </div>
 
 
-                <div class="button-info blue js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount">Добавить в корзину</div>
+                <div class="button-info blue js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount" data-zalog="@Model.price.ToString("F2", CultureInfo.InvariantCulture)">Добавить в корзину</div>
 
 
                 @if (Model.id > 0 && User.IsInRole("Admin"))

@@ -6,10 +6,11 @@ var InputErrorItem = (function () {
     return InputErrorItem;
 }());
 var CartItem = (function () {
-    function CartItem(productId, count, price) {
+    function CartItem(productId, count, price, zalog) {
         this.productId = productId;
         this.count = count;
         this.price = price;
+        this.zalog = zalog;
     }
     return CartItem;
 }());
@@ -22,7 +23,7 @@ var Cart = (function () {
         this.setDays();
         this.getCartCookie();
     }
-    Cart.prototype.addToCart = function (id, maxCount, price) {
+    Cart.prototype.addToCart = function (id, maxCount, price, zalog) {
         var countResult;
         var item = this.listProducts.filter(function (it) { return it.productId === id; });
         if (item.length > 0) {
@@ -37,7 +38,7 @@ var Cart = (function () {
             }
         }
         else {
-            this.listProducts.push(new CartItem(id, 1, price));
+            this.listProducts.push(new CartItem(id, 1, price, zalog));
             message.showMessage("товар добавлен в корзину");
             countResult = 1;
         }
@@ -153,6 +154,7 @@ var CartManager = (function () {
         this.cart = new Cart();
         this.cartCount = $(".js-count");
         this.cartSum = $(".js-order-summ");
+        this.cartSumZalog = $(".js-order-summ-zalog");
         this.isReadContract = false;
         this.payOnlineItem = {};
     }
@@ -202,6 +204,16 @@ var CartManager = (function () {
             this.cartSum.html(summ.toString());
         }
     };
+    CartManager.prototype.setCartSumZalog = function () {
+        if (this.cartSum.length > 0) {
+            var summ = 0;
+            this.cart.listProducts.forEach(function (item) {
+                summ += (item.count * item.zalog);
+            });
+            this.cart.zalog = summ;
+            this.cartSumZalog.html(summ.toString());
+        }
+    };
     CartManager.prototype.setProductsCount = function () {
         if (this.cartCount.length > 0) {
             var summ = 0;
@@ -216,6 +228,7 @@ var CartManager = (function () {
         this.cart.from = new Date(date.setHours(0, 0, 0, 0));
         this.cart.setDays();
         this.setCartSum();
+        this.setCartSumZalog();
         this.setCountAllProducts();
         this.setSummAllProducts();
         //  $(".js-card-dates input[name=From]").val(`${this.cart.from.toDateString()}`);
@@ -225,6 +238,7 @@ var CartManager = (function () {
         this.cart.to = new Date(date.setHours(23, 59, 59, 99));
         this.cart.setDays();
         this.setCartSum();
+        this.setCartSumZalog();
         this.setCountAllProducts();
         this.setSummAllProducts();
         //  $(".js-card-dates input[name=To]").val(this.cart.to.toString());
@@ -325,11 +339,13 @@ $(function () {
             var itemId = $(e.currentTarget).data("id");
             var itemMax = $(e.currentTarget).data("max");
             var itemPrice = $(e.currentTarget).data("price");
-            var count = cartManager.cart.addToCart(itemId, itemMax, itemPrice);
+            var itemZalog = $(e.currentTarget).data("zalog");
+            var count = cartManager.cart.addToCart(itemId, itemMax, itemPrice, itemZalog);
             cartManager.setProductsCount();
             cartManager.setCountOneProductInOrderPage($(e.currentTarget), count);
             cartManager.setSummOneProductInOrderPage(itemId, itemPrice, count);
             cartManager.setCartSum();
+            cartManager.setCartSumZalog();
         });
     }
     if ($(".js-removecart").length > 0) {
@@ -351,6 +367,7 @@ $(function () {
             cartManager.setCountOneProductInOrderPage($(e.currentTarget), count);
             cartManager.setSummOneProductInOrderPage(itemId, itemPrice, count);
             cartManager.setCartSum();
+            cartManager.setCartSumZalog();
         });
     }
     if ($(".js-confirm-order").length > 0) {
@@ -408,6 +425,7 @@ $(function () {
     }
     if ($(".js-order-summ").length > 0) {
         cartManager.setCartSum();
+        cartManager.setCartSumZalog();
     }
     cartManager.setCountAllProducts();
     cartManager.setSummAllProducts();
