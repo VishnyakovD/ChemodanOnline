@@ -199,6 +199,7 @@ namespace Shop.Controllers
             var model = OrderBulder.OrdersModel(filterType, filterValue);
             return PartialView("OrdersAdminPartial", model);
         }
+
         public ActionResult PayOneClick(string phone, long productId, string createDate)
         {
             var result = string.Empty;
@@ -339,7 +340,6 @@ namespace Shop.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -357,7 +357,7 @@ namespace Shop.Controllers
 
             try
             {
-                if (dataService.AddOrUpdateOrderProduct(dbId, code))
+                if (dataService.AddOrUpdateOrderProduct(dbId, code, null))
                 {
                     var model = EditOrderModelBuilder.BuildOrderModel(orderId);
                     return PartialView("EditOrderProductsPartial", model);
@@ -371,12 +371,53 @@ namespace Shop.Controllers
             {
                 return Content(ex.Message, "text/html");
             }
-
-
-
-
         }
 
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult AddProductToOrder(string articul, long orderId)
+        {
+            if (orderId < 0 && string.IsNullOrEmpty(articul))
+            {
+                return Content("Ошибка : неверные данные", "text/html");
+            }
+
+            try
+            {
+                if (dataService.AddOrUpdateOrderProduct(-1, string.Empty, articul, orderId))
+                {
+                    var model = EditOrderModelBuilder.BuildOrderModel(orderId);
+                    return PartialView("EditOrderProductsPartial", model);
+                }
+                return Content("Ошибка : не сработал мотод AddOrUpdateOrderProduct", "text/html");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message, "text/html");
+            }
+        }
+
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public ActionResult RemoveProducFromOrder(long orderLine, long orderId)
+        {
+            if (orderLine <= 0)
+            {
+                return Content("Ошибка : неверные данные", "text/html");
+            }
+
+            try
+            {
+                if (dataService.RemoveProductFromOrder(orderLine))
+                {
+                    var model = EditOrderModelBuilder.BuildOrderModel(orderId);
+                    return PartialView("EditOrderProductsPartial", model);
+                }
+                return Content("Ошибка : не сработал мотод RemoveProductFromOrder", "text/html");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message, "text/html");
+            }
+        }
         [System.Web.Mvc.Authorize(Roles = "Admin")]
         public ActionResult ShowChemodanTracking(long productId = -1)
         {
@@ -459,7 +500,7 @@ namespace Shop.Controllers
         public Pay(Order order)
         {
             id = order.Id;
-            merchantAccount = "test_merch_n1";
+            merchantAccount = "chemodan_online";
             merchantDomainName = "chemodan.online";
             authorizationType = "SimpleSignature";
             if (order.OrderPrefix > 0)
@@ -516,8 +557,8 @@ namespace Shop.Controllers
         public string GenerateSignature()
         {
             var dataBytes = Encoding.UTF8.GetBytes(HashData());
-            var keyStr = "flk3409refn54t54t*FNJRET";
-            //  var keyStr = "0142af3ac1904c91992e7a3c9e8b1226ae6e2732";
+           // var keyStr = "flk3409refn54t54t*FNJRET";
+            var keyStr = "0142af3ac1904c91992e7a3c9e8b1226ae6e2732";
             var key = Encoding.UTF8.GetBytes(keyStr);
             var hmac = new HMACMD5(key);
             var hashBytes = hmac.ComputeHash(dataBytes);

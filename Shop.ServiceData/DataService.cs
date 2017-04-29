@@ -35,8 +35,9 @@ namespace Shop.DataService
         bool PaidOrder(int num, string paymentId, DateTime payDate);
         bool SaveOrder(Order order);
         List<ChemodanTracking> ListChemodanTrackingByProductId(long id);
-        bool AddOrUpdateOrderProduct(long id, string code);
+        bool AddOrUpdateOrderProduct(long id, string code, string articul, long? orderId = -1);
         Order UpdateOrderNumber(long order);
+        bool RemoveProductFromOrder(long orderLine);
 
         long AddOrUpdateChemodanLocation(ChemodanLocation chemodanLocation);
         bool AddOrUpdateMailing(Mailing mailing);
@@ -865,7 +866,7 @@ namespace Shop.DataService
             {
                 dbService.Run(db =>
                 {
-                    result =((ChemodanTrackingRepository) db.GetRepository<ChemodanTracking>()).AllByProductId(id);
+                    result = ((ChemodanTrackingRepository)db.GetRepository<ChemodanTracking>()).AllByProductId(id);
                 });
             }
             catch (Exception err)
@@ -1321,10 +1322,10 @@ namespace Shop.DataService
                     var orderDb = db.GetRepository<Order>().TryOne(order);
 
                     orderDb.OrderPrefix++;
-                   // orderDb.FullOrderNumber = orderDb.OrderNumber + "-" + orderDb.OrderPrefix;
+                    // orderDb.FullOrderNumber = orderDb.OrderNumber + "-" + orderDb.OrderPrefix;
                     db.GetRepository<Order>().Update(orderDb);
 
-                        result = orderDb;
+                    result = orderDb;
                 });
             }
             catch (Exception err)
@@ -1366,7 +1367,7 @@ namespace Shop.DataService
             return result;
         }
 
-        public OrderOneClick ApplyOrderOneClick(long id,int userId, string userName)
+        public OrderOneClick ApplyOrderOneClick(long id, int userId, string userName)
         {
             try
             {
@@ -1377,7 +1378,7 @@ namespace Shop.DataService
                     if (orderDb != null)
                     {
                         orderDb.IsComplite = true;
-                        orderDb.UserId =userId;
+                        orderDb.UserId = userId;
                         orderDb.UserName = userName;
                         db.GetRepository<OrderOneClick>().Update(orderDb);
                     }
@@ -1452,7 +1453,7 @@ namespace Shop.DataService
 
                         orderDb.IsPaid = order.IsPaid;
 
-                        if (order.DeliveryType.Id!=1)
+                        if (order.DeliveryType.Id != 1)
                         {
                             orderDb.Client.editAdress.city = order.Client.editAdress.city;
                             orderDb.Client.editAdress.typeStreet = order.Client.editAdress.typeStreet;
@@ -1479,7 +1480,7 @@ namespace Shop.DataService
             return result;
         }
 
-        public bool AddOrUpdateOrderProduct(long id, string code)
+        public bool AddOrUpdateOrderProduct(long id, string code, string articul, long? orderId = -1)
         {
             var result = false;
             try
@@ -1489,15 +1490,43 @@ namespace Shop.DataService
                     var orderProd = db.GetRepository<OrderProduct>().TryOne(id);
                     if (orderProd == null)
                     {
-                        // db.GetRepository<OrderProduct>().Add(orderProd);
+                        if (orderId.HasValue&& orderId.Value!=-1)
+                        {
+                            var sku = ((SkuRepository)db.GetRepository<Sku>()).OneByArticul(articul);
+                            orderProd = new OrderProduct(sku, orderId.Value);
+                            db.GetRepository<OrderProduct>().Add(orderProd);
+                            result = true;
+                        }
                     }
                     else
                     {
                         orderProd.Code = code;
                         db.GetRepository<OrderProduct>().Update(orderProd);
+                        result = true;
                     }
                 });
-                result = true;
+                
+            }
+            catch (Exception err)
+            {
+                result = false;
+                logger.Error(err.Message);
+            }
+            return result;
+        }
+
+        public bool RemoveProductFromOrder(long orderLine)
+        {
+            var result = false;
+            try
+            {
+                dbService.Run(db =>
+                {
+                    var item = db.GetRepository<OrderProduct>().TryOne(orderLine);
+                    db.GetRepository<OrderProduct>().Remove(item);
+                    result = true;
+                });
+                
             }
             catch (Exception err)
             {

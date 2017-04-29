@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 using Shop.db.Entities;
 
 namespace Shop.db.Repository
@@ -163,6 +164,11 @@ namespace Shop.db.Repository
         {
             return session.QueryOver<Sku>()
                 .Where(a => a.displayType == type).List();
+        }
+
+        public Sku OneByArticul(string articul)
+        {
+            return session.Query<Sku>().First(item => item.articul == articul);
         }
 
     }

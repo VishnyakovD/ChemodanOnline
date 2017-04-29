@@ -62,6 +62,18 @@ namespace Shop.db.Entities
         {
 
         }
+
+        public OrderProduct(Sku sku, long orderId)
+        {
+            ProductId = sku.id;
+            OrderId = orderId;
+            ProductName = sku.name;
+            Article = sku.articul;
+            Code = string.Empty;
+            PriceDay = sku.chemodanType.priceDay;
+            FullPrice = sku.price;
+            NaturalPrice = sku.priceAct;
+        }
     }
 
     public class DeliveryType

@@ -39,7 +39,7 @@ namespace Shop.db.Repository
                 .Query<ChemodanType>().OrderBy(type => type.priceDay)
                 .Select(
                     type =>
-                        new FilterItemValue {Id = type.id, Value = $"{type.name} | {type.priceDay}"})
+                        new FilterItemValue {Id = type.id, Value = $"{type.name}"})
                 .ToArray(); 
 
         return result;

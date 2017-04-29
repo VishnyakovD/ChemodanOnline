@@ -143,10 +143,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 js-order-articul-block">
                                     <label>Добавить чемодан</label>
-                                   <input type="text" />
-                                   <input type="button" value="Добавить"/>
+                                   <input class="js-order-articul" type="text" placeholder="артикул..." />
+                                   <input type="button" value="Добавить" onclick="adminOrderManager.addProductToOrder(event, @Model.Order.OrderId);"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -243,7 +243,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Сумма оплаты</label>
-                                    <span class="form-control" name="OrderPrice">@Model.Order.Products.Sum(item => item.price)</span>
+                                    <span class="form-control" name="OrderPrice">@(Model.Order.OrderProducts.Sum(item => item.PriceDay) * (decimal)days)</span>
                                 </div>
                             </div>
 

@@ -42,10 +42,26 @@
 
         <div class="col-md-3">
             <div class="product-to-order js-product-to-order">
-                <label class="btn btn-link" onclick="adminOrderManager.showExistProducts(@item.ProductId,@item.Id,@item.OrderId)">
-                    @(string.IsNullOrEmpty(item.Code) ? "добавить" : item.Code)
+                <label class="btn btn-link" onclick="adminOrderManager.showExistProducts(@item.ProductId, @item.Id, @item.OrderId)">
+                    @(string.IsNullOrEmpty(item.Code) ? "назначить" : item.Code)
+                </label>
+                <label class="btn btn-link" onclick="adminOrderManager.removeProduct(@item.Id, @item.OrderId)">
+                    удалить
                 </label>
             </div>
         </div>
     </div>
 }
+
+<div class="row">
+    <div class="col-md-6 text-right">
+        <span>Аренда:</span> <label>@(Model.OrderProducts.Sum(item => item.PriceDay)* (decimal)days)</label>грн
+       
+    </div>
+
+
+    <div class="col-md-6 text-right">
+        <span>Залог:</span> <label>@(Model.OrderProducts.Sum(item => item.FullPrice))</label>грн
+    </div>
+
+</div>
