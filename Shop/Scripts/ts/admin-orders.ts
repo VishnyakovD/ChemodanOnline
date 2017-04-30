@@ -50,6 +50,16 @@
                 $(event.target).closest(".js-order-articul-block").find(".js-order-articul").val("");
             });
     }
+
+    printOrder(orderId:number): void {
+
+        $.post("/Order/PrintOrder/", {orderId: orderId })
+            .done(result => {
+                $(event.target).addClass("success");
+                $(".js-edit-order-body").html(result);
+                $(event.target).closest(".js-order-articul-block").find(".js-order-articul").val("");
+            });
+    }
 }
 
 

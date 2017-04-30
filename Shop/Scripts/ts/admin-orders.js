@@ -42,6 +42,14 @@ var AdminOrderManager = (function () {
             $(event.target).closest(".js-order-articul-block").find(".js-order-articul").val("");
         });
     };
+    AdminOrderManager.prototype.printOrder = function (orderId) {
+        $.post("/Order/PrintOrder/", { orderId: orderId })
+            .done(function (result) {
+            $(event.target).addClass("success");
+            $(".js-edit-order-body").html(result);
+            $(event.target).closest(".js-order-articul-block").find(".js-order-articul").val("");
+        });
+    };
     return AdminOrderManager;
 }());
 var adminOrderManager;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
@@ -440,6 +441,20 @@ namespace Shop.Controllers
             return PartialView("ListChemodanTrackingPartial", model);
         }
 
+        [System.Web.Mvc.Authorize(Roles = "Admin")]
+        public FileStreamResult PrintOrder(long orderId = -1)
+        {
+            var pdfManager = new PdfManager();
+
+            var doc=pdfManager.BuildDocument(EditOrderModelBuilder.Build(orderId));
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = "Contract.pdf",
+                Inline = false,
+            };
+            Response.AppendHeader("Content-Disposition", cd.ToString());
+            return new FileStreamResult(doc, "application/pdf");
+        }
 
         //[HttpPost]
         //public object PayLockSumm(string data)

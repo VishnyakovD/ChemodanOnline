@@ -14,6 +14,7 @@
 
 @{ Html.RenderPartial("~/Views/Admin/AdminMenuPartial.cshtml"); }
 
+
 @using (Ajax.BeginForm("SaveOrderAdmin", new AjaxOptions { OnSuccess = "onSucssessMessage" }))
 {
     <div class="admindrder">
@@ -40,7 +41,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-default pull-right">Печать</button>
+                        <a class="btn btn-default pull-right" href="/Order/PrintOrder?orderId=@Model.Order.OrderId">Печать</a>
                     </div>
 
                 </div>
