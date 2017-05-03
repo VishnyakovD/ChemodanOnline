@@ -70,7 +70,7 @@ namespace Shop
                 document.Add(new Paragraph("13.  З метою забезпечення виконання Наймачем зобов`язань передбаченого п. 11 та п.12 цього Договору Наймач повинен сплатити Наймодавцю грошову заставу у розмірі повної вартості Майна. Наймач не має право користуватися сплаченою грошовою заставою до моменту повернення Майна. Сторони погоджуються, що у випадку порушень Наймачем зобов’язань встановлених в п. 11 та п. 12 Договору, Наймодавець  без будь-яких додаткових погоджень із Наймачем або звернень до суду чи інших осіб набуває право власності на заставу у розмірі який встановлюється із врахуванням п. 14, п. 15, та п. 16 цього Договору.", normal));
                 document.Add(new Paragraph("Грошова застава повертається Наймодавцем Наймачу за вирахуванням тієї частини, на яку Наймодавець набув право власності. В результаті порушень Наймачем зобов’язань передбачених п. 11 та п.12 Договору після моменту повернення Майна (якщо таке повернення було здійснено Наймачем в пункт прийому-видачі Майна) Наймодавцю з грошової застави окрім вирахування тієї частини, на яку Наймодавець набув право власності також вираховується штраф у розмірі вартості найму Майна за кожну добу користування Майном понад строки визначені в Договорі та/або відшкодування за пошкодження Майна в розмірі передбачених п.15.", normal));
                 decimal days = (decimal)(Math.Round((order.Order.To - order.Order.From).TotalDays));
-                document.Add(new Paragraph($"14.  Строк користування Майном становить {days} календарних днів починаючи з {order.Order.From.ToString("dd.MM.yyyy")} по {order.Order.To.ToString("dd.MM.yyyy")} включно.", normal));
+                document.Add(new Paragraph($"14.  Строк користування Майном становить {days} календарних днів починаючи з {order.Order.From.ToString("dd.MM.yyyy")}р. по {order.Order.To.ToString("dd.MM.yyyy")}р. включно.", normal));
                 document.Add(new Paragraph("      14.1.  Майно, що передається Наймачу:", normal));
                 document.Add(new Paragraph(" ", normal));
 
@@ -172,6 +172,67 @@ namespace Shop
                 table1.AddCell(new PdfPCell(new Phrase(" ", normal)) {  MinimumHeight = 16, Border = 0 });
 
                 document.Add(table1);
+
+                document.NewPage();
+
+                document.Add(new Paragraph("                                                                   АКТ ПРИЙОМУ-ПЕРЕДАЧІ", head));
+
+                document.Add(new Paragraph($"                                                     до Договору найму № {orderNumber} від {order.Order.From.ToString("dd.MM.yyyy")}р.", normal));
+                document.Add(new Paragraph($"м. Київ                                                                                                                                                    дата " + DateTime.Now.Date.ToString("dd.MM.yyyy") + "р.", normal));
+                document.Add(new Paragraph(" ", normal));
+                document.Add(new Paragraph($"Фізична особа підприємець Глущенко Iнна Миколаївна з однієї сторони (далі в тексті – Наймодавець) та {order.Order.ClientLastName} {order.Order.ClientFirstName} (ПІ) з другої сторони (далі в тексті – Наймач), разом іменовані – Сторони, склали цей акт про передачу від {order.Order.From.ToString("dd.MM.yyyy")}р. до {order.Order.To.ToString("dd.MM.yyyy")}р. в рамках Договору від {order.Order.From.ToString("dd.MM.yyyy")}р. № {orderNumber} наступного Майна", normal));
+                document.Add(new Paragraph(" ", normal));
+                PdfPTable table2 = new PdfPTable(4);
+
+                table2.AddCell(new PdfPCell(new Phrase("№", normal)) { HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });
+                table2.AddCell(new PdfPCell(new Phrase("Товарний код", normal)) { HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });
+                table2.AddCell(new PdfPCell(new Phrase("Повна вартість майна", normal)) { HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });
+                table2.AddCell(new PdfPCell(new Phrase("Примітки", normal)) { HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });
+
+                int i = 1;
+                foreach (var item in order.Order.OrderProducts)
+                {
+                    table2.AddCell(new PdfPCell(new Phrase((i++).ToString(), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table2.AddCell(new PdfPCell(new Phrase(item.Code, normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table2.AddCell(new PdfPCell(new Phrase((item.PriceDay * days).ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table2.AddCell(new PdfPCell(new Phrase("", normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                }
+
+                document.Add(table2);
+
+                document.Add(new Paragraph(" ", normal));
+                document.Add(new Paragraph(" ", normal));
+                document.Add(new Paragraph(" ", normal));
+
+                float[] widths1 = new float[] { 20f, 70f, 30, 20f, 70f };
+                PdfPTable table3 = new PdfPTable(widths1);
+                table3.WidthPercentage = 100;
+
+                table3.AddCell(new PdfPCell(new Phrase("Наймодавець:", bold)) { MinimumHeight = 16, Colspan = 2, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase("Наймач: ", bold)) { MinimumHeight = 16, Colspan = 2, Border = 0 });
+
+                table3.AddCell(new PdfPCell(new Phrase("", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase("", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase("", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase($"", normal)) { MinimumHeight = 16, Border = 0 });
+
+
+                table3.AddCell(new PdfPCell(new Phrase(" ", bold)) { MinimumHeight = 25, Colspan = 5, Border = 0 });
+
+                table3.AddCell(new PdfPCell(new Phrase("__________________________Глущенко І.М.", normal)) { MinimumHeight = 16, Colspan = 2, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase(" ", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase("__________________________ПІ", normal)) { MinimumHeight = 16, Colspan = 2, Border = 0 });
+
+                table3.AddCell(new PdfPCell(new Phrase("дата", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase(" ", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase(" ", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase("дата ", normal)) { MinimumHeight = 16, Border = 0 });
+                table3.AddCell(new PdfPCell(new Phrase(" ", normal)) { MinimumHeight = 16, Border = 0 });
+
+                document.Add(table3);
+
 
                 document.Close();
 
