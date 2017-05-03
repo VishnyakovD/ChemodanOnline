@@ -36,12 +36,15 @@ namespace Shop
                 var head = new Font(sylfaen, 10f, Font.NORMAL, BaseColor.BLACK);
                 var normal = new Font(sylfaen, 10f, Font.NORMAL, BaseColor.BLACK);
                 var underline = new Font(sylfaen, 10f, Font.UNDERLINE, BaseColor.BLACK);
+                var bold = new Font(sylfaen, 11f, Font.BOLD, BaseColor.BLACK);
 
                 document.Open();
 
                 var orderNumber = ((order.Order.OrderPrefix > 0)
                     ? $"{order.Order.OrderNumber}-{order.Order.OrderPrefix}"
                     : $"{order.Order.OrderNumber}");
+
+                var zalog = order.Order.OrderProducts.Sum(item => item.FullPrice);
 
                 document.Add(new Paragraph($"                                                                                  Договір найму №{orderNumber}", head) );
 
@@ -68,20 +71,107 @@ namespace Shop
                 document.Add(new Paragraph("Грошова застава повертається Наймодавцем Наймачу за вирахуванням тієї частини, на яку Наймодавець набув право власності. В результаті порушень Наймачем зобов’язань передбачених п. 11 та п.12 Договору після моменту повернення Майна (якщо таке повернення було здійснено Наймачем в пункт прийому-видачі Майна) Наймодавцю з грошової застави окрім вирахування тієї частини, на яку Наймодавець набув право власності також вираховується штраф у розмірі вартості найму Майна за кожну добу користування Майном понад строки визначені в Договорі та/або відшкодування за пошкодження Майна в розмірі передбачених п.15.", normal));
                 decimal days = (decimal)(Math.Round((order.Order.To - order.Order.From).TotalDays));
                 document.Add(new Paragraph($"14.  Строк користування Майном становить {days} календарних днів починаючи з {order.Order.From.ToString("dd.MM.yyyy")} по {order.Order.To.ToString("dd.MM.yyyy")} включно.", normal));
-                document.Add(new Paragraph("    14.1.  Майно, що передається Наймачу:", normal));
-                document.Add(new Paragraph("", normal));//тут вставить таблицу
-                document.Add(new Paragraph($"    14.2.  Загальна вартість прокату Майна  за період передбачений в п. 14 становить  {(order.Order.OrderProducts.Sum(item => item.PriceDay) * days).ToString("F2")} грн.;", normal));
-                document.Add(new Paragraph("", normal));
-                document.Add(new Paragraph("", normal));
-                document.Add(new Paragraph("", normal));
-                document.Add(new Paragraph("", normal));
-                document.Add(new Paragraph("", normal));
-                document.Add(new Paragraph("", normal));
+                document.Add(new Paragraph("      14.1.  Майно, що передається Наймачу:", normal));
+                document.Add(new Paragraph(" ", normal));
 
+                PdfPTable table = new PdfPTable(4);
 
+                table.AddCell(new PdfPCell(new Phrase("Товарний код", normal)) {HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });
+                table.AddCell(new PdfPCell(new Phrase("Вартість найму Майна за добу, грн.", normal)) {HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });
+                table.AddCell(new PdfPCell(new Phrase("Вартість найму за весь період, грн.", normal)) {HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });
+                table.AddCell(new PdfPCell(new Phrase("Заставна вартість, грн.", normal)) {HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });
+                
 
+                foreach (var item in order.Order.OrderProducts)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(item.Code, normal)) { HorizontalAlignment = 1, MinimumHeight = 25,VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table.AddCell(new PdfPCell(new Phrase(item.PriceDay.ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table.AddCell(new PdfPCell(new Phrase((item.PriceDay*days).ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table.AddCell(new PdfPCell(new Phrase(item.FullPrice.ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                }
 
+                document.Add(table);
 
+                document.Add(new Paragraph(" ", normal));
+
+                document.Add(new Paragraph($"      14.2.  Загальна вартість прокату Майна  за період передбачений в п. 14 становить  {(order.Order.OrderProducts.Sum(item => item.PriceDay) * days).ToString("F2")} грн.;", normal));
+                document.Add(new Paragraph($"      14.3.  Повна вартість Майна (сума застави), що передається Наймачем Наймодавцеві, складає: {zalog.ToString("F2")} (_______________________________________________) грн.;", normal));
+                document.Add(new Paragraph("    14.4.  Взаєморозрахунки між Сторонами можуть проводитися в готівковій або безготівковій формі. Наймач сплачує Наймодавцю в момент повернення Майна штраф у розмірі вартості найму Майна за кожну добу користування Майном понад строки визначені в Договорі.", normal));
+                document.Add(new Paragraph("  15.  У випадку пошкодження Майна/зміни його стану незалежно від вини Наймача останній несе повну матеріальну відповідальність перед Наймодавцем за такі пошкодження/зміни враховуючи наступне:", normal));
+                document.Add(new Paragraph("      15.1.  Пошкодження/зміна стану Майна, що виключають його використання в подальшому. До таких пошкоджень або змін відносяться поріз тканини, тріщина пластику. У випадку наявності таких пошкоджень/змін Майна Наймач  зобов`язаний сплатити Наймачу повну вартість Майна згідно із п. 14.3 в момент повернення Майна Наймодавцю;", normal));
+                document.Add(new Paragraph("      15.2.  Пошкодження/зміна стану Майна, механізмів, вузлів або частин Майна після ремонту/чистки яких подальше використання Майна можливе і це не вплине на подальший строк його використання. У випадку наявності таких пошкоджень/змін стану Майна Наймач повинен сплатити Наймодавцю в момент повернення Майна вартість такого ремонту, розмір якого встановлюється згідно прейскуранту, який розміщено на сайті;", normal));
+                document.Add(new Paragraph("      15.3.  Пошкодження/зміна стану Майна, механізмів, вузлів або частин Майна після ремонту/чистки яких подальше використання Майна можливе але це вплине на якість/строк користування (наприклад, набуття неприйнятного запаху, деформація пластику  без тріщини). У випадку наявності таких пошкоджень/змін стану Майна Наймач повинен сплатити Наймодавцю вартість такого ремонту в момент повернення Майна, розмір якого встановлюється згідно прейскуранту, який розміщено в пункті прийому-видачі та додатково сплатити штраф у розмірі 10% повної вартості Майна яка встановлена п. 14.3. Договору.", normal));
+                document.Add(new Paragraph("  16.  Повернення Майна Наймачем Наймодавцю здійснюється в пункті прийому-видачі за адресою: пр. Перемоги, 67, корпус “I”, офіс 213. У випадку наявності пошкоджень/зміни стану Майна Наймодавець в присутності Наймача оформлює акт про наявність пошкоджень/змін стану Майна. На підставі зазначеного акту та відповідного прейскуранту встановлюється вартість ремонту/чистки Майна. У випадку втрати чохла, Наймач сплачує грошове відшкодування в розмірі 250 грн. ", normal));
+                document.Add(new Paragraph("  17.  Будь-які спори за цим Договором вирішуються шляхом переговорів або в суді відповідно до чинного законодавства України.", normal));
+                document.Add(new Paragraph("  18.  Сторони зобов’язуються при укладенні, виконанні та після припинення цього Договору дотримуватися вимог законодавчих та інших нормативно-правових актів України у сфері захисту персональних даних, в т.ч. щодо їх отримання, обробки, зберігання, якщо інше не врегульоване письмовою домовленістю Сторін.", normal));
+                document.Add(new Paragraph("  19.  Сторони усвідомлюють, що в рамках виконання зобов’язань за цим Договором вони можуть обмінюватись документами або іншими даними, які містять відомості, що належать до персональних даних фізичних осіб (підписанти, відповідальні/контактні особи тощо). При цьому уповноважені представники Сторін (підписанти), укладаючи цей Договір, по відношенню до персональних даних зобов’язуються:", normal));
+                document.Add(new Paragraph("      19.1.  гарантувати отримання згоди на обробку вказаних даних від суб’єктів персональних даних - винятково відповідно до мети, визначеної предметом та зобов’язаннями Сторін за цим Договором; гарантувати повідомлення суб’єктів персональних даних про їх включення до відповідних баз та повідомлення таких осіб про їхні права, визначені законодавством;", normal));
+                document.Add(new Paragraph("      19.2.  надавати свою згоду, шляхом підписання цього Договору, на обробку власних персональних даних та вважатися повідомленим про включення його персональних даних до відповідної бази даних іншої Сторони та повідомленим про права, визначені законодавством.", normal));
+                document.Add(new Paragraph("  20.  Будь-які персональні дані, що передаються чи можуть передаватись за цим Договором, становитимуть конфіденційну інформацію, що не підлягає розголошенню/передачі у будь-якому вигляді, окрім випадків, прямо передбачених законодавством України. Про всі випадки розголошення/передачі персональних даних за цим Договором Сторони негайно інформують одна одну у письмовому вигляді.", normal));
+                document.Add(new Paragraph("  21.  Договір укладено на невизначений строк але у будь-якому разі до повного виконання сторонами своїх обов’язків.", normal));
+                document.Add(new Paragraph("  22.  Договір може бути розірвано виключно за взаємною згодою Сторін шляхом підписання про це угоди на паперовому носії.", normal));
+                document.Add(new Paragraph("  ", normal));
+
+                float[] widths = new float[] { 20f, 70f, 30, 20f, 70f };
+                PdfPTable table1 = new PdfPTable(widths);
+                table1.WidthPercentage = 100;
+
+                table1.AddCell(new PdfPCell(new Phrase("Наймодавець:", bold)) {MinimumHeight = 16, Colspan = 2,Border =0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("Наймач: ", bold)) { MinimumHeight = 16, Colspan = 2, Border = 0});
+
+                table1.AddCell(new PdfPCell(new Phrase("ФОП:", normal)) {MinimumHeight = 16, Border = 0});
+                table1.AddCell(new PdfPCell(new Phrase("Глущенко І.М.", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("ПІБ:", normal)) { MinimumHeight = 16, Border = 0});
+                table1.AddCell(new PdfPCell(new Phrase($"{order.Order.ClientLastName} {order.Order.ClientFirstName}", normal)) { MinimumHeight = 16, Border = 0 });
+
+                table1.AddCell(new PdfPCell(new Phrase("Код:", normal)) { MinimumHeight = 16, Border = 0});
+                table1.AddCell(new PdfPCell(new Phrase("3108104242", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+
+                table1.AddCell(new PdfPCell(new Phrase("Р/р", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+
+                table1.AddCell(new PdfPCell(new Phrase("Адреса", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("пр. Перемоги, 67, корпус «I», офіс 213", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("Адреса", normal)) { MinimumHeight = 16, Border = 0 });
+
+                string flat = (string.IsNullOrEmpty(order.Order.Flat) ? "" : ", "+order.Order.Flat);
+                string address =!string.IsNullOrEmpty(order.Order.City)?$"{order.Order.City}, {order.Order.TypeStreet}.{order.Order.Street}, дом {order.Order.Home}{flat}":"";
+                table1.AddCell(new PdfPCell(new Phrase($"{address}", normal)) { MinimumHeight = 16, Border = 0 });
+
+                table1.AddCell(new PdfPCell(new Phrase("Email", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("chemodan.online@gmail.com", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase(" ", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("Email", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase($"{order.Order.ClientEmail}", normal)) {  MinimumHeight = 16, Border = 0 });
+
+                table1.AddCell(new PdfPCell(new Phrase("Телефон", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("+38(09X) ХХХ-ХХ-ХХ", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("Телефон", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase($"{order.Order.ClientPhone}", normal)) {  MinimumHeight = 16, Border = 0 });
+
+                table1.AddCell(new PdfPCell(new Phrase(" ", bold)) { MinimumHeight = 25, Colspan = 5,Border = 0});
+
+                table1.AddCell(new PdfPCell(new Phrase("__________________________Глущенко І.М.", normal)) { MinimumHeight = 16, Colspan = 2, Border = 0});
+                table1.AddCell(new PdfPCell(new Phrase(" ", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("__________________________ПІ", normal)) { MinimumHeight = 16, Colspan = 2, Border = 0});
+
+                table1.AddCell(new PdfPCell(new Phrase("дата", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase(" ", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase(" ", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("дата ", normal)) {  MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase(" ", normal)) {  MinimumHeight = 16, Border = 0 });
+
+                document.Add(table1);
 
                 document.Close();
 
