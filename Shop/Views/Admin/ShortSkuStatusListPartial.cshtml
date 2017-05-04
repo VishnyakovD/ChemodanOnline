@@ -1,0 +1,8 @@
+﻿@using System.Web.Mvc.Html
+@using AdvancedClasses
+@model List<Shop.Models.AdminSkuModel>
+
+@foreach (var product in Model)
+{
+    Html.RenderPartial("ShortSkuStatusPartial", product);
+}

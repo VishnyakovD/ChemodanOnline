@@ -2,9 +2,13 @@
     constructor() {}
     payOneClick(e) {
         var phone = $(e.currentTarget).closest(".js-pay-one-click").find("input");
+       
+        if (phone.val() === "" || !phone.val().match(/^[0]{1}\d{9}$/)) {
+            message.showMessageWnd("Не верно указан номер телефона. Правильный формат : 0ХХ ХХХ ХХ ХХ", null);
+            return;
+        }
+
         var productId = $(e.currentTarget).data("product-id");
-
-
         var date = new Date();
         var stringDate = date.toLocaleDateString() + " " + date.toLocaleTimeString();
 

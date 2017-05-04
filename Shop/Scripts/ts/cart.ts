@@ -164,7 +164,7 @@ class Cart {
         if (this.clientLastName === "") {
             errors.push(new InputErrorItem("ClientLastName", ""));
         }
-        if (this.clientPhone === "") {
+        if (this.clientPhone === "" || !this.clientPhone.match(/^[0]{1}\d{9}$/)) {
             errors.push(new InputErrorItem("ClientPhone", ""));
         }
         if (this.paymentType < 1) {

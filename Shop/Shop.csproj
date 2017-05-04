@@ -480,6 +480,9 @@
     <Content Include="Views\Order\EditOrderProductsPartial.cshtml" />
     <Content Include="Views\Order\ListChemodanTrackingPartial.cshtml" />
     <Content Include="Views\S\AccordionPartial.cshtml" />
+    <Content Include="Views\Admin\ListSkuStatus.cshtml" />
+    <Content Include="Views\Admin\ShortSkuStatusListPartial.cshtml" />
+    <Content Include="Views\Admin\ShortSkuStatusPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
