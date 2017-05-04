@@ -138,12 +138,6 @@
 
                 <div class="button-info blue js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount" data-zalog="@Model.price.ToString("F2", CultureInfo.InvariantCulture)">Добавить в корзину</div>
 
-
-                @if (Model.id > 0 && User.IsInRole("Admin"))
-                {
-                    <br/>
-                    <a class="btn btn-default" href="@Url.Action("SkuData", "Admin", new {id = Model.id})">Редактировать товар</a>
-                }
             </div>
             <div class="col-xs-4 col-md-4 col-lg-4 hidden-xs hidden-sm">
                 <div class="product-info-block">
@@ -151,7 +145,7 @@
                     <div class="line2">
                         <a href="/" target="_blank">
                             <img src="~/Content/img/icons/loc.png"/>
-                            г. Киев, ул. Янгола, 57
+                            г. Киев, пр. Победы, 67, корпус “I”, этаж 2, офис 213
                         </a>
                     </div>
                 </div>
@@ -161,7 +155,7 @@
                     <div class="line2">
                         <a href="/" target="_blank">
                             <img src="~/Content/img/icons/assistant.png"/>
-                            Прочитайте об гигиена чемоданов
+                            Прочитайте про гигиену чемоданов
                         </a>
                     </div>
                 </div>
@@ -178,7 +172,7 @@
                     <div class="line2">
                         <a href="/" target="_blank">
                             <img src="~/Content/img/icons/loc.png" />
-                            г. Киев, ул. Янгола, 57
+                            г. Киев, пр. Победы, 67, корпус “I”, этаж 2, офис 213
                         </a>
                     </div>
                 </div>

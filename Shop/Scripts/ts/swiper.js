@@ -44,7 +44,7 @@
     });
     //js-card-page-swiper
     var cardSwiper = new Swiper(".js-card-page-swiper", {
-        direction: 'horizontal',
+        direction: "horizontal",
         loop: true,
         // pagination: '.swiper-pagination',
          nextButton: ".swiper-button-next",
