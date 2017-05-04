@@ -1568,3 +1568,17 @@ body {
   letter-spacing: 1.25px;
   margin-top: 20px; }
 
+.fix-list {
+  min-height: 150px;
+  max-height: 150px;
+  overflow: auto;
+  border: 1px solid #ededed; }
+  .fix-list div {
+    display: block; }
+    .fix-list div span {
+      display: inline-block;
+      width: 45%;
+      text-align: left; }
+    .fix-list div span:last-child {
+      font-weight: 600; }
+

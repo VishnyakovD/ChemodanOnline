@@ -15,13 +15,14 @@
                 <span class="val">@Model.Name</span>
             </div>
 
-            @foreach (var code in Model.Codes)
-            {
-                <div class="line3 text-left">
-                    <span class="val">@code.Code - @code.Name</span>
-                </div>
-            }
-
+            <div class="fix-list">
+                @foreach (var code in Model.Codes)
+                {
+                    <div>
+                        <span>@code.Code</span> <span>@code.Name</span>
+                    </div>
+                }
+            </div>
 
             <div class="line5">
                 <a href="@Url.Action("SkuData", "Admin", new {id = Model.Id})" class="button-info">Редактировать</a>
