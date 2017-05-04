@@ -6,8 +6,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Newtonsoft.Json;
 using Shop.DataService;
 using Shop.db.Entities;
+using Shop.db.Repository;
 using Shop.Logger;
 using Shop.Models;
 using Shop.Models.Builders;
@@ -1117,6 +1119,14 @@ namespace Shop.Controllers
             }
 
             return PartialView("SkuListChemodanTrackingPartial", result.ListChemodanTracking);
+        }
+
+        public ActionResult ListSku()
+        {
+
+
+            var model = skuViewerBuilder.BuildAdmin();
+            return View("ListSkuStatus", model);
         }
     }
 }

@@ -25,7 +25,26 @@ namespace Shop.Models
         public ShortSKUModel()
         {
         }
+    }
 
-       
+    public class AdminSkuModel
+    {
+        public long Id { get; set; }
+        public string Articul { get; set; }
+        public string Name { get; set; }
+        public string SmalPhotoPath { get; set; }
+        public List<SkuCode> Codes { get; set; }
+
+
+        public AdminSkuModel()
+        {
+            Codes=new List<SkuCode>();
+        }
+    }
+
+    public class SkuCode
+    {
+        public string Code { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace Shop.Models.Builders
         SkuViewerModel BuildHidden(bool isHide, int sort);
         List<ShortSKUModel> BuildListProductsByFilters(FilterFoDb filters);
         List<ShortSKUModel> BuildListProductsByIds(long[] ids);
+        SkuViewerModel BuildAdmin();
 
     }
 
@@ -117,7 +118,46 @@ namespace Shop.Models.Builders
             return model;
         }
 
-    public List<ShortSKUModel> BuildListProductsByFilters(FilterFoDb filters)
+        public SkuViewerModel BuildAdmin()
+        {
+            var model = new SkuViewerModel();
+            var cat = dataService.Get<StaticCategory>(10010);
+            if (cat != null)
+            {
+                model.IdCat = cat.id;
+                model.Name = cat.name;
+                model.Keywords = cat.keywords;
+                model.Description = cat.description;
+                model.bodyText = cat.bodyText;
+                model.ListAdminProducts = BuildListAdminProducts();
+            }
+
+            model.TitleProduct = Shop.Resources.Default.Chemodans;
+            model.menu = BuildMenu();
+            model.topMenuItems = BuildTopMenu();
+            return model;
+        }
+
+        public List<AdminSkuModel> BuildListAdminProducts()
+        {
+            var model = new List<AdminSkuModel>();
+
+            var tmpList = dataService.List<Sku>();
+            if (tmpList != null && tmpList.Count > 0)
+            {
+                model = tmpList.Select(item => new AdminSkuModel()
+                {
+                    Articul = item.articul,
+                    Id = item.id,
+                    Name = item.name,
+                    SmalPhotoPath = string.Format("{0}/{1}", imagesPath.GetImagesPath(), (item.smalPhoto ?? new Photo() { path = "box.png" }).path),
+                    Codes = item.listChemodanTracking.Select(it=>new SkuCode() {Name = it.Location.name,Code = it.Code}).ToList()
+                }).ToList();
+            }
+            return model;
+        }
+
+        public List<ShortSKUModel> BuildListProductsByFilters(FilterFoDb filters)
         {
             var model = new List<ShortSKUModel>();
 

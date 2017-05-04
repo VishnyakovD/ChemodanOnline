@@ -10,10 +10,22 @@
             <li><a href="@Url.Action("OrdersOneClickAdmin", "Order")">Один клик</a></li>
         </ul>
     </div>
-    <a class="btn btn-default" href="@Url.Action("SkuData", "Admin")">Создать товар</a>
+
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Товары
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="@Url.Action("SkuData", "Admin")">Создать товар</a></li>
+            <li><a href="@Url.Action("ListSku", "Admin")">Статусы товаров</a></li>
+            <li><a href="@Url.Action("HidenSku", "Admin")">Скрытые товары</a></li>
+        </ul>
+    </div>
+
+    
     <a class="btn btn-default" href="@Url.Action("ListArticles", "Admin")">Статьи</a>
     <a class="btn btn-default" href="@Url.Action("ListMailing", "Mailing")">E-mail подписки</a>
-    <a class="btn btn-default" href="@Url.Action("HidenSku", "Admin")">Скрытые товары</a>
     <a class="btn btn-default" href="@Url.Action("ListProvider", "Admin")">Поставщики</a>
     <a class="btn btn-default" href="@Url.Action("ListClients", "Admin")">Клиенты</a>
     <a class="btn btn-default" href="@Url.Action("MainPageConfigurator", "Admin")">Главн.страница</a>

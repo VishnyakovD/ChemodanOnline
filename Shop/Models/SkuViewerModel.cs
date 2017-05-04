@@ -18,12 +18,14 @@ namespace Shop.Models
         public List<ShortSKUModel> ListProduct { set; get; }
         public FilterProduct Filters { set; get; }
         public string TitleProduct { set; get; }
+        public List<AdminSkuModel> ListAdminProducts { set; get; }
 
         public SkuViewerModel()
         {
             skuList=new List<ShortSKUModel>();
             ListProduct = new List<ShortSKUModel>();
             Filters = new FilterProduct();
+            ListAdminProducts=new List<AdminSkuModel>();
         }
     }
 }
