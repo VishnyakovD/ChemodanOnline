@@ -6,16 +6,15 @@
     Page.Title = "Информация о товаре";
 }
 
+
+@{ Html.RenderPartial("AdminMenuPartial"); }
 @if (Model != null)
 {
-
     using (Html.BeginForm("AddOrUpdateSku", "Admin"))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
         <input type="hidden" id="id" name="id" value="@Model.id" />
-
-
 
         <div class="js-tabs-block">
             <div class="product-tabs">
@@ -281,11 +280,11 @@
                         <div class="row">
                             <div class="col-md-5">
                                 @if (Model.listPhoto != null && Model.listPhoto.Any())
-                        {
+                                {
                                     <div id="listPhoto">
                                         @{ Html.RenderPartial("SkuListPhotosPartial", Model.listPhoto.ToList()); }
                                     </div>
-                                            }
+                                }
                             </div>
                             <div class="col-md-5">
                                 <img class="col-md-9" src="@Model.smalPhotoPath" />
@@ -297,6 +296,6 @@
                                             }
             </div>
         </div>
-                                                }
+    }
 
-                                            }
+}
