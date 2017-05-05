@@ -13,254 +13,290 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-        <input type="hidden" id="id" name="id" value="@Model.id"/>
-        <div class="row">
-            <div class="col-md-3">
-                <label>Название</label>
-                <input class="form-control" type="text" id="name" name="name" placeholder="Название" value="@Model.name"/>
-            </div>
+        <input type="hidden" id="id" name="id" value="@Model.id" />
 
-            <div class="col-md-2">
-                <label>Цена</label>
-                <input class="form-control" type="text" id="price" name="price" placeholder="Цена" value="@Model.price.ToString("####")"/>
-            </div>
 
-            <div class="col-md-2">
-                <label>Себестоимость</label>
-                <input class="form-control" type="text" id="priceAct" name="priceAct" value="@Model.priceAct.ToString("####")"/>
-            </div>
 
-            <div class="col-md-3">
-                <label>Бренд</label>
-                <select class="form-control" id="brandId" name="brandId">
-                    @foreach (var brand in Model.listStaticBrand)
-                    {
-                        if (brand.id == Model.brandId)
-                        {
-                            <option selected value="@brand.id">@brand.name</option>
-                        }
-                        else
-                        {
-                            <option value="@brand.id">@brand.name</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label>Тип чемодана</label>
-                <select class="form-control" id="chemodanTypeId" name="chemodanTypeId">
-                    @foreach (var item in Model.listChemodanType)
-                    {
-                        if (item.id == Model.chemodanTypeId)
-                        {
-                            <option selected value="@item.id">@string.Format("{0} {1}грн/день", item.name, item.priceDay.ToString("#"))</option>
-                        }
-                        else
-                        {
-                            <option value="@item.id">@string.Format("{0} {1}грн/день", item.name, item.priceDay.ToString("#"))</option>
-                        }
-                    }
-                </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">
-                <label>Артикул</label>
-                <input class="form-control" type="text" id="articul" name="articul" value="@Model.articul"/>
-            </div>
-            <div class="col-md-1">
-                <label>Сртыть?</label>
-                <select name="isHide" class="form-control">
-                    @if (Model.isHide)
-                    {
-                        <option selected value="true">да</option>
-                        <option value="false">нет</option>
-                    }
-                    else
-                    {
-                        <option value="true">да</option>
-                        <option selected value="false">нет</option>
-                    }
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label>Избранное</label>
-                <select name="displayType" class="form-control">
-                    @if (Model.displayType == DisplayType.Favorite)
-                    {
-                        <option value="@((int)DisplayType.Default)">нет</option>
-                        <option selected value="@((int)DisplayType.Favorite)">да</option>
-                    }
-                    else
-                    {
-                        <option selected value="@((int)DisplayType.Default)">нет</option>
-                        <option value="@((int)DisplayType.Favorite)">да</option>
-                    }
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label>Приоритет сортировки</label>
-                <input class="form-control" type="number" id="sortPriority" name="sortPriority" value="@Model.sortPriority"/>
-            </div>
-            <div class="col-md-2">
-                <label>Поставщик</label>
-                <select class="form-control" id="chemodanProviderId" name="chemodanProviderId">
-                    @foreach (var pro in Model.listChemodanProvider)
-                    {
-                        if (pro.id == Model.chemodanProviderId)
-                        {
-                            <option selected value="@pro.id">@pro.fullName</option>
-                        }
-                        else
-                        {
-                            <option value="@pro.id">@pro.fullName</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label>Статус</label>
-                <select class="form-control" id="chemodanStatusId" name="chemodanStatusId">
-                    @foreach (var pro in Model.listChemodanStatus)
-                    {
-                        if (pro.id == Model.chemodanStatusId)
-                        {
-                            <option selected value="@pro.id">@pro.name</option>
-                        }
-                        else
-                        {
-                            <option value="@pro.id">@pro.name</option>
-                        }
-                    }
-                </select>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <label>Описание товара</label>
-                <textarea id="description" name="description" value="@Model.description"></textarea>
-                @*<textarea id="descriptionHTML" name="descriptionHTML" placeholder="Описание" class="form-control">@Model.description</textarea>*@
-            </div>
-        </div>
-
-      @*  <div class="row">
-        <div class="col-md-12">
-            <label>Уход</label>
-            <input type="hidden" id="care" name="care" value="@Model.care">
-            <textarea id="careHTML" name="careHTML" placeholder="Уход" class="form-control">@Model.care</textarea>
-        </div>
-    </div>*@
-
-        <div class="row">
-            <div class="col-md-12">
-                <input class="btn btn-blue pull-right" type="submit" value="Сохранить"/>
-            </div>
-        </div>
-    }
-
-    if (Model.id > 0)
-    {
-        <div class="row">
-            <div class="col-md-6">
-                @if (Model.listStaticCategory.Any())
-                {
-
-                    <table class="table table-bordered table-condensed">
-                        <tr>
-                            <th colspan="2"><h4>Категории товаров</h4></th>
-                        </tr>
-                        @foreach (var cat in Model.listStaticCategory)
-                        {
-                            <tr>
-                                <td>
-                                    @cat.name
-                                </td>
-                                <td>
-                                    @Ajax.ActionLink("Добавить", "AddSKUFromCategory", "Admin", new {idSku = Model.id, catId = cat.id}, new AjaxOptions {UpdateTargetId = "listCategory"})
-                                </td>
-                            </tr>
-                        }
-                    </table>
-                }
-            </div>
-            <div class="col-md-6">
-                <div id="listCategory">
-                    @{ Html.RenderPartial("SkuListCategoriesPartial", Model.listCategory); }
+        <div class="js-tabs-block">
+            <div class="product-tabs">
+                <div class="tab js-product-tab-title active" data-id="1">
+                    <span>Основное</span>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <span class="btn btn-blue btn-sm" onclick="showCatData('@Url.Action("ShowSkuSpecificatoin", "Admin", new {skuId = Model.id})')">Добавить характеристику</span>
-                <div id="listSpecification">
-                    @{ Html.RenderPartial("SkuListSpecificationPartial", Model.listSpecification); }
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <span class="btn btn-blue btn-sm" onclick="showCatData('@Url.Action("ShowChemodanTracking", "Admin", new {Id = -1,skuId=Model.id})')">Добавить чемодан</span>
-                <div id="listChemodanTracking">
-                    @{ Html.RenderPartial("SkuListChemodanTrackingPartial", Model.ListChemodanTracking); }
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="row">
-            <div class="col-md-5 text-center">
-                <h3>Большие фотографии товара</h3>
-            </div>
-            <div class="col-md-5 text-center">
-                <h3>Миниатюра товара</h3>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-5">
-                @using (Html.BeginForm("UploadBigPhoto", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
-                {
-                    @Html.AntiForgeryToken()
-                    <input type="hidden" id="id" name="id" value="@Model.id"/>
-                    <input type="file" name="photoFile" id="photoFile" style="display: inline-block"/>
-                    <input type="submit" class="btn btn-blue" value="Добавить фото"/>
-                }
-            </div>
-            <div class="col-md-5">
                 @if (Model.id > 0)
                 {
-                    using (Html.BeginForm("UploadSmalPhoto", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" id="id" name="id" value="@Model.id"/>
-                        <input type="file" name="smalPhotoFile" id="smalPhotoFile" style="display: inline-block"/>
-                        <input type="submit" class="btn btn-blue" value="Добавить миниатюру"/>
-                    }
-                }
-            </div>
-        </div>
+                    <div class="tab js-product-tab-title" data-id="2">
+                        <span>Категория</span>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-5">
-                @if (Model.listPhoto != null && Model.listPhoto.Any())
-                {
-                    <div id="listPhoto">
-                        @{ Html.RenderPartial("SkuListPhotosPartial", Model.listPhoto.ToList()); }
+                    <div class="tab js-product-tab-title" data-id="3">
+                        <span>Характеристики</span>
+                    </div>
+
+                    <div class="tab js-product-tab-title" data-id="4">
+                        <span>Остатки</span>
+                    </div>
+                    <div class="tab js-product-tab-title" data-id="5">
+                        <span>Фотографии</span>
                     </div>
                 }
             </div>
-            <div class="col-md-5">
-                <img class="col-md-9" src="@Model.smalPhotoPath"/>
+            <div class="product-tabs-content js-product-tabs">
+                <div class="js-product-tab-content" data-id="1">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Название</label>
+                            <input class="form-control" type="text" id="name" name="name" placeholder="Название" value="@Model.name" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Цена</label>
+                            <input class="form-control" type="text" id="price" name="price" placeholder="Цена" value="@Model.price.ToString("####")" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Себестоимость</label>
+                            <input class="form-control" type="text" id="priceAct" name="priceAct" value="@Model.priceAct.ToString("####")" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Бренд</label>
+                            <select class="form-control" id="brandId" name="brandId">
+                                @foreach (var brand in Model.listStaticBrand)
+                                {
+                                    if (brand.id == Model.brandId)
+                                    {
+                                        <option selected value="@brand.id">@brand.name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@brand.id">@brand.name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Тип чемодана</label>
+                            <select class="form-control" id="chemodanTypeId" name="chemodanTypeId">
+                                @foreach (var item in Model.listChemodanType)
+                                {
+                                    if (item.id == Model.chemodanTypeId)
+                                    {
+                                        <option selected value="@item.id">@string.Format("{0} {1}грн/день", item.name, item.priceDay.ToString("#"))</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id">@string.Format("{0} {1}грн/день", item.name, item.priceDay.ToString("#"))</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Артикул</label>
+                            <input class="form-control" type="text" id="articul" name="articul" value="@Model.articul" />
+                        </div>
+                        <div class="col-md-1">
+                            <label>Сртыть?</label>
+                            <select name="isHide" class="form-control">
+                                @if (Model.isHide)
+                                {
+                                    <option selected value="true">да</option>
+                                    <option value="false">нет</option>
+                                }
+                                else
+                                {
+                                    <option value="true">да</option>
+                                    <option selected value="false">нет</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Избранное</label>
+                            <select name="displayType" class="form-control">
+                                @if (Model.displayType == DisplayType.Favorite)
+                                {
+                                    <option value="@((int) DisplayType.Default)">нет</option>
+                                    <option selected value="@((int) DisplayType.Favorite)">да</option>
+                                }
+                                else
+                                {
+                                    <option selected value="@((int) DisplayType.Default)">нет</option>
+                                    <option value="@((int) DisplayType.Favorite)">да</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Приоритет сортировки</label>
+                            <input class="form-control" type="number" id="sortPriority" name="sortPriority" value="@Model.sortPriority" />
+                        </div>
+                        <div class="col-md-2">
+                            <label>Поставщик</label>
+                            <select class="form-control" id="chemodanProviderId" name="chemodanProviderId">
+                                @foreach (var pro in Model.listChemodanProvider)
+                                {
+                                    if (pro.id == Model.chemodanProviderId)
+                                    {
+                                        <option selected value="@pro.id">@pro.fullName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@pro.id">@pro.fullName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Статус</label>
+                            <select class="form-control" id="chemodanStatusId" name="chemodanStatusId">
+                                @foreach (var pro in Model.listChemodanStatus)
+                                {
+                                    if (pro.id == Model.chemodanStatusId)
+                                    {
+                                        <option selected value="@pro.id">@pro.name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@pro.id">@pro.name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Описание товара</label>
+                            <textarea id="description" name="description" value="@Model.description"></textarea>
+                            @*<textarea id="descriptionHTML" name="descriptionHTML" placeholder="Описание" class="form-control">@Model.description</textarea>*@
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+                        </div>
+                    </div>
+
+                </div>
+
+
+                @if (Model.id > 0)
+                {
+                    <div class="js-product-tab-content hide" data-id="2">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                @if (Model.listStaticCategory.Any())
+                        {
+
+                                    <table class="table table-bordered table-condensed">
+                                        <tr>
+                                            <th colspan="2"><h4>Категории товаров</h4></th>
+                                        </tr>
+                                        @foreach (var cat in Model.listStaticCategory)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @cat.name
+                                                </td>
+                                                <td>
+                                                    @Ajax.ActionLink("Добавить", "AddSKUFromCategory", "Admin", new { idSku = Model.id, catId = cat.id }, new AjaxOptions { UpdateTargetId = "listCategory" })
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                <div id="listCategory">
+                                    @{ Html.RenderPartial("SkuListCategoriesPartial", Model.listCategory); }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="js-product-tab-content hide" data-id="3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="btn btn-blue btn-sm" onclick="showCatData('@Url.Action("ShowSkuSpecificatoin", "Admin", new {skuId = Model.id})')">Добавить характеристику</span>
+                                <div id="listSpecification">
+                                    @{ Html.RenderPartial("SkuListSpecificationPartial", Model.listSpecification); }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="js-product-tab-content hide" data-id="4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="btn btn-blue btn-sm" onclick="showCatData('@Url.Action("ShowChemodanTracking", "Admin", new {Id = -1, skuId = Model.id})')">Добавить чемодан</span>
+                                <div id="listChemodanTracking">
+                                    @{ Html.RenderPartial("SkuListChemodanTrackingPartial", Model.ListChemodanTracking); }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="js-product-tab-content hide" data-id="5">
+
+
+                        <div class="row">
+                            <div class="col-md-5 text-center">
+                                <h3>Большие фотографии товара</h3>
+                            </div>
+                            <div class="col-md-5 text-center">
+                                <h3>Миниатюра товара</h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                @using (Html.BeginForm("UploadBigPhoto", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" id="id" name="id" value="@Model.id" />
+                                    <input type="file" name="photoFile" id="photoFile" style="display: inline-block" />
+                                    <input type="submit" class="btn btn-blue" value="Добавить фото" />
+                                }
+                            </div>
+                            <div class="col-md-5">
+                                @if (Model.id > 0)
+                                {
+                                    using (Html.BeginForm("UploadSmalPhoto", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" id="id" name="id" value="@Model.id" />
+                                        <input type="file" name="smalPhotoFile" id="smalPhotoFile" style="display: inline-block" />
+                                        <input type="submit" class="btn btn-blue" value="Добавить миниатюру" />
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                @if (Model.listPhoto != null && Model.listPhoto.Any())
+                        {
+                                    <div id="listPhoto">
+                                        @{ Html.RenderPartial("SkuListPhotosPartial", Model.listPhoto.ToList()); }
+                                    </div>
+                                            }
+                            </div>
+                            <div class="col-md-5">
+                                <img class="col-md-9" src="@Model.smalPhotoPath" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                                            }
             </div>
         </div>
+                                                }
 
-    }
-}
-
+                                            }
