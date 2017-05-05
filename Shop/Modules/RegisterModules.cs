@@ -27,6 +27,8 @@ namespace Shop.Modules
 
             builder.RegisterType<EditOrderModelBuilder>().As<IEditOrderModelBuilder>();
 
+            builder.RegisterType<MailingManager>().As<IMailingManager>();
+
         }
     }
 }

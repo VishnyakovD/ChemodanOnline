@@ -116,7 +116,7 @@ namespace Shop.Controllers
 				var UserPassword = WebConfigurationManager.AppSettings["UserPassword"];
 				var MailFrom = WebConfigurationManager.AppSettings["MailFrom"];
 				var MailTo = WebConfigurationManager.AppSettings["MailTo"];
-				var MailTo2 = WebConfigurationManager.AppSettings["MailTo2"];
+				//var MailTo2 = WebConfigurationManager.AppSettings["MailTo2"];
 				var MailSubject = WebConfigurationManager.AppSettings["MailSubject"];
 				var MailBody = WebConfigurationManager.AppSettings["MailBody"];
 				var Smtp = new SmtpClient(SMTPHost, SMTPPort);
@@ -127,7 +127,7 @@ namespace Shop.Controllers
 				var Message = new MailMessage();
 				Message.From = new MailAddress(MailFrom);
 				var mails = new MailAddressCollection();
-				Message.To.Add(string.Format("{0},{1}", MailTo, MailTo2));
+				Message.To.Add(string.Format("{0}", MailTo));
 				Message.Subject = MailSubject;
 				Message.Body = MailBody;
 				Smtp.SendMailAsync(Message);

@@ -31,6 +31,7 @@ namespace Shop.Controllers
     [InitializeSimpleMembership]
     public class OrderController : BaseController
     {
+        private IMailingManager MailingManager;
         private IOrderBuilder OrderBulder;
         private IEditOrderModelBuilder EditOrderModelBuilder;
         private long DefaultOrderState;
@@ -40,12 +41,15 @@ namespace Shop.Controllers
             IDataService dataService,
             IImagesPath imagesPath,
             ISKUModelBuilder skuModelBuilder,
-            IOrderBuilder orderBulder, IEditOrderModelBuilder editOrderModelBuilder)
+            IOrderBuilder orderBulder, 
+            IEditOrderModelBuilder editOrderModelBuilder,
+            IMailingManager mailingManager)
             : base(logger, adminModelBuilder, dataService, imagesPath, skuModelBuilder)
         {
             OrderBulder = orderBulder;
             DefaultOrderState = long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
             EditOrderModelBuilder = editOrderModelBuilder;
+            MailingManager = mailingManager;
         }
 
         public ActionResult Index(string ids)
@@ -119,6 +123,7 @@ namespace Shop.Controllers
                             orderData.Client.editAdress = null;
                         }
                         orderData = dataService.AddOrUpdateOrder(orderData);
+                        SendMailEx.SendMailExAsyncOrder();
                         result = "Заказ создан номер: " + orderData.OrderNumber.ToString();
 
                         if (orderData.PaymentType.Id == 2)
@@ -228,7 +233,9 @@ namespace Shop.Controllers
                     UserName = userName
                 };
                 dataService.AddOrUpdateOrderOneClick(order);
-                result = "В ближайшее время вам позвонит наш сотрудник";
+                // MailingManager.SendMailNewOrderOneClick();
+                SendMailEx.SendMailExAsyncOneClick();
+                 result = "В ближайшее время вам позвонит наш сотрудник";
             }
             catch (Exception ex)
             {

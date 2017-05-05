@@ -205,6 +205,7 @@
     <Compile Include="Models\ChemodanTrackingModel.cs" />
     <Compile Include="Models\SkuSpecificatoinModel.cs" />
     <Compile Include="Models\SkuViewerModel.cs" />
+    <Compile Include="Modules\MailingManager.cs" />
     <Compile Include="Modules\ImagesPath.cs" />
     <Compile Include="Modules\ImagesPathModule.cs" />
     <Compile Include="PdfManager.cs" />

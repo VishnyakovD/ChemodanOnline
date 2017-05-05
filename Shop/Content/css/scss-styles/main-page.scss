@@ -105,6 +105,8 @@
 
             .img-block {
                 width: 40%;
+                margin-top: 27px;
+                position: relative;
             }
 
             .title {
@@ -121,7 +123,7 @@
                 font-weight: bold;
                 line-height: 1.88;
                 letter-spacing: 0.4px;
-                margin: 24px 0;
+                margin: 20px 0;
 
                 span {
                     padding-left: 10px;
@@ -129,12 +131,12 @@
             }
 
             .description {
-                margin-bottom: 60px;
-                max-height: 87px;
-                min-height: 87px;
+                margin-bottom: 10px;
+                max-height: 160px;
+                min-height: 160px;
                 font-size: 13px;
                 font-weight: 300;
-                line-height: 1.77;
+                line-height: 1.6;
                 letter-spacing: 0.3px;
                 overflow: hidden;
             }
@@ -178,6 +180,8 @@
 
             .img-block {
                 width: 40%;
+                margin-top: 27px;
+                position: relative;
             }
 
             .title {
@@ -190,7 +194,7 @@
             }
 
             .name {
-                margin: 13px 0;
+                margin: 10px 0;
                 font-size: 12px;
                 font-weight: bold;
                 line-height: 1.5;
@@ -202,9 +206,9 @@
             }
 
             .description {
-                margin-bottom: 30px;
-                max-height: 77px;
-                min-height: 77px;
+                margin-bottom: 10px;
+                max-height: 160px;
+                min-height: 160px;
                 font-size: 10px;
                 font-weight: 300;
                 line-height: 1.63;
@@ -252,6 +256,8 @@
             }
 
             .img-block {
+                margin-top: 10px;
+                position: relative;
                 width: 40%;
             }
 
@@ -265,7 +271,7 @@
             }
 
             .name {
-                margin: 13px 0;
+                margin: 10px 0;
                 font-size: 12px;
                 font-weight: bold;
                 line-height: 1.5;
@@ -277,9 +283,9 @@
             }
 
             .description {
-                margin-bottom: 30px;
-                max-height: 77px;
-                min-height: 77px;
+                margin-bottom: 10px;
+                max-height: 160px;
+                min-height: 160px;
                 font-size: 10px;
                 font-weight: 300;
                 line-height: 1.63;
@@ -329,7 +335,7 @@ footer {
             vertical-align: top;
 
             a {
-                img,svg {
+                img, svg {
                     height: auto;
                     width: 175px;
                 }
