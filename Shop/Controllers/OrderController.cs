@@ -124,7 +124,7 @@ namespace Shop.Controllers
                         }
                         orderData = dataService.AddOrUpdateOrder(orderData);
                         SendMailEx.SendMailExAsyncOrder();
-                        result = "Заказ создан номер: " + orderData.OrderNumber.ToString();
+                        result = "Заказ создан: " + orderData.OrderNumber.ToString()+ ". Менеджер свяжется с вами в ближайшее время";
 
                         if (orderData.PaymentType.Id == 2)
                         {
@@ -235,7 +235,7 @@ namespace Shop.Controllers
                 dataService.AddOrUpdateOrderOneClick(order);
                 // MailingManager.SendMailNewOrderOneClick();
                 SendMailEx.SendMailExAsyncOneClick();
-                 result = "В ближайшее время вам позвонит наш сотрудник";
+                 result = "Спасибо за ваше обращение! Менеджер свяжется с вами в ближайшее время";
             }
             catch (Exception ex)
             {
@@ -353,7 +353,6 @@ namespace Shop.Controllers
 
             return Content("Сохранено");
         }
-
 
         [System.Web.Mvc.Authorize(Roles = "Admin")]
         public ActionResult SaveProductToOrder(long dbId, string code, long orderId)

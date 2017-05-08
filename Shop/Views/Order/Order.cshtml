@@ -131,7 +131,7 @@
                                 <span class="summ-label">К оплате:</span>
                                 <span class="order-summ-val text-center js-order-summ">0</span> грн.
                             </div>
-                             <div class="summ-content">
+                            <div class="summ-content">
                                 <span class="summ-label">Залоговая сумма:</span>
                                 <span class="order-summ-val text-center js-order-summ-zalog">0</span> грн.
                             </div>
@@ -173,12 +173,12 @@
                             <div class="radio-btns order-radios js-delivery-types">
                                 @{var selected = "selected";}
                                 @foreach (var delType in Model.DeliveryTypes)
-                            {
-                            <div class="@selected js-set-ratio js-delivery-type" data-id="@delType.Id">
-                                <span class="r1"><span class="r2"></span></span> @delType.Name
-                            </div>
-                                selected = "";
-                            }
+                                {
+                                    <div class="@selected js-set-ratio js-delivery-type" data-id="@delType.Id">
+                                        <span class="r1"><span class="r2"></span></span> @delType.Name
+                                    </div>
+                                    selected = "";
+                                }
                                 <input type="hidden" name="DeliveryType" value="@Model.DeliveryTypes.First().Id" />
                             </div>
                         </div>
@@ -188,12 +188,12 @@
                             <div class="radio-btns order-radios js-radio-btns">
                                 @{selected = "selected";}
                                 @foreach (var delType in Model.PaymentTypes)
-                            {
-                            <div class="@selected js-set-ratio js-payment-type" data-id="@delType.Id">
-                                <span class="r1"><span class="r2"></span></span> @delType.Name
-                            </div>
-                                selected = "";
-                            }
+                                {
+                                    <div class="@selected js-set-ratio js-payment-type" data-id="@delType.Id">
+                                        <span class="r1"><span class="r2"></span></span> @delType.Name
+                                    </div>
+                                    selected = "";
+                                }
                                 <input type="hidden" name="PaymentType" value="@Model.PaymentTypes.First().Id" />
                             </div>
                         </div>
@@ -220,21 +220,21 @@
                             <div class="hidden-xs">
 
                                 <div class="order-checkbox">
-                                    <input type="checkbox" class="js-read-contract" onchange="cartManager.setReadContract(event)"/>
+                                    <input type="checkbox" class="js-read-contract" onchange="cartManager.setReadContract(event)" />
                                     <span>Я, согласен <a href="/Content/contract.pdf" target="_blank">с условиями договора</a>, а также обработкой моих персональных данных</span>
                                 </div>
 
-                                <br/>
-                            
-                                <div class="button js-confirm-order disabled" >
+                                <br />
+
+                                <div class="button js-confirm-order disabled">
                                     <span class="btn button-order">Подтвердить заказ →</span>
                                 </div>
-                          
+
                                 <div class="button js-repay-order hide">
                                     <span class="btn button-order">Не получилось оплатить?</span>
                                 </div>
                             </div>
-            
+
                         </div>
 
                     </div>
@@ -245,27 +245,27 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                             <div class="title-form">Контактные данные</div>
+                            <div class="title-form">Контактные данные</div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="@addressCells">
                             <label>Фамилия *</label>
-                            <input class="form-control" type="text" name="ClientLastName" value="@Model.Order.ClientLastName"/>
+                            <input class="form-control" type="text" name="ClientLastName" value="@Model.Order.ClientLastName" />
                         </div>
                         <div class="@addressCells">
                             <label>Имя *</label>
-                            <input class="form-control" type="text" name="ClientFirstName" value="@Model.Order.ClientFirstName"/>
+                            <input class="form-control" type="text" name="ClientFirstName" value="@Model.Order.ClientFirstName" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="@addressCells">
                             <label>Email *</label>
-                            <input class="form-control" type="text" name="ClientEmail" value="@Model.Order.ClientEmail" />
+                            <input class="form-control" type="text" name="ClientEmail" placeholder="info@chemodan.online" value="@Model.Order.ClientEmail" />
                         </div>
                         <div class="@addressCells">
                             <label>Телефон *</label>
-                            <input class="form-control" type="text" name="ClientPhone" value="@Model.Order.ClientPhone" />
+                            <input class="form-control" type="text" name="ClientPhone" placeholder="067 514 54 87" value="@Model.Order.ClientPhone" />
                         </div>
                     </div>
                     <div class="js-addres hide">
@@ -277,14 +277,8 @@
                         <div class="row">
                             <div class="@addressCells">
                                 <label>Город</label>
-                                <input class="form-control" type="text" name="City" value="@Model.Order.City"/>
+                                <input class="form-control" type="text" name="City" value="@Model.Order.City" />
                             </div>
-                            <div class="@addressCells">
-                                <label>Дом</label>
-                                <input class="form-control" type="text" name="Home" value="@Model.Order.Home"/>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="@addressCells">
                                 <label>Тип улицы</label>
                                 <select class="form-control" name="TypeStreet">
@@ -294,19 +288,26 @@
                                     }
                                 </select>
                             </div>
-                            <div class="@addressCells">
-                                <label>Этаж</label>
-                                <input class="form-control" type="text" name="Level" value="@Model.Order.Level"/>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="@addressCells">
                                 <label>Улица</label>
-                                <input class="form-control" type="text" name="Street" value="@Model.Order.Street"/>
+                                <input class="form-control" type="text" name="Street" value="@Model.Order.Street" />
+                            </div>
+
+                            <div class="@addressCells">
+                                <label>Дом</label>
+                                <input class="form-control" type="text" name="Home" value="@Model.Order.Home" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="@addressCells">
+                                <label>Этаж</label>
+                                <input class="form-control" type="text" name="Level" value="@Model.Order.Level" />
                             </div>
                             <div class="@addressCells">
                                 <label>Квартира</label>
-                                <input class="form-control" type="text" name="Flat" value="@Model.Order.Flat"/>
+                                <input class="form-control" type="text" name="Flat" value="@Model.Order.Flat" />
                             </div>
                         </div>
                     </div>
@@ -322,7 +323,7 @@
 
                         <div class="order-summ-block">
                             <div class="order-checkbox">
-                                <input type="checkbox"  class="js-read-contract"  onchange="cartManager.setReadContract(event)" />
+                                <input type="checkbox" class="js-read-contract" onchange="cartManager.setReadContract(event)" />
                                 <span>Я, согласен <a href="/Content/contract.pdf" target="_blank">с условиями договора</a>, а также обработкой моих персональных данных</span>
                             </div>
 
