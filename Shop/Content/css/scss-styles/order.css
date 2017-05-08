@@ -59,8 +59,7 @@
       letter-spacing: normal;
       text-align: center;
       color: #000000;
-      overflow: hidden;
-      white-space: nowrap; }
+      overflow: hidden; }
       .order-table .body .item .counter span:first-of-type {
         font-size: 25px;
         color: #b3b3b3;

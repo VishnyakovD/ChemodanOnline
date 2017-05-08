@@ -25,4 +25,3 @@ $(function () {
         payOneClick = new PayOneClick();
     }
 });
-//# sourceMappingURL=pay-one-click.js.map
