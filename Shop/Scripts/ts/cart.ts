@@ -365,7 +365,8 @@ class CartManager {
             clientEmail: cartManager.payOnlineItem.clientEmail,
             clientPhone: cartManager.payOnlineItem.clientPhone,
             holdTimeout: cartManager.payOnlineItem.holdTimeout,
-            merchantTransactionType: cartManager.payOnlineItem.merchantTransactionType
+            merchantTransactionType: cartManager.payOnlineItem.merchantTransactionType,
+            paymentSystems:"card"
         },
             response => {
                 if (response.reasonCode == 1100) {

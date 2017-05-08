@@ -296,7 +296,8 @@ var CartManager = (function () {
             clientEmail: cartManager.payOnlineItem.clientEmail,
             clientPhone: cartManager.payOnlineItem.clientPhone,
             holdTimeout: cartManager.payOnlineItem.holdTimeout,
-            merchantTransactionType: cartManager.payOnlineItem.merchantTransactionType
+            merchantTransactionType: cartManager.payOnlineItem.merchantTransactionType,
+            paymentSystems: "card"
         }, function (response) {
             if (response.reasonCode == 1100) {
                 var date = new Date();
@@ -444,4 +445,3 @@ $(function () {
         });
     }
 });
-//# sourceMappingURL=cart.js.map
