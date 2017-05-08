@@ -56,3 +56,4 @@ var adminOrderManager;
 $(function () {
     adminOrderManager = new AdminOrderManager();
 });
+//# sourceMappingURL=admin-orders.js.map
