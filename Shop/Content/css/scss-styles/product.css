@@ -6,16 +6,19 @@
   white-space: nowrap;
   overflow: hidden;
   border-bottom: 1px solid #0d0d0d;
-  font-weight: 300; }
+  font-weight: 300;
+  user-select: none; }
   .top-menu-container .logo {
-    display: inline-block; }
+    display: inline-block;
+    float: left; }
     .top-menu-container .logo a {
       margin: 0; }
       .top-menu-container .logo a img, .top-menu-container .logo a svg {
         height: auto; }
   .top-menu-container .top-menu-btn {
     display: inline-block;
-    cursor: pointer; }
+    cursor: pointer;
+    float: left; }
     .top-menu-container .top-menu-btn span {
       font-size: 34px;
       padding: 6px 0px; }
@@ -27,7 +30,8 @@
     line-height: 1.88;
     letter-spacing: 0.4px;
     text-align: center;
-    color: #0d0d0d; }
+    color: #0d0d0d;
+    float: right; }
     .top-menu-container .top-menu-body div {
       display: inline-block; }
     .top-menu-container .top-menu-body a, .top-menu-container .top-menu-body a:link, .top-menu-container .top-menu-body a:visited, .top-menu-container .top-menu-body a:hover {
@@ -37,9 +41,9 @@
       .top-menu-container .top-menu-body a.active, .top-menu-container .top-menu-body a:link.active, .top-menu-container .top-menu-body a:visited.active, .top-menu-container .top-menu-body a:hover.active {
         border-bottom: 3px solid black; }
   .top-menu-container .cart {
-    float: right;
     display: inline-block;
-    cursor: pointer; }
+    cursor: pointer;
+    float: right; }
     .top-menu-container .cart .count {
       text-align: center;
       color: #fff;
@@ -123,7 +127,9 @@
 
 @media (max-width: 767px) {
   .logo {
-    vertical-align: top; }
+    vertical-align: top;
+    float: none !important;
+    text-align: center; }
     .logo a img, .logo a svg {
       width: 135px; }
   body {
@@ -132,9 +138,12 @@
     min-height: 65px;
     max-height: 65px;
     text-align: center;
-    padding: 0 15px; }
+    padding: 0 15px;
+    padding-right: 40px; }
     .top-menu-container .cart {
-      padding: 10px; }
+      padding: 10px;
+      position: absolute;
+      right: 15px; }
       .top-menu-container .cart .text img {
         width: 20px;
         height: 21px;
@@ -152,7 +161,8 @@
     overflow: hidden;
     font-size: 16px;
     font-weight: 500;
-    border-bottom: 1px solid #333333; }
+    border-bottom: 1px solid #333333;
+    user-select: none; }
     .top-menu-body-mobile.toggled {
       display: block;
       height: auto; }
@@ -883,8 +893,7 @@ footer {
       letter-spacing: normal;
       text-align: center;
       color: #000000;
-      overflow: hidden;
-      white-space: nowrap; }
+      overflow: hidden; }
       .order-table .body .item .counter span:first-of-type {
         font-size: 25px;
         color: #b3b3b3;

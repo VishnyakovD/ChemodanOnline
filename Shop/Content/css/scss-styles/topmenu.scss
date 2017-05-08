@@ -3,14 +3,16 @@
     overflow: hidden;
     border-bottom: 1px solid #0d0d0d;
     font-weight: 300;
+    user-select: none;   
 
     .logo {
         display: inline-block;
+        float: left;
 
         a {
             margin: 0;
 
-            img,svg {
+            img, svg {
                 height: auto;
             }
         }
@@ -19,6 +21,7 @@
     .top-menu-btn {
         display: inline-block;
         cursor: pointer;
+        float: left;
 
         span {
             font-size: 34px;
@@ -37,6 +40,7 @@
         letter-spacing: 0.4px;
         text-align: center;
         color: #0d0d0d;
+        float: right;
 
         div {
             display: inline-block;
@@ -54,9 +58,9 @@
     }
 
     .cart {
-        float: right;
         display: inline-block;
         cursor: pointer;
+        float: right;
 
         .count {
             text-align: center;
@@ -113,7 +117,7 @@
 @media (min-width: 992px) /*and (max-width: 1199px )*/ {
     .logo {
         a {
-            img,svg {
+            img, svg {
                 height: auto;
                 width: 175px;
             }
@@ -144,7 +148,7 @@
 @media (min-width: 768px) and (max-width: 991px ) {
     .logo {
         a {
-            img,svg {
+            img, svg {
                 height: auto;
                 width: 125px;
             }
@@ -188,9 +192,11 @@
 @media (max-width: 767px) {
     .logo {
         vertical-align: top;
+        float: none !important;
+        text-align: center;
 
         a {
-            img,svg {
+            img, svg {
                 width: 135px;
             }
         }
@@ -205,10 +211,12 @@
         max-height: 65px;
         text-align: center;
         padding: 0 15px;
-
+        padding-right: 40px;
 
         .cart {
             padding: 10px;
+            position: absolute;
+            right: 15px;
 
             .text {
                 img {
@@ -236,7 +244,7 @@
         font-size: 16px;
         font-weight: 500;
         border-bottom: 1px solid #333333;
-
+        user-select: none;   
         &.toggled {
             display: block;
             height: auto;

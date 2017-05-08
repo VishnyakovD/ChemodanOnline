@@ -1,7 +1,7 @@
 ﻿@model Shop.Models.MenuModel
 <div>
     <div class="top-menu-container">
-        <div class="top-menu-btn pull-left hidden-lg hidden-md hidden-sm js-click-top-menu-btn">
+        <div class="top-menu-btn hidden-lg hidden-md hidden-sm js-click-top-menu-btn">
             <span class="glyphicon glyphicon-menu-hamburger"></span>
         </div>
 
@@ -17,8 +17,7 @@
             </div>
         </div>
 
-
-        <div class="top-menu-body js-menu-body pull-right hidden-xs">
+        <div class="top-menu-body js-menu-body hidden-xs">
             @if (Model != null && Model.topMenuItems != null)
             {
                 foreach (var item in Model.topMenuItems)
@@ -29,7 +28,10 @@
                 }
             }
         </div>
+
+
     </div>
+
     <div class="top-menu-body-mobile hidden-sm hidden-md hidden-lg js-top-menu-body-mobile">
         @if (Model != null && Model.topMenuItems != null)
         {
