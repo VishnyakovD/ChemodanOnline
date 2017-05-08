@@ -155,7 +155,7 @@
     margin-left: 20px; }
   .order-pages .order-info .order-summ-block {
     padding: 20px 23px 13px 20px;
-    text-align: center;
+    text-align: right;
     position: relative; }
     .order-pages .order-info .order-summ-block .summ-label {
       font-size: 14px;
