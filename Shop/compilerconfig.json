@@ -202,5 +202,9 @@
   {
     "outputFile": "Content/css/scss-styles/articles.css",
     "inputFile": "Content/css/scss-styles/articles.scss"
+  },
+  {
+    "outputFile": "Content/css/scss-styles/product.css",
+    "inputFile": "Content/css/scss-styles/product.scss"
   }
 ]

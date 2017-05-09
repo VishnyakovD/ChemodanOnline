@@ -3,37 +3,49 @@
 
 
 <footer>
-    <div class="line1">
-        <div class="logo hidden-xs">
-            <a href="/" title="Chemodan.online"><img src="~/Content/img/logo.svg" alt="Chemodan.online"></a>
+    <div class="row line1">
+        <div class="hidden-xs col-sm-3 col-md-3 col-lg-3">
+            <div class="logo hidden-xs">
+                <a href="/" title="Chemodan.online"><img src="~/Content/img/logo.svg" alt="Chemodan.online"></a>
+            </div>
+
         </div>
-        <div class="footer-menu  hidden-xs">
-            @if (Model != null && Model.topMenuItems != null)
+
+        <div class="hidden-xs col-sm-5 col-md-5 col-lg-5">
+            <div class="footer-menu  hidden-xs">
+                @if (Model != null && Model.topMenuItems != null)
             {
                 foreach (var item in Model.topMenuItems)
                 {
-                    <div>
-                        <a href="@item.path">@item.name</a>
-                    </div>
+                        <div>
+                            <a href="@item.path">@item.name</a>
+                        </div>
+                    }
                 }
-            }
+            </div>
         </div>
 
-        <div class="footer-addres">
-            <div>‎+38 (093) 444 50 54</div>
-            <div><a href="mailto:info@chemodan.online">info@chemodan.online</a></div>
-            <div>
-                <a href="https://www.facebook.com/chemodan.online/">
-                    <img src="~/Content/img/icons/facebook-logo.png"/>
-                </a>
-                <a href="https://www.instagram.com/chemodan.online/">
-                    <img src="~/Content/img/icons/instagram-logo.png" />
-                </a>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="footer-addres">
+                <div>‎+38 (093) 444 50 54</div>
+                <div>
+                    <a href="mailto:info@chemodan.online">info@chemodan.online</a>
+                </div>
+                <div>
+                    <a href="https://www.facebook.com/chemodan.online/">
+                        <img src="~/Content/img/icons/facebook-logo.png" />
+                    </a>
+                    <a href="https://www.instagram.com/chemodan.online/">
+                        <img src="~/Content/img/icons/instagram-logo.png" />
+                    </a>
+                </div>
             </div>
         </div>
 
 
+
     </div>
+
     <div class="line2">
         <div>
             Copyright © Chemodan Online. All Right Reserved 2017

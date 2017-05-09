@@ -268,7 +268,9 @@
     <Content Include="Content\css\scss-styles\order.min.css">
       <DependentUpon>order.css</DependentUpon>
     </Content>
-    <Content Include="Content\css\scss-styles\product.css" />
+    <Content Include="Content\css\scss-styles\product.css">
+      <DependentUpon>product.scss</DependentUpon>
+    </Content>
     <Content Include="Content\css\scss-styles\product.min.css">
       <DependentUpon>product.css</DependentUpon>
     </Content>

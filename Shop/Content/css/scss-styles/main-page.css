@@ -264,14 +264,12 @@ footer {
       footer .line1 div {
         display: inline-block; }
       footer .line1 .footer-menu {
-        width: 310px;
         min-height: 107px;
         max-height: 107px;
         overflow: hidden; }
         footer .line1 .footer-menu a {
           display: block;
-          padding: 9px 20px;
-          min-width: 120px; }
+          padding: 9px 20px; }
       footer .line1 .footer-addres {
         font-size: 18px; }
     footer .line2 {
