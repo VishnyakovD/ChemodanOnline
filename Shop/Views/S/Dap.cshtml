@@ -1,7 +1,7 @@
 ﻿@model Shop.Models.MenuModel
 
 @{
-    Page.Title = "Аренда чемоданов | Chemodan.online";
+    Page.Title = "Прокат чемоданов | Chemodan.online";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -25,6 +25,23 @@
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
             <div class="article-info-block">
                 <div class="img">
+                    <img src="~/Content/img/icons/cart1.png" />
+                </div>
+                <div class="text">Самовывоз</div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <div class="default-label">
+                Забрать заказ по адресу – проспект Победы, 67, корпус «I», офис 213.
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="article-info-block">
+                <div class="img">
                     <img src="~/Content/img/icons/head.png" />
                 </div>
                 <div class="text">Курьерская доставка</div>
@@ -32,14 +49,14 @@
         </div>
 
         <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-            <div class="default-label">На нашем сайте вы можете заказать курьерскую доставку в любой район Киева</div>
+            <div class="default-label">Только по Киеву</div>
         </div>
 
         <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
             <div class="info-label">
                 @*<div class="big-label">60</div>
                 <div class="default-label">грн.</div>*@
-                Стоимость доставки курьером - 65 грн
+                Стоимость - 65 грн.
             </div>
         </div>
     </div>
@@ -55,7 +72,7 @@
         </div>
 
         <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-            <div class="default-label">В течение одного часа</div>
+            <div class="default-label">День в день</div>
         </div>
 
         <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
@@ -63,24 +80,7 @@
                 @*<div class="big-label">85</div>
                 <div class="default-label">грн.</div>*@
 
-                Стоимость экспресс- доставки курьером – 150 грн.
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-            <div class="article-info-block">
-                <div class="img">
-                    <img src="~/Content/img/icons/cart1.png" />
-                </div>
-                <div class="text">Самовывоз</div>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-            <div class="default-label">
-                Самостоятельно забрать ваш заказ вы сможете по адресу – проспект Победы, 67, корпус «I», офис 213. График работы с 10.00 до 19.00 с понедельника по субботу
+                Стоимость – 150 грн.
             </div>
         </div>
     </div>
@@ -114,7 +114,7 @@
                 <div class="img">
                     <img src="~/Content/img/icons/card.png" />
                 </div>
-                <div class="text">Предоплата на карту</div>
+                <div class="text">Банковской картой</div>
             </div>
         </div>
 
@@ -131,7 +131,7 @@
                 <div class="img">
                     <img src="~/Content/img/icons/wallet.png" />
                 </div>
-                <div class="text">Оплата наличными при получении</div>
+                <div class="text">Оплата наличными</div>
             </div>
         </div>
 

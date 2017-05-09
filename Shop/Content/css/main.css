@@ -232,11 +232,11 @@
 
 @media (min-width: 992px) {
   .title-main-page {
-    margin-top: 84px;
-    margin-bottom: 60px;
+    margin-top: 25px;
+    margin-bottom: 35px;
     font-size: 26px; }
   .hr-title {
-    margin-top: -73px; }
+    margin-top: -51px; }
   .info-category {
     padding-left: 100px;
     padding-right: 100px; }
@@ -283,7 +283,7 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
   .title-main-page {
-    margin-top: 50px;
+    margin-top: 25px;
     margin-bottom: 30px;
     font-size: 20px; }
   .hr-title {
@@ -334,11 +334,11 @@
 
 @media (max-width: 767px) {
   .title-main-page {
-    margin-top: 50px;
+    margin-top: 25px;
     margin-bottom: 20px;
     font-size: 20px; }
   .hr-title {
-    margin-top: -41px; }
+    margin-top: -32px; }
   .info-category {
     padding-left: 0;
     padding-right: 0; }
@@ -554,8 +554,7 @@ footer {
     color: #333333;
     vertical-align: middle; }
   .short-product .price {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 15px;
     letter-spacing: 0.5px;
     vertical-align: middle; }
   .short-product.list-item {
@@ -619,14 +618,13 @@ footer {
     white-space: nowrap; }
     .product-card .prices .line1 .price-value {
       display: inline-block;
-      font-size: 28px;
-      font-weight: bold;
+      font-size: 20px;
       letter-spacing: 0.5px;
       text-align: center;
       color: #0d0d0d;
       background: white; }
     .product-card .prices .line1 .price-curency {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 300;
       letter-spacing: 0.5px;
       text-align: center;
@@ -1209,7 +1207,7 @@ input.error, span.error, div.error {
   color: #0d0d0d;
   text-align: left;
   text-transform: uppercase;
-  margin-bottom: 40px; }
+  margin-bottom: 25px; }
 
 .long-minus {
   display: inline-block; }

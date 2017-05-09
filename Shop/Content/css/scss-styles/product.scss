@@ -51,8 +51,9 @@
     }
 
     .price {
-        font-size: 18px;
-        font-weight: bold;
+        //font-size: 18px;
+        //font-weight: bold;
+        font-size: 15px;
         letter-spacing: 0.5px;
         vertical-align: middle;
     }
@@ -140,8 +141,9 @@
 
             .price-value {
                 display: inline-block;
-                font-size: 28px;
-                font-weight: bold;
+                font-size: 20px;
+                //font-size: 28px;
+                //font-weight: bold;
                 letter-spacing: 0.5px;
                 text-align: center;
                 color: #0d0d0d;
@@ -149,7 +151,8 @@
             }
 
             .price-curency {
-                font-size: 24px;
+                //font-size: 24px;
+                font-size: 20px;
                 font-weight: 300;
                 letter-spacing: 0.5px;
                 text-align: center;

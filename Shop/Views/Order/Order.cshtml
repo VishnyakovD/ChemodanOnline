@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     if (Model != null)
     {
-        Page.Title = "Аренда чемоданов | Chemodan.online";
+        Page.Title = "Прокат чемоданов | Chemodan.online";
         @section head {
             <meta name="description" content="@Model.Description">
             <meta name="keywords" content="@Model.Keywords">
@@ -37,7 +37,7 @@
                             Количество
                         </div>
                         <div class="col-sm-2 col-md-2 col-lg-2">
-                            Цена аренды
+                            Цена проката
                         </div>
                         <div class="col-sm-2 col-md-2 col-lg-2">
                             Стоимость
@@ -84,7 +84,7 @@
                                 <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
 
                                     <div class="item">
-                                        <div class="txt-label hidden-lg hidden-md hidden-sm">Цена аренды</div>
+                                        <div class="txt-label hidden-lg hidden-md hidden-sm">Цена проката</div>
                                         <span class="num">@item.price.ToString("F2", CultureInfo.InvariantCulture)</span>
                                         <span class="txt"> грн.</span>
                                     </div>
@@ -265,7 +265,7 @@
                         </div>
                         <div class="@addressCells">
                             <label>Телефон *</label>
-                            <input class="form-control" type="text" name="ClientPhone" placeholder="067 514 54 87" value="@Model.Order.ClientPhone" />
+                            <input class="form-control" type="text" name="ClientPhone" placeholder="0XX XXX XX XX" value="@Model.Order.ClientPhone" />
                         </div>
                     </div>
                     <div class="js-addres hide">
