@@ -94,7 +94,7 @@ namespace Shop
 
                 document.Add(new Paragraph(" ", normal));
 
-                document.Add(new Paragraph($"      14.2.  Загальна вартість прокату Майна  за період передбачений в п. 14 становить  {(order.Order.OrderProducts.Sum(item => item.PriceDay) * days).ToString("F2")} грн.", normal));
+                document.Add(new Paragraph($"      14.2.  Загальна вартість прокату Майна за період згідно з п. 14 становить  {(order.Order.OrderProducts.Sum(item => item.PriceDay) * days).ToString("F2")} грн.", normal));
                 document.Add(new Paragraph($"      14.3.  Повна вартість Майна (сума застави), що передається Наймачем Наймодавцеві, складає: {zalog.ToString("F2")} (_______________________________________________) грн.", normal));
                 document.Add(new Paragraph("    14.4.  Взаєморозрахунки між Сторонами можуть проводитися в готівковій або безготівковій формі. Наймач сплачує Наймодавцю в момент повернення Майна штраф у розмірі вартості найму Майна за кожну добу користування Майном понад строки визначені в Договорі.", normal));
                 document.Add(new Paragraph("  15.  У випадку пошкодження Майна/зміни його стану незалежно від вини Наймача останній несе повну матеріальну відповідальність перед Наймодавцем за такі пошкодження/зміни враховуючи наступне:", normal));
@@ -105,7 +105,7 @@ namespace Shop
                 document.Add(new Paragraph("  17.  Будь-які спори за цим Договором вирішуються шляхом переговорів або в суді відповідно до чинного законодавства України.", normal));
                 document.Add(new Paragraph("  18.  Сторони зобов’язуються при укладенні, виконанні та після припинення цього Договору дотримуватися вимог законодавчих та інших нормативно-правових актів України у сфері захисту персональних даних, в т.ч. щодо їх отримання, обробки, зберігання, якщо інше не врегульоване письмовою домовленістю Сторін.", normal));
                 document.Add(new Paragraph("  19.  Сторони усвідомлюють, що в рамках виконання зобов’язань за цим Договором вони можуть обмінюватись документами або іншими даними, які містять відомості, що належать до персональних даних фізичних осіб (підписанти, відповідальні/контактні особи тощо). При цьому уповноважені представники Сторін (підписанти), укладаючи цей Договір, по відношенню до персональних даних зобов’язуються:", normal));
-                document.Add(new Paragraph("      19.1.  гарантувати отримання згоди на обробку вказаних даних від суб’єктів персональних даних - винятково відповідно до мети, визначеної предметом та зобов’язаннями Сторін за цим Договором; гарантувати повідомлення суб’єктів персональних даних про їх включення до відповідних баз та повідомлення таких осіб про їхні права, визначені законодавством.", normal));
+                document.Add(new Paragraph("      19.1.  гарантувати отримання згоди на обробку вказаних даних від суб’єктів персональних даних - винятково відповідно до мети, визначеної предметом та зобов’язаннями Сторін за цим Договором, гарантувати повідомлення суб’єктів персональних даних про їх включення до відповідних баз та повідомлення таких осіб про їхні права, визначені законодавством.", normal));
                 document.Add(new Paragraph("      19.2.  надавати свою згоду, шляхом підписання цього Договору, на обробку власних персональних даних та вважатися повідомленим про включення його персональних даних до відповідної бази даних іншої Сторони та повідомленим про права, визначені законодавством.", normal));
                 document.Add(new Paragraph("  20.  Будь-які персональні дані, що передаються чи можуть передаватись за цим Договором, становитимуть конфіденційну інформацію, що не підлягає розголошенню/передачі у будь-якому вигляді, окрім випадків, прямо передбачених законодавством України. Про всі випадки розголошення/передачі персональних даних за цим Договором Сторони негайно інформують одна одну у письмовому вигляді.", normal));
                 document.Add(new Paragraph("  21.  Договір укладено на невизначений строк але у будь-якому разі до повного виконання сторонами своїх обов’язків.", normal));
@@ -143,7 +143,7 @@ namespace Shop
                 table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
                 table1.AddCell(new PdfPCell(new Phrase("Адреса", normal)) { MinimumHeight = 16, Border = 0 });
 
-                string flat = (string.IsNullOrEmpty(order.Order.Flat) ? "" : ", "+order.Order.Flat);
+                string flat = (string.IsNullOrEmpty(order.Order.Flat) ? "" : ", кв "+order.Order.Flat);
                 string address =!string.IsNullOrEmpty(order.Order.City)?$"{order.Order.City}, {order.Order.TypeStreet}.{order.Order.Street}, дом {order.Order.Home}{flat}":"";
                 table1.AddCell(new PdfPCell(new Phrase($"{address}", normal)) { MinimumHeight = 16, Border = 0 });
 
@@ -177,10 +177,10 @@ namespace Shop
 
                 document.Add(new Paragraph("                                                                   АКТ ПРИЙОМУ-ПЕРЕДАЧІ", head));
 
-                document.Add(new Paragraph($"                                                     до Договору найму № {orderNumber} від {order.Order.From.ToString("dd.MM.yyyy")}р.", normal));
+                //document.Add(new Paragraph($"                                                     до Договору найму № {orderNumber} від {order.Order.From.ToString("dd.MM.yyyy")}р.", normal));
                 document.Add(new Paragraph($"м. Київ                                                                                                                                                    дата " + DateTime.Now.Date.ToString("dd.MM.yyyy") + "р.", normal));
                 document.Add(new Paragraph(" ", normal));
-                document.Add(new Paragraph($"Фізична особа підприємець Глущенко Iнна Миколаївна з однієї сторони (далі в тексті – Наймодавець) та {order.Order.ClientLastName} {order.Order.ClientFirstName} (ПІ) з другої сторони (далі в тексті – Наймач), разом іменовані – Сторони, склали цей акт про передачу від {order.Order.From.ToString("dd.MM.yyyy")}р. до {order.Order.To.ToString("dd.MM.yyyy")}р. в рамках Договору від {order.Order.From.ToString("dd.MM.yyyy")}р. № {orderNumber} наступного Майна", normal));
+                document.Add(new Paragraph($"Фізична особа підприємець Глущенко Iнна Миколаївна з однієї сторони (далі в тексті – Наймодавець) та {order.Order.ClientLastName} {order.Order.ClientFirstName} (ПІ) з другої сторони (далі в тексті – Наймач), разом іменовані – Сторони, склали цей акт про передачу від Глущенко Iнни Миколаївни до {order.Order.ClientLastName} {order.Order.ClientFirstName} в рамках Договору № {orderNumber} від {DateTime.Now.Date.ToString("dd.MM.yyyy")}р.  наступного Майна", normal));
                 document.Add(new Paragraph(" ", normal));
                 PdfPTable table2 = new PdfPTable(4);
 
