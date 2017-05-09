@@ -333,6 +333,8 @@
         letter-spacing: 0.6px; } }
 
 @media (max-width: 767px) {
+  .mobile-center {
+    text-align: center; }
   .title-main-page {
     margin-top: 25px;
     margin-bottom: 20px;
@@ -813,7 +815,7 @@ footer {
   .filters ul {
     padding-left: 0; }
     .filters ul li {
-      display: inline-block;
+      display: block;
       font-size: 20px;
       line-height: 1.5;
       letter-spacing: 1px;

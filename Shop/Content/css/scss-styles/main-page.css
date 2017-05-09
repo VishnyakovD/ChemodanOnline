@@ -155,6 +155,8 @@
         letter-spacing: 0.6px; } }
 
 @media (max-width: 767px) {
+  .mobile-center {
+    text-align: center; }
   .title-main-page {
     margin-top: 25px;
     margin-bottom: 20px;

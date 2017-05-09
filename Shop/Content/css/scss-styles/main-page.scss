@@ -54,8 +54,6 @@
 }
 
 
-
-
 .title-main-page {
     position: relative;
     line-height: 1.15;
@@ -233,6 +231,12 @@
 }
 
 @media (max-width: 767px) {
+
+    .mobile-center {
+        text-align: center;
+    }
+
+
     .title-main-page {
         margin-top: 25px;
         margin-bottom: 20px;
@@ -374,9 +378,9 @@ footer {
         text-align: left;
         color: #666666;
 
-        img{
-            height:20px;
-            width:auto;
+        img {
+            height: 20px;
+            width: auto;
         }
 
         div {
