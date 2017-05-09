@@ -1554,6 +1554,14 @@ input.error, span.error, div.error {
   .articles .article .header .title {
     font-size: 18px; } }
 
+.glass {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99998; }
+
 #ServerMessage, .message {
   font-size: 150%;
   border: 1px solid #666666;

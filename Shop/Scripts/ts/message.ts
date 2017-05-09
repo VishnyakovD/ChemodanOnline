@@ -7,11 +7,13 @@
 
     showMessage(text: string): void {
         this.message.html(text);
+        this.message.closest(".js-glass").show();
         this.message.show();
             this.message.fadeTo("fast", 0.9);
             setTimeout(() => {
                 this.message.hide();
                 this.message.html("");
+                this.message.closest(".js-glass").hide();
             }, 900);
     }
 
@@ -20,11 +22,13 @@
         if (link!=null && link.length>0) {
             btn = "<a class='close' href='" + link + "'><span>&times;</span></a>";
         }
+        this.message.closest(".js-glass").show();
         this.message.html(btn+text);
         this.message.show();
     }
 
     closeMessageWnd(): void {
+        this.message.closest(".js-glass").hide();
         this.message.hide();
         this.message.html("");
     }

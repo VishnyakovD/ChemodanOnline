@@ -5,11 +5,13 @@ var MessageManager = (function () {
     MessageManager.prototype.showMessage = function (text) {
         var _this = this;
         this.message.html(text);
+        this.message.closest(".js-glass").show();
         this.message.show();
         this.message.fadeTo("fast", 0.9);
         setTimeout(function () {
             _this.message.hide();
             _this.message.html("");
+            _this.message.closest(".js-glass").hide();
         }, 900);
     };
     MessageManager.prototype.showMessageWnd = function (text, link) {
@@ -17,10 +19,12 @@ var MessageManager = (function () {
         if (link != null && link.length > 0) {
             btn = "<a class='close' href='" + link + "'><span>&times;</span></a>";
         }
+        this.message.closest(".js-glass").show();
         this.message.html(btn + text);
         this.message.show();
     };
     MessageManager.prototype.closeMessageWnd = function () {
+        this.message.closest(".js-glass").hide();
         this.message.hide();
         this.message.html("");
     };
