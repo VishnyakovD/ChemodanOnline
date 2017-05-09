@@ -9,10 +9,14 @@
     }
 
     .line2 {
-        min-height: 20px;
+        /*min-height: 20px;
         max-height: 20px;
         overflow: hidden;
-        vertical-align: middle;
+        vertical-align: middle;*/
+        position: absolute;
+        top: 0px;
+        left: 25px;
+        background: rgba(255, 255, 255, 0.76);
     }
 
     .line3 {
@@ -63,10 +67,7 @@
         }
 
         .line2 {
-            position: absolute;
             top: 30px;
-            left: 25px;
-            background: rgba(255, 255, 255, 0.76);
         }
 
         .line3 {

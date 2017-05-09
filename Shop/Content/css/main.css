@@ -524,10 +524,14 @@ footer {
   .short-product .line1 img {
     width: 70%; }
   .short-product .line2 {
-    min-height: 20px;
-    max-height: 20px;
-    overflow: hidden;
-    vertical-align: middle; }
+    /*min-height: 20px;
+        max-height: 20px;
+        overflow: hidden;
+        vertical-align: middle;*/
+    position: absolute;
+    top: 0px;
+    left: 25px;
+    background: rgba(255, 255, 255, 0.76); }
   .short-product .line3 {
     min-height: 20px;
     max-height: 20px;
@@ -561,10 +565,7 @@ footer {
       border-radius: 5px;
       border: solid 1px #ededed; }
     .short-product.list-item .line2 {
-      position: absolute;
-      top: 30px;
-      left: 25px;
-      background: rgba(255, 255, 255, 0.76); }
+      top: 30px; }
     .short-product.list-item .line3 {
       margin-top: 10px; }
 
