@@ -313,14 +313,17 @@
     <Content Include="Content\img\icons\mail.png" />
     <Content Include="Content\img\icons\map.jpg" />
     <Content Include="Content\img\icons\master.png" />
+    <Content Include="Content\img\icons\master1.png" />
     <Content Include="Content\img\icons\next.png" />
     <Content Include="Content\img\icons\note.png" />
     <Content Include="Content\img\icons\oper.png" />
     <Content Include="Content\img\icons\passport.png" />
+    <Content Include="Content\img\icons\payment.png" />
     <Content Include="Content\img\icons\phone.png" />
     <Content Include="Content\img\icons\prev.png" />
     <Content Include="Content\img\icons\size.png" />
     <Content Include="Content\img\icons\visa.png" />
+    <Content Include="Content\img\icons\visa1.png" />
     <Content Include="Content\img\icons\wallet.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\logo.svg" />

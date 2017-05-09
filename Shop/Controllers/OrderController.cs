@@ -124,7 +124,8 @@ namespace Shop.Controllers
                         }
                         orderData = dataService.AddOrUpdateOrder(orderData);
                         SendMailEx.SendMailExAsyncOrder();
-                        result = "Заказ создан: " + orderData.OrderNumber.ToString()+ ". Менеджер свяжется с вами в ближайшее время";
+                       // result = "Заказ создан: " + orderData.OrderNumber.ToString()+ ". Менеджер свяжется с вами в ближайшее время";
+                        result = "Спасибо за ваш заказ! Менеджер свяжется с вами в ближайшее время";
 
                         if (orderData.PaymentType.Id == 2)
                         {

@@ -1,6 +1,9 @@
 ﻿.deliv-and-pay .article-info-block div {
   display: inline-block; }
 
+.deliv-and-pay .article-info-block .cards {
+  height: 40px; }
+
 .deliv-and-pay .article-info-block .img {
   border: 1px black solid;
   padding: 8px;

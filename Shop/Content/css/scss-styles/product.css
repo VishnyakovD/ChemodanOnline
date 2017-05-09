@@ -426,6 +426,9 @@ footer {
     font-weight: 300;
     text-align: left;
     color: #666666; }
+    footer .line2 img {
+      height: 20px;
+      width: auto; }
     footer .line2 div {
       display: inline-block; }
 
@@ -959,7 +962,7 @@ footer {
   margin-bottom: 15px;
   border-radius: 3px;
   background-color: #ebf1f2;
-  padding-bottom: 35px; }
+  padding-bottom: 15px; }
   .order-pages .order-info .title {
     font-size: 16px;
     line-height: 1.5;
@@ -1299,6 +1302,9 @@ input.error, span.error, div.error {
 
 .deliv-and-pay .article-info-block div {
   display: inline-block; }
+
+.deliv-and-pay .article-info-block .cards {
+  height: 40px; }
 
 .deliv-and-pay .article-info-block .img {
   border: 1px black solid;

@@ -1,18 +1,37 @@
 ﻿@model string[]
 
+@{
+    var inValue="";
+    var expandedValue = "false";
+    var collapsedValue = "";
+    try
+    {
+        if (!string.IsNullOrEmpty(Model[3]))
+        {
+            inValue = "in";
+            expandedValue = "true";
+            collapsedValue = "collapsed";
+        }
+    }
+    catch (Exception)
+    {
+
+
+    }
+}
 
 <div class="panel-group" id="accordion@(Model[0])" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="panelcol@(Model[0])">
             <h4 class="header">
-                <a role="button" data-toggle="collapse" data-parent="#accordion@(Model[0])" href="#panellink@(Model[0])" aria-expanded="false" aria-controls="panellink@(Model[0])">
+                <a role="button" class="@collapsedValue" data-toggle="collapse" data-parent="#accordion@(Model[0])" href="#panellink@(Model[0])" aria-expanded="@expandedValue" aria-controls="panellink@(Model[0])">
                     <span class="glyphicon glyphicon-minus"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     @Model[1]
                 </a>
             </h4>
         </div>
-        <div id="panellink@(Model[0])" class="panel-collapse collapse" role="tabpanel" aria-labelledby="panelcol@(Model[0])">
+        <div id="panellink@(Model[0])" class="panel-collapse collapse @inValue" role="tabpanel" aria-labelledby="panelcol@(Model[0])">
             <div class="panel-body">
                 <div class="text-only">
                   @(new HtmlString(Model[2]))
