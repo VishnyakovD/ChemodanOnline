@@ -24,7 +24,8 @@ namespace Shop.Controllers
         private IArticleBuilder articleBuilder { set; get; }
         private MenuBuilder menuBuilder { set; get; }
         private IMainPageBuilder mainPageBuilder { set; get; }
-
+        private string Keywords { set; get; }
+        private string Description { set; get; }
 
         public HomeController(ILogger logger,
             IAdminModelBuilder adminModelBuilder,
@@ -40,6 +41,8 @@ namespace Shop.Controllers
             skuViewerBuilder = SkuViewerBuilder;
             articleBuilder = ArticleBuilder;
             this.mainPageBuilder = mainPageBuilder;
+            Keywords = "аренда чемоданов, арендовать чемодан, чемодан на прокат, прокат чемоданов, аренда чемоданов киев, арендовать чемодан киев, чемодан на прокат киев, прокат чемоданов киев";
+            Description = "";
         }
 
         public ActionResult ListSkuOnCategory(long idCat=-1, int ctype=-1)
@@ -71,6 +74,8 @@ namespace Shop.Controllers
             filters.ChemodanTypes = types;
 
             var model = skuViewerBuilder.Build(filters);
+            model.Keywords = Keywords;
+            model.Description = Description;
             return View("ListSkuOnCategory", model);
         }
 
@@ -94,16 +99,20 @@ namespace Shop.Controllers
 
         public ActionResult SkuInfo(long idSku)
         {
-            ViewBag.isHideLeftMenu = true;
-            var result = skuViewerBuilder.BuildSkuModel(idSku);
-            result.description = result.description;
-            result.care = result.care;
-            return View("SkuInfo", result);
+            var model = skuViewerBuilder.BuildSkuModel(idSku);
+
+           
+
+            model.KeywordsPage = Keywords;
+            model.DescriptionPage = Description;
+            return View("SkuInfo", model);
         }
 
         public ActionResult Index()
         {
             var model = mainPageBuilder.Build();
+            model.Keywords = Keywords;
+            model.Description = Description;
             return View("MainPage", model);
     
         }

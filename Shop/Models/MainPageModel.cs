@@ -13,6 +13,8 @@ namespace Shop.Models
         public List<InfoBlockItem> ListBlockInfo { set; get; }
         public List<InfoBlockItem> ListCaruselItem { set; get; }
         public List<ShortSKUModel> ListProduct { set; get; }
+        public string Keywords { set; get; }
+        public string Description { set; get; }
 
         public MainPageModel()
         {

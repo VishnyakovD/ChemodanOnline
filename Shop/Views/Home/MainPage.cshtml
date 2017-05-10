@@ -1,5 +1,10 @@
 ﻿@model Shop.Models.MainPageModel
 @{
+
+    @section head {
+        <meta name="description" content="@Model.Description">
+        <meta name="keywords" content="@Model.Keywords">
+    }
     Layout = "~/Views/Shared/_Layout.cshtml";
     Page.Title = "Прокат чемоданов | Chemodan.online";
 

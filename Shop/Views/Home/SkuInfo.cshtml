@@ -7,6 +7,11 @@
         Page.Title = "Прокат чемоданов | Chemodan.online";
 
 
+        @section head {
+            <meta name="description" content="@Model.DescriptionPage">
+            <meta name="keywords" content="@Model.KeywordsPage">
+        }
+
         @*@section head {
                  <meta name="description" content="@Model.description">
                  <meta name="keywords" content="@Page.Title">

@@ -85,6 +85,9 @@ namespace Shop.Models
         public string TitleProduct { get; set; }
 
 
+        public string KeywordsPage { set; get; }
+        public string DescriptionPage { set; get; }
+
 
         public SKUModel()
         {

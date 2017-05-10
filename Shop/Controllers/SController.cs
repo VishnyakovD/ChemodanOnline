@@ -21,7 +21,8 @@ namespace Shop.Controllers
     public class SController : BaseController
     {
         private MenuBuilder menuBuilder { set; get; }
-
+        private string Keywords { set; get; }
+        private string Description { set; get; }
 
 
         public SController(ILogger logger,
