@@ -130,8 +130,19 @@
   color: #0d0d0d; }
 
 @media (max-width: 768px) {
+  .faq .panel .panel-heading .header {
+    text-transform: inherit;
+    letter-spacing: 0.5px;
+    font-weight: normal; }
+    .faq .panel .panel-heading .header a {
+      padding: 8px 5px;
+      word-break: break-all; }
+      .faq .panel .panel-heading .header a span {
+        margin-right: 15px; }
   .faq .panel .panel-body {
-    padding: 20px 20px; } }
+    padding: 20px 20px; }
+  .faq .image-text {
+    padding-left: 70px; } }
 
 .contacts .map {
   width: 100%; }

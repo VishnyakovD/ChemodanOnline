@@ -4,8 +4,8 @@
             display: inline-block;
         }
 
-        .cards{
-            height:40px;
+        .cards {
+            height: 40px;
         }
 
         .img {
@@ -17,6 +17,7 @@
                 width: 18px;
             }
         }
+
         .text {
             margin-left: 30px;
             display: inline-block;
@@ -197,9 +198,30 @@
 @media (max-width:768px) {
     .faq {
         .panel {
+            .panel-heading {
+                .header {
+                    text-transform: inherit;
+                    letter-spacing: 0.5px;
+                    font-weight: normal;
+
+                    a {
+                        padding: 8px 5px;
+                        word-break: break-all;
+
+                        span {
+                            margin-right: 15px;
+                        }
+                    }
+                }
+            }
+
             .panel-body {
                 padding: 20px 20px;
             }
+        }
+
+        .image-text {
+            padding-left: 70px;
         }
     }
 }
@@ -372,7 +394,7 @@
         .article {
             .header {
                 .title {
-                    font-size:18px;
+                    font-size: 18px;
                 }
             }
         }
