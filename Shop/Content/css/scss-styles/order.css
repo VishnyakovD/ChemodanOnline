@@ -87,7 +87,7 @@
       font-size: 16.3px;
       line-height: 1.25;
       letter-spacing: 0.5px;
-      color: #003663; }
+      color: #0d0d0d; }
     .order-table .body .item .txt {
       margin-top: 29px;
       display: inline-block;
@@ -104,6 +104,9 @@
         height: 13px; }
       .order-table .body .item .clear-line.mobile {
         margin-top: -10px; }
+
+.order-pages input[type=text] {
+  text-transform: capitalize; }
 
 .order-pages label {
   font-size: 14px;

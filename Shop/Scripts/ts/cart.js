@@ -297,7 +297,8 @@ var CartManager = (function () {
             clientPhone: cartManager.payOnlineItem.clientPhone,
             holdTimeout: cartManager.payOnlineItem.holdTimeout,
             merchantTransactionType: cartManager.payOnlineItem.merchantTransactionType,
-            paymentSystems: "card"
+            paymentSystems: "card",
+            language: "RU"
         }, function (response) {
             if (response.reasonCode == 1100) {
                 var date = new Date();

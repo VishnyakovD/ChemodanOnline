@@ -17,6 +17,10 @@
         top: 0px;
         left: 25px;
         background: rgba(255, 255, 255, 0.76);
+
+        &.favorite{
+            left:5px;
+        }
     }
 
     .line3 {

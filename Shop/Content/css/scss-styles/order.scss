@@ -121,7 +121,7 @@
                 font-size: 16.3px;
                 line-height: 1.25;
                 letter-spacing: 0.5px;
-                color: #003663;
+                color: #0d0d0d;
             }
 
             .txt {
@@ -152,6 +152,10 @@
 }
 
 .order-pages {
+
+    input[type=text]{
+        text-transform:capitalize;
+    }
 
     label {
         font-size: 14px;

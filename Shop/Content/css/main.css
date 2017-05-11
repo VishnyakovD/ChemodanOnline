@@ -537,6 +537,8 @@ footer {
     top: 0px;
     left: 25px;
     background: rgba(255, 255, 255, 0.76); }
+    .short-product .line2.favorite {
+      left: 5px; }
   .short-product .line3 {
     min-height: 20px;
     max-height: 20px;
@@ -923,7 +925,7 @@ footer {
       font-size: 16.3px;
       line-height: 1.25;
       letter-spacing: 0.5px;
-      color: #003663; }
+      color: #0d0d0d; }
     .order-table .body .item .txt {
       margin-top: 29px;
       display: inline-block;
@@ -940,6 +942,9 @@ footer {
         height: 13px; }
       .order-table .body .item .clear-line.mobile {
         margin-top: -10px; }
+
+.order-pages input[type=text] {
+  text-transform: capitalize; }
 
 .order-pages label {
   font-size: 14px;
@@ -1316,9 +1321,9 @@ input.error, span.error, div.error {
     width: 18px; }
 
 .deliv-and-pay .article-info-block .text {
-  margin-left: 30px;
+  margin-left: 10px;
   display: inline-block;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 2.14;
   letter-spacing: 0.4px;
   color: #0d0d0d;
