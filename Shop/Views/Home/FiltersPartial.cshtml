@@ -3,8 +3,13 @@
 @using Shop.db.Repository
 @model FilterProduct
 
+<div class="hidden-sm hidden-md hidden-lg">
+    <div class="filter-viewer" onclick="filterModel.filterViewer(event)">
+       <span>ФИЛЬТР </span>  <span class="glyphicon glyphicon-chevron-down"></span>
+    </div>
+</div>
 
-<div class="filters js-product-filter">
+<div class="filters js-product-filter hide-mobile">
     <div>
         <div class="filter-name">@Shop.Resources.Default.ChemodanTypes</div>
         <ul>

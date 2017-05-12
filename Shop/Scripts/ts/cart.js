@@ -308,7 +308,7 @@ var CartManager = (function () {
                     console.log("order paid : " + result);
                     message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
                     $(".js-order-pages").html("");
-                    $(".js-order-pages").css("height", "50vh");
+                    $(".js-order-pages").css("min-height", "50vh");
                 });
             }
         }, function (response) {
@@ -447,4 +447,3 @@ $(function () {
         });
     }
 });
-//# sourceMappingURL=cart.js.map

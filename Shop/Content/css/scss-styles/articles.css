@@ -41,7 +41,7 @@
   margin-bottom: 15px; }
 
 .deliv-and-pay .operator {
-  padding: 10px 10px 10px 70px;
+  padding: 10px 10px 10px 50px;
   position: relative;
   border: solid 1px #d9d9d9;
   min-height: 50px; }
@@ -52,7 +52,7 @@
 
 @media (max-width: 767px) {
   .deliv-and-pay .default-label, .deliv-and-pay .big-label, .deliv-and-pay .text, .deliv-and-pay .info-label {
-    text-align: center !important; }
+    margin-left: 50px; }
   .deliv-and-pay .text {
     font-size: 13px; } }
 

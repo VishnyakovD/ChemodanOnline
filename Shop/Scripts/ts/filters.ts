@@ -20,6 +20,7 @@ class FilterModel {
 
     selectedFiltersQuery: JQuery;
     listProductsQuery: JQuery;
+    filterBlockQuery: JQuery;
 
     constructor() {
         this.filterSpecifications = [];
@@ -28,6 +29,7 @@ class FilterModel {
 
         this.listProductsQuery = $(".js-list-products");
         this.selectedFiltersQuery = $(".js-selected-filters");
+        this.filterBlockQuery = $(".js-product-filter");
     }
 
     activateFilter(id: number, type: string, isSelected: boolean, value: string): void {
@@ -100,6 +102,17 @@ class FilterModel {
             .done((data) => {
                 this.listProductsQuery.html(data);
             });
+    }
+
+    filterViewer(e:Event): void {
+        if (this.filterBlockQuery.hasClass("hide-mobile")) {
+            this.filterBlockQuery.removeClass("hide-mobile");
+            $(e.currentTarget).find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+
+        } else {
+            this.filterBlockQuery.addClass("hide-mobile");
+            $(e.currentTarget).find(".glyphicon").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+        }
     }
 
     unCheckFilter(element: JQuery): void {

@@ -141,7 +141,9 @@
                 </div>
 
 
-                <div class="button-info blue js-addcart" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount" data-zalog="@Model.price.ToString("F2", CultureInfo.InvariantCulture)">Добавить в корзину</div>
+                <div class="button-info blue js-addcart hidden-xs" data-id="@Model.id" data-price="@Model.chemodanPriceDay.ToString("F2", CultureInfo.InvariantCulture)" data-max="@Model.maxCount" data-zalog="@Model.price.ToString("F2", CultureInfo.InvariantCulture)">Добавить в корзину</div>
+
+                @{Html.RenderPartial("PayOneClickPartial", new PayOneClickModel("full-width hidden-sm hidden-lg hidden-md", Model.id, ""));}
 
             </div>
             <div class="col-xs-4 col-md-4 col-lg-4 hidden-xs hidden-sm">

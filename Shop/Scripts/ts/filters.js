@@ -14,6 +14,7 @@ var FilterModel = (function () {
         this.filterCategoryes = [];
         this.listProductsQuery = $(".js-list-products");
         this.selectedFiltersQuery = $(".js-selected-filters");
+        this.filterBlockQuery = $(".js-product-filter");
     }
     FilterModel.prototype.activateFilter = function (id, type, isSelected, value) {
         var _this = this;
@@ -81,6 +82,16 @@ var FilterModel = (function () {
             .done(function (data) {
             _this.listProductsQuery.html(data);
         });
+    };
+    FilterModel.prototype.filterViewer = function (e) {
+        if (this.filterBlockQuery.hasClass("hide-mobile")) {
+            this.filterBlockQuery.removeClass("hide-mobile");
+            $(e.currentTarget).find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+        }
+        else {
+            this.filterBlockQuery.addClass("hide-mobile");
+            $(e.currentTarget).find(".glyphicon").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+        }
     };
     FilterModel.prototype.unCheckFilter = function (element) {
         element.removeClass("active");
@@ -159,4 +170,3 @@ $(function () {
         });
     }
 });
-//# sourceMappingURL=filters.js.map

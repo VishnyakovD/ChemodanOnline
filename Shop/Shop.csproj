@@ -262,6 +262,12 @@
     <Content Include="Content\css\scss-styles\main-page.min.css">
       <DependentUpon>main-page.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\scss-styles\messages.css">
+      <DependentUpon>messages.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\css\scss-styles\messages.min.css">
+      <DependentUpon>messages.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\scss-styles\order.css">
       <DependentUpon>order.scss</DependentUpon>
     </Content>
