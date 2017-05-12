@@ -26,7 +26,8 @@ input.error, span.error, div.error {
 
 .radio-btns div {
   color: gray;
-  cursor: pointer; }
+  cursor: pointer;
+  padding: 0 0 5px 0; }
   .radio-btns div .r1 {
     display: inline-block;
     width: 20px;

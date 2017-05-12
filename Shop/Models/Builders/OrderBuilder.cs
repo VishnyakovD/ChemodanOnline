@@ -119,7 +119,8 @@ namespace Shop.Models.Builders
                 CreateDate = item.CreateDate,
                 OrderNumber = item.OrderNumber,
                 OrderPrefix = item.OrderPrefix,
-                DeliveryType = item.DeliveryType
+                DeliveryType = item.DeliveryType,
+                IsHaveContract = item.IsHaveContract
             }).ToList();
         }
 

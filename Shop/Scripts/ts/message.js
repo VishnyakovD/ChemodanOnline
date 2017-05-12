@@ -34,3 +34,4 @@ var message;
 $(function () {
     message = new MessageManager();
 });
+//# sourceMappingURL=message.js.map

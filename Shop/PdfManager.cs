@@ -84,7 +84,7 @@ namespace Shop
 
                 foreach (var item in order.Order.OrderProducts)
                 {
-                    table.AddCell(new PdfPCell(new Phrase(item.Code, normal)) { HorizontalAlignment = 1, MinimumHeight = 25,VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table.AddCell(new PdfPCell(new Phrase(item.Article, normal)) { HorizontalAlignment = 1, MinimumHeight = 25,VerticalAlignment = Element.ALIGN_MIDDLE });
                     table.AddCell(new PdfPCell(new Phrase(item.PriceDay.ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table.AddCell(new PdfPCell(new Phrase((item.PriceDay*days).ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table.AddCell(new PdfPCell(new Phrase(item.FullPrice.ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
@@ -193,7 +193,7 @@ namespace Shop
                 foreach (var item in order.Order.OrderProducts)
                 {
                     table2.AddCell(new PdfPCell(new Phrase((i++).ToString(), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
-                    table2.AddCell(new PdfPCell(new Phrase(item.Code, normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table2.AddCell(new PdfPCell(new Phrase(item.Article, normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table2.AddCell(new PdfPCell(new Phrase((item.PriceDay * days).ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table2.AddCell(new PdfPCell(new Phrase("", normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                 }

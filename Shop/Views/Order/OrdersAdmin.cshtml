@@ -13,7 +13,7 @@
 
 @{ Html.RenderPartial("~/Views/Admin/AdminMenuPartial.cshtml"); }
 <div class="admindrders">
-    @using (Ajax.BeginForm("FilterOrders", new AjaxOptions {UpdateTargetId = "ServerMessage", OnSuccess = "onSucssess" }))
+    @using (Ajax.BeginForm("SearchFilterOrders", new AjaxOptions { UpdateTargetId = "adminorders" }))
     {
         <div class="row">
             <div class="col-md-12">
@@ -89,6 +89,7 @@
                     <th>Доставка</th>
                     <th>Оплачен</th>
                     <th>Статус</th>
+                    <th>Получен оригинал</th>
                 </tr>
                 <tbody id="adminorders">
                 @{Html.RenderPartial("OrdersAdminPartial", Model.Orders);}

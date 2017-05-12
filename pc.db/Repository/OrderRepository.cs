@@ -50,14 +50,14 @@ namespace Shop.db.Repository
 
         public List<Order> AllByClientPhone(string phone)
         {
-            var query = session.Query<Order>().Where(order => order.Client.mPhone==phone);
+            var query = session.Query<Order>().Where(order => order.Client.mPhone.Contains(phone));
             return query.ToList();
         }
 
         public List<Order> AllByClientSecondName(string name)
         {
             return session.Query<Order>()
-                .Where(order => order.Client.lastName == name).ToList();
+                .Where(order => order.Client.lastName.Contains(name)).ToList();
         }
 
         public List<Order> AllByDeliveryType(long deliveryType)
