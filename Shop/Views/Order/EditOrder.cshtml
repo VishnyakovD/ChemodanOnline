@@ -29,18 +29,20 @@
             </div>
 
             <div class="col-md-4">
-                <div class="pull-right">Пользователь : <span class="user">@Model.Order.UserName</span></div>
+                <div class="pull-right"><span class="user">@Model.Order.UserName</span></div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-3">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <button type="submit" class="btn btn-success">Сохранить</button>
                     </div>
-
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success">Отмена</button>
+                    </div>
+                    <div class="col-md-4">
                         <a class="btn btn-default pull-right" href="/Order/PrintOrder?orderId=@Model.Order.OrderId">Печать</a>
                     </div>
 
