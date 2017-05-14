@@ -9,59 +9,65 @@
 @foreach (var item in Model.OrderProducts)
 {
     <div class="row">
-        <div class="col-md-3">
-            <div class="item">
-                <div class="product-info">
-                    <div class="txt-block">
-                        <div class="line1">
-                            <a class="btn-link" href="/Home/SkuInfo?idSku=@item.ProductId" target="_blank">@item.ProductName</a>
-                        </div>
-                        <div class="line2">Артикул @item.Article</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="col-md-2">
-            <div class="item">
-                <span class="num">@item.PriceDay.ToString("F2", CultureInfo.InvariantCulture)</span>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="item">
-                <span class="num">@((item.PriceDay * (decimal)days).ToString("F2", CultureInfo.InvariantCulture))</span>
-            </div>
-        </div>
 
-        <div class="col-md-2">
-            <div class="item">
-                <span class="num">@item.FullPrice.ToString("F2", CultureInfo.InvariantCulture)</span>
-
-            </div>
-        </div>
-
-        <div class="col-md-3">
             <div class="product-to-order js-product-to-order">
-                <label class="btn btn-link" onclick="adminOrderManager.showExistProducts(@item.ProductId, @item.Id, @item.OrderId)">
+                <label class="glyphicon glyphicon-trash" onclick="adminOrderManager.removeProduct(@item.Id, @item.OrderId)"></label>
+                |
+                <label onclick="adminOrderManager.showExistProducts(@item.ProductId, @item.Id, @item.OrderId)">
                     @(string.IsNullOrEmpty(item.Code) ? "назначить" : item.Code)
                 </label>
-                <label class="btn btn-link" onclick="adminOrderManager.removeProduct(@item.Id, @item.OrderId)">
-                    удалить
-                </label>
+
             </div>
         </div>
+        <div class="col-md-3">
+            <a class="btn-link" href="/Home/SkuInfo?idSku=@item.ProductId" target="_blank">@item.ProductName</a>
+        </div>
+
+        <div class="col-md-1">
+            @item.Article
+        </div>
+
+        <div class="col-md-2">
+
+            <span class="">@item.PriceDay.ToString("F2", CultureInfo.InvariantCulture)</span>
+     
+        </div>
+        <div class="col-md-2">
+
+            <span class="">@((item.PriceDay*(decimal) days).ToString("F2", CultureInfo.InvariantCulture))</span>
+     
+        </div>
+
+        <div class="col-md-2">
+            <span class="num">@item.FullPrice.ToString("F2", CultureInfo.InvariantCulture)</span>
+        </div>
+
+
     </div>
 }
 
-<div class="row">
-    <div class="col-md-6 text-right">
-        <span>Прокат:</span> <label>@(Model.OrderProducts.Sum(item => item.PriceDay)* (decimal)days)</label>грн
-       
+
+<div class="row" style="border-top: 1px solid gray">
+
+    <div class="col-md-2">
+        Итого
+    </div>
+    <div class="col-md-3">
+      
+    </div>
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-2">
+        <label>@((Model.OrderProducts.Sum(item => item.PriceDay)*(decimal) days).ToString("F2", CultureInfo.InvariantCulture))</label>грн
     </div>
 
-
-    <div class="col-md-6 text-right">
-        <span>Залог:</span> <label>@(Model.OrderProducts.Sum(item => item.FullPrice))</label>грн
+    <div class="col-md-2">
+        <label>@((Model.OrderProducts.Sum(item => item.FullPrice)).ToString("F2", CultureInfo.InvariantCulture))</label>грн
     </div>
 
 </div>

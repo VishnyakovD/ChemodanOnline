@@ -49,7 +49,7 @@ namespace Shop
                 document.Add(new Paragraph($"                                                                                  Договір найму №{orderNumber}", head) );
 
                 document.Add(new Paragraph(" ", normal));
-                document.Add(new Paragraph($"м. Київ                                                                                                                                                    дата "+ DateTime.Now.Date.ToString("dd.MM.yyyy")+"р.",normal));
+                document.Add(new Paragraph($"м. Київ                                                                                                                                     дата "+ DateTime.Now.Date.ToString("dd MMMM yyyy") +"р.",normal));
                 document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph(" ", normal));
@@ -178,7 +178,7 @@ namespace Shop
                 document.Add(new Paragraph("                                                                   АКТ ПРИЙОМУ-ПЕРЕДАЧІ", head));
 
                 //document.Add(new Paragraph($"                                                     до Договору найму № {orderNumber} від {order.Order.From.ToString("dd.MM.yyyy")}р.", normal));
-                document.Add(new Paragraph($"м. Київ                                                                                                                                                    дата " + DateTime.Now.Date.ToString("dd.MM.yyyy") + "р.", normal));
+                document.Add(new Paragraph($"м. Київ                                                                                                                                     дата " + DateTime.Now.Date.ToString("dd MMMM yyyy") + "р.", normal));
                 document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph($"Фізична особа підприємець Глущенко Iнна Миколаївна з однієї сторони (далі в тексті – Наймодавець) та {order.Order.ClientLastName} {order.Order.ClientFirstName} (ПІ) з другої сторони (далі в тексті – Наймач), разом іменовані – Сторони, склали цей акт про передачу від Глущенко Iнни Миколаївни до {order.Order.ClientLastName} {order.Order.ClientFirstName} в рамках Договору № {orderNumber} від {DateTime.Now.Date.ToString("dd.MM.yyyy")}р.  наступного Майна", normal));
                 document.Add(new Paragraph(" ", normal));
@@ -233,6 +233,58 @@ namespace Shop
 
                 document.Add(table3);
 
+
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("  ", normal));
+                document.Add(new Paragraph("Передача Майна від Наймача до Наймодавця:", normal));
+                
+                PdfPTable table4 = new PdfPTable(widths1);
+                table4.WidthPercentage = 100;
+                document.Add(new Paragraph("  ", normal));
+                table4.AddCell(new PdfPCell(new Phrase("Наймодавець:", bold)) { MinimumHeight = 16, Colspan = 2, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase("Наймач: ", bold)) { MinimumHeight = 16, Colspan = 2, Border = 0 });
+
+                table4.AddCell(new PdfPCell(new Phrase("", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase("", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase("", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase($"", normal)) { MinimumHeight = 16, Border = 0 });
+
+
+                table4.AddCell(new PdfPCell(new Phrase(" ", bold)) { MinimumHeight = 25, Colspan = 5, Border = 0 });
+
+                table4.AddCell(new PdfPCell(new Phrase("__________________________Глущенко І.М.", normal)) { MinimumHeight = 16, Colspan = 2, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase(" ", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase("__________________________ПІ", normal)) { MinimumHeight = 16, Colspan = 2, Border = 0 });
+
+                table4.AddCell(new PdfPCell(new Phrase("дата", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase(" ", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase(" ", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase("дата ", normal)) { MinimumHeight = 16, Border = 0 });
+                table4.AddCell(new PdfPCell(new Phrase(" ", normal)) { MinimumHeight = 16, Border = 0 });
+
+                document.Add(table4);
 
                 document.Close();
 

@@ -40,7 +40,7 @@
                         <button type="submit" class="btn btn-success">Сохранить</button>
                     </div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-success">Отмена</button>
+                        <a href="/Order/OrdersAdmin" class="btn btn-default" style="background: gray;">Отмена</a>
                     </div>
                     <div class="col-md-4">
                         <a class="btn btn-default pull-right" href="/Order/PrintOrder?orderId=@Model.Order.OrderId">Печать</a>
@@ -155,8 +155,14 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 order-table">
                                     <div class="row head">
+                                        <div class="col-md-2">
+                                            Склад.номер
+                                        </div>
                                         <div class="col-md-3">
                                             Товар
+                                        </div>
+                                        <div class="col-md-1">
+                                            Артикул
                                         </div>
                                         <div class="col-md-2">
                                             Прокат/день
@@ -169,9 +175,7 @@
                                             Залог
                                         </div>
 
-                                        <div class="col-md-3">
-                                            
-                                        </div>
+
                                     </div>
                                     <div class="body js-edit-order-body">
                                         @{ Html.RenderPartial("EditOrderProductsPartial", Model.Order); }
