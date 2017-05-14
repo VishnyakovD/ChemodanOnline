@@ -1,6 +1,6 @@
 ﻿@model Shop.db.Entities.ChemodanLocation
 
-@using (Ajax.BeginForm("AddOrUpdateChemodanLocation", "Admin", new AjaxOptions { UpdateTargetId = "ServerMessage" }))
+@using (Ajax.BeginForm("AddOrUpdateChemodanLocation", "Admin", new AjaxOptions { UpdateTargetId = "ServerMessage" }, new { @class = "wnd-form" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -8,27 +8,27 @@
             if (Model != null && Model.id > 0)
             {
                 <input type="hidden" id="id" name="id" value="@Model.id" />
-            }
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Название</label>
-                        @Html.TextBoxFor(model => model.name, new { @class = "form-control", @required = "" })
-                        @Html.ValidationMessageFor(model => model.name)
-                    </div>
-                    <div class="col-md-2">
-                        <label>Приоритет</label>
-                        @Html.TextBoxFor(model => model.sortPriority, new { @class = "form-control", @required = "", @type = "number" })
-                        @Html.ValidationMessageFor(model => model.sortPriority)
-                    </div>
-                    <div class="col-md-2">
-                        <label>Использовать</label>
-                        @Html.CheckBoxFor(model => model.isUse, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.isUse)
-                    </div>
-                </div>
-                <input  class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+    }
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Название</label>
+                @Html.TextBoxFor(model => model.name, new { @class = "form-control", @required = "" })
+                @Html.ValidationMessageFor(model => model.name)
             </div>
+            <div class="col-md-2">
+                <label>Приоритет</label>
+                @Html.TextBoxFor(model => model.sortPriority, new { @class = "form-control", @required = "", @type = "number" })
+                @Html.ValidationMessageFor(model => model.sortPriority)
+            </div>
+            <div class="col-md-2">
+                <label>Использовать</label>
+                @Html.CheckBoxFor(model => model.isUse, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.isUse)
+            </div>
+        </div>
+        <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+    </div>
 
 
 

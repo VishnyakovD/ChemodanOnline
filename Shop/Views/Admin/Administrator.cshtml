@@ -9,66 +9,73 @@
 
 @{ Html.RenderPartial("AdminMenuPartial"); }
 
-<div class="panel panel-default">
+<div class="panel panel-default js-panel">
     <div class="panel-heading panel-head-color">
-        @Ajax.ActionLink("Список брендов", "ListBrands", "Admin", new AjaxOptions { UpdateTargetId = "Brands" }, new { name = "updArr" })
+        @Ajax.ActionLink("Список брендов", "ListBrands", "Admin", new AjaxOptions { UpdateTargetId = "Brands" }, new { name = "updArr", onclick = "showPanel(event)" })
+        <button type="button" class="close js-close-panel-admin"><span>&times;</span></button>
     </div>
-    <div class="panel-body panel-body-color">
+    <div class="panel-body panel-body-color js-panel-closed panel-closed">
         <div id="Brands"></div>
     </div>
 </div>
 
 
-<div class="panel panel-default">
+<div class="panel panel-default js-panel">
     <div class="panel-heading panel-head-color">
-        @Ajax.ActionLink("Список категорий", "ListStaticCategoryes", "Admin", new AjaxOptions { UpdateTargetId = "Cats" },new {@name="updArr"})
-</div>
-    <div class="panel-body panel-body-color">
+        @Ajax.ActionLink("Список категорий", "ListStaticCategoryes", "Admin", new AjaxOptions { UpdateTargetId = "Cats" }, new { @name = "updArr", onclick = "showPanel(event)" })
+        <button type="button" class="close js-close-panel-admin"><span>&times;</span></button>
+    </div>
+    <div class="panel-body panel-body-color js-panel-closed panel-closed">
         <div id="Cats"></div>
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default js-panel">
     <div class="panel-heading panel-head-color">
-        @Ajax.ActionLink("Список спецификаций", "ListStaticSpecification", "Admin", new AjaxOptions { UpdateTargetId = "Specs" }, new { @name = "updArr" })
-</div>
-    <div class="panel-body panel-body-color">
+        @Ajax.ActionLink("Список характеристик", "ListStaticSpecification", "Admin", new AjaxOptions { UpdateTargetId = "Specs" }, new { @name = "updArr", onclick = "showPanel(event)" })
+        <button type="button" class="close js-close-panel-admin"><span>&times;</span></button>
+    </div>
+    <div class="panel-body panel-body-color js-panel-closed panel-closed">
         <div id="Specs"></div>
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default js-panel">
     <div class="panel-heading panel-head-color">
-        @Ajax.ActionLink("Менеджер меню", "ListMenuItem", "Admin", new AjaxOptions {UpdateTargetId = "menumanager"}, new {@name = "updArr"})
+        @Ajax.ActionLink("Меню", "ListMenuItem", "Admin", new AjaxOptions { UpdateTargetId = "menumanager" }, new { @name = "updArr", onclick = "showPanel(event)" })
+        <button type="button" class="close js-close-panel-admin"><span>&times;</span></button>
     </div>
-    <div class="panel-body panel-body-color">
+    <div class="panel-body panel-body-color js-panel-closed panel-closed">
         <div id="menumanager"></div>
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default js-panel">
     <div class="panel-heading panel-head-color">
-        @Ajax.ActionLink("Статусы чемоданов", "ListChemodanStatus", "Admin", new AjaxOptions {UpdateTargetId = "chemodanstatus"}, new {@name = "updArr"})
+        @Ajax.ActionLink("Статусы чемоданов", "ListChemodanStatus", "Admin", new AjaxOptions { UpdateTargetId = "chemodanstatus" }, new { @name = "updArr", onclick = "showPanel(event)" })
+        <button type="button" class="close js-close-panel-admin"><span>&times;</span></button>
     </div>
-    <div class="panel-body panel-body-color">
+    <div class="panel-body panel-body-color js-panel-closed panel-closed">
         <div id="chemodanstatus"></div>
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default js-panel">
     <div class="panel-heading panel-head-color">
-        @Ajax.ActionLink("Типы чемоданов", "ListChemodanType", "Admin", new AjaxOptions {UpdateTargetId = "chemodantype"}, new {@name = "updArr"})
+        @Ajax.ActionLink("Типы чемоданов", "ListChemodanType", "Admin", new AjaxOptions { UpdateTargetId = "chemodantype" }, new { @name = "updArr", onclick = "showPanel(event)" })
+        <button type="button" class="close js-close-panel-admin"><span>&times;</span></button>
     </div>
-    <div class="panel-body panel-body-color">
+    <div class="panel-body panel-body-color js-panel-closed panel-closed">
         <div id="chemodantype"></div>
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default js-panel">
     <div class="panel-heading panel-head-color">
-        @Ajax.ActionLink("Местоположения чемоданов", "ListProductLocation", "Admin", new AjaxOptions { UpdateTargetId = "productlocation" }, new { @name = "updArr" })
+        @Ajax.ActionLink("Местоположения чемоданов", "ListProductLocation", "Admin", new AjaxOptions { UpdateTargetId = "productlocation" }, new { @name = "updArr", onclick = "showPanel(event)" })
+        <button type="button" class="close js-close-panel-admin"><span>&times;</span></button>
     </div>
-    <div class="panel-body panel-body-color">
+    <div class="panel-body panel-body-color js-panel-closed panel-closed">
         <div id="productlocation"></div>
     </div>
 </div>

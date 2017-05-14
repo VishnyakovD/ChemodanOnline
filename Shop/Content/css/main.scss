@@ -47,11 +47,27 @@ body {
         span {
             display: inline-block;
             width: 45%;
-            text-align:left;
+            text-align: left;
         }
 
         span:last-child {
             font-weight: 600;
         }
+    }
+}
+
+.panel-closed {
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+
+.wnd-form{
+    text-align:left;
+    font-size:14px;
+
+    .row{
+        margin-bottom:5px;
     }
 }

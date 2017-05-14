@@ -94,17 +94,17 @@ namespace Shop.Controllers
                         {
                             Client =
                             {
-                                lastName = serObject["clientLastName"],
-                                name = serObject["clientFirstName"],
+                                lastName = FirstLetterToUpper(serObject["clientLastName"]),
+                                name = FirstLetterToUpper(serObject["clientFirstName"]),
                                 email = serObject["clientEmail"],
                                 mPhone = serObject["clientPhone"],
                                 editAdress =
                                 {
-                                    city = serObject["city"],
+                                    city = FirstLetterToUpper(serObject["city"]),
                                     numHome = serObject["home"],
                                     typeStreet = serObject["typeStreet"],
                                     level = serObject["level"],
-                                    street = serObject["street"],
+                                    street = FirstLetterToUpper(serObject["street"]),
                                     numFlat = serObject["flat"]
                                 }
                             },
@@ -461,6 +461,17 @@ namespace Shop.Controllers
             };
             Response.AppendHeader("Content-Disposition", cd.ToString());
             return new FileStreamResult(doc, "application/pdf");
+        }
+
+        private string FirstLetterToUpper(string str)
+        {
+            if (str == null)
+                return null;
+
+            if (str.Length > 1)
+                return char.ToUpper(str[0]) + str.Substring(1);
+
+            return str.ToUpper();
         }
 
         //[HttpPost]

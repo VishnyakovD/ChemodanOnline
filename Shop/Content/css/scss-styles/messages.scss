@@ -31,6 +31,16 @@
     }
 }
 
+.panel {
+    position:relative;
+    .close {
+        padding: 5px 10px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
 @media (max-width: 767px ) {
     .message {
         font-size: 100%;

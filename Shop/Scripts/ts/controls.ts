@@ -9,4 +9,22 @@
             radioBtns.find("input").val(current.data("id"));
         });
     }
+
+    var closePanelButtons = $(".js-close-panel-admin");
+    if (closePanelButtons.length>0) {
+        $(document).on("click", ".js-close-panel-admin", (e) => {
+            var current = $(e.currentTarget);
+            var pan = current.closest(".js-panel");
+            pan.find(".js-panel-closed").addClass("panel-closed");
+        });
+    }
+
+  
+
 });
+
+function showPanel(event:Event):void {
+    var current = $(event.currentTarget);
+    var pan = current.closest(".js-panel");
+    pan.find(".js-panel-closed").removeClass("panel-closed");
+}

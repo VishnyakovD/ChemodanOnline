@@ -1,7 +1,7 @@
 ﻿@model Shop.Models.BrandModel
 
 
-@using (Ajax.BeginForm("AddOrUpdateBrand", "Admin", new AjaxOptions {UpdateTargetId = "ServerMessage"}))
+@using (Ajax.BeginForm("AddOrUpdateBrand", "Admin", new AjaxOptions {UpdateTargetId = "ServerMessage"},new {@class="wnd-form"}))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -10,7 +10,7 @@
     {
         <input type="hidden" id="id" name="id" value="@Model.id" />
     }
-    <div class="form-group">
+    <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <label>Название</label>

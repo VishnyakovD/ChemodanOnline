@@ -27,6 +27,14 @@
     right: 0;
     top: 0; }
 
+.panel {
+  position: relative; }
+  .panel .close {
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    top: 0; }
+
 @media (max-width: 767px) {
   .message {
     font-size: 100%;

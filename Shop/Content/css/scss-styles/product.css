@@ -535,7 +535,7 @@ footer {
         vertical-align: middle;*/
     position: absolute;
     top: 0px;
-    left: 25px;
+    left: 20px;
     background: rgba(255, 255, 255, 0.76); }
     .short-product .line2.favorite {
       left: 5px; }
@@ -1617,6 +1617,14 @@ input.error, span.error, div.error {
     right: 0;
     top: 0; }
 
+.panel {
+  position: relative; }
+  .panel .close {
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    top: 0; }
+
 @media (max-width: 767px) {
   .message {
     font-size: 100%;
@@ -1661,4 +1669,15 @@ body {
       text-align: left; }
     .fix-list div span:last-child {
       font-weight: 600; }
+
+.panel-closed {
+  height: 0;
+  overflow: hidden;
+  padding: 0; }
+
+.wnd-form {
+  text-align: left;
+  font-size: 14px; }
+  .wnd-form .row {
+    margin-bottom: 5px; }
 

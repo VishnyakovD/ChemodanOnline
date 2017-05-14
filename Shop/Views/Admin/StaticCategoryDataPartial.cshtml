@@ -1,47 +1,48 @@
 ﻿@model Shop.db.Entities.StaticCategory
 
-@using (Ajax.BeginForm("AddOrUpdateStaticCategory", "Admin", new AjaxOptions { UpdateTargetId = "ServerMessage" }))
+@using (Ajax.BeginForm("AddOrUpdateStaticCategory", "Admin", new AjaxOptions { UpdateTargetId = "ServerMessage" }, new { @class = "wnd-form" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-            if (Model != null && Model.id > 0)
-            {
-                <input type="hidden" id="id" name="id" value="@Model.id" />
-            }
-            <div class="row">
-                <div class="col-md-6">
-                    <label>Название</label>
-                    @Html.TextBoxFor(model => model.name, new { @required = "", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.name)
-                </div>
-                <div class="col-md-6">
+    if (Model != null && Model.id > 0)
+    {
+        <input type="hidden" id="id" name="id" value="@Model.id" />
+    }
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Название</label>
+                @Html.TextBoxFor(model => model.name, new { @required = "", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+            <div class="col-md-6">
 
-                </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <label>Текст</label>
-                    @Html.TextAreaFor(model => model.bodyText, new {  @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.bodyText)
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Текст</label>
+                @Html.TextAreaFor(model => model.bodyText, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.bodyText)
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <label>keywords</label>
-                    @Html.TextAreaFor(model => model.keywords, new { @class = "form-control", textbox = "true" })
-                    @Html.ValidationMessageFor(model => model.keywords)
-                    
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <label>description</label>
-                    @Html.TextAreaFor(model => model.description, new {  @class = "form-control", textbox = "true" })
-                    @Html.ValidationMessageFor(model => model.description)
-                </div>
-            </div>
-    <input  class="btn btn-blue pull-right" type="submit" value="Сохранить" />
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>keywords</label>
+                @Html.TextAreaFor(model => model.keywords, new { @class = "form-control", textbox = "true" })
+                @Html.ValidationMessageFor(model => model.keywords)
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>description</label>
+                @Html.TextAreaFor(model => model.description, new { @class = "form-control", textbox = "true" })
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+        <input class="btn btn-blue pull-right" type="submit" value="Сохранить" />
 
+    </div>
 }
