@@ -7,7 +7,7 @@
         @foreach (var item in Model)
         {
             <div class="swiper-slide">
-                <div class="short-product">
+                <div class="short-product js-link" href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})">
                     <div class="line1">
                         <img src="@item.smalPhotoPath" />
                     </div>
@@ -21,7 +21,7 @@
                     <div class="line4">
                         @*<span class="txt">в день:</span>*@
                         <span class="price">@item.price.ToString("####")</span>
-                        <span class="val">грн./день</span>
+                        <span class="val">грн/день</span>
                     </div>
                     <div class="line5">
                         <a href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})" class="button-default">Посмотреть</a>

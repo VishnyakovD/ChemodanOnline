@@ -37,4 +37,9 @@ $(() => {
     });
 
 
+    $(document).on("click", ".js-link", (element) => {
+        window.location.href = $(element.currentTarget).attr("href");
+    });
+
+
 });

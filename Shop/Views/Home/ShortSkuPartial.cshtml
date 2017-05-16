@@ -6,7 +6,7 @@
 @if (Model != null)
 {
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-        <div class="short-product list-item">
+        <div class="short-product list-item js-link" href="@Url.Action("SkuInfo", "Home", new {idSku = Model.id})">
             <div class="line1">
                 <img src="@Model.smalPhotoPath" />
             </div>

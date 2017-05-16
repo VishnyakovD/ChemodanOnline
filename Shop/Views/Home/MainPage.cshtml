@@ -110,7 +110,7 @@
             @foreach (var item in Model.ListProduct)
             {
                 <div class="swiper-slide">
-                    <div class="short-product">
+                    <div class="short-product js-link" href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})">
                         <div class="line1">
                             <img src="@item.smalPhotoPath"/>
                         </div>
