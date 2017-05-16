@@ -31,3 +31,4 @@ $(function () {
         window.location.href = $(element.currentTarget).attr("href");
     });
 });
+//# sourceMappingURL=main-page.js.map

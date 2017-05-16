@@ -23,3 +23,4 @@ function showPanel(event) {
     var pan = current.closest(".js-panel");
     pan.find(".js-panel-closed").removeClass("panel-closed");
 }
+//# sourceMappingURL=controls.js.map

@@ -18,7 +18,7 @@ namespace Shop.db.Repository
 
         public List<Order> AllByFilters(OrderFilter filter)
         {
-            var query = session.QueryOver<Order>().Where(order => order.CreateDate.Date >= filter.From && order.CreateDate <= filter.To);
+            var query = session.QueryOver<Order>().Where(order => order.CreateDate.Date >= filter.From.Date && order.CreateDate <= filter.To.Date.AddDays(1).AddSeconds(-1));
             if (filter.DeliveryType > 0)
             {
                 query = query.Where(order => order.DeliveryType.Id == filter.DeliveryType);

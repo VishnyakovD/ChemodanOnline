@@ -49,7 +49,7 @@ namespace Shop
                 document.Add(new Paragraph($"                                                                                  Договір найму №{orderNumber}", head) );
 
                 document.Add(new Paragraph(" ", normal));
-                document.Add(new Paragraph($"м. Київ                                                                                                                                     дата "+ DateTime.Now.Date.ToString("dd MMMM yyyy") +"р.",normal));
+                document.Add(new Paragraph($"м. Київ                                                                                                                                           "+ DateTime.Now.Date.ToString("dd MMMM yyyy") +"р.",normal));
                 document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph(" ", normal));
@@ -178,7 +178,7 @@ namespace Shop
                 document.Add(new Paragraph("                                                                   АКТ ПРИЙОМУ-ПЕРЕДАЧІ", head));
 
                 //document.Add(new Paragraph($"                                                     до Договору найму № {orderNumber} від {order.Order.From.ToString("dd.MM.yyyy")}р.", normal));
-                document.Add(new Paragraph($"м. Київ                                                                                                                                     дата " + DateTime.Now.Date.ToString("dd MMMM yyyy") + "р.", normal));
+                document.Add(new Paragraph($"м. Київ                                                                                                                                           " + DateTime.Now.Date.ToString("dd MMMM yyyy") + "р.", normal));
                 document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph($"Фізична особа підприємець Глущенко Iнна Миколаївна з однієї сторони (далі в тексті – Наймодавець) та {order.Order.ClientLastName} {order.Order.ClientFirstName} (ПІ) з другої сторони (далі в тексті – Наймач), разом іменовані – Сторони, склали цей акт про передачу від Глущенко Iнни Миколаївни до {order.Order.ClientLastName} {order.Order.ClientFirstName} в рамках Договору № {orderNumber} від {DateTime.Now.Date.ToString("dd.MM.yyyy")}р.  наступного Майна", normal));
                 document.Add(new Paragraph(" ", normal));
@@ -251,11 +251,7 @@ namespace Shop
                 document.Add(new Paragraph("  ", normal));
                 document.Add(new Paragraph("  ", normal));
                 document.Add(new Paragraph("  ", normal));
-                document.Add(new Paragraph("  ", normal));
-                document.Add(new Paragraph("  ", normal));
-                document.Add(new Paragraph("  ", normal));
-                document.Add(new Paragraph("  ", normal));
-                document.Add(new Paragraph("  ", normal));
+
                 document.Add(new Paragraph("Передача Майна від Наймача до Наймодавця:", normal));
                 
                 PdfPTable table4 = new PdfPTable(widths1);
