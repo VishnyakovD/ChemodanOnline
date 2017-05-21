@@ -134,6 +134,9 @@
                         <div class="js-product-tab-content hide" data-id="2">
                             <div class="row">
                                 <div class="col-md-6">
+                                    <span>Количество дней</span> <span>@days</span>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="date-values border">
                                         <img src="~/Content/img/icons/calendar.png"/>
                                         <input type="date" name="Order.From" value="@Model.Order.From.Date.ToString("yyyy-MM-dd")" onchange="$(this).closest('form').submit();"/>
@@ -141,9 +144,7 @@
                                         <input type="date" name="Order.To" value="@Model.Order.To.Date.ToString("yyyy-MM-dd")" onchange="$(this).closest('form').submit();"/>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label>Количество дней</label> <label>@days</label>
-                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-md-12 js-order-articul-block">
@@ -250,7 +251,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Сумма оплаты</label>
-                                    <span class="form-control" name="OrderPrice">@(Model.Order.OrderProducts.Sum(item => item.PriceDay) * (decimal)days)</span>
+                                    <span class="form-control" name="OrderPrice">@((Model.Order.OrderProducts.Sum(item => item.PriceDay) * (decimal)days).ToString("F2", CultureInfo.InvariantCulture))</span>
                                 </div>
                             </div>
 

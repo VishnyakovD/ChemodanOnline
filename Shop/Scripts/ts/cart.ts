@@ -158,10 +158,11 @@ class Cart {
         if (this.clientEmail === "" || !this.clientEmail.match(/^(([^<>=/*()\[\]\\.,;:\s@"]+(\.[^<>=/*()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
             errors.push(new InputErrorItem("ClientEmail", ""));
         }
-        if (this.clientFirstName === "") {
+        //
+        if (this.clientFirstName === "" || !this.clientFirstName.match(/[^a-zA-Z]{1,50}$/)) {
             errors.push(new InputErrorItem("ClientFirstName", ""));
         }
-        if (this.clientLastName === "") {
+        if (this.clientLastName === "" || !this.clientLastName.match(/[^a-zA-Z]{1,50}$/)) {
             errors.push(new InputErrorItem("ClientLastName", ""));
         }
         if (this.clientPhone === "" || !this.clientPhone.match(/^[0]{1}\d{9}$/)) {
@@ -376,7 +377,7 @@ class CartManager {
                     $.post("/Order/PaidOrder/", { num: cartManager.payOnlineItem.orderReference, paymentId: response.authCode,date: stringDate})
                         .done(result => {
                             console.log("order paid : " + result);
-                            message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
+                           // message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
                             $(".js-order-pages").html("");
                             $(".js-order-pages").css("min-height", "50vh");
                         });

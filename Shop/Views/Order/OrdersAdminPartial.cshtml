@@ -3,14 +3,14 @@
 
 @foreach (var item in Model.OrderByDescending(it => it.CreateDate))
 {
-    <tr>
+    <tr class='@((item.OrderState.Id == 1) ? "success" : "")'>
         <td><a class="btn btn-link" href="/Order/EditOrder?id=@item.OrderId">@((item.OrderPrefix>0)? string.Format("{0}-{1}", item.OrderNumber, item.OrderPrefix) : item.OrderNumber.ToString())</a></td>
         <td>@item.CreateDate.ToString("dd.MM.yyyy HH:mm:ss")</td>
         <td>@item.ClientLastName @item.ClientFirstName</td>
         <td>@item.ClientPhone</td>
         <td>@item.DeliveryType.Name</td>
         <td>@(new HtmlString((item.IsPaid) ? "Да" : "Нет"))</td>
-        <td class='@((item.OrderState.Id == 1) ? "success" : "")'>@item.OrderState.Name</td>
+        <td>@item.OrderState.Name</td>
         <td>@(new HtmlString((item.IsHaveContract) ? "<b>Да</b>" : "Нет"))</td>
     </tr>
 }

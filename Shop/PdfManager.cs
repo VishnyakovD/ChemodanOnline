@@ -63,7 +63,7 @@ namespace Shop
                 document.Add(new Paragraph("6.  Строк прийняття пропозиції Наймачем від Наймодавця є необмеженим. Прийняття умов Договору означає повну і беззаперечну згоду Наймача зі всіма умовами Договору без будь-яких виключень і/або обмежень і рівносильний укладенню письмового Договору відповідно до положень законодавства України. (ч. 2 ст. 642 ЦК України).", normal));
                 document.Add(new Paragraph("7.  Місцем укладення  Договору є місцезнаходження  Наймодавця. Місцем виконання Договору є місце передачі в найм Майна. ", normal));
                 document.Add(new Paragraph("8.  Для укладення Договору в простій письмовій формі Наймачу необхідно підписати Договір зміст якого викладеній на папері і який вважається укладеним з моменту його підписання обома Сторонами.", normal));
-                document.Add(new Paragraph($"9.  Майно передається Наймодавцем Наймачу не пізніше {order.Order.CreateDate.ToString("dd.MM.yyyy")}, а Наймач повинен прийняти таке Майно. Претензії щодо невідповідності Майна його опису на сайті та його придатності для користування приймаються виключно в день отримання Наймачем Майна (у випадку якщо воно отримане шляхом доставки кур’єром), а у випадку отримання Майна у пункті прийому-видачі за адресою: пр. Перемоги, 67, корпус “I”, офіс 213  - тільки до моменту підписання акту прийому-передачі Майна. Разом із Майном Наймачу передається квитанція.", normal)); 
+                document.Add(new Paragraph($"9.  Майно передається Наймодавцем Наймачу не пізніше {order.Order.From.ToString("dd.MM.yyyy")}, а Наймач повинен прийняти таке Майно. Претензії щодо невідповідності Майна його опису на сайті та його придатності для користування приймаються виключно в день отримання Наймачем Майна (у випадку якщо воно отримане шляхом доставки кур’єром), а у випадку отримання Майна у пункті прийому-видачі за адресою: пр. Перемоги, 67, корпус “I”, офіс 213  - тільки до моменту підписання акту прийому-передачі Майна. Разом із Майном Наймачу передається квитанція.", normal)); 
                 document.Add(new Paragraph("10.  Документом, який підтверджує передачу або повернення Майна із зазначенням стану Майна є акт прийому - передачі.", normal));
                 document.Add(new Paragraph("11.  Майно, надане за даним Договором повинно використовуватися Наймачем виключно за його цільовим призначенням. Враховуючи особливості використання Майна, Наймач зобов’язується у процесі використання здійснювати всі можливі дії для його збереження у стані в якому Майно було ним отримано від Наймодавця.", normal));
                 document.Add(new Paragraph("12.  Наймач зобов`язаний повернути Майно Наймодавцю не пізніше останнього дня користування Майном згідно строків встановлених у п. 14 Договору та у стані, який є не гірший (з урахуванням нормального зносу) ніж на момент отримання Майна Наймачем.", normal));
@@ -84,7 +84,7 @@ namespace Shop
 
                 foreach (var item in order.Order.OrderProducts)
                 {
-                    table.AddCell(new PdfPCell(new Phrase(item.Article, normal)) { HorizontalAlignment = 1, MinimumHeight = 25,VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table.AddCell(new PdfPCell(new Phrase(item.Code, normal)) { HorizontalAlignment = 1, MinimumHeight = 25,VerticalAlignment = Element.ALIGN_MIDDLE });
                     table.AddCell(new PdfPCell(new Phrase(item.PriceDay.ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table.AddCell(new PdfPCell(new Phrase((item.PriceDay*days).ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table.AddCell(new PdfPCell(new Phrase(item.FullPrice.ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
@@ -193,7 +193,7 @@ namespace Shop
                 foreach (var item in order.Order.OrderProducts)
                 {
                     table2.AddCell(new PdfPCell(new Phrase((i++).ToString(), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
-                    table2.AddCell(new PdfPCell(new Phrase(item.Article, normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table2.AddCell(new PdfPCell(new Phrase(item.Code, normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table2.AddCell(new PdfPCell(new Phrase((item.PriceDay * days).ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table2.AddCell(new PdfPCell(new Phrase("", normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                 }
