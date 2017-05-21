@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.WebPages;
@@ -20,16 +21,24 @@ namespace Shop.Controllers
         private MenuBuilder menuBuilder { set; get; }
         private IAccountAdminModelBuilder accountAdminModelBuilder;
         private IRegisterBuilder registerBuilder;
+
+        private string Key { set; get; }
+
         public AccountController(IAccountAdminModelBuilder AccountAdminModelBuilder, IRegisterBuilder RegisterBuilder, IDataService dataService, IImagesPath imagesPath)
         {
             accountAdminModelBuilder = AccountAdminModelBuilder;
             registerBuilder = RegisterBuilder;
             menuBuilder = new MenuBuilder(dataService, imagesPath);
+            Key = WebConfigurationManager.AppSettings["LoginKey"];
         }
 
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string key, string returnUrl)
         {
+            if (string.IsNullOrEmpty(key)||key!=Key)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.ReturnUrl = returnUrl;
             var model = new LoginModel();
             model.topMenuItems = menuBuilder.BuildTopMenu();

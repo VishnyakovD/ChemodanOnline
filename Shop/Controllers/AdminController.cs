@@ -53,7 +53,6 @@ namespace Shop.Controllers
 
         public ActionResult Administrator()
         {
-            ViewBag.isHideLeftMenu = true;
             var model = adminModelBuilder.Build();
             return View("Administrator",model);
         }
@@ -327,7 +326,6 @@ namespace Shop.Controllers
 
         public ActionResult SkuData(long? id)
         {
-            ViewBag.isHideLeftMenu = true;
             var result = new SKUModel();
        
             try
@@ -698,7 +696,6 @@ namespace Shop.Controllers
 
         public ActionResult ArticleData(long? idArticle)
         {
-            ViewBag.isHideLeftMenu = true;
             var result = new ArticleModel();
             try
             {
@@ -726,7 +723,6 @@ namespace Shop.Controllers
 
         public ActionResult HidenSku(int? sort)
         {
-            ViewBag.isHideLeftMenu = true;
 
             if (!sort.HasValue)
             {
