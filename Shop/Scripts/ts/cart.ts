@@ -1,6 +1,7 @@
 ﻿declare class Wayforpay {
     constructor();
     run(object: any, f1?: any, f2?: any, f3?: any);
+    closeit();
 }
 
 class InputErrorItem {
@@ -377,7 +378,8 @@ class CartManager {
                     $.post("/Order/PaidOrder/", { num: cartManager.payOnlineItem.orderReference, paymentId: response.authCode,date: stringDate})
                         .done(result => {
                             console.log("order paid : " + result);
-                           // message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
+                            payOnline.closeit();
+                            message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
                             $(".js-order-pages").html("");
                             $(".js-order-pages").css("min-height", "50vh");
                         });

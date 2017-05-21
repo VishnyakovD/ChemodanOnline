@@ -1,4 +1,4 @@
-﻿<div class="btn-group" role="group" aria-label="">
+﻿<div class="btn-group btn-group-justified" role="group" aria-label="">
     <a class="btn btn-default" href="@Url.Action("Administrator", "Admin")"><span class="glyphicon glyphicon glyphicon-home"></span></a>
 
     <a class="btn btn-default" href="@Url.Action("RolesManager", "Account")">Пользователи</a>
@@ -30,6 +30,7 @@
     <a class="btn btn-default" href="@Url.Action("ListProvider", "Admin")">Поставщики</a>
     <a class="btn btn-default" href="@Url.Action("ListClients", "Admin")">Клиенты</a>
     <a class="btn btn-default" href="@Url.Action("MainPageConfigurator", "Admin")">Главн.страница</a>
+    <a class="btn btn-default" href="@Url.Action("Login", "Account")"><b>@WebSecurity.CurrentUserName</b></a>
 </div>
 <br/>
 <br/>   
