@@ -182,7 +182,10 @@ namespace Shop
                 document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph($"Фізична особа підприємець Глущенко Iнна Миколаївна з однієї сторони (далі в тексті – Наймодавець) та {order.Order.ClientLastName} {order.Order.ClientFirstName} (ПІ) з другої сторони (далі в тексті – Наймач), разом іменовані – Сторони, склали цей акт про передачу від Глущенко Iнни Миколаївни до {order.Order.ClientLastName} {order.Order.ClientFirstName} в рамках Договору № {orderNumber} від {DateTime.Now.Date.ToString("dd.MM.yyyy")}р.  наступного Майна", normal));
                 document.Add(new Paragraph(" ", normal));
-                PdfPTable table2 = new PdfPTable(4);
+
+                float[] widths22 = new float[] { 10f, 40f,60f, 90f };
+
+                PdfPTable table2 = new PdfPTable(widths22);
 
                 table2.AddCell(new PdfPCell(new Phrase("№", normal)) { HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });
                 table2.AddCell(new PdfPCell(new Phrase("Товарний код", normal)) { HorizontalAlignment = 1, MinimumHeight = 30, VerticalAlignment = Element.ALIGN_MIDDLE });

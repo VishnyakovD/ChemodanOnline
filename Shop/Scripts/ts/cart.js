@@ -307,7 +307,8 @@ var CartManager = (function () {
                 $.post("/Order/PaidOrder/", { num: cartManager.payOnlineItem.orderReference, paymentId: response.authCode, date: stringDate })
                     .done(function (result) {
                     console.log("order paid : " + result);
-                    // message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
+                    payOnline.closeit();
+                    message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
                     $(".js-order-pages").html("");
                     $(".js-order-pages").css("min-height", "50vh");
                 });
