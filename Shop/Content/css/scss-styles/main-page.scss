@@ -469,3 +469,26 @@ footer {
         }
     }
 }
+
+.footer-article {
+    margin-top:40px;
+    padding-left:5%;
+    padding-right:5%;
+
+        .dl-horizontal {
+        dd {
+            margin-left: 50px;
+            margin-top: 5px;
+        }
+
+        dt {
+            width: 40px;
+            // margin-top:5px;
+        }
+    }
+
+    .h1, h1 {
+        font-size: 25px;
+        text-align: center;
+    }
+}

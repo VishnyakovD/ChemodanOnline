@@ -311,3 +311,16 @@ footer {
       line-height: 5.6;
       letter-spacing: 0.5px; } }
 
+.footer-article {
+  margin-top: 40px;
+  padding-left: 5%;
+  padding-right: 5%; }
+  .footer-article .dl-horizontal dd {
+    margin-left: 50px;
+    margin-top: 5px; }
+  .footer-article .dl-horizontal dt {
+    width: 40px; }
+  .footer-article .h1, .footer-article h1 {
+    font-size: 25px;
+    text-align: center; }
+
