@@ -1,154 +1,163 @@
 ﻿@model Shop.Models.MenuModel
 
 @{
-    Page.Title = "Прокат чемоданов | Chemodan.online";
+    Page.Title = "Прокат чемоданов в Киеве на выгодных условиях | Chemodan.online";
+    var description = "Chemodan.online осуществляет прокат чемоданов в Киеве на выгодных условиях. К вашим услугам демократичные цены, широкий ассортимент, высокий уровень сервиса, вежливые и грамотные менеджеры, удобные способы оплаты, возможность курьерской доставки домой или в офис";
+    var keywords = "аренда чемоданов, арендовать чемодан, чемодан на прокат, прокат чемоданов, аренда чемоданов киев, арендовать чемодан киев, чемодан на прокат киев, прокат чемоданов киев";
+    @section head {
+        <meta name="description" content="@description">
+        <meta name="keywords" content="@keywords">
+    }
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="order-pages faq">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="text-left mobile-center">
-                <div class="title-main-page">FAQ</div>
-            </div>
-            <div class="hr-title"></div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="text-left mobile-center">
+            <div class="title-main-page">FAQ</div>
         </div>
+        <div class="hr-title"></div>
     </div>
+</div>
 
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="panelcol1">
-                <h4 class="header">
-                    <a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#panellink1" aria-expanded="true" aria-controls="panellink1">
-                        <span class="glyphicon glyphicon-minus"></span>
-                        <span class="glyphicon glyphicon-plus"></span>
-                        Как взять чемодан на прокат
-                    </a>
-                </h4>
-            </div>
-            <div id="panellink1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="panelcol1">
-                <div class="panel-body">
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="panelcol1">
+            <h4 class="header">
+                <a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#panellink1" aria-expanded="true" aria-controls="panellink1">
+                    <span class="glyphicon glyphicon-minus"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Как взять чемодан на прокат
+                </a>
+            </h4>
+        </div>
+        <div id="panellink1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="panelcol1">
+            <div class="panel-body">
 
-                    <div class="image-text">
-                        <div class="image">
-                            <img src="~/Content/img/icons/case.png" />
-                        </div>
-                        <div class="text">Выбрать в каталоге чемодан соответствующий вашей потребности. Ознакомиться со стоимостью проката и залоговой стоимостью</div>
+                <div class="image-text">
+                    <div class="image">
+                        <img src="~/Content/img/icons/case.png"/>
                     </div>
-                    <br />
-                    <div class="image-text">
-                        <div class="image">
-                            <img src="~/Content/img/icons/calendar.png" />
-                        </div>
-                        <div class="text">Выбрать даты проката</div>
+                    <div class="text">Выбрать в каталоге чемодан соответствующий вашей потребности. Ознакомиться со стоимостью проката и залоговой стоимостью</div>
+                </div>
+                <br/>
+                <div class="image-text">
+                    <div class="image">
+                        <img src="~/Content/img/icons/calendar.png"/>
                     </div>
-                    <br />
-                    <div class="image-text">
-                        <div class="image">
-                            <img src="~/Content/img/icons/wallet.png" />
-                        </div>
-                        <div class="text">
-                            Оплатить залоговую стоимость.
-                            Стоимость проката включена в залоговую стоимость(только для оплаты наличными)
-                        </div>
+                    <div class="text">Выбрать даты проката</div>
+                </div>
+                <br/>
+                <div class="image-text">
+                    <div class="image">
+                        <img src="~/Content/img/icons/wallet.png"/>
                     </div>
-                    <br />
-                    <div class="image-text">
-                        <div class="image">
-                            <img src="~/Content/img/icons/note.png" />
-                        </div>
-                        <div class="text">Подписать договор проката</div>
+                    <div class="text">
+                        Оплатить залоговую стоимость.
+                        Стоимость проката включена в залоговую стоимость(только для оплаты наличными)
                     </div>
-                    <br />
-                    <div class="image-text">
-                        <div class="image">
-                            <img src="~/Content/img/icons/caselike.png" />
-                        </div>
-                        <div class="text">Забрать чемодан сомостоятельно или воспользоваться курьерской доставкой</div>
+                </div>
+                <br/>
+                <div class="image-text">
+                    <div class="image">
+                        <img src="~/Content/img/icons/note.png"/>
                     </div>
+                    <div class="text">Подписать договор проката</div>
+                </div>
+                <br/>
+                <div class="image-text">
+                    <div class="image">
+                        <img src="~/Content/img/icons/caselike.png"/>
+                    </div>
+                    <div class="text">Забрать чемодан сомостоятельно или воспользоваться курьерской доставкой</div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="panelcol2">
-                <h4 class="header">
-                    <a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#panellink2" aria-expanded="true" aria-controls="panellink2">
-                        <span class="glyphicon glyphicon-minus"></span>
-                        <span class="glyphicon glyphicon-plus"></span>
-                        Наши особенности
-                    </a>
-                </h4>
-            </div>
-            <div id="panellink2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="panelcol2">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                            <div class="image-text line-view">
-                                <div class="image">
-                                    <img src="~/Content/img/icons/clean.png" />
-                                </div>
-                                <div class="text">Гарантия гигиены</div>
+<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="panelcol2">
+            <h4 class="header">
+                <a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#panellink2" aria-expanded="true" aria-controls="panellink2">
+                    <span class="glyphicon glyphicon-minus"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Наши особенности
+                </a>
+            </h4>
+        </div>
+        <div id="panellink2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="panelcol2">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div class="image-text line-view">
+                            <div class="image">
+                                <img src="~/Content/img/icons/clean.png"/>
                             </div>
+                            <div class="text">Гарантия гигиены</div>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                            <div class="image-text line-view">
-                                <div class="image">
-                                    <img src="~/Content/img/icons/fast.png" />
-                                </div>
-                                <div class="text">Экспресс доставка</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div class="image-text line-view">
+                            <div class="image">
+                                <img src="~/Content/img/icons/fast.png"/>
                             </div>
+                            <div class="text">Экспресс доставка</div>
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                            <div class="image-text line-view">
-                                <div class="image">
-                                    <img src="~/Content/img/icons/passport.png" />
-                                </div>
-                                <div class="text">
-                                    Залог без паспорта
-                                </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div class="image-text line-view">
+                            <div class="image">
+                                <img src="~/Content/img/icons/passport.png"/>
+                            </div>
+                            <div class="text">
+                                Залог без паспорта
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 
 
 
 
-    @{
-        var c1 = new String[] {
-            "3",
-            "Дезинфекция чемоданов",
-            "Особое внимание мы уделяем гигиене чемоданов. Поэтому наши чемоданы после каждого заказа в обязательном порядке проходят процедуру дезинфекции – обработка специальным паром, температура которого выше 100 градусов. При попадании пара на поверхность он распространяет специальные парафинирующие вещества, растворяющие загрязнения и эффективно уничтожающие неприятные запахи и болезнетворные микроорганизмы. Благодаря этому, вы всегда можете быть уверенными в чистоте, дезинфекции и безопасности наших чемоданов и пользоваться ими с удовольствием!",
-            "true"
-        };
-        Html.RenderPartial("AccordionPartial", c1);
-    }
+@{
+    var c1 = new String[]
+    {
+        "3",
+        "Дезинфекция чемоданов",
+        "Особое внимание мы уделяем гигиене чемоданов. Поэтому наши чемоданы после каждого заказа в обязательном порядке проходят процедуру дезинфекции – обработка специальным паром, температура которого выше 100 градусов. При попадании пара на поверхность он распространяет специальные парафинирующие вещества, растворяющие загрязнения и эффективно уничтожающие неприятные запахи и болезнетворные микроорганизмы. Благодаря этому, вы всегда можете быть уверенными в чистоте, дезинфекции и безопасности наших чемоданов и пользоваться ими с удовольствием!",
+        "true"
+    };
+    Html.RenderPartial("AccordionPartial", c1);
+}
 
 
 
-    @{
-        var c3 = new String[] {
-            "5",
-            "Как оплатить стоимость проката чемоданов, а затем вернуть залоговую сумму?",
-            "При оплате наличными - вам достаточно оплатить залоговую стоимость в размере 1000-2000 грн. После завершения срока проката из залоговой суммы будет вычтена сумма проката. Остаток залоговой суммы будет возвращен вам наличными.<br><br>При оплате банковской картой – вы оплачиваете стоимость проката, а залоговую сумму вносите наличными в момент получения чемодана. После завершения срока проката залоговая сумма будет возращена вам наличными в момент возврата чемодана.",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c3);
-    }
+@{
+    var c3 = new String[]
+    {
+        "5",
+        "Как оплатить стоимость проката чемоданов, а затем вернуть залоговую сумму?",
+        "При оплате наличными - вам достаточно оплатить залоговую стоимость в размере 1000-2000 грн. После завершения срока проката из залоговой суммы будет вычтена сумма проката. Остаток залоговой суммы будет возвращен вам наличными.<br><br>При оплате банковской картой – вы оплачиваете стоимость проката, а залоговую сумму вносите наличными в момент получения чемодана. После завершения срока проката залоговая сумма будет возращена вам наличными в момент возврата чемодана.",
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c3);
+}
 
 
-    @{
-        var c4 = new String[] {
-            "6",
-            "Что делать если чемодан был сломан?",
-            @"
+@{
+    var c4 = new String[]
+    {
+        "6",
+        "Что делать если чемодан был сломан?",
+        @"
             Если чемодан во время его проката был сломан тогда вам необходимо:
             <br>●	обратиться в офис компании для оценки повреждений;
             <br>●	совместно с нашим сотрудником составить акт о повреждениях:
@@ -156,44 +165,47 @@
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○	если повреждения оказываются серьезными и влияют на дальнейшее использование чемодана-  вы оплачиваете стоимость ремонта, согласно прейскуранту цен на ремонт, а также штраф в размере 10% от стоимости чемодана;
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○	если повреждения полностью исключают дальнейшее использование чемодана тогда вы оплачиваете его полную стоимость;
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c4);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c4);
+}
 
 
-    @{
-        var c5 = new String[] {
-            "7",
-            "Как вернуть чемодан?",
-            @"
+@{
+    var c5 = new String[]
+    {
+        "7",
+        "Как вернуть чемодан?",
+        @"
             Чемодан вы возвращаете самостоятельно в офис компании. По возвращению чемодана, мы осматриваем его на предмет возможных повреждений. Если замечаний нет - тогда мы подписываем с вами акт приема-передачи и возвращаем залоговую сумму (за вычетом стоимости проката если оплата была наличными). Если же повреждения были найдены- мы составляем акт об их наличии, и после оценки специалиста вы оплачиваете ремонт, штраф или полную стоимость чемодана.
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c5);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c5);
+}
 
 
 
-    @{
-        var c6 = new String[] {
-            "8",
-            "Что делать если чемодан был утерян? ",
-            @"
+@{
+    var c6 = new String[]
+    {
+        "8",
+        "Что делать если чемодан был утерян? ",
+        @"
             В случае, если чемодан был утерян - вам необходимо уведомить об этом сотрудника компания. Со стороны компании залоговая сумма не будет возвращена клиенту, а договор будет аннулирован.
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c6);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c6);
+}
 
 
-    @{
-        var c7 = new String[] {
-            "9",
-            "Требования Wizz Air",
-            @"
+@{
+    var c7 = new String[]
+    {
+        "9",
+        "Требования Wizz Air",
+        @"
             При перелете рейсами компании WIZZ на каждого пассажира допускается провоз:
 <br>●&nbsp;&nbsp;одной единицы малой ручной клади размером не более 42 x 32 x 25 см;
 <br>●&nbsp;&nbsp;до 6 единиц регистрируемого багажа, вес каждой из которых не превышает 32 кг;
@@ -236,18 +248,19 @@
 
 <br>
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c7);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c7);
+}
 
 
 
-    @{
-        var c12 = new String[] {
-            "14",
-            "Как к вам добраться?",
-            @"
+@{
+    var c12 = new String[]
+    {
+        "14",
+        "Как к вам добраться?",
+        @"
           Мы находимся по адресу:
 <br>●	юридический адрес: проспект Победы, 67, корпус “I” (ай), офис 213
 <br>●	фактический адрес: пересечение ул. Галагановская, 6  и ул. Краснозаводская,7,  корпус “I” (ай), 2-й этаж, офис 213.
@@ -257,18 +270,19 @@
 На автомобиле: <a style='text-decoration: underline' href='https://goo.gl/maps/uQD2ZEs1RU82' target='_blank'><b>50.455579, 30.403805</b></a>
 
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c12);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c12);
+}
 
 
 
-    @{
-        var c13 = new String[] {
-            "15",
-            "Условия доставки?",
-            @"
+@{
+    var c13 = new String[]
+    {
+        "15",
+        "Условия доставки?",
+        @"
 <br>1.	Доставку мы осуществляем нескольким способами:
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;●	 курьерская доставка по Киеву:
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○	стоимость курьерской доставки - 65 грн.
@@ -279,62 +293,66 @@
 <br>Обращаем ваше внимание, стоимость доставки регламентируется курьерской службой.
 <br>На данный момент компания не работает с другими регионами Украины.
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c13);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c13);
+}
 
 
-    @{
-        var c14 = new String[] {
-            "16",
-            "Как рассчитать стоимость проката?",
-            @"
+@{
+    var c14 = new String[]
+    {
+        "16",
+        "Как рассчитать стоимость проката?",
+        @"
 Для того, чтоб рассчитать стоимость проката чемодана, необходимо стоимость проката за день, указанную возле каждого чемодана, умножить на необходимое количество дней (указать необходимые даты поездки в календаре). После выбора дат, система автоматически рассчитает стоимость проката.
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c14);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c14);
+}
 
 
 
-    @{
-        var c15 = new String[] {
-            "17",
-            "Условия проката чемодана",
-            @"
+@{
+    var c15 = new String[]
+    {
+        "17",
+        "Условия проката чемодана",
+        @"
 Для того, чтобы взять чемодан на прокат необходимо оформить заказ и оплатить залоговую стоимость (залоговая стоимость указана в каждом чемодане на сайте)* и оплатить стоимость проката (при оплате банковской карточкой).
 <br>
 *мы не принимаем в залог паспорт, загранпаспорт, водительское удостоверение или любые другие документы.
 
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c15);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c15);
+}
 
 
-    @{
-        var c16 = new String[] {
-            "18",
-            "Возможность проката нескольких чемоданов",
-            @"
+@{
+    var c16 = new String[]
+    {
+        "18",
+        "Возможность проката нескольких чемоданов",
+        @"
 В одном заказе вы можете оформить на прокат сразу нескольких чемоданов на один период. К примеру, взять на прокат ручную кладь и большой чемодан сроком на 5 дней (с 01 марта по 05 марта).
 <br>Прокат нескольких чемоданов на разные периоды в одном заказе запрещен. Если вам необходимо взять на прокат несколько чемоданов на разные даты – каждый заказ вы оформляете отдельно.
 
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c16);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c16);
+}
 
 
-    @{
-        var c17 = new String[] {
-            "19",
-            "Как оформить услугу чемодан на прокат",
-            @"
+@{
+    var c17 = new String[]
+    {
+        "19",
+        "Как оформить услугу чемодан на прокат",
+        @"
 Оформить заказа вы можете несколькими способами:
 <br>●	на сайте;
 <br>●	с помощью заказа обратного звонка: достаточно ввести номер телефона и менеджер с вами свяжется для дальнейшего оформления заказа;
@@ -342,16 +360,24 @@
 <br>●	в офисе компании.
 
             ",
-            ""
-        };
-        Html.RenderPartial("AccordionPartial", c17);
-    }
+        ""
+    };
+    Html.RenderPartial("AccordionPartial", c17);
+}
 
+</div>
 
+<div class="footer-article">
+    <h1>Прокат чемоданов в Киеве: просто, удобно, выгодно</h1>
 
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Современная жизнь отличается высоким уровнем мобильности. Множество людей сегодня сознательно не связывает себя покупкой жилья, чтобы можно было легко переехать в другой город или даже страну. Большой популярностью в западных странах стал пользоваться прокат автомобилей. Зачем тратить значительные средства на содержание собственной машины, если пользоваться ей приходится не так уж часто? В этом же направлении развивается аренда чемоданов в Киеве, совсем недавно ставшая доступной для всех граждан нашего города.</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chemodan.online осуществляет прокат чемоданов в Киеве на выгодных условиях. К вашим услугам демократичные цены, широкий ассортимент, высокий уровень сервиса, вежливые и грамотные менеджеры, удобные способы оплаты, возможность курьерской доставки домой или в офис.</div>
 
+    <h1>Что же представляет собой такая услуга, как аренда чемоданов?</h1>
 
-
-
-
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Представьте, что вы собираетесь поехать в отпуск с семьей или в деловую поездку. Первое, что вам понадобится – удобный чемодан или сумка, куда можно сложить свои вещи. Их можно купить, но хорошие, качественные модели стоят недешево. Поэтому, взять чемодан на прокат в Киеве – это не только проще, но и значительно практичнее.</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сколько дней в году большинство из нас проводит в поездках? Обычно, одну-две недели. А все остальное время чемоданы и сумки лежат дома, занимая ценное место в не таких уж просторных квартирах. В таких условиях арендовать чемодан значительно выгоднее. Вы можете пользоваться услугой проката чемодана в течение многих лет, потратив существенно меньше денег, чем при его покупке.</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Кроме того, имеется еще немало плюсов арендовать чемодан в Киеве. Так, вы каждый раз можете выбирать оптимальную по размеру модель для каждой поездки. В отпуск взять объемный чемодан на прокат, а в деловую поездку – удобную сумку для ручной клади.</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Наш прокат чемодана в Киеве работает совсем недавно, но приобретенный опыт уже позволяет нам обеспечивать высокий уровень сервиса и существенно облегчать людям сборы в дальнюю дорогу.</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Если вы еще не испробовали такую услугу, как прокат чемоданов – самое время восполнить этот досадный пробел. Звоните – мы всегда рады вашим звонкам!</div>
 </div>

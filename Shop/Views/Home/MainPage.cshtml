@@ -45,7 +45,7 @@
         @if (Model.ListBlockInfo.Any())
         {
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="item">
+                <div class="item js-link" href="@Model.ListBlockInfo[0].Link">
                     <div class="text-block pull-right">
                         <div class="title">
                             <a href="@Model.ListBlockInfo[0].Link">@Model.ListBlockInfo[0].Title</a>
@@ -70,7 +70,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="item">
+                <div class="item js-link" href="@Model.ListBlockInfo[0].Link">
                     <div class="text-block pull-left">
                         <div class="title">
                             <a href="@Model.ListBlockInfo[1].Link">@Model.ListBlockInfo[1].Title</a>
