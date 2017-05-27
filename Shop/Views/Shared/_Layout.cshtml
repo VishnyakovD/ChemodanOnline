@@ -9,7 +9,6 @@
     <title>@Page.Title</title>
     <link rel="icon" href="~/Content/img/favicon.ico" />
     @RenderSection("head", required: false)
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="~/Content/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/css/styles.css" rel="stylesheet" />
@@ -55,10 +54,12 @@
     </div>
 
 <div style="display: none" id="ServerMessage"></div>
-    <div class="glass js-glass" style="display: none">
-        <div class="message js-message" style="display: none"></div>
-    </div>
-    <script src="~/Scripts/jquery-3.1.0.min.js"></script>
+<div class="glass js-glass" style="display: none">
+    <div class="message js-message" style="display: none"></div>
+</div>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<script src="~/Scripts/jquery-3.1.0.min.js"></script>
     <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @*<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>*@
