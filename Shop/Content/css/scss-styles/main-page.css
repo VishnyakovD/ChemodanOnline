@@ -227,7 +227,8 @@ footer {
       vertical-align: top; }
       footer .line1 .logo a img, footer .line1 .logo a svg {
         height: auto;
-        width: 175px; }
+        width: 175px;
+        height: 65px; }
     footer .line1 .footer-addres {
       font-weight: 300;
       line-height: 1.76;
