@@ -9,10 +9,6 @@
     padding: 2px 16px !important;
 }
 
-.btn-gray {
-    color: #404e5c !important;
-}
-
 .panel-body-color {
     background-color: #F5F5F5 !important;
 }
@@ -26,27 +22,6 @@
     color: white !important;
 }
 
-.adm-panel-menu {
-    margin-bottom: 15px;
-}
-
-.adm-panel-menu-btn {
-    margin-right: 10px;
-    background-color: #409EAF;
-}
-
-.cart-amount-row-table {
-    color: #666666;
-    font-size: 15px;
-}
-
-.hero-spacer {
-    margin-top: 50px;
-}
-
-.hero-feature {
-    margin-bottom: 30px;
-}
 
 input {
     color: black;
@@ -64,18 +39,3 @@ select {
     display: inline-block !important;
     width: 50% !important;
 }
-
-
-#disqus_thread {
-    position: relative;
-}
-
-    #disqus_thread:after {
-        content: "";
-        display: block;
-        height: 55px;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        background: white;
-    }

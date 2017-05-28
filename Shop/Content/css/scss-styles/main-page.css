@@ -315,7 +315,8 @@ footer {
 .footer-article {
   margin-top: 40px;
   padding-left: 5%;
-  padding-right: 5%; }
+  padding-right: 5%;
+  font-size: 12px; }
   .footer-article .dl-horizontal dd {
     margin-left: 50px;
     margin-top: 5px; }
