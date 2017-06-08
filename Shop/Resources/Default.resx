@@ -130,7 +130,7 @@
     <value>Сохранено</value>
   </data>
   <data name="TitleMainPage" xml:space="preserve">
-    <value>Какой чемодан вы бы хотели взять на прокат?</value>
+    <value>Какой чемодан вы бы хотели взять напрокат?</value>
   </data>
   <data name="RequiredInput" xml:space="preserve">
     <value>Это поле обязательно для заполнения</value>

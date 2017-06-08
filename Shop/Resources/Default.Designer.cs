@@ -115,7 +115,7 @@ namespace Shop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Какой чемодан вы бы хотели взять на прокат?.
+        ///   Looks up a localized string similar to Какой чемодан вы бы хотели взять напрокат?.
         /// </summary>
         public static string TitleMainPage {
             get {
