@@ -109,7 +109,7 @@ var Cart = (function () {
             }
             return errors;
         }
-        if (this.clientEmail === "" || !this.clientEmail.match(/^(([^<>=/*()\[\]\\.,;:\s@"]+(\.[^<>=/*()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        if (this.clientEmail !== "" && !this.clientEmail.match(/^(([^<>=/*()\[\]\\.,;:\s@"]+(\.[^<>=/*()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
             errors.push(new InputErrorItem("ClientEmail", ""));
         }
         //

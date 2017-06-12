@@ -33,10 +33,10 @@ namespace Shop
 
                 string sylfaenpath = Environment.GetEnvironmentVariable("SystemRoot") + "\\fonts\\arial.ttf";
                 var sylfaen = BaseFont.CreateFont(sylfaenpath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                var head = new Font(sylfaen, 10f, Font.NORMAL, BaseColor.BLACK);
-                var normal = new Font(sylfaen, 10f, Font.NORMAL, BaseColor.BLACK);
+                var head = new Font(sylfaen, 8f, Font.NORMAL, BaseColor.BLACK);
+                var normal = new Font(sylfaen, 8f, Font.NORMAL, BaseColor.BLACK);
                 var underline = new Font(sylfaen, 10f, Font.UNDERLINE, BaseColor.BLACK);
-                var bold = new Font(sylfaen, 11f, Font.BOLD, BaseColor.BLACK);
+                var bold = new Font(sylfaen, 9f, Font.BOLD, BaseColor.BLACK);
 
                 document.Open();
 
@@ -46,15 +46,15 @@ namespace Shop
 
                 var zalog = order.Order.OrderProducts.Sum(item => item.FullPrice);
 
-                document.Add(new Paragraph($"                                                                                  Договір найму №{orderNumber}", head) );
+                document.Add(new Paragraph($"                                                                                                        Договір найму №{orderNumber}", head) );
 
                 document.Add(new Paragraph(" ", normal));
-                document.Add(new Paragraph($"м. Київ                                                                                                                                           "+ DateTime.Now.Date.ToString("dd MMMM yyyy") +"р.",normal));
+                document.Add(new Paragraph($"м. Київ                                                                                                                                                                                                     " + DateTime.Now.Date.ToString("dd MMMM yyyy") +"р.",normal));
                 document.Add(new Paragraph(" ", normal));
-                document.Add(new Paragraph(" ", normal));
-                document.Add(new Paragraph(" ", normal));
+                //document.Add(new Paragraph(" ", normal));
+                //document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph($"Фізична особа підприємець Глущенко Iнна Миколаївна з однієї сторони (далі в тексті – Наймодавець) та {order.Order.ClientLastName} {order.Order.ClientFirstName} (ПІ) з другої сторони (далі в тексті – Наймач), разом іменовані – Сторони, уклали цей договір про наступне:", normal));
-                document.Add(new Paragraph(" ", normal));
+                //document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph("1.  Даний Договір є договором приєднання у контексті статті 634 Цивільного кодексу України.", normal));
                 document.Add(new Paragraph("2.  У цьому Договорі під терміном “Сайт” розуміється розташований в мережі Інтернет сайт за адресою https://chemodan.online.", normal));
                 document.Add(new Paragraph("3.  Терміни та поняття, значення яких не розкрито в цьому Договорі, розуміються Сторонами відповідно чинного законодавства України.", normal));
@@ -92,10 +92,10 @@ namespace Shop
 
                 document.Add(table);
 
-                document.Add(new Paragraph(" ", normal));
+                //document.Add(new Paragraph(" ", normal));
 
                 document.Add(new Paragraph($"      14.2.  Загальна вартість прокату Майна за період згідно з п. 14 становить  {(order.Order.OrderProducts.Sum(item => item.PriceDay) * days).ToString("F2")} грн.", normal));
-                document.Add(new Paragraph($"      14.3.  Повна вартість Майна (сума застави), що передається Наймачем Наймодавцеві, складає: {zalog.ToString("F2")} (_______________________________________________) грн.", normal));
+                document.Add(new Paragraph($"      14.3.  Повна вартість Майна (сума застави), що передається Наймачем Наймодавцеві, складає: {zalog.ToString("F2")} (______________________________) грн.", normal));
                 document.Add(new Paragraph("    14.4.  Взаєморозрахунки між Сторонами можуть проводитися в готівковій або безготівковій формі. Наймач сплачує Наймодавцю в момент повернення Майна штраф у розмірі вартості найму Майна за кожну добу користування Майном понад строки визначені в Договорі.", normal));
                 document.Add(new Paragraph("  15.  У випадку пошкодження Майна/зміни його стану незалежно від вини Наймача останній несе повну матеріальну відповідальність перед Наймодавцем за такі пошкодження/зміни враховуючи наступне:", normal));
                 document.Add(new Paragraph("      15.1.  Пошкодження/зміна стану Майна, що виключають його використання в подальшому. До таких пошкоджень або змін відносяться поріз тканини, тріщина пластику. У випадку наявності таких пошкоджень/змін Майна Наймач  зобов`язаний сплатити Наймачу повну вартість Майна згідно із п. 14.3 в момент повернення Майна Наймодавцю.", normal));
@@ -133,7 +133,7 @@ namespace Shop
                 table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
 
                 table1.AddCell(new PdfPCell(new Phrase("Р/р", normal)) { MinimumHeight = 16, Border = 0 });
-                table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("26003125296900", normal)) { MinimumHeight = 16, Border = 0 });
                 table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
                 table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
                 table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
@@ -144,7 +144,7 @@ namespace Shop
                 table1.AddCell(new PdfPCell(new Phrase("Адреса", normal)) { MinimumHeight = 16, Border = 0 });
 
                 string flat = (string.IsNullOrEmpty(order.Order.Flat) ? "" : ", кв "+order.Order.Flat);
-                string address =!string.IsNullOrEmpty(order.Order.City)?$"{order.Order.City}, {order.Order.TypeStreet}.{order.Order.Street}, дом {order.Order.Home}{flat}":"";
+                string address =!string.IsNullOrEmpty(order.Order.City)?$"{order.Order.City}, {order.Order.TypeStreet} {order.Order.Street}, дом {order.Order.Home}{flat}":"";
                 table1.AddCell(new PdfPCell(new Phrase($"{address}", normal)) { MinimumHeight = 16, Border = 0 });
 
                 table1.AddCell(new PdfPCell(new Phrase("Email", normal)) { MinimumHeight = 16, Border = 0 });
@@ -175,15 +175,15 @@ namespace Shop
 
                 document.NewPage();
 
-                document.Add(new Paragraph("                                                                   АКТ ПРИЙОМУ-ПЕРЕДАЧІ", head));
+                document.Add(new Paragraph("                                                                                                АКТ ПРИЙОМУ-ПЕРЕДАЧІ", head));
 
                 //document.Add(new Paragraph($"                                                     до Договору найму № {orderNumber} від {order.Order.From.ToString("dd.MM.yyyy")}р.", normal));
-                document.Add(new Paragraph($"м. Київ                                                                                                                                           " + DateTime.Now.Date.ToString("dd MMMM yyyy") + "р.", normal));
+                document.Add(new Paragraph($"м. Київ                                                                                                                                                                                                     " + DateTime.Now.Date.ToString("dd MMMM yyyy") + "р.", normal));
                 document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph($"Фізична особа підприємець Глущенко Iнна Миколаївна з однієї сторони (далі в тексті – Наймодавець) та {order.Order.ClientLastName} {order.Order.ClientFirstName} (ПІ) з другої сторони (далі в тексті – Наймач), разом іменовані – Сторони, склали цей акт про передачу від Глущенко Iнни Миколаївни до {order.Order.ClientLastName} {order.Order.ClientFirstName} в рамках Договору № {orderNumber} від {DateTime.Now.Date.ToString("dd.MM.yyyy")}р.  наступного Майна", normal));
                 document.Add(new Paragraph(" ", normal));
 
-                float[] widths22 = new float[] { 10f, 40f,60f, 90f };
+                float[] widths22 = new float[] { 10f, 30f,50f, 110f };
 
                 PdfPTable table2 = new PdfPTable(widths22);
 
@@ -197,7 +197,7 @@ namespace Shop
                 {
                     table2.AddCell(new PdfPCell(new Phrase((i++).ToString(), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table2.AddCell(new PdfPCell(new Phrase(item.Code, normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
-                    table2.AddCell(new PdfPCell(new Phrase((item.PriceDay * days).ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table2.AddCell(new PdfPCell(new Phrase(item.FullPrice.ToString("f2"), normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                     table2.AddCell(new PdfPCell(new Phrase("", normal)) { HorizontalAlignment = 1, MinimumHeight = 25, VerticalAlignment = Element.ALIGN_MIDDLE });
                 }
 
@@ -207,7 +207,7 @@ namespace Shop
                 document.Add(new Paragraph(" ", normal));
                 document.Add(new Paragraph(" ", normal));
 
-                float[] widths1 = new float[] { 20f, 70f, 30, 20f, 70f };
+                float[] widths1 = new float[] { 20f, 70f, 100, 20f, 70f };
                 PdfPTable table3 = new PdfPTable(widths1);
                 table3.WidthPercentage = 100;
 
