@@ -49,18 +49,32 @@ namespace Shop.Controllers
         {
             FilterItemValue[] types = null;
 
-            //ctype = 1 - большие
-            //ctype = 2 - большие
-            if (ctype==1)
+			//ctype = 1 - большие
+			//ctype = 2 - ручная кладь
+	        //ctype = 3 - средние
+			//ctype = 4 - Ручная кладь для Wizz Air
+			if (ctype==1)
             {
-                types = JsonConvert.DeserializeObject<FilterItemValue[]>("[{\"Id\":3,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"большой  | 55,00000\"}]");
+                types = JsonConvert.DeserializeObject<FilterItemValue[]>("[{\"Id\":3,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"\"}]");
             }else if (ctype == 2)
             {
                 types =
                     JsonConvert.DeserializeObject<FilterItemValue[]>(
-                        "[{\"Id\":1,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"ручная кладь | 25,00000\"}]");
+                        "[{\"Id\":1,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"\"}]");
             }
-            else
+            else if (ctype == 3)
+            {
+	            types =
+		            JsonConvert.DeserializeObject<FilterItemValue[]>(
+			            "[{\"Id\":2,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"\"}]");
+            }
+            else if (ctype == 4)
+            {
+	            types =
+		            JsonConvert.DeserializeObject<FilterItemValue[]>(
+			            "[{\"Id\":4,\"Type\":\"ChemodanType\",\"IsSelected\":true,\"Value\":\"\"}]");
+            }
+			else
             {
                 types=new FilterItemValue[] {};
             }
