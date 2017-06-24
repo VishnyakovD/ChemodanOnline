@@ -30,7 +30,7 @@
     </div>
 
     <div class="row">
-        <div class="col-ms-12">
+        <div class="col-md-12">
             <div class="text-center mobile-center">
                 <div class="title-main-page">@Model.Title</div>
             </div>
@@ -107,41 +107,42 @@
     </div>
 
 
-    <div class="swiper-container main-page-favorite-swipe js-main-page-favorite-swiper">
+	<div class="swiper-container main-page-favorite-swipe js-main-page-favorite-swiper">
 
-        <div class="swiper-wrapper">
-            @foreach (var item in Model.ListProduct)
-            {
-                <div class="swiper-slide">
-                    <div class="short-product js-link" href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})">
-                        <div class="line1">
-                            <img src="@item.smalPhotoPath" />
-                        </div>
-                        <div class="line2 favorite">
-                            <span class="txt">артикул </span>
-                            <span class="val">@item.articul</span>
-                        </div>
-                        <div class="line3">
-                            <span class="val">@item.category</span>
-                        </div>
-                        <div class="line4">
-                            <span class="txt">прокат </span>
-                            <span class="price">@item.price.ToString("####")</span>
-                            <span class="val">грн/день</span>
-                        </div>
-                        <div class="line5">
-                            <a href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})" class="button-default">Посмотреть</a>
-                        </div>
-                    </div>
-                </div>
-            }
+		<div class="swiper-wrapper">
+			@foreach (var item in Model.ListProduct)
+			{
+				<div class="swiper-slide">
+					<div class="short-product js-link" href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})">
+						<div class="line1">
+							<img src="@item.smalPhotoPath" />
+						</div>
+						<div class="line2 favorite">
+							<span class="txt">артикул </span>
+							<span class="val">@item.articul</span>
+						</div>
+						<div class="line3">
+							<span class="val">@item.category</span>
+						</div>
+						<div class="line4">
+							<span class="txt">прокат </span>
+							<span class="price">@item.price.ToString("####")</span>
+							<span class="val">грн/день</span>
+						</div>
+						<div class="line5">
+							<a href="@Url.Action("SkuInfo", "Home", new {idSku = item.id})" class="button-default">Посмотреть</a>
+						</div>
+					</div>
+				</div>
+			}
 
-        </div>
-    </div>
-    <div class="footer-article">
-        <h1>Чемодан напрокат в Киеве</h1>
+		</div>
+	</div>
+	
+	<div class="footer-article">
+        <h1><a href="@Url.Action("ListSkuOnCategory", "Home", new {idCat = 10010})">Чемодан напрокат в Киеве</a></h1>
 
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вы собрались в поездку, но у вас нет подходящего чемодана или дорожной сумки? Не спешите их покупать или заказывать! Возьмите чемодан напрокат в Киеве! Это удобно, практично и совсем недорого. Аренда чемоданов – совершенно новая услуга, которая, тем не менее, быстро набирает популярность среди граждан нашей страны. Отправляясь в путешествие теперь не нужно ломать голову, что часть вещей не поместиться – всегда можно взять чемодан напрокат нужного размера.</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вы собрались в поездку, но у вас нет подходящего чемодана или дорожной сумки? Не спешите их покупать или заказывать! Возьмите чемодан напрокат в Киеве! Это удобно, практично и совсем недорого. <a href="@Url.Action("ListSkuOnCategory", "Home", new {idCat = 10010})">Аренда чемоданов</a> – совершенно новая услуга, которая, тем не менее, быстро набирает популярность среди граждан нашей страны. Отправляясь в путешествие теперь не нужно ломать голову, что часть вещей не поместиться – всегда можно взять чемодан напрокат нужного размера.</div>
         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chemodan.online предлагает арендовать чемодан в Киеве на выгодных условиях. К вашим услугам широкий выбор моделей различной вместимости и дизайна, демократичные расценки, возможность доставки чемодана к вам домой или в офис, вежливые и ответственные сотрудники.</div>
 
         <h1>Почему арендовать чемодан у нас выгодно?</h1>
@@ -152,7 +153,7 @@
             <dd>Во-первых, наш прокат чемоданов предлагает широкий выбор моделей различного дизайна и вместительности. Отправляясь в деловую поездку на пару дней, вы можете взять небольшую дорожную сумку, а собираясь в дальнее путешествие за границу – арендовать большой чемодан, в котором уместится масса вещей.</dd>
 
             <dt>●</dt>
-            <dd>Во-вторых, у нас аренда чемоданов в Киеве стоит совсем недорого, так что у вас останется больше денег на поездку.</dd>
+            <dd>Во-вторых, у нас <a href="@Url.Action("ListSkuOnCategory", "Home", new {idCat = 10010})">аренда чемоданов</a> в Киеве стоит совсем недорого, так что у вас останется больше денег на поездку.</dd>
 
             <dt>●</dt>
             <dd>В-третьих, несмотря на короткий период деятельности, мы уже успели приобрести значительный опыт и предлагаем нашим клиентам только проверенные и хорошо зарекомендовавшие себя модели чемоданов и сумок, которые не только удобны, но и надежны.</dd>
