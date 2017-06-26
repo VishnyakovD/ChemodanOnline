@@ -139,7 +139,7 @@ namespace Shop
                 table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
 
                 table1.AddCell(new PdfPCell(new Phrase("Адреса", normal)) { MinimumHeight = 16, Border = 0 });
-                table1.AddCell(new PdfPCell(new Phrase("пр. Перемоги, 67, корпус I, офіс 213", normal)) { MinimumHeight = 16, Border = 0 });
+                table1.AddCell(new PdfPCell(new Phrase("пр. Перемоги, 67, корпус I», офіс 213", normal)) { MinimumHeight = 16, Border = 0 });
                 table1.AddCell(new PdfPCell(new Phrase("   ", normal)) { MinimumHeight = 16, Border = 0 });
                 table1.AddCell(new PdfPCell(new Phrase("Адреса", normal)) { MinimumHeight = 16, Border = 0 });
 

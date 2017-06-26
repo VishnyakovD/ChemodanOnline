@@ -1,0 +1,37 @@
+﻿@model Shop.Models.MenuModel
+
+@{
+    Page.Title = "Прокат чемоданов | Chemodan.online";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="order-pages">
+	
+	<div class="glass js-glass">
+		<div class="message js-message">
+			<a class='close' href='/'><span>&times;</span></a>
+			@ViewBag.Message
+		</div>
+	</div>
+
+	<!-- Google Code for &#1054;&#1092;&#1086;&#1088;&#1084;&#1083;&#1077;&#1085;&#1080;&#1077; &#1079;&#1072;&#1082;&#1072;&#1079;&#1072; Conversion Page -->
+	<script type="text/javascript">
+/* <![CDATA[ */
+		var google_conversion_id = 998980951;
+		var google_conversion_language = "en";
+		var google_conversion_format = "3";
+		var google_conversion_color = "ffffff";
+		var google_conversion_label = "oQyZCJ77u3IQ1_qs3AM";
+		var google_remarketing_only = false;
+		var oid = @ViewBag.OrderId;
+/* ]]> */
+	</script>
+	<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+	</script>
+	<noscript>
+		<div style="display: inline;">
+			<img height="1" width="1" style="border-style: none;" alt="" src="//www.googleadservices.com/pagead/conversion/998980951/?label=oQyZCJ77u3IQ1_qs3AM&amp;guid=ON&amp;oid=@ViewBag.OrderId&amp;script=0" />
+		</div>
+	</noscript>
+
+</div>

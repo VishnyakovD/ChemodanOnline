@@ -510,6 +510,7 @@
     <Content Include="Views\Admin\ListSkuStatus.cshtml" />
     <Content Include="Views\Admin\ShortSkuStatusListPartial.cshtml" />
     <Content Include="Views\Admin\ShortSkuStatusPartial.cshtml" />
+    <Content Include="Views\Order\Ord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />

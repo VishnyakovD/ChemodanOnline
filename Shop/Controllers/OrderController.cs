@@ -35,8 +35,9 @@ namespace Shop.Controllers
         private IOrderBuilder OrderBulder;
         private IEditOrderModelBuilder EditOrderModelBuilder;
         private long DefaultOrderState;
+	    private MenuBuilder menuBuilder { set; get; }
 
-        public OrderController(ILogger logger,
+		public OrderController(ILogger logger,
             IAdminModelBuilder adminModelBuilder,
             IDataService dataService,
             IImagesPath imagesPath,
@@ -50,9 +51,18 @@ namespace Shop.Controllers
             DefaultOrderState = long.Parse(WebConfigurationManager.AppSettings["DefaultValueHasInStock"]);
             EditOrderModelBuilder = editOrderModelBuilder;
             MailingManager = mailingManager;
-        }
+	        menuBuilder = new MenuBuilder(dataService, imagesPath);
+		}
 
-        public ActionResult Index(string ids)
+		public ActionResult Ord(string id)
+		{
+			var model = menuBuilder.BuildAllMenu();
+			ViewBag.OrderId = id;
+			ViewBag.Message = "Спасибо за ваш заказ! Менеджер свяжется с вами в ближайшее время";
+			return View("Ord",model);
+		}
+
+		public ActionResult Index(string ids)
         {
             var model = new OrderClientPage();
             try
@@ -125,7 +135,10 @@ namespace Shop.Controllers
                         orderData = dataService.AddOrUpdateOrder(orderData);
                         SendMailEx.SendMailExAsyncOrder();
                        // result = "Заказ создан: " + orderData.OrderNumber.ToString()+ ". Менеджер свяжется с вами в ближайшее время";
-                        result = "Спасибо за ваш заказ! Менеджер свяжется с вами в ближайшее время";
+
+                        //result = "Спасибо за ваш заказ! Менеджер свяжется с вами в ближайшее время";
+
+						result = orderData.OrderNumber.ToString();
 
                         if (orderData.PaymentType.Id == 2)
                         {

@@ -379,12 +379,13 @@ class CartManager {
                         .done(result => {
                             console.log("order paid : " + result);
                             payOnline.closeit();
-                            message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
+                       //----------
                             $(".js-order-pages").html("");
-                            $(".js-order-pages").css("min-height", "50vh");
+							$(".js-order-pages").css("min-height", "50vh");
+							window.location.href = `/Order/Ord?id=${result}`;
                         });
                 }
-            },
+			},
             response => {
                 console.log("declined");
                 console.log(response);
@@ -482,7 +483,8 @@ $(() => {
                     .done(result => {
                         $.removeCookie('cart', { path: '/' });
                         if (cartManager.cart.paymentType !== 2) { //2 - признак оплаты онлайн
-                            message.showMessageWnd(result, "/");
+	                        //----------
+	                        window.location.href = `/Order/Ord?id=${result}`;
                             orderPages.html("");
                         } else {
                             orderPages.find(".js-confirm-order").remove();

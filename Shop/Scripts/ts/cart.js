@@ -308,9 +308,10 @@ var CartManager = (function () {
                     .done(function (result) {
                     console.log("order paid : " + result);
                     payOnline.closeit();
-                    message.showMessageWnd("Заказ создан " + cartManager.payOnlineItem.orderReference, "/");
+                    //----------
                     $(".js-order-pages").html("");
                     $(".js-order-pages").css("min-height", "50vh");
+                    window.location.href = "/Order/Ord?id=" + result;
                 });
             }
         }, function (response) {
@@ -402,7 +403,8 @@ $(function () {
                     .done(function (result) {
                     $.removeCookie('cart', { path: '/' });
                     if (cartManager.cart.paymentType !== 2) {
-                        message.showMessageWnd(result, "/");
+                        //----------
+                        window.location.href = "/Order/Ord?id=" + result;
                         orderPages.html("");
                     }
                     else {
