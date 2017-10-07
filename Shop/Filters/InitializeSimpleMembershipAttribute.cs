@@ -38,9 +38,13 @@ namespace Shop.Filters
                             ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
                         }
                     }
-                    //var connection = ConfigurationManager.ConnectionStrings["IndexSourceConnection"].ConnectionString;
-                    WebSecurity.InitializeDatabaseConnection("IndexSourceConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
-                }
+					//var connection = ConfigurationManager.ConnectionStrings["IndexSourceConnection"].ConnectionString;
+					if (!WebMatrix.WebData.WebSecurity.Initialized)
+					{
+						WebSecurity.InitializeDatabaseConnection("IndexSourceConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+					}				
+
+				}
                 catch (Exception ex)
                 {
                     throw new InvalidOperationException("The ASP.NET Simple Membership database could not be initialized. For more information, please see http://go.microsoft.com/fwlink/?LinkId=256588", ex);
