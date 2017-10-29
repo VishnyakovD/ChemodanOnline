@@ -389,7 +389,6 @@
           letter-spacing: 0.6px; } }
 
 footer {
-  margin-top: 40px;
   border-top: 1px solid #0d0d0d; }
   footer .row {
     margin: 0;
@@ -504,6 +503,15 @@ footer {
   .footer-article .h1, .footer-article h1 {
     font-size: 25px;
     text-align: center; }
+
+.bottom-banner {
+  margin-top: 10px;
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  z-index: 2; }
+  .bottom-banner img {
+    width: 100%; }
 
 .main-page-swipe {
   max-height: 400px; }

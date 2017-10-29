@@ -8,7 +8,15 @@
        // nextButton: '.swiper-button-next',
        // prevButton: '.swiper-button-prev',
        // scrollbar: '.swiper-scrollbar'
-    });
+	});
+
+    var mainSwiper = new Swiper('.js-banner-swiper', {
+        direction: 'horizontal',
+        loop: true,
+		autoplay: {
+			delay: 15000
+		}
+	});
 
     var mainFavorite = new Swiper('.js-main-page-favorite-swiper', {
         slidesPerView: 4,
