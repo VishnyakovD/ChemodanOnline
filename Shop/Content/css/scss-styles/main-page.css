@@ -332,5 +332,6 @@ footer {
   bottom: 0;
   z-index: 2; }
   .bottom-banner img {
-    width: 100%; }
+    width: 100%;
+    cursor: pointer; }
 
