@@ -108,6 +108,7 @@ namespace Shop.Controllers
                                 name = FirstLetterToUpper(serObject["clientFirstName"]),
                                 email = serObject["clientEmail"],
                                 mPhone = serObject["clientPhone"],
+																sex=null,
                                 editAdress =
                                 {
                                     city = FirstLetterToUpper(serObject["city"]),
@@ -132,11 +133,34 @@ namespace Shop.Controllers
                             orderData.Client.adress = null;
                             orderData.Client.editAdress = null;
                         }
-                        orderData = dataService.AddOrUpdateOrder(orderData);
-                        SendMailEx.SendMailExAsyncOrder();
-                       // result = "Заказ создан: " + orderData.OrderNumber.ToString()+ ". Менеджер свяжется с вами в ближайшее время";
+						try
+						{
+							orderData = dataService.AddOrUpdateOrder(orderData);
+						}
+						catch (Exception ex)
+						{
 
-                        //result = "Спасибо за ваш заказ! Менеджер свяжется с вами в ближайшее время";
+						}
+						finally
+						{
+
+						}
+
+						try
+						{
+							//SendMailEx.SendMailExAsyncOrder();
+							SendMailEx.SendMailExAsyncOrder(serObject["clientPhone"], serObject["clientLastName"] + " " + serObject["clientEmail"]+". Товар "+ tmpProductList[0].ProductName+" ID "+ tmpProductList[0].ProductId);
+						}
+						catch (Exception ex)
+						{
+
+						}
+						finally
+						{
+
+						}
+
+
 
 						result = orderData.OrderNumber.ToString();
 
@@ -247,9 +271,23 @@ namespace Shop.Controllers
                     UserName = userName
                 };
                 dataService.AddOrUpdateOrderOneClick(order);
-                // MailingManager.SendMailNewOrderOneClick();
-                SendMailEx.SendMailExAsyncOneClick();
-                 result = "Спасибо за ваше обращение! Менеджер свяжется с вами в ближайшее время";
+				// MailingManager.SendMailNewOrderOneClick();
+				//SendMailEx.SendMailExAsyncOneClick();
+				try
+				{
+					//SendMailEx.SendMailExAsyncOrder();
+					SendMailEx.SendMailExAsyncOrder(phone, "!!!ЗАКАЗ В ОДИН КЛИК!!!"+" Товар "+ productId);
+				}
+				catch (Exception ex)
+				{
+
+				}
+				finally
+				{
+
+				}
+
+				result = "Спасибо за ваше обращение! Менеджер свяжется с вами в ближайшее время";
             }
             catch (Exception ex)
             {
